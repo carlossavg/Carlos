@@ -27,6 +27,20 @@ No hace falta tocar nada más abajo.
 | 13 | `idioma` | Idioma inicial y autodetección |
 | 14 | `creditos` | Crédito del footer |
 
+### Los tres campos que más se olvidan
+
+1. **`negocio.zonaHoraria`** — el cartel de *Abierto ahora / Cerrado* se calcula con la hora
+   del **local**, no con la del visitante. Sin esto, alguien que entre desde España vería
+   "abierto" a las 3 de la mañana. Pon la zona del cliente (`America/Puerto_Rico`,
+   `America/Mexico_City`, `Europe/Madrid`…).
+2. **`negocio.whatsapp`** — formato internacional con código de país y sin espacios:
+   `+17875550142`. Si está mal, el botón no abre ningún chat.
+3. **El `<link rel="preload">` del `<head>`** — debe llevar la misma URL que `CONFIG.fotoHero`.
+   Si no coinciden, la foto principal se descarga dos veces.
+
+**La consola te avisa.** Abre el inspector (F12) y busca el grupo **"Barbería · revisa CONFIG"**:
+lista todo lo que quedó sin personalizar antes de que lo vea el cliente.
+
 **Importante:** edita también el `<head>` (`<title>`, `description` y Open Graph). El JS los actualiza
 en el navegador, pero los buscadores y WhatsApp leen el HTML tal cual.
 
@@ -97,11 +111,40 @@ También funciona en Vercel, GitHub Pages, Hostinger o cualquier hosting: es un 
 
 ## Técnico
 
+**Idioma**
 - Botón **ES / EN** que cambia todos los textos sin recargar
-- SEO: title, meta description, Open Graph, Twitter Card y schema `BarberShop` generado desde CONFIG
-- Badge de "Abierto ahora / Cerrado" calculado desde el horario
-- Animaciones al hacer scroll, con respeto a `prefers-reduced-motion`
-- Accesible: etiquetas reales, `aria-expanded` en el acordeón, foco visible, toque mínimo de 44px
+- Al cambiar de idioma no se pierde lo que el visitante ya escribió en el formulario,
+  ni la pregunta que tenía abierta, ni se vuelve a cargar el mapa
+
+**SEO**
+- Title, meta description, Open Graph y Twitter Card, todos con nombre y ciudad
+- Schema `BarberShop` generado desde CONFIG: horario, servicios con precio, reseñas
+  individuales, barberos, coordenadas, métodos de pago y enlace al mapa
+
+**Rendimiento**
+- El mapa de Google (lo más pesado de la página) solo se carga cuando el visitante se acerca
+- `preload` de la foto principal para mejorar el LCP
+- Las secciones de abajo no se pintan hasta que hacen falta (`content-visibility`)
+- Scroll y barra de progreso en un solo ciclo de pintado (`requestAnimationFrame`)
+
+**Accesibilidad**
+- Enlace "saltar al contenido" como primer tabulador
+- La galería son botones reales: se recorre con el tabulador y se abre con Enter
+- El visor se maneja con flechas y Escape, atrapa el foco mientras está abierto
+  y lo devuelve a la foto de origen al cerrar
+- Contraste verificado (AA) en todos los textos, incluidos los grises
+- Toque mínimo de 44px, foco siempre visible, `aria-live` para anunciar los cambios
+
+**Formulario**
+- Validación propia en el idioma activo, con el aviso debajo de cada campo
+- Los campos llevan `required` para que sigan protegidos si el JS no carga
+- Si el navegador bloquea la ventana emergente, la página navega a WhatsApp igualmente
+
+**Otros**
+- Se imprime en una hoja limpia con los datos del local (`Ctrl+P`)
+- Aviso visible si el visitante tiene JavaScript desactivado
+- Si una foto no carga, queda un degradado con la etiqueta del hueco
+- Respeta `prefers-reduced-motion`
 - Sin librerías externas: solo Google Fonts
 
 ## Antes de entregar
@@ -113,3 +156,5 @@ También funciona en Vercel, GitHub Pages, Hostinger o cualquier hosting: es un 
 - [ ] Probado el WhatsApp desde un celular
 - [ ] Probado el formulario ya publicado
 - [ ] Revisado el botón ES / EN
+- [ ] Consola sin avisos de "revisa CONFIG"
+- [ ] `negocio.zonaHoraria` puesta a la zona del cliente
