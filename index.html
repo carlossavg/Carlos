@@ -197,6 +197,7 @@ body::after{
 .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-width:0;width:min(100% - 40px,var(--ancho));margin-inline:auto}
 
 .logo{display:flex;flex-direction:column;line-height:1;flex:0 1 auto;min-width:0;overflow:hidden}
+.logo__img{max-height:44px;width:auto;object-fit:contain}
 .logo__marca{font-family:var(--font-display);font-size:26px;letter-spacing:.05em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .logo__sub{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);margin-top:5px}
@@ -662,6 +663,7 @@ body::after{
   #navReservar{display:none}
   .nav__inner{gap:12px}
   .logo__marca{font-size:21px}
+  .logo__img{max-height:36px}
   .logo__sub{font-size:8px;letter-spacing:.26em;margin-top:4px}
   .lang{height:38px}
   .lang span{padding:0 11px;font-size:10px}
@@ -1111,6 +1113,10 @@ const CONFIG = {
     moneda:      "$",
     sitioWeb:    "https://www.barberiaejemplo.com",
 
+    // Logo del negocio. Déjalo vacío ("") y sale el nombre en letras.
+    // Si tienes el logo: mételo en la carpeta img y pon aquí "img/logo.png"
+    logo:        "",
+
     // Zona horaria del LOCAL. Sin esto, el cartel de "Abierto ahora" usaría
     // la hora del visitante y mentiría a quien entre desde otro país.
     // Lista: https://es.wikipedia.org/wiki/Anexo:Zonas_horarias_de_la_base_de_datos_tz
@@ -1252,7 +1258,13 @@ const CONFIG = {
                en: "Great vibe, good music and first-class service. Now I bring my son too." } }
   ],
 
-  /* ---------- 10. GALERÍA (6 a 9 fotos) ---------- */
+  /* ---------- 10. GALERÍA (6 a 9 fotos) ----------
+     PARA USAR LAS FOTOS DE TU CLIENTE:
+     1. Haz una carpeta llamada  img  al lado de este archivo
+     2. Mete ahí las fotos: foto-1.jpg, foto-2.jpg...
+     3. Cambia el link largo por el nombre corto:
+            "https://images.unsplash.com/..."   ->   "img/foto-1.jpg"
+     Nombres en minúsculas, sin espacios, sin acentos y sin ñ. */
   galeria: [
     "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80", // [FOTO_GALERIA_1]
     "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80",  // [FOTO_GALERIA_2]
@@ -1617,6 +1629,13 @@ function render(){
     if(v) el.textContent = v;
   });
   $$("[data-lang-opt]").forEach(el => el.classList.toggle("is-activo", el.dataset.langOpt === idioma));
+
+  /* --- Logo: la imagen si el negocio la tiene, si no el nombre en letras --- */
+  if(N.logo){
+    $$(".logo").forEach(el => {
+      el.innerHTML = '<img class="logo__img" src="'+esc(N.logo)+'" alt="'+esc(N.nombre)+'">';
+    });
+  }
 
   /* --- SEO --- */
   const titulo = N.nombre + " | " + (idioma === "es"
@@ -2203,6 +2222,10 @@ function revisarConfig(){
       avisos.push('El <link rel="canonical"> apunta a ' + host + ' pero la página está en ' +
                   location.hostname + ': corrige canonical, og:url y negocio.sitioWeb en el <head>');
   }
+  const conEspacios = [CONFIG.fotoHero].concat(CONFIG.galeria, CONFIG.barberos.map(b=>b.foto), [N.logo])
+    .filter(u => u && /^img\//.test(u) && /[ ÁÉÍÓÚÑáéíóúñ]/.test(u));
+  if(conEspacios.length)
+    avisos.push("Hay fotos con espacios o acentos en el nombre y no van a cargar: " + conEspacios.join(", "));
   if(CONFIG.galeria.length < 6 || CONFIG.galeria.length > 9)
     avisos.push("La galería se ve mejor con 6 a 9 fotos (ahora hay " + CONFIG.galeria.length + ")");
   if(!avisos.length) return;

@@ -69,7 +69,30 @@ cualquier banco de imágenes, y además evitan que dos clientes tuyos tengan la 
 Si una foto no carga, el espacio muestra un degradado oscuro con dorado y la etiqueta del hueco,
 así la página nunca se rompe y sabes cuál falta.
 
-Medidas recomendadas: hero 1920×1080, galería 800×800, barberos 800×1000.
+### Usar las fotos del cliente
+
+1. Haz una carpeta `img` al lado del `index.html`
+2. Mete ahí las fotos: `hero.jpg`, `foto-1.jpg`, `barbero-1.jpg`
+3. En CONFIG cambia el link largo por el corto: `"img/foto-1.jpg"`
+4. Sube la carpeta **completa** a Netlify, no solo el HTML
+
+**Nombres en minúscula, sin espacios, sin acentos y sin ñ.** `Foto Barbería 1.JPG` no
+carga y no avisa por qué. La consola te marca las que estén mal escritas.
+
+**Bájales el peso antes de meterlas.** Una foto de celular pesa 5 MB y hunde la página.
+Pásalas por squoosh.app o tinypng.com hasta dejarlas por debajo de 300 KB.
+
+| Foto | Tamaño | Peso máximo |
+|---|---|---|
+| Hero | 1920×1080 | 400 KB |
+| Galería | 800×800 | 250 KB |
+| Equipo | 800×1000 | 250 KB |
+| Logo | ~400 de ancho | 100 KB |
+
+### Logo
+
+`CONFIG.negocio.logo` vacío = sale el nombre en letras. Con el logo: mételo en `img/logo.png`
+y pon `logo: "img/logo.png"`. Que sea PNG con fondo transparente.
 
 ---
 
