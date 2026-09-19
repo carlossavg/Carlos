@@ -2190,6 +2190,15 @@ function revisarConfig(){
     avisos.push('El <link rel="preload"> del <head> no apunta a CONFIG.fotoHero: la foto principal se descargará dos veces');
   if(document.title.indexOf(N.nombre) === -1)
     avisos.push("El <title> del <head> no lleva el nombre del negocio");
+  // Publicada en un dominio distinto al del canonical: Google puede no indexarla
+  if(location.protocol.indexOf("http") === 0){
+    const can = $('link[rel="canonical"]');
+    let host = "";
+    try{ host = new URL(can ? can.href : "").hostname; }catch(e){}
+    if(host && host !== location.hostname)
+      avisos.push('El <link rel="canonical"> apunta a ' + host + ' pero la página está en ' +
+                  location.hostname + ': corrige canonical, og:url y negocio.sitioWeb en el <head>');
+  }
   if(CONFIG.galeria.length < 6 || CONFIG.galeria.length > 9)
     avisos.push("La galería se ve mejor con 6 a 9 fotos (ahora hay " + CONFIG.galeria.length + ")");
   if(!avisos.length) return;

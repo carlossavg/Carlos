@@ -1,0 +1,25 @@
+# Configuración de Netlify para la landing de barbería.
+# Con arrastrar la carpeta a https://app.netlify.com/drop se aplica sola.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+# El HTML se revalida siempre: si cambias un precio, se ve al momento.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cualquier imagen o fuente que subas junto al HTML se cachea un año.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# El formulario avisa aquí cuando alguien reserva (opcional).
+# [[plugins]] no hace falta: Netlify Forms se activa solo al detectar data-netlify.
