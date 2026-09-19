@@ -45,7 +45,8 @@
 <!-- ===== FUENTES ===== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Las 3 combinaciones de letra. Si solo usas una, borra las otras y carga más rápido. -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@400;700;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Favicon inline (tijera dorada). Sustitúyelo por el logo del cliente. -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2307070a'/%3E%3Ctext x='50' y='70' font-size='58' text-anchor='middle' fill='%23d9b25e' font-family='Georgia,serif'%3EB%3C/text%3E%3C/svg%3E">
@@ -61,6 +62,8 @@
   --carbon-alto:#15151c;
   --carbon-suave:#1c1c24;
   --oro:#d9b25e;
+  --oro-texto:var(--oro);        /* el oro cuando es TEXTO (cambia en tema claro) */
+  --sobre-acento:#0a0a0c;        /* el texto que va ENCIMA del acento (lo calcula el JS) */
   --oro-claro:#f2d79b;
   --oro-oscuro:#8f6f2c;
   --linea:rgba(217,178,94,.16);
@@ -85,6 +88,98 @@
   --trans:.5s cubic-bezier(.22,.61,.36,1);
   --ease:cubic-bezier(.22,.61,.36,1);
 }
+
+/* ============================================================
+   1b. TEMA CLARO — se activa con estilo.tema: "claro" en CONFIG
+   ============================================================ */
+:root[data-tema="claro"]{
+  --negro:#faf9f7;
+  --carbon:#f2f0eb;
+  --carbon-alto:#ffffff;
+  --carbon-suave:#e9e6df;
+  --oro-texto:#7a5c1f;           /* 5.9:1 sobre el fondo claro */
+  --texto:#16161a;
+  --texto-suave:#55524d;
+  --texto-tenue:#6e6a63;
+  --linea:rgba(143,111,44,.20);
+  --linea-fuerte:rgba(143,111,44,.42);
+  --sombra:0 22px 55px rgba(20,18,12,.13);
+}
+:root[data-tema="claro"] body::after{opacity:.025}
+:root[data-tema="claro"] .nav.is-scrolled{background:rgba(250,249,247,.92);border-bottom-color:rgba(0,0,0,.08)}
+:root[data-tema="claro"] .nav__links{background:rgba(250,249,247,.99);border-bottom-color:rgba(0,0,0,.09)}
+:root[data-tema="claro"] .nav__links a{border-bottom-color:rgba(0,0,0,.07)}
+:root[data-tema="claro"] .hamb i{background:var(--texto)}
+:root[data-tema="claro"] .hero__velo{
+  background:linear-gradient(180deg,rgba(250,249,247,.62) 0%,rgba(250,249,247,.18) 30%,rgba(250,249,247,.94) 80%,var(--negro) 100%);
+}
+:root[data-tema="claro"] .hero__titulo,
+:root[data-tema="claro"] .hero__sub{text-shadow:0 1px 20px rgba(250,249,247,.85)}
+:root[data-tema="claro"] .hero__prueba{background:rgba(255,255,255,.75)}
+:root[data-tema="claro"] .servicio,
+:root[data-tema="claro"] .beneficio,
+:root[data-tema="claro"] .barbero,
+:root[data-tema="claro"] .testimonio,
+:root[data-tema="claro"] .horario{border-color:rgba(20,18,12,.1);background:var(--carbon-alto)}
+:root[data-tema="claro"] .servicio{background:linear-gradient(170deg,#fff,#f7f5f1)}
+:root[data-tema="claro"] .cita__form{background:linear-gradient(170deg,#fff,#f7f5f1)}
+:root[data-tema="claro"] .campo input,
+:root[data-tema="claro"] .campo select{background:#fff;border-color:rgba(20,18,12,.16)}
+:root[data-tema="claro"] .campo input:focus,
+:root[data-tema="claro"] .campo select:focus{background:#fff}
+:root[data-tema="claro"] .barra-movil{background:rgba(255,255,255,.97);border-top-color:rgba(20,18,12,.12)}
+:root[data-tema="claro"] .barra-movil a:first-child{border-right-color:rgba(20,18,12,.12)}
+:root[data-tema="claro"] .mapa iframe{filter:none}
+:root[data-tema="claro"] .faq,
+:root[data-tema="claro"] .faq__item,
+:root[data-tema="claro"] .footer,
+:root[data-tema="claro"] .footer__base,
+:root[data-tema="claro"] .confianza,
+:root[data-tema="claro"] .seccion--linea,
+:root[data-tema="claro"] .testimonio__pie{border-color:rgba(20,18,12,.11)}
+:root[data-tema="claro"] .visor{background:rgba(250,249,247,.95)}
+:root[data-tema="claro"] .visor__cerrar,
+:root[data-tema="claro"] .visor__nav{background:rgba(255,255,255,.9)}
+
+/* ============================================================
+   1c. FUENTES — se elige con estilo.fuente en CONFIG
+   ============================================================ */
+:root[data-fuente="elegante"]{
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Lato',system-ui,sans-serif;
+}
+:root[data-fuente="moderna"]{
+  --font-display:'Outfit',system-ui,sans-serif;
+  --font-body:'Manrope',system-ui,sans-serif;
+}
+/* Bebas solo tiene mayúsculas; las otras dos se leen mejor normales */
+:root[data-fuente="elegante"] .titulo,
+:root[data-fuente="elegante"] .hero__titulo,
+:root[data-fuente="elegante"] .servicio__nombre,
+:root[data-fuente="elegante"] .barbero__nombre,
+:root[data-fuente="elegante"] .beneficio h3,
+:root[data-fuente="elegante"] .faq__btn,
+:root[data-fuente="elegante"] .logo__marca,
+:root[data-fuente="moderna"] .titulo,
+:root[data-fuente="moderna"] .hero__titulo,
+:root[data-fuente="moderna"] .servicio__nombre,
+:root[data-fuente="moderna"] .barbero__nombre,
+:root[data-fuente="moderna"] .beneficio h3,
+:root[data-fuente="moderna"] .faq__btn,
+:root[data-fuente="moderna"] .logo__marca{text-transform:none}
+/* Son más anchas que Bebas, así que bajan un punto de tamaño */
+:root[data-fuente="elegante"] .hero__titulo{font-size:clamp(2.7rem,8.2vw,6.1rem);line-height:1.02;letter-spacing:-.012em;font-weight:600}
+:root[data-fuente="elegante"] .titulo{font-size:clamp(2.1rem,4.7vw,3.7rem);line-height:1.06;letter-spacing:-.01em;font-weight:600}
+:root[data-fuente="moderna"] .hero__titulo{font-size:clamp(2.6rem,8vw,5.9rem);line-height:1.02;letter-spacing:-.028em;font-weight:800}
+:root[data-fuente="moderna"] .titulo{font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.07;letter-spacing:-.022em;font-weight:800}
+:root[data-fuente="elegante"] .servicio__nombre,
+:root[data-fuente="moderna"] .servicio__nombre{font-size:1.45rem;font-weight:700}
+:root[data-fuente="elegante"] .barbero__nombre,
+:root[data-fuente="moderna"] .barbero__nombre{font-size:1.4rem;font-weight:700}
+:root[data-fuente="elegante"] .faq__btn,
+:root[data-fuente="moderna"] .faq__btn{font-size:1.12rem;font-weight:700}
+:root[data-fuente="elegante"] .logo__marca,
+:root[data-fuente="moderna"] .logo__marca{font-size:22px;font-weight:700;letter-spacing:-.01em}
 
 /* ============================================================
    2. BASE
@@ -113,7 +208,7 @@ body::after{
 }
 
 .contenedor{width:min(100% - 40px,var(--ancho));margin-inline:auto}
-.oro{color:var(--oro)}
+.oro{color:var(--oro-texto)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 
 /* ============================================================
@@ -122,7 +217,7 @@ body::after{
 .eyebrow{
   display:flex;align-items:center;gap:12px;
   font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--oro);margin-bottom:18px;
+  color:var(--oro-texto);margin-bottom:18px;
 }
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--oro);opacity:.7;flex:none}
 .eyebrow--centro{justify-content:center}
@@ -154,10 +249,10 @@ body::after{
   white-space:nowrap;background:none;
 }
 .btn svg{width:18px;height:18px;flex:none}
-.btn--oro{background:var(--oro);color:#0a0a0c;box-shadow:0 12px 30px rgba(217,178,94,.18)}
+.btn--oro{background:var(--oro);color:var(--sobre-acento);box-shadow:0 12px 30px rgba(217,178,94,.18)}
 .btn--oro:hover{background:var(--oro-claro);transform:translateY(-2px);box-shadow:0 18px 40px rgba(217,178,94,.3)}
 .btn--linea{border-color:var(--linea-fuerte);color:var(--texto)}
-.btn--linea:hover{border-color:var(--oro);color:var(--oro);transform:translateY(-2px)}
+.btn--linea:hover{border-color:var(--oro);color:var(--oro-texto);transform:translateY(-2px)}
 .btn--wa{background:var(--wa);color:#04210f;box-shadow:0 12px 30px rgba(37,211,102,.2)}
 .btn--wa:hover{background:#31e673;transform:translateY(-2px)}
 .btn--sm{min-height:44px;padding:0 20px;font-size:12px}
@@ -178,7 +273,7 @@ body::after{
 .foto img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.22,.61,.36,1),opacity .6s ease}
 .foto__etiqueta{
   display:none;position:absolute;inset:0;z-index:2;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--oro);
+  font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--oro-texto);
   text-transform:uppercase;text-align:center;padding:12px;
 }
 .foto--fallback img{display:none}
@@ -200,7 +295,7 @@ body::after{
 .logo__img{max-height:44px;width:auto;object-fit:contain}
 .logo__marca{font-family:var(--font-display);font-size:26px;letter-spacing:.05em;text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
-.logo__sub{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--oro);margin-top:5px}
+.logo__sub{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--oro-texto);margin-top:5px}
 
 .nav__links{display:flex;align-items:center;gap:30px}
 .nav__links a{
@@ -222,7 +317,7 @@ body::after{
   padding:0 13px;height:100%;display:flex;align-items:center;
   font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--texto-suave);transition:all .3s ease;
 }
-.lang span.is-activo{background:var(--oro);color:#0a0a0c}
+.lang span.is-activo{background:var(--oro);color:var(--sobre-acento)}
 
 /* Hamburguesa */
 .hamb{display:none;width:44px;height:44px;border:1px solid var(--linea-fuerte);border-radius:12px;background:none;cursor:pointer;position:relative}
@@ -262,7 +357,7 @@ body::after{
   border:1px solid var(--linea);border-radius:999px;background:rgba(14,14,19,.6);
   backdrop-filter:blur(8px);font-size:13px;color:var(--texto-suave);
 }
-.estrellas{display:inline-flex;gap:3px;color:var(--oro)}
+.estrellas{display:inline-flex;gap:3px;color:var(--oro-texto)}
 .estrellas svg{width:15px;height:15px}
 .hero__scroll{
   position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;
@@ -279,7 +374,7 @@ body::after{
 .confianza__grid{display:grid;grid-template-columns:repeat(3,1fr);text-align:center}
 .confianza__item{padding:clamp(28px,4vw,44px) 16px;position:relative}
 .confianza__item + .confianza__item::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:rgba(255,255,255,.08)}
-.confianza__num{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);line-height:1;color:var(--oro)}
+.confianza__num{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.6rem);line-height:1;color:var(--oro-texto)}
 .confianza__lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--texto-suave);margin-top:10px}
 
 /* ============================================================
@@ -296,14 +391,14 @@ body::after{
 .servicio--destacado{border-color:var(--linea-fuerte)}
 .servicio__badge{
   position:absolute;top:-11px;left:28px;padding:4px 12px;border-radius:999px;
-  background:var(--oro);color:#0a0a0c;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--oro);color:var(--sobre-acento);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
 }
 .servicio__top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .servicio__nombre{font-family:var(--font-display);font-size:1.75rem;line-height:1.05;text-transform:uppercase;letter-spacing:.02em}
-.servicio__precio{font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--oro);flex:none}
+.servicio__precio{font-family:var(--font-display);font-size:2rem;line-height:1;color:var(--oro-texto);flex:none}
 .servicio__desc{color:var(--texto-suave);font-size:.95rem;margin-top:14px;flex:1}
 .servicio__meta{display:flex;align-items:center;gap:7px;margin-top:18px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--texto-tenue)}
-.servicio__meta svg{width:14px;height:14px;color:var(--oro)}
+.servicio__meta svg{width:14px;height:14px;color:var(--oro-texto)}
 .servicio .btn{margin-top:22px}
 
 /* ============================================================
@@ -314,7 +409,7 @@ body::after{
 .beneficio:hover{transform:translateY(-5px);border-color:var(--linea-fuerte)}
 .beneficio__icono{
   width:54px;height:54px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px;
-  border:1px solid var(--linea-fuerte);background:rgba(217,178,94,.07);color:var(--oro);
+  border:1px solid var(--linea-fuerte);background:rgba(217,178,94,.07);color:var(--oro-texto);
 }
 .beneficio__icono svg{width:25px;height:25px}
 .beneficio h3{font-family:var(--font-display);font-size:1.5rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
@@ -346,14 +441,14 @@ body::after{
 .barbero .foto{aspect-ratio:4/5}
 .barbero__info{padding:24px}
 .barbero__nombre{font-family:var(--font-display);font-size:1.7rem;text-transform:uppercase;letter-spacing:.02em;line-height:1}
-.barbero__rol{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);margin-top:8px}
+.barbero__rol{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-texto);margin-top:8px}
 .barbero__esp{color:var(--texto-suave);font-size:.93rem;margin-top:12px}
 .barbero__acciones{display:flex;gap:10px;align-items:center;margin-top:20px}
 .icono-social{
   width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;
   border:1px solid var(--linea);color:var(--texto-suave);transition:.3s ease;
 }
-.icono-social:hover{border-color:var(--oro);color:var(--oro);transform:translateY(-2px)}
+.icono-social:hover{border-color:var(--oro);color:var(--oro-texto);transform:translateY(-2px)}
 .icono-social svg{width:18px;height:18px}
 
 /* ============================================================
@@ -366,13 +461,13 @@ body::after{
 }
 .testimonio::before{
   content:"\201C";position:absolute;top:8px;right:24px;
-  font-family:Georgia,serif;font-size:90px;line-height:1;color:var(--oro);opacity:.14;
+  font-family:Georgia,serif;font-size:90px;line-height:1;color:var(--oro-texto);opacity:.14;
 }
 .testimonio__texto{color:var(--texto-suave);font-size:1rem;margin:16px 0 22px;flex:1;position:relative}
 .testimonio__pie{display:flex;align-items:center;gap:13px;border-top:1px solid rgba(255,255,255,.07);padding-top:18px}
 .avatar{
   width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(140deg,var(--oro),var(--oro-oscuro));color:#0a0a0c;
+  background:linear-gradient(140deg,var(--oro),var(--oro-oscuro));color:var(--sobre-acento);
   font-weight:800;font-size:15px;
 }
 .testimonio__nombre{font-weight:700;font-size:.95rem}
@@ -408,7 +503,7 @@ body::after{
 .cita__paso{display:flex;gap:16px;align-items:flex-start}
 .cita__num{
   width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;
-  border:1px solid var(--linea-fuerte);color:var(--oro);font-family:var(--font-display);font-size:1.15rem;
+  border:1px solid var(--linea-fuerte);color:var(--oro-texto);font-family:var(--font-display);font-size:1.15rem;
 }
 .cita__paso p{color:var(--texto-suave);font-size:.95rem}
 .cita__paso strong{display:block;color:var(--texto);font-weight:700;font-size:1rem;margin-bottom:2px}
@@ -422,21 +517,21 @@ body::after{
 .horario__fila + .horario__fila{border-top:1px solid rgba(255,255,255,.055)}
 .horario__fila.is-hoy{background:rgba(217,178,94,.07)}
 .horario__dia{color:var(--texto-suave);text-transform:capitalize}
-.horario__fila.is-hoy .horario__dia{color:var(--oro);font-weight:700}
+.horario__fila.is-hoy .horario__dia{color:var(--oro-texto);font-weight:700}
 .horario__horas{font-variant-numeric:tabular-nums;font-weight:600}
 .horario__fila.is-cerrado .horario__horas{color:var(--texto-tenue);font-weight:400}
 .badge-abierto{
   display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;
   font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;
-  border:1px solid var(--linea-fuerte);background:rgba(217,178,94,.08);color:var(--oro);
+  border:1px solid var(--linea-fuerte);background:rgba(217,178,94,.08);color:var(--oro-texto);
 }
 .badge-abierto i{width:8px;height:8px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 4px rgba(37,211,102,.18)}
 .badge-abierto.is-cerrado{color:var(--texto-suave);border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.03)}
 .badge-abierto.is-cerrado i{background:#e05a5a;box-shadow:0 0 0 4px rgba(224,90,90,.16)}
 .datos{display:grid;gap:14px;margin-top:26px}
 .dato{display:flex;gap:14px;align-items:flex-start;color:var(--texto-suave);font-size:.96rem}
-.dato svg{width:19px;height:19px;color:var(--oro);flex:none;margin-top:3px}
-.dato a:hover{color:var(--oro)}
+.dato svg{width:19px;height:19px;color:var(--oro-texto);flex:none;margin-top:3px}
+.dato a:hover{color:var(--oro-texto)}
 .mapa{border-radius:var(--radio);overflow:hidden;border:1px solid rgba(255,255,255,.08);min-height:380px;background:var(--carbon-alto)}
 .mapa iframe{width:100%;height:100%;min-height:380px;border:0;display:block;filter:grayscale(1) invert(.92) contrast(.86)}
 
@@ -451,7 +546,7 @@ body::after{
   font-family:var(--font-display);font-size:1.35rem;letter-spacing:.02em;text-transform:uppercase;
   color:var(--texto);transition:color .3s ease;
 }
-.faq__btn:hover{color:var(--oro)}
+.faq__btn:hover{color:var(--oro-texto)}
 .faq__mas{width:30px;height:30px;flex:none;border-radius:50%;border:1px solid var(--linea-fuerte);position:relative;transition:.35s ease}
 .faq__mas::before,.faq__mas::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--oro);border-radius:2px}
 .faq__mas::before{width:12px;height:1.5px}
@@ -476,17 +571,17 @@ body::after{
 .footer{background:var(--negro);border-top:1px solid rgba(255,255,255,.07);padding-top:clamp(50px,6vw,74px)}
 .footer__grid{display:grid;gap:36px;grid-template-columns:1.4fr 1fr 1fr}
 .footer__texto{color:var(--texto-suave);font-size:.94rem;margin-top:18px;max-width:38ch}
-.footer h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);margin-bottom:18px}
+.footer h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-texto);margin-bottom:18px}
 .footer__links{display:grid;gap:11px}
 .footer__links a{color:var(--texto-suave);font-size:.94rem;transition:color .3s ease}
-.footer__links a:hover{color:var(--oro)}
+.footer__links a:hover{color:var(--oro-texto)}
 .footer__redes{display:flex;gap:10px;margin-top:22px}
 .footer__base{
   display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;
   margin-top:clamp(40px,5vw,60px);padding:24px 0;border-top:1px solid rgba(255,255,255,.07);
   font-size:12.5px;color:var(--texto-tenue);
 }
-.footer__base a:hover{color:var(--oro)}
+.footer__base a:hover{color:var(--oro-texto)}
 
 /* ============================================================
    18. BOTONES FLOTANTES / BARRA MÓVIL
@@ -537,7 +632,7 @@ body::after{
 .saltar{
   position:fixed;top:10px;left:10px;z-index:200;
   transform:translateY(-200%);transition:transform .25s var(--ease);
-  padding:12px 20px;border-radius:999px;background:var(--oro);color:#0a0a0c;
+  padding:12px 20px;border-radius:999px;background:var(--oro);color:var(--sobre-acento);
   font-size:13px;font-weight:700;letter-spacing:.06em;
 }
 .saltar:focus{transform:none}
@@ -551,7 +646,7 @@ body::after{
 }
 
 /* Enlace del menú correspondiente a la sección visible */
-.nav__links a[aria-current]{color:var(--oro)}
+.nav__links a[aria-current]{color:var(--oro-texto)}
 .nav__links a[aria-current]::after{width:100%}
 
 /* Números que no bailan mientras cuentan */
@@ -580,12 +675,12 @@ body::after{
   border:1px solid var(--linea-fuerte);background:rgba(14,14,19,.82);color:var(--texto);
   cursor:pointer;transition:border-color .3s ease,color .3s ease,background .3s ease;
 }
-.visor__nav:hover{border-color:var(--oro);color:var(--oro);background:rgba(14,14,19,.95)}
+.visor__nav:hover{border-color:var(--oro);color:var(--oro-texto);background:rgba(14,14,19,.95)}
 .visor__nav svg{width:20px;height:20px}
 .visor__nav[hidden]{display:none}
 .visor__nav--prev{left:20px}
 .visor__nav--next{right:20px}
-.visor__cerrar:hover{border-color:var(--oro);color:var(--oro)}
+.visor__cerrar:hover{border-color:var(--oro);color:var(--oro-texto)}
 .visor figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px}
 .visor figcaption{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--texto-tenue)}
 
@@ -616,7 +711,7 @@ body::after{
   display:grid;place-items:center;gap:12px;min-height:380px;
   color:var(--texto-tenue);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
 }
-.mapa__espera svg{width:26px;height:26px;color:var(--oro);opacity:.55}
+.mapa__espera svg{width:26px;height:26px;color:var(--oro-texto);opacity:.55}
 
 /* Secciones bajas: el navegador se ahorra pintarlas hasta que hacen falta */
 @supports (content-visibility: auto){
@@ -1098,6 +1193,28 @@ body::after{
    ================================================================ */
 const CONFIG = {
 
+  /* ---------- 0. ESTILO — el look de la página ----------
+     Con estas 3 líneas la misma página se ve distinta para cada cliente.
+     Cámbialas y recarga: se ve al momento. */
+  estilo: {
+    // El color de la marca: botones, precios y detalles.
+    // Prueba: #d9b25e dorado · #c0392b rojo · #2c7be5 azul · #27ae60 verde · #8e44ad morado
+    acento:      "#d9b25e",
+
+    // El MISMO color pero más oscuro. Solo se usa en el tema claro,
+    // para que el texto se lea bien sobre fondo blanco.
+    acentoTexto: "#7a5c1f",
+
+    // "oscuro" = negro elegante (barbería, gym, tatuajes, taller)
+    // "claro"  = blanco limpio (spa, uñas, dentista, veterinario)
+    tema:        "oscuro",
+
+    // "clasica"  = letras anchas en mayúscula. Barbería, gym, taller
+    // "elegante" = letra con serifa. Spa, uñas, estética, restaurante
+    // "moderna"  = letra redonda y gruesa. Dentista, inmobiliaria, veterinario
+    fuente:      "clasica"
+  },
+
   /* ---------- 1. DATOS DEL NEGOCIO ---------- */
   negocio: {
     nombre:      "Barbería Ejemplo",
@@ -1518,6 +1635,41 @@ const ICONOS = {
   tiktok:    svg('<path d="M15.8 3h-2.9v12.3a2.6 2.6 0 1 1-2.2-2.6v-3a5.6 5.6 0 1 0 5.1 5.6V9.6a6.9 6.9 0 0 0 4 1.3V7.9a4 4 0 0 1-4-3.9z"/>','fill="currentColor"')
 };
 const estrellas = n => '<span class="estrellas" aria-hidden="true">'+ICONOS.estrella.repeat(n)+'</span>';
+
+/* ================================================================
+   2b. ESTILO — color, tema y letra desde CONFIG
+   ================================================================ */
+const FUENTES = {clasica:1, elegante:1, moderna:1};
+
+/* Qué tan claro es un color, de 0 (negro) a 1 (blanco) */
+function claridad(hex){
+  const m = String(hex).replace("#","").match(/\w\w/g);
+  if(!m || m.length < 3) return 0.5;
+  const c = m.map(h => {
+    const v = parseInt(h,16) / 255;
+    return v <= 0.03928 ? v/12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126*c[0] + 0.7152*c[1] + 0.0722*c[2];
+}
+/* Pone el texto blanco o negro encima del acento, el que se lea mejor.
+   Así el botón funciona con dorado, rojo, azul o el color que pongan. */
+function textoSobre(color){
+  const l = claridad(color);
+  return ((l + 0.05) / 0.05) >= (1.05 / (l + 0.05)) ? "#0a0a0c" : "#ffffff";
+}
+
+function aplicarEstilo(){
+  const e = CONFIG.estilo || {}, raiz = document.documentElement;
+  raiz.setAttribute("data-tema",   e.tema === "claro" ? "claro" : "oscuro");
+  raiz.setAttribute("data-fuente", FUENTES[e.fuente] ? e.fuente : "clasica");
+  if(e.acento){
+    raiz.style.setProperty("--oro", e.acento);
+    raiz.style.setProperty("--sobre-acento", textoSobre(e.acento));
+    // En tema claro el texto dorado necesita una versión más oscura para leerse
+    raiz.style.setProperty("--oro-texto",
+      e.tema === "claro" ? (e.acentoTexto || e.acento) : e.acento);
+  }
+}
 
 /* ================================================================
    3. IDIOMA
@@ -2226,6 +2378,13 @@ function revisarConfig(){
     .filter(u => u && /^img\//.test(u) && /[ ÁÉÍÓÚÑáéíóúñ]/.test(u));
   if(conEspacios.length)
     avisos.push("Hay fotos con espacios o acentos en el nombre y no van a cargar: " + conEspacios.join(", "));
+  const est = CONFIG.estilo || {};
+  if(est.fuente && !FUENTES[est.fuente])
+    avisos.push('estilo.fuente solo acepta "clasica", "elegante" o "moderna". Pusiste: ' + est.fuente);
+  if(est.tema && est.tema !== "claro" && est.tema !== "oscuro")
+    avisos.push('estilo.tema solo acepta "claro" u "oscuro". Pusiste: ' + est.tema);
+  if(est.tema === "claro" && est.acento && est.acento === est.acentoTexto)
+    avisos.push("En tema claro, estilo.acentoTexto debe ser más oscuro que estilo.acento o los textos no se leerán");
   if(CONFIG.galeria.length < 6 || CONFIG.galeria.length > 9)
     avisos.push("La galería se ve mejor con 6 a 9 fotos (ahora hay " + CONFIG.galeria.length + ")");
   if(!avisos.length) return;
@@ -2249,6 +2408,7 @@ try{
 }catch(e){}
 
 try{
+  aplicarEstilo();
   render();
   revisarConfig();
 }catch(err){

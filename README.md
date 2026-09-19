@@ -44,17 +44,31 @@ lista todo lo que quedó sin personalizar antes de que lo vea el cliente.
 **Importante:** edita también el `<head>` (`<title>`, `description` y Open Graph). El JS los actualiza
 en el navegador, pero los buscadores y WhatsApp leen el HTML tal cual.
 
-### Colores y fuentes
-Están en `:root`, al inicio del `<style>`:
+### El look: 3 líneas en `CONFIG.estilo`
 
-```css
---oro:#d9b25e;                 /* color de acento */
---negro:#07070a;               /* fondo */
---font-display:'Bebas Neue';   /* títulos */
---font-body:'Manrope';         /* texto */
+```js
+estilo: {
+  acento:      "#d9b25e",   // color de marca: botones, precios, detalles
+  acentoTexto: "#7a5c1f",   // el mismo pero más oscuro (solo para tema claro)
+  tema:        "oscuro",    // "oscuro" | "claro"
+  fuente:      "clasica"    // "clasica" | "elegante" | "moderna"
+}
 ```
 
-Si cambias de fuente, actualiza también el `<link>` de Google Fonts en el `<head>`.
+Con esas líneas la misma página se ve distinta para cada cliente, que es lo que evita
+que dos clientes tuyos tengan la web idéntica.
+
+| Fuente | Tipografía | Para |
+|---|---|---|
+| `clasica` | Bebas Neue / Manrope | Barbería, gym, taller, tatuajes |
+| `elegante` | Playfair Display / Lato | Spa, uñas, estética, restaurante |
+| `moderna` | Outfit / Manrope | Dentista, inmobiliaria, veterinario |
+
+**El texto de los botones se calcula solo.** Pon el acento que quieras: el código mide
+si el color es claro u oscuro y pone el texto en negro o en blanco, el que se lea mejor.
+Verificado en las cuatro combinaciones, todas por encima de 4.5:1.
+
+Los colores base siguen en `:root`, al inicio del `<style>`, por si quieres afinar más.
 
 ---
 
