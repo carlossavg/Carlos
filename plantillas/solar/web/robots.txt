@@ -1,0 +1,3 @@
+# Deja que Google entre a toda la pagina.
+User-agent: *
+Allow: /

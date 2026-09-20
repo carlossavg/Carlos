@@ -186,7 +186,9 @@ const SECCIONES = {
   proyecto:    {n:"El trabajo terminado",   d:"La sección del antes y después"},
   pasos:       {n:"Cómo funciona",          d:"Los pasos para reservar"},
   cierre:      {n:"El cierre de la página", d:"El último empujón antes de escribir"},
-  textos:      {n:"Los títulos de cada sección", d:"Los encabezados de la página"}
+  textos:      {n:"Los títulos de cada sección", d:"Los encabezados de la página"},
+  beneficios:  {n:"Por qué escogernos",     d:"Los motivos para confiar"},
+  formulario:  {n:"El formulario",          d:"Lo que le pides al visitante"}
 };
 const CAMPOS = {
   nombre:"Nombre", slogan:"Frase de la marca", ciudad:"Ciudad", region:"Estado o país",
@@ -221,7 +223,14 @@ const CAMPOS = {
   altProyecto:"Qué se ve en la foto (para buscadores)",
   tituloServicios:"Título de los servicios", descripcionServicios:"Texto de los servicios",
   notaPrecios:"La nota de debajo de los precios",
-  tituloContacto:"Título del contacto", descripcionContacto:"Texto del contacto"
+  tituloContacto:"Título del contacto", descripcionContacto:"Texto del contacto",
+  zona:"Zona donde trabaja", notaPie:"La frase del pie de página",
+  nota:"La frase pequeña de debajo", pieFoto:"El texto encima de la foto",
+  tituloBeneficios:"Título de «por qué escogernos»", textoBeneficios:"Texto de «por qué escogernos»",
+  tituloProceso:"Título de «cómo funciona»", tituloFaq:"Título de las preguntas",
+  textoServicios:"Texto de los servicios",
+  interesOtro:"La última opción de la lista (\"Necesito orientación\")",
+  rangos:"Los rangos de precio que puede elegir", privacidad:"El aviso de privacidad"
 };
 /* Lo que NO se enseña: son ajustes avanzados que casi nadie toca */
 const OCULTAS = ["plantilla","estilo","idioma","creditos"];
@@ -399,7 +408,8 @@ function listaSimple(ruta, arr, etiqueta){
 function listaFichas(ruta, arr, clave){
   const singular = {servicios:"servicio", propiedades:"propiedad", barberos:"persona", agentes:"agente",
                     testimonios:"reseña", faq:"pregunta", beneficios:"motivo", ventajas:"motivo",
-                    datosHero:"número", galeria:"foto", pasos:"paso", puntos:"punto"}[clave] || "elemento";
+                    datosHero:"número", galeria:"foto", pasos:"paso", puntos:"punto",
+                    rangos:"rango"}[clave] || "elemento";
   let html = '<div id="'+id(ruta)+'_fichas">';
   arr.forEach((item, i)=>{
     html += '<div class="ficha">'+
