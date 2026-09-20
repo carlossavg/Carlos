@@ -6,8 +6,8 @@ n="${1:?Dime cuál: ./hacer-zip.sh barberia}"
 d="plantillas/$n"
 [ -d "$d/web" ] || { echo "No existe $d/web"; exit 1; }
 
-# Nombre con la primera letra en mayúscula
-bonito="$(echo "${n:0:1}" | tr '[:lower:]' '[:upper:]')${n:1}"
+# Nombre bonito: cada palabra con mayúscula inicial (real-estate -> Real-Estate)
+bonito="$(echo "$n" | awk -F'-' '{for(i=1;i<=NF;i++){$i=toupper(substr($i,1,1)) substr($i,2)}; print}' OFS='-')"
 zip="GrowthOS-${bonito}.zip"
 
 # Revisiones antes de empaquetar

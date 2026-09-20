@@ -1,0 +1,113 @@
+===========================================
+  TU PAGINA DE BIENES RAICES - LEE ESTO
+===========================================
+
+Son 4 pasos. Como 25 minutos.
+
+
+PASO 1 - MIRALA
+---------------
+Entra a la carpeta "web" y dale doble clic a "index.html".
+Se te abre en Chrome y ya la ves funcionando completa.
+
+Esa ya es la pagina. No hay que crearla ni armarla.
+
+
+PASO 2 - CAMBIALE LOS DATOS
+---------------------------
+Dentro de la carpeta "web" hay un archivo que se llama "config.js".
+
+Ese es el UNICO que tienes que abrir.
+
+Dale clic derecho -> Abrir con -> Bloc de notas
+(si estas en Mac, se llama TextEdit)
+
+Adentro esta todo en orden, de lo que mas se cambia a lo que menos:
+
+   1. Los datos de la agencia
+   2. El horario de la oficina
+   3. LAS PROPIEDADES        <- aqui pasaras mas tiempo
+   4. Los agentes
+   5. Las fotos
+   ... y al final los colores y ajustes
+
+Cambias lo que esta entre comillas "asi".
+Lo que tiene // delante son notas para ti, no hacen nada.
+
+Guarda (Ctrl+S) y vuelve a Chrome. Dale refrescar (F5).
+
+
+PASO 3 - LAS PROPIEDADES
+------------------------
+Cada propiedad es un bloque que empieza con { y termina con }
+
+Para poner mas: copias un bloque completo y lo pegas debajo.
+Para quitar una: borras su bloque entero, de { a }
+La pagina se acomoda sola.
+
+En cada una cambias:
+   nombre         como se llama
+   zona           el barrio o sector
+   tipo           "venta" o "alquiler"
+   estado         "disponible", "reservada" o "vendida"
+   precio         solo el numero, sin simbolo ni comas
+   periodo        para alquileres pon {es:"/mes", en:"/mo"}
+                  para ventas dejalo en null
+   habitaciones, banos, metros
+   foto           el link de la foto
+
+Si todas son de venta, los botones de filtro se ocultan solos.
+
+
+PASO 4 - PONLE LAS FOTOS
+------------------------
+Mete las fotos en la carpeta "img".
+
+Nombres cortos y en minuscula: propiedad-1.jpg, agente-1.jpg
+Sin espacios, sin acentos y sin enye. Eso rompe las fotos.
+
+Despues, en config.js, cambia el link largo por el corto:
+
+   ANTES:    "https://images.unsplash.com/photo-1600596542815..."
+   DESPUES:  "img/propiedad-1.jpg"
+
+Bajale el peso a las fotos antes de meterlas.
+Entra a squoosh.app (gratis) y dejalas por debajo de 300 KB.
+
+
+PASO 5 - SUBELA A INTERNET
+--------------------------
+1. Entra a:  app.netlify.com/drop
+2. Arrastra la carpeta "web" completa
+3. Ya esta publicada. Te dan la direccion
+4. En "Domain settings" le pones el dominio de tu cliente
+
+Arrastra la carpeta ENTERA, no solo el index.html.
+
+
+ANTES DE ENTREGARSELA AL CLIENTE
+--------------------------------
+Abre la pagina y aprieta F12 (en Mac: Cmd + Option + I).
+Se abre una ventanita al lado.
+
+Si ahi sale un mensaje que dice "revisa CONFIG", te esta diciendo
+que se te quedo algo sin cambiar. Te dice exactamente que es.
+
+Si no sale nada, esta limpia.
+
+
+EL LOOK
+-------
+En config.js, casi al final, esta el bloque "estilo".
+Ahi cambias el color, si quieres tema claro u oscuro, y la letra.
+
+Para bienes raices de lujo prueba: tema "oscuro" con acento dorado.
+Para una agencia normal: tema "claro" con azul marino o verde.
+
+
+SE ME ROMPIO ALGO
+-----------------
+Baja el ZIP otra vez y empieza de nuevo.
+El original siempre esta ahi, nunca se toca.
+
+===========================================

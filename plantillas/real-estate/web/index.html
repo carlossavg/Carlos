@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- ============================================================
+     BIENES RAÍCES — LANDING PAGE (PLANTILLA)
+     Todo lo editable está en config.js, al lado de este archivo.
+     ============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f4ef">
+<meta name="color-scheme" content="light">
+
+<!-- ===== SEO ===== -->
+<title>Luxira Bienes Raíces | Casas y apartamentos en San Juan, Puerto Rico</title>
+<meta name="description" content="Luxira Bienes Raíces: casas, apartamentos y terrenos en San Juan. Agentes con licencia, acompañamiento completo y visitas coordinadas por WhatsApp.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.luxirapr.com/">
+
+<!-- ===== OPEN GRAPH ===== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Luxira Bienes Raíces">
+<meta property="og:title" content="Luxira Bienes Raíces | Casas y apartamentos en San Juan">
+<meta property="og:description" content="Encuentra tu próxima casa en San Juan. Agentes con licencia y visitas coordinadas por WhatsApp.">
+<meta property="og:url" content="https://www.luxirapr.com/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&h=630&q=80">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Luxira Bienes Raíces | San Juan">
+<meta name="twitter:description" content="Encuentra tu próxima casa en San Juan. Visitas por WhatsApp.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&h=630&q=80">
+
+<!-- ===== SCHEMA (lo llena el JS desde config.js) ===== -->
+<script type="application/ld+json" id="schemaLocalBusiness">{}</script>
+
+<!-- ===== LOS DATOS DEL NEGOCIO =====
+     config.js es el único archivo que tienes que abrir. -->
+<script src="config.js"></script>
+<script>
+/* Le dice al navegador que vaya bajando la foto grande cuanto antes.
+   Sale de config.js, así que nunca tienes que tocar esto. */
+(function(){
+  try{
+    var l = document.createElement("link");
+    l.rel = "preload"; l.as = "image"; l.id = "preloadHero";
+    l.setAttribute("fetchpriority", "high");
+    l.href = CONFIG.fotoHero;
+    document.head.appendChild(l);
+  }catch(e){}
+})();
+</script>
+
+<!-- ===== FUENTES ===== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Las 3 combinaciones de letra. Si solo usas una, borra las otras y carga más rápido. -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23121212'/%3E%3Ctext x='50' y='70' font-size='56' text-anchor='middle' fill='%23f7f4ef' font-family='Georgia,serif'%3EL%3C/text%3E%3C/svg%3E">
+
+<style>
+/* ============================================================
+   1. TOKENS — cambia aquí colores, letras y espaciado
+   ============================================================ */
+:root{
+  /* --- Colores --- */
+  --crema:#f7f4ef;
+  --crema-hueso:#efeae1;
+  --blanco:#ffffff;
+  --tinta:#121212;
+  --tinta-suave:#1d1d1d;
+  --acento:#b08d57;
+  --acento-texto:#7d6234;
+  --sobre-acento:#ffffff;
+  --texto:#181715;
+  --texto-suave:#57534c;
+  --texto-tenue:#7d7870;
+  --linea:rgba(24,23,21,.12);
+  --linea-fuerte:rgba(24,23,21,.28);
+  --wa:#25d366;
+
+  /* --- Letras --- */
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Jost',system-ui,sans-serif;
+
+  /* --- Medidas --- */
+  --ancho:1240px;
+  --radio:22px;
+  --radio-sm:14px;
+  --radio-xl:32px;
+  --nav-h:76px;
+  --barra-movil:66px;
+  --seccion-y:clamp(76px,9vw,140px);
+  --sombra:0 24px 64px rgba(24,20,14,.12);
+  --sombra-suave:0 10px 30px rgba(24,20,14,.07);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --trans:.5s var(--ease);
+}
+
+/* --- Modo oscuro (estilo.tema: "oscuro" en config.js) --- */
+:root[data-tema="oscuro"]{
+  --crema:#0f0e0d;
+  --crema-hueso:#171513;
+  --blanco:#1c1a17;
+  --tinta:#f7f4ef;
+  --tinta-suave:#efeae1;
+  --acento-texto:#d3b177;
+  --sobre-acento:#12100d;
+  --texto:#f4f1ea;
+  --texto-suave:#b3ada2;
+  --texto-tenue:#8b857a;
+  --linea:rgba(247,244,239,.14);
+  --linea-fuerte:rgba(247,244,239,.3);
+  --sombra:0 24px 64px rgba(0,0,0,.5);
+  --sombra-suave:0 10px 30px rgba(0,0,0,.35);
+}
+
+/* --- Otras letras (estilo.fuente en config.js) --- */
+:root[data-fuente="clasica"]{
+  --font-display:'Cormorant Garamond',Georgia,serif;
+  --font-body:'Jost',system-ui,sans-serif;
+}
+:root[data-fuente="moderna"]{
+  --font-display:'Outfit',system-ui,sans-serif;
+  --font-body:'Jost',system-ui,sans-serif;
+}
+:root[data-fuente="moderna"] .titulo,
+:root[data-fuente="moderna"] .hero__marca{letter-spacing:-.03em;font-weight:600}
+:root[data-fuente="clasica"] .titulo{font-weight:500}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 20px);-webkit-text-size-adjust:100%}
+body{
+  background:var(--crema);color:var(--texto);
+  font-family:var(--font-body);font-size:16.5px;line-height:1.7;font-weight:400;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+ul{list-style:none}
+[hidden]{display:none !important}
+:focus-visible{outline:2px solid var(--acento);outline-offset:3px;border-radius:6px}
+:focus:not(:focus-visible){outline:none}
+
+.contenedor{width:min(100% - 44px,var(--ancho));margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+
+/* ============================================================
+   3. TIPOGRAFÍA
+   ============================================================ */
+.etiqueta{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--texto-tenue);
+}
+.etiqueta::before{content:"";width:22px;height:1px;background:var(--acento);flex:none}
+.etiqueta--sola::before{display:none}
+
+.titulo{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(2.3rem,4.6vw,3.9rem);line-height:1.08;letter-spacing:-.015em;
+  text-wrap:balance;
+}
+.titulo--grande{font-size:clamp(2.6rem,5.6vw,4.6rem)}
+.subtitulo{color:var(--texto-suave);font-size:1.02rem;max-width:58ch;margin-top:18px}
+
+.seccion{padding-block:var(--seccion-y);position:relative}
+.seccion--hueso{background:var(--crema-hueso)}
+.seccion--tinta{background:var(--tinta);color:var(--crema)}
+.seccion--tinta .titulo,.seccion--tinta .subtitulo{color:var(--crema)}
+.seccion--tinta .subtitulo{opacity:.72}
+.seccion--tinta .etiqueta{color:rgba(247,244,239,.6)}
+
+.cabecera{margin-bottom:clamp(38px,4.5vw,62px)}
+.cabecera--centro{text-align:center;display:flex;flex-direction:column;align-items:center}
+.cabecera--partida{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:end}
+
+/* ============================================================
+   4. BOTONES
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:0 28px;border:1px solid transparent;border-radius:999px;
+  font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;background:none;white-space:nowrap;
+  transition:transform .35s var(--ease),background .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease;
+}
+.btn svg{width:17px;height:17px;flex:none}
+.btn--tinta{background:var(--tinta);color:var(--crema)}
+.btn--tinta:hover{transform:translateY(-2px);box-shadow:var(--sombra-suave)}
+.btn--linea{border-color:var(--linea-fuerte);color:var(--texto)}
+.btn--linea:hover{border-color:var(--texto);transform:translateY(-2px)}
+.btn--claro{background:var(--crema);color:var(--tinta)}
+.btn--claro:hover{transform:translateY(-2px)}
+.btn--acento{background:var(--acento);color:var(--sobre-acento)}
+.btn--acento:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(176,141,87,.3)}
+.btn--wa{background:var(--wa);color:#04210f}
+.btn--wa:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(37,211,102,.28)}
+.btn--sm{min-height:44px;padding:0 20px;font-size:11.5px}
+.btn--full{width:100%}
+
+/* Botón redondo con flecha, como el "Discover more" de la referencia */
+.btn-flecha{
+  display:inline-flex;align-items:center;gap:6px;padding:6px 6px 6px 24px;
+  border-radius:999px;background:var(--crema);color:var(--tinta);
+  font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  transition:transform .35s var(--ease);
+}
+.btn-flecha span{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--tinta);color:var(--crema);flex:none}
+.btn-flecha svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+.btn-flecha:hover{transform:translateY(-2px)}
+.btn-flecha:hover svg{transform:translate(2px,-2px)}
+
+/* ============================================================
+   5. FOTOS — degradado de respaldo si la imagen no carga
+   ============================================================ */
+.foto{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(140deg,#e6ded2 0%,#d8cdbc 45%,#c9bda8 100%);
+}
+:root[data-tema="oscuro"] .foto{background:linear-gradient(140deg,#262320 0%,#1b1917 45%,#2e2820 100%)}
+.foto::before{
+  content:"";position:absolute;inset:0;z-index:0;opacity:.55;
+  background:radial-gradient(110% 80% at 25% 15%,rgba(176,141,87,.3),transparent 62%);
+}
+.foto img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.foto__etiqueta{
+  display:none;position:absolute;inset:0;z-index:2;align-items:center;justify-content:center;
+  font-size:11px;font-weight:600;letter-spacing:.18em;color:var(--acento-texto);
+  text-transform:uppercase;text-align:center;padding:12px;
+}
+.foto--fallback img{display:none}
+.foto--fallback .foto__etiqueta{display:flex}
+
+/* ============================================================
+   6. MENÚ FLOTANTE EN PÍLDORAS
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);
+  display:flex;align-items:center;transition:background .4s ease,backdrop-filter .4s ease,box-shadow .4s ease;
+}
+.nav.is-scrolled{background:color-mix(in srgb,var(--crema) 88%,transparent);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--linea)}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(100% - 44px,1400px);margin-inline:auto;min-width:0}
+
+.logo{display:flex;align-items:center;gap:10px;flex:0 1 auto;min-width:0;color:var(--crema)}
+.nav.is-scrolled .logo{color:var(--texto)}
+.logo__icono{width:26px;height:26px;flex:none;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-size:11px;font-family:var(--font-display)}
+.logo__marca{font-family:var(--font-display);font-size:21px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logo__img{max-height:36px;width:auto;object-fit:contain}
+
+/* Las cápsulas del centro */
+.nav__links{
+  display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;
+  background:rgba(247,244,239,.14);backdrop-filter:blur(14px);border:1px solid rgba(247,244,239,.2);
+}
+.nav.is-scrolled .nav__links{background:var(--crema-hueso);border-color:var(--linea)}
+.nav__links a{
+  padding:9px 17px;border-radius:999px;font-size:12.5px;font-weight:400;letter-spacing:.02em;
+  color:rgba(247,244,239,.82);transition:background .3s ease,color .3s ease;white-space:nowrap;
+}
+.nav.is-scrolled .nav__links a{color:var(--texto-suave)}
+.nav__links a:hover,.nav__links a[aria-current]{background:var(--crema);color:var(--tinta)}
+.nav.is-scrolled .nav__links a:hover,.nav.is-scrolled .nav__links a[aria-current]{background:var(--tinta);color:var(--crema)}
+
+.nav__acciones{display:flex;align-items:center;gap:10px;flex:none}
+.nav__redes{display:flex;gap:7px}
+.nav__redes a{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(247,244,239,.28);color:rgba(247,244,239,.9);transition:.3s ease;
+}
+.nav.is-scrolled .nav__redes a{border-color:var(--linea);color:var(--texto-suave)}
+.nav__redes a:hover{background:var(--crema);color:var(--tinta);border-color:transparent}
+.nav__redes svg{width:16px;height:16px}
+
+.nav__tel{
+  display:inline-flex;align-items:center;gap:9px;height:44px;padding:0 20px 0 6px;border-radius:999px;
+  background:var(--crema);color:var(--tinta);font-size:13px;font-weight:500;white-space:nowrap;
+  transition:transform .3s var(--ease);
+}
+.nav__tel i{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--tinta);color:var(--crema);flex:none}
+.nav__tel svg{width:15px;height:15px}
+.nav__tel:hover{transform:translateY(-2px)}
+
+.lang{display:flex;align-items:center;height:38px;border-radius:999px;overflow:hidden;border:1px solid rgba(247,244,239,.28);background:none;cursor:pointer}
+.nav.is-scrolled .lang{border-color:var(--linea)}
+.lang span{padding:0 12px;height:100%;display:flex;align-items:center;font-size:10.5px;font-weight:600;letter-spacing:.08em;color:rgba(247,244,239,.8);transition:.3s ease}
+.nav.is-scrolled .lang span{color:var(--texto-suave)}
+.lang span.is-activo{background:var(--crema);color:var(--tinta)}
+.nav.is-scrolled .lang span.is-activo{background:var(--tinta);color:var(--crema)}
+
+.hamb{display:none;width:44px;height:44px;border:1px solid rgba(247,244,239,.28);border-radius:50%;background:none;cursor:pointer;position:relative}
+.nav.is-scrolled .hamb{border-color:var(--linea)}
+.hamb i{position:absolute;left:13px;width:18px;height:1.4px;background:var(--crema);transition:.3s ease;border-radius:2px}
+.nav.is-scrolled .hamb i{background:var(--texto)}
+.hamb i:nth-child(1){top:16px}
+.hamb i:nth-child(2){top:21.3px}
+.hamb i:nth-child(3){top:26.6px}
+.hamb[aria-expanded="true"] i:nth-child(1){top:21.3px;transform:rotate(45deg)}
+.hamb[aria-expanded="true"] i:nth-child(2){opacity:0}
+.hamb[aria-expanded="true"] i:nth-child(3){top:21.3px;transform:rotate(-45deg)}
+
+/* ============================================================
+   7. HERO — foto a sangre con la marca gigante encima
+   ============================================================ */
+.hero{position:relative;min-height:100svh;padding:14px 0 26px;display:flex}
+.hero__caja{position:relative;width:min(100% - 44px,1400px);margin-inline:auto;border-radius:var(--radio-xl);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.hero__media{position:absolute;inset:0;z-index:0}
+.hero__media img{animation:acercar 30s ease-in-out infinite alternate}
+@keyframes acercar{from{transform:scale(1)}to{transform:scale(1.1)}}
+.hero__media .foto__etiqueta{align-items:flex-start;justify-content:flex-end;padding:26px 30px;color:rgba(247,244,239,.75)}
+.hero__velo{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,11,10,.52) 0%,rgba(12,11,10,.14) 34%,rgba(12,11,10,.28) 62%,rgba(12,11,10,.72) 100%)}
+
+/* El contenido arranca por debajo del menú, que flota encima de la foto */
+.hero__top{position:relative;z-index:2;display:flex;justify-content:space-between;gap:30px;
+  padding:clamp(26px,3.4vw,44px);padding-top:calc(var(--nav-h) + 8px)}
+.hero__intro{max-width:34ch;color:var(--crema)}
+.hero__desde{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.62;margin-bottom:10px}
+.hero__titulo{font-size:clamp(1.35rem,2.3vw,1.95rem);line-height:1.2;font-weight:400;letter-spacing:.01em;text-transform:uppercase}
+.hero__nota{font-size:11.5px;line-height:1.55;opacity:.68;max-width:22ch;color:var(--crema);text-align:right}
+
+/* Las tarjetas de números flotando */
+.hero__datos{position:absolute;right:clamp(26px,3.4vw,44px);top:50%;transform:translateY(-38%);z-index:3;display:flex;flex-direction:column;gap:14px;width:min(230px,42vw)}
+.dato-flotante{
+  padding:20px 22px;border-radius:var(--radio);color:var(--crema);
+  background:rgba(18,17,15,.42);backdrop-filter:blur(14px);border:1px solid rgba(247,244,239,.18);
+}
+.dato-flotante b{display:block;font-family:var(--font-display);font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1;font-weight:400}
+.dato-flotante span{display:block;font-size:11.5px;line-height:1.5;opacity:.75;margin-top:8px}
+
+/* La marca gigante encima de la foto */
+.hero__marca{
+  position:relative;z-index:2;font-family:var(--font-display);font-weight:400;
+  font-size:clamp(3.4rem,14.5vw,13rem);line-height:.82;letter-spacing:-.02em;
+  color:var(--crema);text-align:center;padding:0 clamp(16px,2vw,30px);
+  margin-top:auto;pointer-events:none;
+}
+.hero__pie{position:relative;z-index:3;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:clamp(22px,2.6vw,36px)}
+.hero__mini{font-size:11px;letter-spacing:.05em;color:rgba(247,244,239,.6);max-width:20ch;line-height:1.5}
+.hero__cta{margin-inline:auto}
+
+/* ============================================================
+   8. FRANJA DE CONFIANZA
+   ============================================================ */
+.confianza{border-bottom:1px solid var(--linea)}
+.confianza__grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.confianza__item{padding:clamp(26px,3.4vw,44px) 20px;text-align:center;position:relative}
+.confianza__item + .confianza__item::before{content:"";position:absolute;left:0;top:26%;bottom:26%;width:1px;background:var(--linea)}
+.confianza__num{font-family:var(--font-display);font-size:clamp(2.1rem,4vw,3rem);line-height:1;font-variant-numeric:tabular-nums}
+.confianza__lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--texto-tenue);margin-top:10px}
+
+/* ============================================================
+   9. SOBRE NOSOTROS — tres columnas con la foto en medio
+   ============================================================ */
+.nosotros{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:clamp(24px,3vw,46px);align-items:start}
+.nosotros__col{min-width:0}
+.nosotros h3{font-family:var(--font-display);font-size:1.28rem;font-weight:500;line-height:1.3;margin-bottom:14px}
+.nosotros p{color:var(--texto-suave);font-size:.97rem}
+.nosotros .btn{margin-top:24px}
+.nosotros__foto{border-radius:var(--radio);overflow:hidden;aspect-ratio:4/5}
+.nosotros__foto:hover img{transform:scale(1.04)}
+.ventajas{display:grid;gap:0}
+.ventaja{padding:18px 0;border-bottom:1px solid var(--linea)}
+.ventaja:first-child{padding-top:0}
+.ventaja h4{font-size:.95rem;font-weight:500;margin-bottom:6px}
+.ventaja p{font-size:.88rem;color:var(--texto-suave);line-height:1.6}
+.socios{margin-top:32px}
+.socios__lbl{font-size:11.5px;color:var(--texto-tenue);margin-bottom:12px}
+.socios__lista{display:flex;flex-wrap:wrap;gap:18px}
+.socio{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;color:var(--texto-suave)}
+.socio i{width:14px;height:14px;border-radius:50%;background:var(--texto);flex:none;display:block}
+
+/* La valoración con las caras apiladas */
+.resena-mini{margin-top:28px}
+.resena-mini__lbl{font-size:11.5px;color:var(--texto-tenue);margin-bottom:12px}
+.resena-mini__fila{display:flex;align-items:center;gap:14px}
+.caras{display:flex}
+.caras span{
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--acento);color:var(--sobre-acento);font-size:12px;font-weight:600;
+  border:2px solid var(--crema);margin-left:-11px;
+}
+.caras span:first-child{margin-left:0}
+.resena-mini b{font-size:1.15rem;font-weight:500;display:block;line-height:1.2}
+.resena-mini small{font-size:11.5px;color:var(--texto-tenue)}
+
+/* ============================================================
+   10. EQUIPO — banda oscura con las tarjetas a la izquierda
+   ============================================================ */
+.equipo{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(30px,4vw,60px);align-items:center}
+.equipo__fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.agente{border-radius:var(--radio-sm);overflow:hidden;position:relative;aspect-ratio:3/4}
+.agente > .foto{position:absolute;inset:0;width:100%;height:100%}
+.agente:hover img{transform:scale(1.05)}
+.agente__info{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:16px 14px;background:linear-gradient(transparent,rgba(10,9,8,.86))}
+.agente__nombre{font-size:.95rem;font-weight:500;color:var(--crema);line-height:1.25}
+.agente__rol{font-size:11px;color:rgba(247,244,239,.66);margin-top:3px}
+.agente__wa{
+  position:absolute;top:12px;right:12px;z-index:4;width:36px;height:36px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(18,17,15,.55);backdrop-filter:blur(8px);
+  border:1px solid rgba(247,244,239,.24);color:var(--crema);opacity:0;transition:.3s ease;
+}
+.agente:hover .agente__wa,.agente__wa:focus-visible{opacity:1}
+.agente__wa svg{width:17px;height:17px}
+
+/* ============================================================
+   11. PROPIEDADES
+   ============================================================ */
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(26px,3vw,40px)}
+.filtro{
+  padding:10px 20px;border-radius:999px;border:1px solid var(--linea-fuerte);background:none;
+  font-size:12.5px;letter-spacing:.04em;cursor:pointer;color:var(--texto-suave);
+  transition:background .3s ease,color .3s ease,border-color .3s ease;
+}
+.filtro:hover{border-color:var(--texto)}
+.filtro[aria-pressed="true"]{background:var(--tinta);color:var(--crema);border-color:var(--tinta)}
+
+.propiedades{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+.propiedad{
+  border-radius:var(--radio);overflow:hidden;background:var(--blanco);
+  border:1px solid var(--linea);display:flex;flex-direction:column;
+  transition:transform var(--trans),box-shadow var(--trans);
+}
+.propiedad:hover{transform:translateY(-6px);box-shadow:var(--sombra)}
+.propiedad:hover .foto img{transform:scale(1.05)}
+.propiedad__media{position:relative;aspect-ratio:4/3}
+/* El botón de la foto se estira al marco; si no, queda del tamaño del archivo */
+.propiedad__media > .foto{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;font:inherit;color:inherit;cursor:zoom-in}
+.propiedad__media > .foto:focus-visible{outline-offset:-3px}
+.propiedad__estado{
+  position:absolute;top:14px;left:14px;z-index:3;display:inline-flex;align-items:center;gap:7px;
+  padding:7px 14px;border-radius:999px;font-size:11px;font-weight:500;letter-spacing:.06em;
+  background:rgba(247,244,239,.92);color:var(--tinta);backdrop-filter:blur(8px);
+}
+.propiedad__estado i{width:7px;height:7px;border-radius:50%;background:var(--wa);flex:none}
+.propiedad__estado.is-vendida i{background:#c76b5a}
+.propiedad__cuerpo{padding:22px;display:flex;flex-direction:column;flex:1}
+.propiedad__zona{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--texto-tenue)}
+.propiedad__nombre{font-family:var(--font-display);font-size:1.32rem;font-weight:500;line-height:1.25;margin-top:8px}
+.propiedad__datos{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;padding-top:16px;border-top:1px solid var(--linea)}
+.propiedad__dato{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--texto-suave)}
+.propiedad__dato svg{width:15px;height:15px;color:var(--acento-texto);flex:none}
+.propiedad__pie{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:auto;padding-top:20px}
+.propiedad__precio{font-family:var(--font-display);font-size:1.5rem;font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.propiedad__precio small{font-size:.62em;color:var(--texto-tenue);font-family:var(--font-body)}
+
+/* ============================================================
+   12. TESTIMONIOS
+   ============================================================ */
+.testimonios{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.testimonio{
+  padding:30px 28px;border-radius:var(--radio);background:var(--blanco);
+  border:1px solid var(--linea);display:flex;flex-direction:column;
+}
+.estrellas{display:inline-flex;gap:3px;color:var(--acento-texto)}
+.estrellas svg{width:15px;height:15px}
+.testimonio__texto{color:var(--texto-suave);font-size:.98rem;margin:16px 0 22px;flex:1}
+.testimonio__pie{display:flex;align-items:center;gap:13px;border-top:1px solid var(--linea);padding-top:18px}
+.avatar{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--acento);color:var(--sobre-acento);font-weight:600;font-size:14px}
+.testimonio__nombre{font-weight:500;font-size:.94rem}
+.testimonio__fecha{font-size:11.5px;color:var(--texto-tenue)}
+.resenas-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:42px}
+
+/* ============================================================
+   13. FORMULARIO
+   ============================================================ */
+.cita{display:grid;gap:clamp(32px,4vw,64px);grid-template-columns:1fr 1fr;align-items:center}
+.cita>*{min-width:0}
+.cita__form{padding:clamp(26px,3.4vw,42px);border-radius:var(--radio);background:var(--blanco);border:1px solid var(--linea);box-shadow:var(--sombra-suave)}
+.campos{display:grid;gap:17px;min-width:0}
+.campo{display:flex;flex-direction:column;gap:7px;min-width:0}
+.campo label{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--texto-tenue)}
+.campo input,.campo select{
+  height:52px;padding:0 16px;border-radius:var(--radio-sm);width:100%;min-width:0;max-width:100%;
+  border:1px solid var(--linea-fuerte);background:var(--crema);
+  transition:border-color .3s ease,background .3s ease;
+}
+.campo select{appearance:none;cursor:pointer;padding-right:42px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b08d57' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center;background-size:17px;}
+.campo input:focus,.campo select:focus{border-color:var(--acento);background:var(--blanco);outline:none}
+.campo input::placeholder{color:var(--texto-tenue)}
+.campos--doble{grid-template-columns:1.25fr .75fr}
+.campo--error input,.campo--error select{border-color:#c0564a;background:rgba(192,86,74,.05)}
+.campo__error{display:none;align-items:center;gap:7px;font-size:12.5px;color:#a8483d;margin-top:2px}
+.campo__error svg{width:14px;height:14px;flex:none}
+.campo--error .campo__error{display:flex}
+.form-nota{font-size:12px;color:var(--texto-tenue);text-align:center;margin-top:15px}
+.oculto{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.btn[aria-busy="true"]{opacity:.7;pointer-events:none}
+.form-ok{display:none;align-items:center;gap:9px;margin-top:16px;padding:13px 16px;border-radius:var(--radio-sm);border:1px solid rgba(37,211,102,.4);background:rgba(37,211,102,.08);color:#1c7a45;font-size:13.5px}
+.form-ok.is-visible{display:flex}
+.form-ok svg{width:17px;height:17px;flex:none}
+.cita__pasos{display:grid;gap:18px;margin-top:30px}
+.cita__paso{display:flex;gap:16px;align-items:flex-start}
+.cita__num{width:38px;height:38px;flex:none;border-radius:50%;display:grid;place-items:center;border:1px solid var(--linea-fuerte);font-family:var(--font-display);font-size:1.05rem}
+.cita__paso p{color:var(--texto-suave);font-size:.94rem}
+.cita__paso strong{display:block;color:var(--texto);font-weight:500;font-size:1rem;margin-bottom:2px}
+
+/* ============================================================
+   14. OFICINA Y MAPA
+   ============================================================ */
+.local{display:grid;gap:clamp(28px,3.4vw,54px);grid-template-columns:1fr 1.15fr;align-items:start}
+.local>*{min-width:0}
+.horario{border:1px solid var(--linea);border-radius:var(--radio);overflow:hidden;background:var(--blanco)}
+.horario__fila{display:flex;justify-content:space-between;gap:16px;padding:14px 22px;font-size:.94rem}
+.horario__fila + .horario__fila{border-top:1px solid var(--linea)}
+.horario__fila.is-hoy{background:color-mix(in srgb,var(--acento) 9%,transparent)}
+.horario__dia{color:var(--texto-suave);text-transform:capitalize}
+.horario__fila.is-hoy .horario__dia{color:var(--acento-texto);font-weight:500}
+.horario__horas{font-variant-numeric:tabular-nums;font-weight:500}
+.horario__fila.is-cerrado .horario__horas{color:var(--texto-tenue);font-weight:400}
+.badge-abierto{
+  display:inline-flex;align-items:center;gap:9px;padding:8px 17px;border-radius:999px;margin-bottom:20px;
+  font-size:12px;font-weight:500;letter-spacing:.06em;
+  border:1px solid var(--linea-fuerte);color:var(--texto);
+}
+.badge-abierto i{width:8px;height:8px;border-radius:50%;background:var(--wa);box-shadow:0 0 0 4px rgba(37,211,102,.16)}
+.badge-abierto.is-cerrado i{background:#c76b5a;box-shadow:0 0 0 4px rgba(199,107,90,.16)}
+.datos{display:grid;gap:14px;margin-top:26px}
+.dato{display:flex;gap:14px;align-items:flex-start;color:var(--texto-suave);font-size:.95rem}
+.dato svg{width:18px;height:18px;color:var(--acento-texto);flex:none;margin-top:3px}
+.dato a:hover{color:var(--acento-texto)}
+.mapa{border-radius:var(--radio);overflow:hidden;border:1px solid var(--linea);min-height:400px;background:var(--crema-hueso)}
+.mapa iframe{width:100%;height:100%;min-height:400px;border:0;display:block}
+:root[data-tema="oscuro"] .mapa iframe{filter:grayscale(1) invert(.92) contrast(.85)}
+.mapa__espera{display:grid;place-items:center;gap:12px;min-height:400px;color:var(--texto-tenue);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase}
+.mapa__espera svg{width:26px;height:26px;color:var(--acento);opacity:.6}
+
+/* ============================================================
+   15. PREGUNTAS
+   ============================================================ */
+.faq{max-width:860px;margin-inline:auto;border-top:1px solid var(--linea)}
+.faq__item{border-bottom:1px solid var(--linea)}
+.faq__btn{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  padding:25px 4px;background:none;border:0;cursor:pointer;text-align:left;
+  font-family:var(--font-display);font-size:1.18rem;font-weight:500;color:var(--texto);
+  transition:color .3s ease;
+}
+.faq__btn:hover{color:var(--acento-texto)}
+.faq__mas{width:30px;height:30px;flex:none;border-radius:50%;border:1px solid var(--linea-fuerte);position:relative;transition:.35s ease}
+.faq__mas::before,.faq__mas::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--texto);border-radius:2px}
+.faq__mas::before{width:12px;height:1.4px}
+.faq__mas::after{width:1.4px;height:12px;transition:transform .35s ease}
+.faq__btn[aria-expanded="true"] .faq__mas{background:var(--tinta);border-color:var(--tinta)}
+.faq__btn[aria-expanded="true"] .faq__mas::before,.faq__btn[aria-expanded="true"] .faq__mas::after{background:var(--crema)}
+.faq__btn[aria-expanded="true"] .faq__mas::after{transform:translate(-50%,-50%) scaleY(0)}
+.faq__panel{overflow:hidden;max-height:0;transition:max-height .45s var(--ease)}
+.faq__panel p{color:var(--texto-suave);padding:0 4px 26px;max-width:70ch}
+
+/* ============================================================
+   16. CIERRE Y PIE
+   ============================================================ */
+.cierre{position:relative;overflow:hidden;background:var(--tinta);color:var(--crema);text-align:center}
+.cierre::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 0%,rgba(176,141,87,.22),transparent 62%)}
+.cierre .contenedor{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.cierre .titulo{color:var(--crema)}
+.cierre__ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
+
+.footer{background:var(--tinta);color:var(--crema);border-top:1px solid rgba(247,244,239,.12);padding-top:clamp(46px,5.5vw,72px)}
+.footer__grid{display:grid;gap:34px;grid-template-columns:1.4fr 1fr 1fr}
+.footer__grid>*{min-width:0}
+.footer .logo{color:var(--crema)}
+.footer__texto{color:rgba(247,244,239,.62);font-size:.93rem;margin-top:16px;max-width:38ch}
+.footer h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--acento);margin-bottom:17px}
+.footer__links{display:grid;gap:10px}
+.footer__links a{color:rgba(247,244,239,.72);font-size:.93rem;transition:color .3s ease}
+.footer__links a:hover{color:var(--crema)}
+.footer__redes{display:flex;gap:9px;margin-top:22px}
+.icono-social{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(247,244,239,.2);color:rgba(247,244,239,.8);transition:.3s ease}
+.icono-social:hover{border-color:var(--crema);color:var(--crema);transform:translateY(-2px)}
+.icono-social svg{width:17px;height:17px}
+.footer__base{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-top:clamp(38px,4.5vw,58px);padding:22px 0;border-top:1px solid rgba(247,244,239,.12);font-size:12px;color:rgba(247,244,239,.5)}
+.footer__base a:hover{color:var(--crema)}
+
+/* ============================================================
+   17. FLOTANTES
+   ============================================================ */
+.saltar{position:fixed;top:10px;left:10px;z-index:200;transform:translateY(-200%);transition:transform .25s var(--ease);padding:12px 20px;border-radius:999px;background:var(--tinta);color:var(--crema);font-size:13px;font-weight:500}
+.saltar:focus{transform:none}
+.progreso{position:fixed;top:0;left:0;z-index:101;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--acento);will-change:transform}
+.wa-flotante{position:fixed;right:22px;bottom:26px;z-index:94;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--wa);color:#04210f;box-shadow:0 14px 34px rgba(37,211,102,.34);transition:transform .3s var(--ease)}
+.wa-flotante:hover{transform:scale(1.08)}
+.wa-flotante svg{width:28px;height:28px}
+.barra-movil{display:none;position:fixed;left:0;right:0;bottom:0;z-index:95;height:var(--barra-movil);background:color-mix(in srgb,var(--crema) 96%,transparent);backdrop-filter:blur(14px);border-top:1px solid var(--linea)}
+.barra-movil a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.barra-movil a svg{width:20px;height:20px}
+.barra-movil a:first-child{color:var(--texto);border-right:1px solid var(--linea)}
+.barra-movil a:last-child{color:#128c4a}
+
+/* Visor de fotos */
+.visor{position:fixed;inset:0;z-index:200;display:none;place-items:center;background:rgba(12,11,10,.94);padding:24px;backdrop-filter:blur(6px)}
+.visor.is-abierto{display:grid}
+.visor img{max-width:min(96vw,1200px);max-height:86vh;width:auto;border-radius:var(--radio);box-shadow:var(--sombra)}
+.visor figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.visor figcaption{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,244,239,.6)}
+.visor__barra{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.16em;color:rgba(247,244,239,.7);font-variant-numeric:tabular-nums}
+.visor__cerrar{position:absolute;top:20px;right:20px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(247,244,239,.28);background:rgba(18,17,15,.7);cursor:pointer;font-size:22px;line-height:1;color:#f7f4ef}
+.visor__nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(247,244,239,.28);background:rgba(18,17,15,.7);color:#f7f4ef;cursor:pointer;transition:.3s ease}
+.visor__nav[hidden]{display:none}
+.visor__nav:hover,.visor__cerrar:hover{border-color:#f7f4ef;background:rgba(18,17,15,.9)}
+.visor__nav svg{width:20px;height:20px}
+.visor__nav--prev{left:20px}
+.visor__nav--next{right:20px}
+
+/* ============================================================
+   18. ANIMACIÓN AL BAJAR
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s var(--ease)}
+.reveal.is-visible{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.08s}
+.reveal[data-delay="2"]{transition-delay:.16s}
+.reveal[data-delay="3"]{transition-delay:.24s}
+.reveal[data-delay="4"]{transition-delay:.32s}
+.reveal[data-delay="5"]{transition-delay:.4s}
+@supports (content-visibility: auto){
+  #propiedades,#equipo,#testimonios,#faq{content-visibility:auto;contain-intrinsic-size:auto 900px}
+}
+
+/* ============================================================
+   19. PANTALLAS PEQUEÑAS
+   ============================================================ */
+@media (max-width:1100px){
+  .nosotros{grid-template-columns:1fr 1fr}
+  .nosotros__col--fin{grid-column:1 / -1}
+  .equipo{grid-template-columns:1fr}
+  .hero__datos{position:static;transform:none;width:auto;flex-direction:row;padding:0 clamp(26px,3.4vw,44px)}
+  .dato-flotante{flex:1}
+}
+@media (max-width:980px){
+  .cita,.local{grid-template-columns:1fr}
+  .footer__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  .nav__links{
+    position:fixed;top:var(--nav-h);left:22px;right:22px;flex-direction:column;align-items:stretch;gap:2px;
+    padding:12px;border-radius:var(--radio);background:var(--crema);border:1px solid var(--linea);
+    box-shadow:var(--sombra);transform:translateY(-14px);opacity:0;pointer-events:none;transition:.32s var(--ease);
+  }
+  .nav__links.is-abierto{transform:none;opacity:1;pointer-events:auto}
+  .nav__links{background:var(--crema);border-color:var(--linea)}
+  .nav__links a{color:var(--texto-suave);padding:14px 16px;font-size:14.5px}
+  .nav__links a:hover,.nav__links a[aria-current]{background:var(--crema-hueso);color:var(--texto)}
+  .hamb{display:block}
+  .nav__redes,.nav__tel{display:none}
+  .barra-movil{display:flex}
+  body{padding-bottom:var(--barra-movil)}
+  .wa-flotante{bottom:calc(var(--barra-movil) + 16px);width:52px;height:52px}
+  .wa-flotante svg{width:25px;height:25px}
+  .nosotros{grid-template-columns:1fr}
+  .nosotros__foto{aspect-ratio:16/10}
+  .cabecera--partida{grid-template-columns:1fr;gap:18px;align-items:start}
+  .hero__nota{display:none}
+  .hero__pie{flex-direction:column;align-items:stretch;gap:16px}
+  .hero__mini{display:none}
+  .confianza__grid{grid-template-columns:1fr}
+  .confianza__item{display:flex;align-items:baseline;gap:16px;text-align:left;padding:18px 8px}
+  .confianza__item + .confianza__item{border-top:1px solid var(--linea)}
+  .confianza__item + .confianza__item::before{display:none}
+  .confianza__lbl{margin-top:0}
+  .equipo__fotos{grid-template-columns:repeat(2,1fr)}
+  .hero{min-height:calc(100svh - var(--barra-movil))}
+}
+@media (max-width:620px){
+  .campos--doble{grid-template-columns:1fr}
+  .footer__grid{grid-template-columns:1fr}
+  .hero__top{flex-direction:column;gap:18px}
+  .hero__datos{flex-direction:column}
+  .hero__cta .btn-flecha{width:100%;justify-content:space-between}
+  .logo__marca{font-size:18px}
+  .visor__nav{width:44px;height:44px}
+  .visor__nav--prev{left:8px}
+  .visor__nav--next{right:8px}
+  .propiedad__pie{flex-direction:column;align-items:stretch;gap:12px}
+}
+@media (max-width:900px) and (max-height:730px){
+  .hero__marca{font-size:clamp(2.6rem,12vw,4rem)}
+  .hero__titulo{font-size:1.15rem}
+}
+
+/* ============================================================
+   20. IMPRESIÓN
+   ============================================================ */
+@media print{
+  body{background:#fff;color:#111;padding-bottom:0}
+  .nav,.hero__media,.hero__velo,.wa-flotante,.barra-movil,.progreso,.saltar,.visor,.mapa,.cierre,.filtros{display:none !important}
+  .seccion{padding-block:18pt;break-inside:avoid}
+  .hero{min-height:auto;padding:24pt 0}
+  .reveal{opacity:1 !important;transform:none !important}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:8pt;color:#666}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<a class="saltar" href="#contenido" data-i18n="a11y.saltar">Saltar al contenido</a>
+<div class="progreso" id="progreso" role="presentation"></div>
+<p class="sr-only" id="anuncios" role="status" aria-live="polite"></p>
+
+<noscript>
+  <div style="background:#b08d57;color:#fff;padding:14px 20px;text-align:center;font-weight:500">
+    Activa JavaScript para ver las propiedades, o llámanos al
+    <a href="tel:+17875550190" style="color:#fff;text-decoration:underline">(787) 555-0190</a>.
+  </div>
+</noscript>
+
+<!-- ============================================================
+     1 — MENÚ FLOTANTE
+     ============================================================ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="logo" href="#inicio">
+      <span class="logo__icono" aria-hidden="true" id="logoInicial">L</span>
+      <span class="logo__marca" data-config="negocio.nombre">Luxira</span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Menú principal">
+      <a href="#propiedades" data-i18n="nav.propiedades">Propiedades</a>
+      <a href="#nosotros"    data-i18n="nav.nosotros">Nosotros</a>
+      <a href="#equipo"      data-i18n="nav.equipo">Agentes</a>
+      <a href="#testimonios" data-i18n="nav.resenas">Reseñas</a>
+      <a href="#ubicacion"   data-i18n="nav.ubicacion">Oficina</a>
+      <a href="#faq"         data-i18n="nav.faq">Preguntas</a>
+    </nav>
+
+    <div class="nav__acciones">
+      <div class="nav__redes" id="navRedes"></div>
+      <button class="lang" id="btnLang" type="button" data-i18n-aria="a11y.idioma" aria-label="Cambiar idioma / Change language">
+        <span data-lang-opt="es" class="is-activo">ES</span>
+        <span data-lang-opt="en">EN</span>
+      </button>
+      <a class="nav__tel" id="navTel" href="#">
+        <i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></i>
+        <span data-config="negocio.telefono">+1 787 555 0190</span>
+      </a>
+      <button class="hamb" id="btnMenu" type="button" aria-expanded="false" aria-controls="navLinks" data-i18n-aria="a11y.abrirMenu" aria-label="Abrir menú">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="contenido">
+<!-- ============================================================
+     2 — HERO                                        [FOTO_HERO]
+     ============================================================ -->
+<section class="hero" id="inicio">
+  <div class="hero__caja">
+    <div class="foto hero__media" id="heroMedia">
+      <img id="heroImg" src="" alt="" fetchpriority="high" decoding="async">
+      <span class="foto__etiqueta">[FOTO_HERO]</span>
+    </div>
+    <div class="hero__velo"></div>
+
+    <div class="hero__top">
+      <div class="hero__intro">
+        <p class="hero__desde" id="heroDesde"></p>
+        <h1 class="hero__titulo" data-i18n="hero.titulo"></h1>
+      </div>
+      <p class="hero__nota" data-i18n="hero.nota"></p>
+    </div>
+
+    <div class="hero__datos" id="heroDatos"></div>
+
+    <p class="hero__marca" id="heroMarca" aria-hidden="true"></p>
+
+    <div class="hero__pie">
+      <p class="hero__mini" data-i18n="hero.mini"></p>
+      <div class="hero__cta">
+        <a class="btn-flecha" href="#propiedades">
+          <span style="order:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+          <span style="order:1;width:auto;height:auto;background:none;color:inherit;border-radius:0" data-i18n="cta.verPropiedades">Ver propiedades</span>
+        </a>
+      </div>
+      <p class="hero__mini" style="text-align:right" data-i18n="hero.mini2"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3 — FRANJA DE CONFIANZA
+     ============================================================ -->
+<section class="confianza">
+  <div class="contenedor">
+    <div class="confianza__grid" id="confianzaGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4 — NOSOTROS                              [FOTO_NOSOTROS]
+     ============================================================ -->
+<section class="seccion" id="nosotros">
+  <div class="contenedor">
+    <div class="cabecera cabecera--centro reveal">
+      <p class="etiqueta etiqueta--sola" data-i18n="nosotros.etiqueta">Sobre nosotros</p>
+      <h2 class="titulo" style="margin-top:14px" data-i18n="nosotros.titulo"></h2>
+    </div>
+
+    <div class="nosotros">
+      <div class="nosotros__col reveal">
+        <h3 data-i18n="nosotros.sub"></h3>
+        <p data-i18n="nosotros.texto"></p>
+        <a class="btn btn--tinta" href="#equipo" data-i18n="cta.conocenos">Conócenos</a>
+        <div class="socios">
+          <p class="socios__lbl" data-i18n="nosotros.socios">Trabajamos con:</p>
+          <div class="socios__lista" id="sociosLista"></div>
+        </div>
+      </div>
+
+      <div class="nosotros__col reveal" data-delay="1">
+        <div class="foto nosotros__foto" id="fotoNosotros">
+          <img src="" alt="" loading="lazy" decoding="async">
+          <span class="foto__etiqueta">[FOTO_NOSOTROS]</span>
+        </div>
+      </div>
+
+      <div class="nosotros__col nosotros__col--fin reveal" data-delay="2">
+        <div class="ventajas" id="ventajasLista"></div>
+        <div class="resena-mini">
+          <p class="resena-mini__lbl" data-i18n="nosotros.resenas">Reseñas:</p>
+          <div class="resena-mini__fila">
+            <span class="caras" id="carasLista" aria-hidden="true"></span>
+            <span>
+              <b id="notaGoogle"></b>
+              <small data-i18n="nosotros.notaLbl">Valoración de clientes</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5 — AGENTES                          [FOTO_AGENTE_1 ... _3]
+     ============================================================ -->
+<section class="seccion seccion--tinta" id="equipo">
+  <div class="contenedor">
+    <div class="equipo">
+      <div class="equipo__fotos reveal" id="equipoGrid"></div>
+      <div class="reveal" data-delay="1">
+        <h2 class="titulo" data-i18n="equipo.titulo"></h2>
+        <p class="subtitulo" data-i18n="equipo.sub"></p>
+        <a class="btn btn--claro" style="margin-top:28px" data-wa="general" href="#" target="_blank" rel="noopener" data-i18n="cta.hablarAgente">Hablar con un agente</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6 — PROPIEDADES                  [FOTO_PROPIEDAD_1 ... _6]
+     ============================================================ -->
+<section class="seccion" id="propiedades">
+  <div class="contenedor">
+    <div class="cabecera cabecera--partida reveal">
+      <div>
+        <p class="etiqueta" data-i18n="props.etiqueta">Disponibles ahora</p>
+        <h2 class="titulo titulo--grande" style="margin-top:14px" data-i18n="props.titulo"></h2>
+      </div>
+      <p class="subtitulo" style="margin-top:0" data-i18n="props.sub"></p>
+    </div>
+
+    <div class="filtros reveal" id="filtros" role="group" aria-label="Filtrar propiedades"></div>
+    <div class="propiedades" id="propiedadesGrid"></div>
+    <p id="sinResultados" class="subtitulo" style="text-align:center;margin-inline:auto" hidden data-i18n="props.sinResultados"></p>
+
+    <div style="text-align:center;margin-top:clamp(38px,4.5vw,58px)" class="reveal">
+      <a class="btn btn--tinta" data-wa="general" href="#" target="_blank" rel="noopener" data-i18n="cta.pedirLista">Pedir la lista completa</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7 — RESEÑAS
+     ============================================================ -->
+<section class="seccion seccion--hueso" id="testimonios">
+  <div class="contenedor">
+    <div class="cabecera cabecera--centro reveal">
+      <p class="etiqueta etiqueta--sola" data-i18n="resenas.etiqueta">Reseñas</p>
+      <h2 class="titulo" style="margin-top:14px" data-i18n="resenas.titulo"></h2>
+      <p class="subtitulo" id="resenasSub" style="text-align:center"></p>
+    </div>
+    <div class="testimonios" id="testimoniosGrid"></div>
+    <div class="resenas-ctas reveal">
+      <a class="btn btn--linea" id="btnVerResenas" href="#" target="_blank" rel="noopener" data-i18n="resenas.ver">Ver todas en Google</a>
+      <a class="btn btn--tinta" id="btnDejarResena" href="#" target="_blank" rel="noopener" data-i18n="resenas.dejar">Déjanos tu reseña</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8 — PEDIR VISITA
+     ============================================================ -->
+<section class="seccion" id="contacto">
+  <div class="contenedor">
+    <div class="cita">
+      <div class="reveal">
+        <p class="etiqueta" data-i18n="cita.etiqueta">Agenda una visita</p>
+        <h2 class="titulo" style="margin-top:14px" data-i18n="cita.titulo"></h2>
+        <p class="subtitulo" data-i18n="cita.sub"></p>
+        <div class="cita__pasos" id="citaPasos"></div>
+      </div>
+
+      <form class="cita__form reveal" id="formCita" name="visita" method="POST"
+            data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="visita">
+        <p class="oculto"><label>No llenar: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+        <div class="campos">
+          <div class="campo">
+            <label for="fNombre" data-i18n="form.nombre">Nombre</label>
+            <input aria-describedby="e-nombre" id="fNombre" name="nombre" type="text" required autocomplete="name" data-i18n-ph="form.nombrePh">
+            <span class="campo__error" id="e-nombre"></span>
+          </div>
+          <div class="campo">
+            <label for="fTelefono" data-i18n="form.telefono">Teléfono</label>
+            <input aria-describedby="e-telefono" id="fTelefono" name="telefono" type="tel" required inputmode="tel" autocomplete="tel" data-i18n-ph="form.telefonoPh">
+            <span class="campo__error" id="e-telefono"></span>
+          </div>
+          <div class="campos campos--doble">
+            <div class="campo">
+              <label for="fServicio" data-i18n="form.propiedad">Propiedad de interés</label>
+              <select aria-describedby="e-servicio" id="fServicio" name="propiedad" required></select>
+              <span class="campo__error" id="e-servicio"></span>
+            </div>
+            <div class="campo">
+              <label for="fDia" data-i18n="form.dia">Día</label>
+              <input aria-describedby="e-dia" id="fDia" name="dia" type="date" required>
+              <span class="campo__error" id="e-dia"></span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn--wa btn--full" id="btnEnviar" type="submit" style="margin-top:24px">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3.1-.2-.3c-.9-1.4-1.3-3-1.3-4.6C3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20.2 12 20.2z"/></svg>
+          <span data-i18n="form.enviar">Pedir la visita por WhatsApp</span>
+        </button>
+        <p class="form-ok" id="formOk" role="status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span data-i18n="form.exito"></span>
+        </p>
+        <p class="form-nota" data-i18n="form.nota"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     9 — OFICINA Y MAPA
+     ============================================================ -->
+<section class="seccion seccion--hueso" id="ubicacion">
+  <div class="contenedor">
+    <div class="cabecera reveal">
+      <p class="etiqueta" data-i18n="local.etiqueta">Visítanos</p>
+      <h2 class="titulo" style="margin-top:14px" data-i18n="local.titulo"></h2>
+    </div>
+    <div class="local">
+      <div class="reveal">
+        <div class="badge-abierto" id="badgeAbierto"><i aria-hidden="true"></i><span></span></div>
+        <div class="horario" id="horarioLista"></div>
+        <div class="datos" id="datosContacto"></div>
+        <a class="btn btn--tinta" id="btnComoLlegar" href="#" target="_blank" rel="noopener" style="margin-top:26px" data-i18n="local.comoLlegar">Cómo llegar</a>
+      </div>
+      <div class="mapa reveal" id="mapaWrap">
+        <div class="mapa__espera" id="mapaEspera">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6.1-8 12-8 12s-8-5.9-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.8"/></svg>
+          <span data-i18n="local.cargandoMapa">Cargando mapa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10 — PREGUNTAS
+     ============================================================ -->
+<section class="seccion" id="faq">
+  <div class="contenedor">
+    <div class="cabecera cabecera--centro reveal">
+      <p class="etiqueta etiqueta--sola" data-i18n="faq.etiqueta">Preguntas</p>
+      <h2 class="titulo" style="margin-top:14px" data-i18n="faq.titulo"></h2>
+    </div>
+    <div class="faq" id="faqLista"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11 — CIERRE
+     ============================================================ -->
+<section class="seccion cierre">
+  <div class="contenedor">
+    <p class="etiqueta etiqueta--sola reveal" data-i18n="cierre.etiqueta">Da el paso</p>
+    <h2 class="titulo titulo--grande reveal" id="cierreTitulo" style="max-width:18ch;margin-top:14px"></h2>
+    <p class="subtitulo reveal" data-i18n="cierre.sub" style="text-align:center"></p>
+    <div class="cierre__ctas reveal">
+      <a class="btn btn--wa" data-wa="general" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3.1-.2-.3c-.9-1.4-1.3-3-1.3-4.6C3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20.2 12 20.2z"/></svg>
+        <span data-i18n="cta.whatsapp">Escríbenos por WhatsApp</span>
+      </a>
+      <a class="btn btn--linea" id="btnLlamarCta" href="#" style="border-color:rgba(247,244,239,.35);color:#f7f4ef" data-i18n="cta.llamar">Llamar ahora</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================
+     PIE
+     ============================================================ -->
+<footer class="footer">
+  <div class="contenedor">
+    <div class="footer__grid">
+      <div>
+        <a class="logo" href="#inicio">
+          <span class="logo__icono" aria-hidden="true">L</span>
+          <span class="logo__marca" data-config="negocio.nombre">Luxira</span>
+        </a>
+        <p class="footer__texto" id="footerSlogan"></p>
+        <div class="footer__redes" id="footerRedes"></div>
+      </div>
+      <div>
+        <h4 data-i18n="footer.navegar">Navegar</h4>
+        <div class="footer__links">
+          <a href="#propiedades" data-i18n="nav.propiedades">Propiedades</a>
+          <a href="#nosotros"    data-i18n="nav.nosotros">Nosotros</a>
+          <a href="#equipo"      data-i18n="nav.equipo">Agentes</a>
+          <a href="#testimonios" data-i18n="nav.resenas">Reseñas</a>
+          <a href="#faq"         data-i18n="nav.faq">Preguntas</a>
+        </div>
+      </div>
+      <div>
+        <h4 data-i18n="footer.contacto">Contacto</h4>
+        <div class="footer__links" id="footerContacto"></div>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span id="footerCopy"></span>
+      <span id="footerCreditos"></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-flotante" data-wa="general" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3.1-.2-.3c-.9-1.4-1.3-3-1.3-4.6C3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20.2 12 20.2z"/><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+<nav class="barra-movil" aria-label="Acciones rápidas">
+  <a id="barraLlamar" href="#">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    <span data-i18n="cta.llamarCorto">Llamar</span>
+  </a>
+  <a data-wa="general" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3.1-.2-.3c-.9-1.4-1.3-3-1.3-4.6C3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20.2 12 20.2z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+</nav>
+
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitulo">
+  <p class="sr-only" id="visorTitulo" data-i18n="visor.titulo">Foto ampliada</p>
+  <span class="visor__barra" id="visorContador"></span>
+  <button class="visor__cerrar" id="visorCerrar" type="button" data-i18n-aria="a11y.cerrar" aria-label="Cerrar">&times;</button>
+  <button class="visor__nav visor__nav--prev" id="visorPrev" type="button" data-i18n-aria="a11y.anterior" aria-label="Foto anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="visor__nav visor__nav--next" id="visorNext" type="button" data-i18n-aria="a11y.siguiente" aria-label="Foto siguiente">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <figure><img id="visorImg" src="" alt=""></figure>
+</div>
+
+<script>
+/* ================================================================
+   AQUÍ NO HACE FALTA TOCAR NADA. Todo se cambia en config.js.
+   ================================================================ */
+(function(){
+"use strict";
+
+/* ---------- Utilidades ---------- */
+const $  = (s,c)=> (c||document).querySelector(s);
+const $$ = (s,c)=> Array.prototype.slice.call((c||document).querySelectorAll(s));
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const interp = (str,v) => String(str).replace(/\{(\w+)\}/g, (m,k)=> (v && v[k]!=null) ? v[k] : m);
+const soloDigitos = s => String(s||"").replace(/\D/g,"");
+const menosMovimiento = ()=> window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function anunciar(texto){
+  const r = $("#anuncios");
+  if(r){ r.textContent = ""; setTimeout(()=>{ r.textContent = texto; }, 60); }
+}
+const FOCO = 'a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+function atraparFoco(caja, e){
+  const items = $$(FOCO, caja).filter(el => el.offsetParent !== null);
+  if(!items.length) return;
+  const primero = items[0], ultimo = items[items.length-1];
+  if(e.shiftKey && document.activeElement === primero){ e.preventDefault(); ultimo.focus(); }
+  else if(!e.shiftKey && document.activeElement === ultimo){ e.preventDefault(); primero.focus(); }
+}
+function bloquearFondo(si){
+  if(si){
+    const ancho = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    if(ancho > 0) document.body.style.paddingRight = ancho + "px";
+  }else{
+    document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
+  }
+}
+
+/* ---------- Iconos ---------- */
+const trazo = 'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"';
+const svg = (c,extra)=> '<svg viewBox="0 0 24 24" '+(extra||trazo)+' aria-hidden="true">'+c+'</svg>';
+const ICONOS = {
+  cama:   svg('<path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5"/><path d="M3 18h18"/><path d="M6 11V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M4 18v2M20 18v2"/>'),
+  bano:   svg('<path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 12V6a2 2 0 0 1 3.4-1.4"/><path d="M8.5 6h3"/>'),
+  metros: svg('<path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/>'),
+  llave:  svg('<circle cx="8" cy="8" r="4.5"/><path d="M11.2 11.2 21 21"/><path d="M17 17l2-2M19.5 19.5l1.5-1.5"/>'),
+  reloj:  svg('<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>'),
+  escudo: svg('<path d="M12 3l8 3.2v5.4c0 4.6-3.3 8.6-8 9.9-4.7-1.3-8-5.3-8-9.9V6.2z"/><path d="m9 12 2 2 4-4"/>'),
+  grafico:svg('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'),
+  estrella: svg('<polygon points="12 2.6 15.1 8.9 22 9.9 17 14.8 18.2 21.7 12 18.4 5.8 21.7 7 14.8 2 9.9 8.9 8.9"/>','fill="currentColor"'),
+  telefono: svg('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>'),
+  correo: svg('<rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 5.6L21 7"/>'),
+  pin:    svg('<path d="M20 10c0 6.1-8 12-8 12s-8-5.9-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.8"/>'),
+  aviso:  svg('<circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.2v.1"/>'),
+  whatsapp: svg('<path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3.1-.2-.3c-.9-1.4-1.3-3-1.3-4.6C3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20.2 12 20.2z"/>','fill="currentColor"'),
+  instagram: svg('<rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/>'),
+  facebook:  svg('<path d="M15.5 3H13a4.5 4.5 0 0 0-4.5 4.5V11H6v3.6h2.5V21h3.7v-6.4h2.7l.6-3.6h-3.3V7.9c0-.6.4-1 1-1h2.3z"/>','fill="currentColor"'),
+  linkedin:  svg('<path d="M4.5 3.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM3 9.5h3V21H3zM9 9.5h2.9v1.6a3.2 3.2 0 0 1 2.9-1.6c3 0 3.7 1.9 3.7 4.4V21h-3v-5.6c0-1.3 0-3.1-1.9-3.1s-2.2 1.5-2.2 3V21H9z"/>','fill="currentColor"'),
+  tiktok:    svg('<path d="M15.8 3h-2.9v12.3a2.6 2.6 0 1 1-2.2-2.6v-3a5.6 5.6 0 1 0 5.1 5.6V9.6a6.9 6.9 0 0 0 4 1.3V7.9a4 4 0 0 1-4-3.9z"/>','fill="currentColor"')
+};
+const estrellas = n => '<span class="estrellas" aria-hidden="true">'+ICONOS.estrella.repeat(n)+'</span>';
+
+/* ---------- Idioma ---------- */
+let idioma = "es";
+const t  = ruta => ruta.split(".").reduce((o,k)=> (o||{})[k], T[idioma]);
+const bi = campo => (campo && typeof campo === "object" && !Array.isArray(campo)) ? (campo[idioma] || campo.es) : campo;
+const loc = ()=> idioma === "es" ? "es-PR" : "en-US";
+
+/* ---------- Reloj de la oficina (usa la hora del LOCAL, no la del visitante) ---------- */
+const DIAS_TZ = {Mon:0, Tue:1, Wed:2, Thu:3, Fri:4, Sat:5, Sun:6};
+function ahoraLocal(){
+  const d = new Date();
+  const respaldo = { dia:(d.getDay()+6)%7, minutos:d.getHours()*60 + d.getMinutes() };
+  const tz = CONFIG.negocio.zonaHoraria;
+  if(!tz || typeof Intl === "undefined") return respaldo;
+  try{
+    const partes = {};
+    new Intl.DateTimeFormat("en-US",{timeZone:tz, weekday:"short", hour:"2-digit", minute:"2-digit", hour12:false})
+      .formatToParts(d).forEach(x => partes[x.type] = x.value);
+    const dia = DIAS_TZ[partes.weekday];
+    if(dia == null) return respaldo;
+    return { dia: dia, minutos: (parseInt(partes.hour,10) % 24) * 60 + parseInt(partes.minute,10) };
+  }catch(e){ return respaldo; }
+}
+const aMinutos = h => parseInt(h.split(":")[0],10)*60 + parseInt(h.split(":")[1],10);
+function hora12(h24){
+  const p = h24.split(":"), h = parseInt(p[0],10);
+  return (h % 12 === 0 ? 12 : h % 12) + ":" + p[1] + " " + (h >= 12 ? "PM" : "AM");
+}
+function estadoLocal(){
+  const ahora = ahoraLocal(), hoy = CONFIG.horario[ahora.dia];
+  if(hoy && hoy.abre && ahora.minutos >= aMinutos(hoy.abre) && ahora.minutos < aMinutos(hoy.cierra))
+    return { abierto:true, nota: interp(t("local.cierraEn"), {hora: hora12(hoy.cierra)}) };
+  for(let i = 0; i < 8; i++){
+    const idx = (ahora.dia + i) % 7, d = CONFIG.horario[idx];
+    if(!d || !d.abre) continue;
+    if(i === 0 && ahora.minutos >= aMinutos(d.abre)) continue;
+    return { abierto:false, nota: interp(t("local.abreEn"), {
+      dia: i === 0 ? t("local.hoy").toLowerCase() : t("dias."+d.clave).toLowerCase(),
+      hora: hora12(d.abre) }) };
+  }
+  return { abierto:false, nota:"" };
+}
+
+/* ---------- WhatsApp ---------- */
+const waNum = ()=> soloDigitos(CONFIG.negocio.whatsapp);
+const waURL = texto => "https://wa.me/" + waNum() + "?text=" + encodeURIComponent(texto);
+const telURL = ()=> "tel:+" + soloDigitos(CONFIG.negocio.telefono);
+function mensaje(tipo, extra){
+  return interp(t("msg."+tipo), Object.assign({
+    nombre: CONFIG.negocio.nombre, moneda: CONFIG.negocio.moneda
+  }, extra || {}));
+}
+
+/* ---------- Mapas ---------- */
+const dirURL = ()=> CONFIG.enlaces.googleMaps ||
+  "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(CONFIG.negocio.direccion);
+const embedURL = ()=> CONFIG.enlaces.googleMapsEmbed ||
+  "https://www.google.com/maps?q=" + encodeURIComponent(CONFIG.negocio.direccion) + "&output=embed";
+
+/* ---------- Fotos con degradado de respaldo ---------- */
+function foto(url, alt, marcador, opciones){
+  const o = opciones || {};
+  const etiqueta = o.boton ? "button" : "div";
+  const extra = o.boton ? ' type="button" aria-label="'+esc(alt)+'" data-indice="'+o.indice+'"' : '';
+  return '<'+etiqueta+' class="foto '+(o.clases||"")+'"'+extra+'>'+
+    '<img src="'+esc(url)+'" alt="'+(o.boton ? "" : esc(alt))+'" loading="lazy" decoding="async">'+
+    '<span class="foto__etiqueta">'+esc(marcador)+'</span></'+etiqueta+'>';
+}
+document.addEventListener("error", e=>{
+  const el = e.target;
+  if(el && el.tagName === "IMG"){
+    const caja = el.closest(".foto");
+    if(caja) caja.classList.add("foto--fallback");
+  }
+}, true);
+
+/* ---------- Precios ---------- */
+function precio(p){
+  const n = Number(p.precio) || 0;
+  const txt = CONFIG.negocio.moneda + n.toLocaleString(loc());
+  return p.periodo ? txt + '<small>' + esc(bi(p.periodo)) + '</small>' : txt;
+}
+
+/* ================================================================
+   RENDER — vuelve a dibujar la página en el idioma elegido
+   ================================================================ */
+let filtroActivo = "todas";
+
+function render(){
+  const N = CONFIG.negocio, C = CONFIG.confianza;
+  const estado = capturarEstado();
+  document.documentElement.lang = idioma;
+
+  /* Textos y atributos */
+  $$("[data-i18n]").forEach(el => { const v = t(el.dataset.i18n); if(v) el.textContent = v; });
+  $$("[data-i18n-ph]").forEach(el => { const v = t(el.dataset.i18nPh); if(v) el.placeholder = v; });
+  $$("[data-i18n-aria]").forEach(el => { const v = t(el.dataset.i18nAria); if(v) el.setAttribute("aria-label", v); });
+  $$("[data-config]").forEach(el => {
+    const v = el.dataset.config.split(".").reduce((o,k)=> (o||{})[k], CONFIG);
+    if(v) el.textContent = v;
+  });
+  $$("[data-lang-opt]").forEach(el => el.classList.toggle("is-activo", el.dataset.langOpt === idioma));
+
+  /* SEO */
+  const titulo = N.nombre + " | " + (idioma === "es"
+      ? "Casas y apartamentos en " + N.ciudad + ", " + N.region
+      : "Homes and apartments in " + N.ciudad + ", " + N.region);
+  document.title = titulo;
+  const meta = (sel,val)=>{ const m = $(sel); if(m) m.setAttribute("content", val); };
+  meta('meta[name="description"]', bi(N.slogan) + " " + t("hero.nota"));
+  meta('meta[property="og:title"]', titulo);
+  meta('meta[property="og:description"]', t("hero.nota"));
+  meta('meta[property="og:locale"]', idioma === "es" ? "es_ES" : "en_US");
+  meta('meta[name="twitter:title"]', titulo);
+  meta('meta[name="twitter:description"]', t("hero.nota"));
+
+  /* Logo: la imagen si la hay, si no la inicial y el nombre */
+  if(N.logo){
+    $$(".logo").forEach(el => {
+      el.innerHTML = '<img class="logo__img" src="'+esc(N.logo)+'" alt="'+esc(N.nombre)+'">';
+    });
+  }else{
+    $$(".logo__icono").forEach(el => el.textContent = N.nombre.trim().charAt(0).toUpperCase());
+  }
+
+  /* Menú: redes y teléfono */
+  $("#navRedes").innerHTML = Object.keys(CONFIG.redes).filter(k=>CONFIG.redes[k]).slice(0,3).map(k=>
+    '<a href="'+esc(CONFIG.redes[k])+'" target="_blank" rel="noopener" aria-label="'+esc(k.charAt(0).toUpperCase()+k.slice(1))+'">'+(ICONOS[k]||"")+'</a>').join("");
+  $("#navTel").href = telURL();
+
+  /* HERO */
+  const hImg = $("#heroImg");
+  if(hImg.getAttribute("src") !== CONFIG.fotoHero) hImg.src = CONFIG.fotoHero;
+  hImg.alt = interp(t("hero.alt"), {nombre:N.nombre});
+  $("#heroDesde").textContent = interp(t("hero.desde"), {ano:C.desde});
+  $("#heroMarca").textContent = N.nombre;
+  $("#heroDatos").innerHTML = (CONFIG.datosHero || []).map(d =>
+    '<div class="dato-flotante"><b>'+esc(d.numero)+'</b><span>'+esc(bi(d.texto))+'</span></div>').join("");
+
+  /* FRANJA DE CONFIANZA */
+  $("#confianzaGrid").innerHTML = [
+    {n:C.anos,         l:t("confianza.anos"),     suf:""},
+    {n:C.operaciones,  l:t("confianza.ventas"),   suf:"+"},
+    {n:C.calificacion, l:t("confianza.google"),   suf:"", dec:true}
+  ].map((x,i)=>
+    '<div class="confianza__item reveal" data-delay="'+i+'">'+
+      '<div class="confianza__num" data-num="'+x.n+'" data-suf="'+x.suf+'" data-dec="'+(x.dec?1:0)+'">0</div>'+
+      '<div class="confianza__lbl">'+esc(x.l)+'</div>'+
+    '</div>').join("");
+
+  /* NOSOTROS */
+  const fn = $("#fotoNosotros");
+  const img = $("img", fn);
+  if(img.getAttribute("src") !== CONFIG.fotoNosotros) img.src = CONFIG.fotoNosotros;
+  img.alt = interp(t("nosotros.alt"), {nombre:N.nombre});
+  $("#ventajasLista").innerHTML = CONFIG.ventajas.map(v =>
+    '<div class="ventaja"><h4>'+esc(bi(v.titulo))+'</h4><p>'+esc(bi(v.texto))+'</p></div>').join("");
+  $("#sociosLista").innerHTML = (CONFIG.socios || []).map(s =>
+    '<span class="socio"><i aria-hidden="true"></i>'+esc(s)+'</span>').join("");
+  $("#carasLista").innerHTML = CONFIG.testimonios.slice(0,4).map(r =>
+    '<span>'+esc(r.nombre.charAt(0))+'</span>').join("");
+  $("#notaGoogle").textContent = C.calificacion;
+
+  /* AGENTES */
+  $("#equipoGrid").innerHTML = CONFIG.agentes.map((a,i)=>
+    '<article class="agente">'+
+      foto(a.foto, a.nombre + " — " + bi(a.rol), "[FOTO_AGENTE_"+(i+1)+"]")+
+      '<a class="agente__wa" target="_blank" rel="noopener" href="'+esc(waURL(mensaje("agente",{agente:a.nombre})))+'" '+
+        'aria-label="'+esc(t("cta.escribirA") + " " + a.nombre)+'">'+ICONOS.whatsapp+'</a>'+
+      '<div class="agente__info">'+
+        '<p class="agente__nombre">'+esc(a.nombre)+'</p>'+
+        '<p class="agente__rol">'+esc(bi(a.rol))+'</p>'+
+      '</div>'+
+    '</article>').join("");
+
+  /* PROPIEDADES */
+  pintarFiltros();
+  pintarPropiedades();
+
+  /* RESEÑAS */
+  $("#resenasSub").textContent = interp(t("resenas.sub"), {calificacion:C.calificacion, resenas:C.resenas});
+  $("#testimoniosGrid").innerHTML = CONFIG.testimonios.map((r,i)=>
+    '<article class="testimonio reveal" data-delay="'+i+'">'+
+      estrellas(r.estrellas)+
+      '<p class="testimonio__texto">'+esc(bi(r.texto))+'</p>'+
+      '<div class="testimonio__pie"><span class="avatar" aria-hidden="true">'+esc(r.nombre.charAt(0))+'</span>'+
+        '<span><span class="testimonio__nombre">'+esc(r.nombre)+'</span><br>'+
+        '<span class="testimonio__fecha">'+esc(bi(r.fecha))+'</span></span></div>'+
+    '</article>').join("");
+  $("#btnVerResenas").href  = CONFIG.enlaces.googleReviews;
+  $("#btnDejarResena").href = CONFIG.enlaces.googleDejarResena;
+
+  /* FORMULARIO */
+  $("#citaPasos").innerHTML = [1,2,3].map(n=>
+    '<div class="cita__paso"><span class="cita__num" aria-hidden="true">0'+n+'</span>'+
+    '<p><strong>'+esc(t("cita.paso"+n+"t"))+'</strong>'+esc(t("cita.paso"+n+"d"))+'</p></div>').join("");
+  $("#fServicio").innerHTML =
+    '<option value="'+esc(t("form.cualquiera"))+'">'+esc(t("form.cualquiera"))+'</option>' +
+    CONFIG.propiedades.map(p =>
+      '<option value="'+esc(bi(p.nombre))+'">'+esc(bi(p.nombre) + " — " + N.moneda + Number(p.precio).toLocaleString(loc()))+'</option>').join("");
+  const hoy = new Date(); hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
+  $("#fDia").min = hoy.toISOString().slice(0,10);
+
+  /* OFICINA */
+  const st = estadoLocal(), badge = $("#badgeAbierto");
+  badge.classList.toggle("is-cerrado", !st.abierto);
+  badge.innerHTML = '<i aria-hidden="true"></i><span>' +
+    esc(st.abierto ? t("local.abierto") : t("local.cerrado")) +
+    (st.nota ? ' · ' + esc(st.nota) : '') + '</span>';
+
+  const ahora = ahoraLocal();
+  $("#horarioLista").innerHTML = CONFIG.horario.map((d,i)=>{
+    const cerrado = !d.abre, esHoy = i === ahora.dia;
+    return '<div class="horario__fila'+(esHoy?" is-hoy":"")+(cerrado?" is-cerrado":"")+'">'+
+      '<span class="horario__dia">'+esc(t("dias."+d.clave))+(esHoy ? " · "+esc(t("local.hoy")) : "")+'</span>'+
+      '<span class="horario__horas">'+(cerrado ? esc(t("local.cerradoDia")) : esc(hora12(d.abre)+" – "+hora12(d.cierra)))+'</span>'+
+    '</div>';
+  }).join("");
+  $("#datosContacto").innerHTML =
+    '<p class="dato">'+ICONOS.pin+'<span>'+esc(N.direccion)+'</span></p>'+
+    '<p class="dato">'+ICONOS.telefono+'<a href="'+esc(telURL())+'">'+esc(N.telefono)+'</a></p>'+
+    '<p class="dato">'+ICONOS.correo+'<a href="mailto:'+esc(N.email)+'">'+esc(N.email)+'</a></p>';
+  $("#btnComoLlegar").href = dirURL();
+  actualizarMapa();
+
+  /* PREGUNTAS */
+  $("#faqLista").innerHTML = CONFIG.faq.map((f,i)=>
+    '<div class="faq__item reveal">'+
+      '<button class="faq__btn" type="button" aria-expanded="false" aria-controls="faqp'+i+'" id="faqb'+i+'">'+
+        '<span>'+esc(bi(f.p))+'</span><span class="faq__mas" aria-hidden="true"></span></button>'+
+      '<div class="faq__panel" id="faqp'+i+'" role="region" aria-labelledby="faqb'+i+'"><p>'+esc(bi(f.r))+'</p></div>'+
+    '</div>').join("");
+
+  /* CIERRE Y PIE */
+  $("#cierreTitulo").textContent = interp(t("cierre.titulo"), {ciudad:N.ciudad});
+  $("#footerSlogan").textContent = bi(N.slogan);
+  $("#footerRedes").innerHTML = Object.keys(CONFIG.redes).filter(k=>CONFIG.redes[k]).map(k=>
+    '<a class="icono-social" href="'+esc(CONFIG.redes[k])+'" target="_blank" rel="noopener" aria-label="'+esc(k.charAt(0).toUpperCase()+k.slice(1))+'">'+(ICONOS[k]||"")+'</a>').join("");
+  $("#footerContacto").innerHTML =
+    '<a href="'+esc(dirURL())+'" target="_blank" rel="noopener">'+esc(N.direccion)+'</a>'+
+    '<a href="'+esc(telURL())+'">'+esc(N.telefono)+'</a>'+
+    '<a href="mailto:'+esc(N.email)+'">'+esc(N.email)+'</a>';
+  $("#footerCopy").textContent = "© " + new Date().getFullYear() + " " + N.nombre + ". " + t("footer.derechos");
+  $("#footerCreditos").innerHTML = CONFIG.creditos.mostrar
+    ? esc(t("footer.hecho")) + ": " + (CONFIG.creditos.url
+        ? '<a href="'+esc(CONFIG.creditos.url)+'" target="_blank" rel="noopener">'+esc(CONFIG.creditos.texto)+'</a>'
+        : esc(CONFIG.creditos.texto))
+    : "";
+
+  /* Enlaces globales */
+  const urlGeneral = waURL(mensaje("general"));
+  $$('[data-wa="general"]').forEach(a => a.href = urlGeneral);
+  $("#barraLlamar").href  = telURL();
+  $("#btnLlamarCta").href = telURL();
+
+  aplicarSecciones();
+  schema();
+  restaurarEstado(estado);
+  observarReveal(yaMontada);
+  observarSecciones();
+  yaMontada = true;
+}
+
+/* ---------- Filtros y tarjetas de propiedad ---------- */
+function pintarFiltros(){
+  const tipos = [];
+  CONFIG.propiedades.forEach(p => { if(p.tipo && tipos.indexOf(p.tipo) === -1) tipos.push(p.tipo); });
+  if(tipos.length < 2){ $("#filtros").hidden = true; filtroActivo = "todas"; return; }
+  $("#filtros").hidden = false;
+  $("#filtros").innerHTML = ["todas"].concat(tipos).map(k =>
+    '<button class="filtro" type="button" data-filtro="'+esc(k)+'" aria-pressed="'+(k === filtroActivo)+'">'+
+      esc(t("props.filtro_" + k) || k) + '</button>').join("");
+}
+function pintarPropiedades(){
+  const lista = CONFIG.propiedades.filter(p => filtroActivo === "todas" || p.tipo === filtroActivo);
+  $("#sinResultados").hidden = lista.length > 0;
+  $("#propiedadesGrid").innerHTML = lista.map((p,i)=>{
+    const nom = bi(p.nombre);
+    const indice = CONFIG.propiedades.indexOf(p) + 1;
+    const vendida = p.estado === "vendida" || p.estado === "sold";
+    return '<article class="propiedad reveal" data-delay="'+(i%3)+'">'+
+      '<div class="propiedad__media">'+
+        foto(p.foto, nom, "[FOTO_PROPIEDAD_"+indice+"]", {clases:"", boton:true, indice:indice-1})+
+        '<span class="propiedad__estado'+(vendida?" is-vendida":"")+'"><i aria-hidden="true"></i>'+
+          esc(t("props.estado_" + (p.estado || "disponible")) || bi(p.estado))+'</span>'+
+      '</div>'+
+      '<div class="propiedad__cuerpo">'+
+        '<p class="propiedad__zona">'+esc(p.zona)+'</p>'+
+        '<h3 class="propiedad__nombre">'+esc(nom)+'</h3>'+
+        '<div class="propiedad__datos">'+
+          '<span class="propiedad__dato">'+ICONOS.cama+esc(p.habitaciones + " " + t("props.hab"))+'</span>'+
+          '<span class="propiedad__dato">'+ICONOS.bano+esc(p.banos + " " + t("props.banos"))+'</span>'+
+          '<span class="propiedad__dato">'+ICONOS.metros+esc(p.metros + " " + t("props.metros"))+'</span>'+
+        '</div>'+
+        '<div class="propiedad__pie">'+
+          '<span class="propiedad__precio">'+precio(p)+'</span>'+
+          '<a class="btn btn--tinta btn--sm" target="_blank" rel="noopener" '+
+            'aria-label="'+esc(t("cta.pedirVisita") + ": " + nom)+'" '+
+            'href="'+esc(waURL(mensaje("propiedad",{propiedad:nom, precio:Number(p.precio).toLocaleString(loc())})))+'">'+
+            esc(t("cta.pedirVisita"))+'</a>'+
+        '</div>'+
+      '</div>'+
+    '</article>';
+  }).join("");
+  observarReveal(true);
+}
+document.addEventListener("click", e=>{
+  const b = e.target.closest("#filtros .filtro");
+  if(!b) return;
+  filtroActivo = b.dataset.filtro;
+  $$("#filtros .filtro").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+  pintarPropiedades();
+  anunciar(interp(t("props.anuncio"), {n: $$("#propiedadesGrid .propiedad").length}));
+});
+
+/* ---------- Secciones que se esconden cuando no hay nada ---------- */
+function aplicarSecciones(){
+  const sec = CONFIG.secciones || {};
+  const encendida = {
+    nosotros:    sec.nosotros    !== false && CONFIG.ventajas.length     > 0,
+    equipo:      sec.equipo      !== false && CONFIG.agentes.length      > 0,
+    propiedades: sec.propiedades !== false && CONFIG.propiedades.length  > 0,
+    testimonios: sec.testimonios !== false && CONFIG.testimonios.length  > 0,
+    contacto:    sec.contacto    !== false,
+    ubicacion:   sec.ubicacion   !== false,
+    faq:         sec.faq         !== false && CONFIG.faq.length          > 0
+  };
+  Object.keys(encendida).forEach(id => {
+    const seccion = document.getElementById(id);
+    if(seccion) seccion.hidden = !encendida[id];
+    $$('a[href="#' + id + '"]').forEach(a => { a.hidden = !encendida[id]; });
+  });
+}
+
+/* ---------- Guardar lo que el visitante tenía escrito ---------- */
+function capturarEstado(){
+  const f = $("#formCita");
+  if(!f) return null;
+  const abierto = $$(".faq__btn").findIndex(b => b.getAttribute("aria-expanded") === "true");
+  return {
+    nombre:$("#fNombre").value, telefono:$("#fTelefono").value,
+    servicio:$("#fServicio").selectedIndex, dia:$("#fDia").value,
+    faq:abierto, foco:document.activeElement ? document.activeElement.id : ""
+  };
+}
+function restaurarEstado(e){
+  if(!e) return;
+  $("#fNombre").value = e.nombre;
+  $("#fTelefono").value = e.telefono;
+  $("#fDia").value = e.dia;
+  if(e.servicio >= 0 && e.servicio < $("#fServicio").options.length) $("#fServicio").selectedIndex = e.servicio;
+  if(e.faq >= 0){
+    const b = $("#faqb" + e.faq);
+    if(b){ b.setAttribute("aria-expanded","true"); const pn = $("#faqp" + e.faq); pn.style.maxHeight = pn.scrollHeight + "px"; }
+  }
+  if(e.foco){ const el = document.getElementById(e.foco); if(el) el.focus(); }
+}
+
+/* ================================================================
+   SCHEMA — RealEstateAgent
+   ================================================================ */
+function schema(){
+  const N = CONFIG.negocio, C = CONFIG.confianza, base = N.sitioWeb || "";
+  const dias = {lun:"Monday",mar:"Tuesday",mie:"Wednesday",jue:"Thursday",vie:"Friday",sab:"Saturday",dom:"Sunday"};
+  const datos = {
+    "@context":"https://schema.org",
+    "@type":"RealEstateAgent",
+    "@id": base + "#inmobiliaria",
+    "name":N.nombre,
+    "description":bi(N.slogan),
+    "image":[CONFIG.fotoHero].concat(CONFIG.propiedades.slice(0,3).map(p=>p.foto)),
+    "url":base,
+    "telephone":N.telefono,
+    "email":N.email,
+    "priceRange":"$$$",
+    "currenciesAccepted":"USD",
+    "address":{"@type":"PostalAddress","streetAddress":N.direccion,"addressLocality":N.ciudad,
+               "addressRegion":N.region,"addressCountry":N.pais || "PR"},
+    "areaServed":{"@type":"City","name":N.ciudad},
+    "hasMap":dirURL(),
+    "openingHoursSpecification":CONFIG.horario.filter(d=>d.abre).map(d=>({
+      "@type":"OpeningHoursSpecification","dayOfWeek":dias[d.clave],"opens":d.abre,"closes":d.cierra})),
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":C.calificacion,"reviewCount":C.resenas,
+                       "bestRating":5,"worstRating":1},
+    "sameAs":Object.keys(CONFIG.redes).map(k=>CONFIG.redes[k]).filter(Boolean)
+  };
+  if(CONFIG.testimonios.length) datos.review = CONFIG.testimonios.map(r=>({
+    "@type":"Review","author":{"@type":"Person","name":r.nombre},
+    "reviewRating":{"@type":"Rating","ratingValue":r.estrellas,"bestRating":5},
+    "reviewBody":bi(r.texto)}));
+  if(CONFIG.agentes.length) datos.employee = CONFIG.agentes.map(a=>({
+    "@type":"RealEstateAgent","name":a.nombre,"jobTitle":bi(a.rol),"image":a.foto}));
+  if(CONFIG.propiedades.length) datos.makesOffer = CONFIG.propiedades.map(p=>({
+    "@type":"Offer","price":p.precio,"priceCurrency":"USD",
+    "availability": (p.estado === "vendida" || p.estado === "sold")
+      ? "https://schema.org/SoldOut" : "https://schema.org/InStock",
+    "itemOffered":{"@type":"Accommodation","name":bi(p.nombre),
+      "numberOfBedrooms":p.habitaciones,"numberOfBathroomsTotal":p.banos,
+      "floorSize":{"@type":"QuantitativeValue","value":p.metros,"unitCode":"MTK"},
+      "address":{"@type":"PostalAddress","addressLocality":p.zona,"addressRegion":N.region}}}));
+  if(N.geo && N.geo.lat != null) datos.geo = {"@type":"GeoCoordinates","latitude":N.geo.lat,"longitude":N.geo.lng};
+  $("#schemaLocalBusiness").textContent = JSON.stringify(datos, null, 2);
+}
+
+/* ================================================================
+   SCROLL — aparición, contadores, progreso y menú activo
+   ================================================================ */
+let obsReveal, obsSecciones, yaMontada = false;
+function observarReveal(instantaneo){
+  if(!("IntersectionObserver" in window)){ $$(".reveal").forEach(e=>e.classList.add("is-visible")); return; }
+  if(instantaneo){
+    $$(".reveal:not(.is-visible)").forEach(el=>{
+      const r = el.getBoundingClientRect();
+      if(r.top >= window.innerHeight || r.bottom <= 0) return;
+      el.style.transition = "none";
+      el.classList.add("is-visible");
+      if(el.classList.contains("confianza__item")) contar($(".confianza__num", el), true);
+      void el.offsetWidth;
+      el.style.transition = "";
+    });
+  }
+  if(!obsReveal){
+    obsReveal = new IntersectionObserver(entradas=>{
+      entradas.forEach(e=>{
+        if(!e.isIntersecting) return;
+        e.target.classList.add("is-visible");
+        if(e.target.classList.contains("confianza__item")) contar($(".confianza__num", e.target));
+        obsReveal.unobserve(e.target);
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -40px 0px"});
+  }
+  $$(".reveal:not(.is-visible)").forEach(el => obsReveal.observe(el));
+}
+function contar(el, instantaneo){
+  if(!el || el.dataset.listo) return;
+  el.dataset.listo = "1";
+  const fin = parseFloat(el.dataset.num), dec = el.dataset.dec === "1", suf = el.dataset.suf || "";
+  const pintar = v => el.textContent = (dec ? v.toFixed(1) : Math.round(v).toLocaleString(loc())) + suf;
+  if(instantaneo || menosMovimiento()){ pintar(fin); return; }
+  const ini = performance.now(), dur = 1500;
+  (function paso(ahora){
+    const p = Math.min((ahora - ini) / dur, 1);
+    pintar(fin * (1 - Math.pow(1 - p, 3)));
+    if(p < 1) requestAnimationFrame(paso);
+  })(ini);
+}
+function observarSecciones(){
+  if(!("IntersectionObserver" in window)) return;
+  if(obsSecciones) obsSecciones.disconnect();
+  const enlaces = {}, orden = [];
+  $$("#navLinks a[href^='#']").forEach(a => {
+    const id = a.getAttribute("href").slice(1);
+    enlaces[id] = a; orden.push(id);
+  });
+  /* Se lleva la cuenta de qué secciones se están viendo. Si no hay ninguna
+     (por ejemplo, estando arriba del todo) no se marca nada en el menú. */
+  const visibles = new Set();
+  obsSecciones = new IntersectionObserver(entradas=>{
+    entradas.forEach(e=>{
+      if(e.isIntersecting) visibles.add(e.target.id);
+      else visibles.delete(e.target.id);
+    });
+    $$("#navLinks a").forEach(o => o.removeAttribute("aria-current"));
+    const activa = orden.find(id => visibles.has(id));
+    if(activa && enlaces[activa]) enlaces[activa].setAttribute("aria-current","location");
+  }, {rootMargin:"-45% 0px -50% 0px"});
+  orden.forEach(id => { const s = document.getElementById(id); if(s) obsSecciones.observe(s); });
+}
+
+const nav = $("#nav"), barraProgreso = $("#progreso");
+let tickPendiente = false;
+function alScroll(){
+  if(tickPendiente) return;
+  tickPendiente = true;
+  requestAnimationFrame(()=>{
+    const y = window.scrollY;
+    nav.classList.toggle("is-scrolled", y > 40);
+    const alto = document.documentElement.scrollHeight - window.innerHeight;
+    barraProgreso.style.transform = "scaleX(" + (alto > 0 ? Math.min(y / alto, 1) : 0) + ")";
+    tickPendiente = false;
+  });
+}
+window.addEventListener("scroll", alScroll, {passive:true});
+window.addEventListener("resize", alScroll, {passive:true});
+alScroll();
+
+/* ---------- Acordeón ---------- */
+document.addEventListener("click", e=>{
+  const btn = e.target.closest(".faq__btn");
+  if(!btn) return;
+  const panel = document.getElementById(btn.getAttribute("aria-controls"));
+  const abierto = btn.getAttribute("aria-expanded") === "true";
+  $$(".faq__btn").forEach(o=>{
+    o.setAttribute("aria-expanded","false");
+    const p = document.getElementById(o.getAttribute("aria-controls"));
+    if(p) p.style.maxHeight = null;
+  });
+  if(!abierto){
+    btn.setAttribute("aria-expanded","true");
+    panel.style.maxHeight = panel.scrollHeight + "px";
+  }
+});
+window.addEventListener("resize", ()=>{
+  const abierto = $('.faq__btn[aria-expanded="true"]');
+  if(!abierto) return;
+  const p = document.getElementById(abierto.getAttribute("aria-controls"));
+  if(p){ p.style.maxHeight = "none"; const alto = p.scrollHeight; p.style.maxHeight = alto + "px"; }
+}, {passive:true});
+
+/* ---------- Visor de fotos de propiedades ---------- */
+const visor = $("#visor"), visorImg = $("#visorImg");
+let indiceFoto = 0, disparador = null;
+const fotosVisor = ()=> CONFIG.propiedades.map(p => ({url:p.foto, nombre:bi(p.nombre)}));
+
+function abrirVisor(i, origen){
+  indiceFoto = i; disparador = origen || null;
+  pintarFoto();
+  visor.classList.add("is-abierto");
+  bloquearFondo(true);
+  $("#visorCerrar").focus();
+}
+function pintarFoto(){
+  const fotos = fotosVisor(), total = fotos.length;
+  if(!total) return;
+  indiceFoto = (indiceFoto + total) % total;
+  visorImg.src = fotos[indiceFoto].url;
+  visorImg.alt = fotos[indiceFoto].nombre;
+  $("#visorContador").textContent = interp(t("visor.contador"), {n:indiceFoto + 1, total:total});
+  $("#visorPrev").hidden = total < 2;
+  $("#visorNext").hidden = total < 2;
+}
+function cerrarVisor(){
+  if(!visor.classList.contains("is-abierto")) return;
+  visor.classList.remove("is-abierto");
+  bloquearFondo(false);
+  if(disparador && document.contains(disparador)) disparador.focus();
+  disparador = null;
+}
+document.addEventListener("click", e=>{
+  const b = e.target.closest("#propiedadesGrid button.foto");
+  if(b && !b.classList.contains("foto--fallback")) abrirVisor(parseInt(b.dataset.indice,10), b);
+});
+$("#visorCerrar").addEventListener("click", cerrarVisor);
+$("#visorPrev").addEventListener("click", ()=>{ indiceFoto--; pintarFoto(); });
+$("#visorNext").addEventListener("click", ()=>{ indiceFoto++; pintarFoto(); });
+visor.addEventListener("click", e=>{ if(e.target === visor || e.target.tagName === "FIGURE") cerrarVisor(); });
+let tocoX = null;
+visor.addEventListener("touchstart", e=>{ tocoX = e.changedTouches[0].clientX; }, {passive:true});
+visor.addEventListener("touchend", e=>{
+  if(tocoX === null) return;
+  const dx = e.changedTouches[0].clientX - tocoX;
+  if(Math.abs(dx) > 55){ indiceFoto += dx < 0 ? 1 : -1; pintarFoto(); }
+  tocoX = null;
+}, {passive:true});
+
+/* ---------- Menú ---------- */
+const navLinks = $("#navLinks"), btnMenu = $("#btnMenu");
+function menu(abrir){
+  btnMenu.setAttribute("aria-expanded", String(abrir));
+  btnMenu.setAttribute("aria-label", t(abrir ? "a11y.cerrarMenu" : "a11y.abrirMenu"));
+  navLinks.classList.toggle("is-abierto", abrir);
+}
+btnMenu.addEventListener("click", ()=> menu(btnMenu.getAttribute("aria-expanded") !== "true"));
+navLinks.addEventListener("click", e=>{ if(e.target.closest("a")) menu(false); });
+
+document.addEventListener("keydown", e=>{
+  if(visor.classList.contains("is-abierto")){
+    if(e.key === "Escape") cerrarVisor();
+    else if(e.key === "ArrowLeft"){ indiceFoto--; pintarFoto(); }
+    else if(e.key === "ArrowRight"){ indiceFoto++; pintarFoto(); }
+    else if(e.key === "Tab") atraparFoco(visor, e);
+    return;
+  }
+  if(e.key === "Escape" && btnMenu.getAttribute("aria-expanded") === "true"){ menu(false); btnMenu.focus(); }
+});
+
+/* ---------- Idioma ---------- */
+$("#btnLang").addEventListener("click", ()=>{
+  idioma = idioma === "es" ? "en" : "es";
+  try{ if((CONFIG.idioma||{}).recordar !== false) localStorage.setItem("idioma", idioma); }catch(e){}
+  render();
+  anunciar(t("a11y.cambiado"));
+});
+
+/* ---------- Estilo desde config.js ---------- */
+const FUENTES = {elegante:1, clasica:1, moderna:1};
+function claridad(hex){
+  const m = String(hex).replace("#","").match(/\w\w/g);
+  if(!m || m.length < 3) return 0.5;
+  const c = m.map(h => { const v = parseInt(h,16)/255;
+    return v <= 0.03928 ? v/12.92 : Math.pow((v + 0.055)/1.055, 2.4); });
+  return 0.2126*c[0] + 0.7152*c[1] + 0.0722*c[2];
+}
+function textoSobre(color){
+  const l = claridad(color);
+  return ((l + 0.05) / 0.05) >= (1.05 / (l + 0.05)) ? "#121212" : "#ffffff";
+}
+function aplicarEstilo(){
+  const e = CONFIG.estilo || {}, raiz = document.documentElement;
+  raiz.setAttribute("data-tema",   e.tema === "oscuro" ? "oscuro" : "claro");
+  raiz.setAttribute("data-fuente", FUENTES[e.fuente] ? e.fuente : "elegante");
+  if(e.acento){
+    raiz.style.setProperty("--acento", e.acento);
+    raiz.style.setProperty("--sobre-acento", textoSobre(e.acento));
+    raiz.style.setProperty("--acento-texto",
+      e.tema === "oscuro" ? (e.acentoClaro || e.acento) : (e.acentoTexto || e.acento));
+  }
+}
+
+/* ---------- Formulario ---------- */
+const form = $("#formCita"), btnEnviar = $("#btnEnviar");
+form.setAttribute("novalidate","");
+
+function marcarError(id, texto){
+  const campo = document.getElementById(id).closest(".campo");
+  campo.classList.add("campo--error");
+  document.getElementById(id).setAttribute("aria-invalid","true");
+  $(".campo__error", campo).innerHTML = ICONOS.aviso + "<span>" + esc(texto) + "</span>";
+}
+function limpiarError(id){
+  const campo = document.getElementById(id).closest(".campo");
+  campo.classList.remove("campo--error");
+  document.getElementById(id).removeAttribute("aria-invalid");
+}
+function validar(){
+  const fallos = [];
+  const nombre = $("#fNombre").value.trim();
+  const tel    = soloDigitos($("#fTelefono").value);
+  const dia    = $("#fDia").value;
+  ["fNombre","fTelefono","fServicio","fDia"].forEach(limpiarError);
+
+  if(!nombre)                fallos.push(["fNombre",  t("form.err.nombre")]);
+  else if(nombre.length < 2) fallos.push(["fNombre",  t("form.err.nombreCorto")]);
+  if(!tel)                   fallos.push(["fTelefono",t("form.err.telefono")]);
+  else if(tel.length < 7)    fallos.push(["fTelefono",t("form.err.telefonoCorto")]);
+  if(!$("#fServicio").value) fallos.push(["fServicio",t("form.err.propiedad")]);
+  if(!dia)                   fallos.push(["fDia",     t("form.err.dia")]);
+  else if(dia < $("#fDia").min) fallos.push(["fDia",  t("form.err.diaPasado")]);
+
+  fallos.forEach(f => marcarError(f[0], f[1]));
+  if(fallos.length){
+    const primero = document.getElementById(fallos[0][0]);
+    primero.focus();
+    primero.scrollIntoView({block:"center", behavior: menosMovimiento() ? "auto" : "smooth"});
+  }
+  return fallos.length === 0;
+}
+form.addEventListener("input", e=>{ if(e.target.closest(".campo--error")) limpiarError(e.target.id); });
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  if(!validar()) return;
+  const datos = new FormData(form);
+  const textoBtn = $("span", btnEnviar), original = textoBtn.textContent;
+  btnEnviar.setAttribute("aria-busy","true");
+  textoBtn.textContent = t("form.enviando");
+
+  try{
+    if(location.protocol === "http:" || location.protocol === "https:"){
+      fetch(form.getAttribute("action") || location.pathname, {
+        method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:new URLSearchParams(datos).toString()
+      }).catch(function(){});
+    }
+  }catch(err){}
+
+  let dia = datos.get("dia") || "";
+  if(dia){
+    const p = dia.split("-");
+    dia = new Date(+p[0], +p[1]-1, +p[2]).toLocaleDateString(loc(), {weekday:"long", day:"numeric", month:"long"});
+  }
+  const url = waURL(mensaje("visita", {
+    n:datos.get("nombre"), t:datos.get("telefono"), s:datos.get("propiedad"), d:dia
+  }));
+  const ventana = window.open(url, "_blank", "noopener");
+  if(!ventana) location.href = url;
+
+  $("#formOk").classList.add("is-visible");
+  anunciar(t("form.exito"));
+  setTimeout(()=>{ btnEnviar.removeAttribute("aria-busy"); textoBtn.textContent = original; }, 1600);
+});
+
+/* ---------- Mapa en diferido ---------- */
+let mapaCargado = false;
+function actualizarMapa(){
+  const caja = $("#mapaWrap"), marco = $("iframe", caja);
+  if(marco){ marco.title = CONFIG.negocio.nombre + " — " + CONFIG.negocio.direccion; return; }
+  const espera = $("#mapaEspera");
+  if(espera) $("span", espera).textContent = t("local.cargandoMapa");
+}
+function cargarMapa(){
+  if(mapaCargado) return;
+  mapaCargado = true;
+  $("#mapaWrap").innerHTML = '<iframe src="'+esc(embedURL())+'" loading="lazy" '+
+    'referrerpolicy="no-referrer-when-downgrade" title="'+
+    esc(CONFIG.negocio.nombre + " — " + CONFIG.negocio.direccion)+'"></iframe>';
+}
+if("IntersectionObserver" in window){
+  const obs = new IntersectionObserver(en=>{ if(en[0].isIntersecting){ cargarMapa(); obs.disconnect(); } }, {rootMargin:"400px"});
+  obs.observe($("#mapaWrap"));
+}else{ cargarMapa(); }
+
+/* ================================================================
+   REVISIÓN DE CONFIG — avisos en la consola (F12)
+   ================================================================ */
+function revisarConfig(){
+  const N = CONFIG.negocio, avisos = [];
+  if(soloDigitos(N.whatsapp).length < 10)
+    avisos.push("negocio.whatsapp debe ir en formato internacional con código de país, p. ej. +17875550190");
+  if(String(CONFIG.enlaces.googleReviews).indexOf("TU_PLACE_ID") > -1)
+    avisos.push("enlaces.googleReviews y enlaces.googleDejarResena siguen con TU_PLACE_ID sin sustituir");
+  if(!N.zonaHoraria)
+    avisos.push("negocio.zonaHoraria está vacío: el cartel de Abierto/Cerrado usará la hora del visitante");
+  if(document.title.indexOf(N.nombre) === -1)
+    avisos.push("El <title> del <head> no lleva el nombre del negocio");
+  if(location.protocol.indexOf("http") === 0){
+    const can = $('link[rel="canonical"]');
+    let host = "";
+    try{ host = new URL(can ? can.href : "").hostname; }catch(e){}
+    if(host && host !== location.hostname)
+      avisos.push('El <link rel="canonical"> apunta a ' + host + ' pero la página está en ' +
+                  location.hostname + ': corrige canonical, og:url y negocio.sitioWeb en el <head>');
+  }
+  const malos = [CONFIG.fotoHero, CONFIG.fotoNosotros]
+    .concat(CONFIG.propiedades.map(p=>p.foto), CONFIG.agentes.map(a=>a.foto), [N.logo])
+    .filter(u => u && /^img\//.test(u) && /[ ÁÉÍÓÚÑáéíóúñ]/.test(u));
+  if(malos.length)
+    avisos.push("Hay fotos con espacios o acentos en el nombre y no van a cargar: " + malos.join(", "));
+  const vacias = [];
+  if(!CONFIG.propiedades.length) vacias.push("propiedades");
+  if(!CONFIG.agentes.length)     vacias.push("agentes");
+  if(vacias.length)
+    avisos.push("Estas listas están vacías y sus secciones no se van a ver: " + vacias.join(", "));
+  const est = CONFIG.estilo || {};
+  if(est.fuente && !FUENTES[est.fuente])
+    avisos.push('estilo.fuente solo acepta "elegante", "clasica" o "moderna". Pusiste: ' + est.fuente);
+  if(est.tema && est.tema !== "claro" && est.tema !== "oscuro")
+    avisos.push('estilo.tema solo acepta "claro" u "oscuro". Pusiste: ' + est.tema);
+  if(CONFIG.propiedades.length > 0 && CONFIG.propiedades.length < 3)
+    avisos.push("Con menos de 3 propiedades la sección se ve vacía. Pon al menos 3.");
+  if(!avisos.length) return;
+  try{
+    console.groupCollapsed("%cBienes raíces · revisa CONFIG (" + avisos.length + ")",
+      "color:#b08d57;font-weight:700");
+    avisos.forEach(a => console.warn("• " + a));
+    console.groupEnd();
+  }catch(e){}
+}
+
+/* ---------- Arranque ---------- */
+const cfgIdioma = CONFIG.idioma || {};
+idioma = cfgIdioma.porDefecto === "en" ? "en" : "es";
+try{
+  const guardado = cfgIdioma.recordar !== false ? localStorage.getItem("idioma") : null;
+  if(guardado === "es" || guardado === "en") idioma = guardado;
+  else if(cfgIdioma.autodetectar && (navigator.language||"").toLowerCase().indexOf("en") === 0) idioma = "en";
+}catch(e){}
+
+try{
+  aplicarEstilo();
+  render();
+  revisarConfig();
+}catch(err){
+  $$(".reveal").forEach(el => el.classList.add("is-visible"));
+  console.error("Bienes raíces · fallo al montar la página:", err);
+}
+})();
+</script>
+</body>
+</html>
