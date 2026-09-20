@@ -1,0 +1,84 @@
+===========================================
+  TU PAGINA WEB - LEE ESTO PRIMERO
+===========================================
+
+Son 4 pasos. Como 20 minutos.
+
+
+PASO 1 - MIRALA
+---------------
+Entra a la carpeta "web" y dale doble clic a "index.html".
+Se te abre en Chrome y ya la ves funcionando completa.
+
+Esa ya es la pagina. No hay que crearla ni armarla.
+
+
+PASO 2 - CAMBIALE LOS DATOS
+---------------------------
+Dentro de la carpeta "web" hay un archivo que se llama "config.js".
+
+Ese es el UNICO que tienes que abrir.
+
+Dale clic derecho -> Abrir con -> Bloc de notas
+(si estas en Mac, se llama TextEdit)
+
+Adentro vas a ver los datos del negocio: el nombre, el telefono,
+los precios, el horario. Cambialos por los de tu cliente.
+
+Cambias lo que esta entre comillas "asi".
+Lo que tiene // delante son notas para ti, no hacen nada.
+
+Guarda (Ctrl+S) y vuelve a Chrome. Dale refrescar (F5).
+Ahi mismo ves el cambio.
+
+
+PASO 3 - PONLE LAS FOTOS
+------------------------
+Mete las fotos del negocio en la carpeta "img".
+
+Ponles nombres cortos y en minuscula: foto-1.jpg, foto-2.jpg
+Sin espacios, sin acentos y sin enye. Eso rompe las fotos.
+
+Despues, en config.js, cambia el link largo por el corto:
+
+   ANTES:    "https://images.unsplash.com/photo-1503951914875..."
+   DESPUES:  "img/foto-1.jpg"
+
+Bajale el peso a las fotos antes de meterlas.
+Entra a squoosh.app (gratis) y dejalas por debajo de 300 KB.
+Una foto del celular pesa 5 MB y hace que la pagina cargue lentisima.
+
+
+PASO 4 - SUBELA A INTERNET
+--------------------------
+1. Entra a:  app.netlify.com/drop
+2. Arrastra la carpeta "web" completa
+3. Ya esta publicada. Te dan la direccion
+4. En "Domain settings" le pones el dominio de tu cliente
+
+Arrastra la carpeta ENTERA, no solo el index.html.
+Si subes el archivo solo, no se ve ninguna foto.
+
+
+ANTES DE ENTREGARSELA AL CLIENTE
+--------------------------------
+Abre la pagina y aprieta F12 (en Mac: Cmd + Option + I).
+Se abre una ventanita al lado.
+
+Si ahi sale un mensaje que dice "revisa CONFIG", te esta diciendo
+que se te quedo algo sin cambiar. Te dice exactamente que es.
+
+Si no sale nada, esta limpia.
+
+
+SE ME ROMPIO ALGO
+-----------------
+Baja el ZIP otra vez y empieza de nuevo.
+El original siempre esta ahi, nunca se toca.
+
+
+DUDAS
+-----
+La guia completa con fotos esta en tu pagina de acceso, en Notion.
+
+===========================================

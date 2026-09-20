@@ -1,0 +1,2 @@
+# Los ZIP se generan con ./hacer-zip.sh, no se guardan aquí
+*.zip

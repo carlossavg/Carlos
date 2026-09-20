@@ -1,0 +1,15 @@
+Mete aqui las fotos del negocio.
+
+Nombres cortos, en minuscula, sin espacios ni acentos:
+  hero.jpg          la foto grande de arriba    1920x1080
+  foto-1.jpg        galeria                       800x800
+  foto-2.jpg        galeria                       800x800
+  barbero-1.jpg     el equipo                    800x1000
+  logo.png          el logo (con fondo transparente)
+
+Bajales el peso en squoosh.app antes de meterlas.
+Que ninguna pase de 300 KB.
+
+Despues, en config.js, pon:  "img/foto-1.jpg"
+
+Este archivo lo puedes borrar.

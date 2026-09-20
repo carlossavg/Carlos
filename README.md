@@ -1,14 +1,33 @@
-# Landing Page Premium para Barbería — Template
+# Plantillas web para negocios locales — GrowthOS
 
-Landing de una sola página, oscura y premium, hecha para **convertir visitas en citas por WhatsApp**.
-Un solo archivo (`index.html`). Sin frameworks, sin build, sin dependencias.
+Landings de una sola página hechas para **convertir visitas en citas por WhatsApp**.
+Sin frameworks, sin build, sin dependencias.
+
+## Cómo está montado el repo
+
+```
+plantillas/<nicho>/
+├── LEEME-PRIMERO.txt      la guía que lee el comprador
+└── web/                   lo que se sube a Netlify
+    ├── index.html         la página (no se toca)
+    ├── config.js          TODO lo editable
+    ├── netlify.toml       cabeceras de caché y seguridad
+    ├── robots.txt
+    └── img/               las fotos del cliente
+```
+
+Para empaquetar una plantilla: `./hacer-zip.sh barberia` → `GrowthOS-Barberia.zip`
+
+El script comprueba que `config.js` no tenga errores y avisa si quedaron fotos de prueba.
 
 ---
 
-## Personalizar en 10 minutos
+## Personalizar en 20 minutos
 
-Todo el negocio se edita en el objeto **`CONFIG`**, al inicio del `<script>` (busca `const CONFIG`).
-No hace falta tocar nada más abajo.
+Todo se edita en **`web/config.js`**. El `index.html` no se toca nunca.
+
+Los bloques están ordenados por lo que más se cambia: datos del negocio, horario,
+servicios, equipo, fotos, reseñas... y al final el look y los ajustes.
 
 | # | Bloque en CONFIG | Qué cambias |
 |---|---|---|
@@ -41,8 +60,12 @@ No hace falta tocar nada más abajo.
 **La consola te avisa.** Abre el inspector (F12) y busca el grupo **"Barbería · revisa CONFIG"**:
 lista todo lo que quedó sin personalizar antes de que lo vea el cliente.
 
-**Importante:** edita también el `<head>` (`<title>`, `description` y Open Graph). El JS los actualiza
-en el navegador, pero los buscadores y WhatsApp leen el HTML tal cual.
+**Importante:** edita también el `<head>` del `index.html` (`<title>`, `description` y Open Graph).
+El JS los actualiza en el navegador, pero los buscadores y WhatsApp leen el HTML tal cual.
+Es lo único fuera de `config.js` que hay que tocar.
+
+La precarga de la foto principal sí se genera sola desde `CONFIG.fotoHero`, así que esa no
+hay que mantenerla a mano.
 
 ### El look: 3 líneas en `CONFIG.estilo`
 
@@ -127,7 +150,7 @@ Si quieres un mapa concreto, pega tu propio enlace en `googleMapsEmbed`.
 
 **Netlify (recomendado, gratis):**
 1. Entra a <https://app.netlify.com/drop>
-2. Arrastra la carpeta con `index.html`
+2. Arrastra la carpeta `web` **completa** (no solo el HTML, o no se ven las fotos)
 3. Listo. Conecta el dominio del cliente desde *Domain settings*
 
 El formulario ya trae `data-netlify="true"`, así que **cada cita queda guardada en Netlify Forms**
