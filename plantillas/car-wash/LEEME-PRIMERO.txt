@@ -2,95 +2,83 @@
   TU PAGINA WEB - 3 PASOS
 ===========================================
 
-No hay que tocar codigo. Todo se hace con el editor.
+No hay que tocar codigo ni instalar nada.
 
 
 PASO 1 - ABRE EL EDITOR
 -----------------------
-Dale doble clic a  EDITOR.html
+Doble clic a  EDITOR.html
 
-Se abre en el navegador. Vas a ver cajas normales para
-llenar, como cualquier formulario.
+Se abre en el navegador. Son cajas para llenar,
+como cualquier formulario.
 
-Se guarda solo mientras escribes. Si cierras la pestana
-sin querer, al volver a abrirlo esta todo como lo dejaste.
-Arriba a la izquierda te avisa cada vez que guarda.
+Se guarda solo mientras escribes. Si cierras la
+pestana sin querer, al volver esta todo ahi.
 
 
 PASO 2 - LLENA LOS DATOS
 ------------------------
-Vas bajando y cambiando lo que dice cada caja:
+Vas bajando y cambiando cada caja:
 
-   Los datos del negocio   nombre, telefono, WhatsApp, direccion
-   El horario              marca "cerrado" el dia que no abren
-   Las listas              anade o quita los que quieras
-   Las fotos               le das a "Elegir foto" y ya
-   Que partes se ven       quita el visto a lo que no necesites
+   El negocio      nombre, telefono, WhatsApp, direccion
+   Las listas      anade y quita lo que quieras
+   Las fotos       le das a "Elegir foto" y ya
+   Que se ve       quita el visto a lo que no necesites
 
-LAS FOTOS: solo eliges el archivo. Se achican solas y se
-meten dentro. No tienes que renombrar nada ni crear
-carpetas. Las del celular sirven perfectamente.
+LAS FOTOS: solo eliges el archivo. Se achican solas.
+Las del celular sirven tal cual.
 
 EL WHATSAPP: con el codigo del pais y sin espacios.
    Asi:  +17875550142
+Es lo unico que no puedes fallar.
 
-PARA IRLA VIENDO: dale a "Ver en vivo" arriba. Se abre la
-pagina al lado y va cambiando sola segun escribes. Dejala
-abierta mientras trabajas.
+MIENTRAS ESCRIBES: dale a "Ver en vivo" arriba.
+Se abre tu pagina al lado y va cambiando sola.
 
-Abajo del todo hay una barra que te dice lo que te falta
-antes de publicar. Cuando diga "Todo listo", ya esta.
+Abajo hay una barra que te dice lo que falta.
 
 
 PASO 3 - SUBELA A INTERNET
 --------------------------
-1. Dale al boton verde  "Descargar mi web lista"
-   Se te baja UN archivo .zip con todo dentro
+1. Boton verde "Descargar mi web lista"
+   Se baja UN archivo .zip
 
 2. Entra a:  app.netlify.com/drop
 
 3. Arrastra ese .zip ahi
 
-4. Ya esta publicada. Te dan la direccion
+4. Ya esta. Te dan la direccion
 
-5. En "Domain settings" le pones el dominio de tu cliente
+5. Para ponerle el dominio del cliente:
+   Domain settings
 
-Si Netlify te pide una carpeta en vez del .zip: descomprimelo
-primero (doble clic encima) y arrastra la carpeta que sale.
+No abras el .zip ni le metas nada. Ya viene armado.
 
 
 PARA CAMBIAR ALGO DESPUES
 -------------------------
-Vuelve a abrir EDITOR.html. Sale todo como lo dejaste.
-Cambias lo que sea, descargas de nuevo y lo vuelves a
-arrastrar a Netlify, encima del sitio que ya hiciste.
+Abre EDITOR.html otra vez. Sale todo como lo dejaste.
+Cambias, bajas la web de nuevo y la arrastras a
+Netlify encima del sitio que ya hiciste.
 
 
-PARA EMPEZAR OTRA PAGINA, DE OTRO CLIENTE
------------------------------------------
-Baja el .zip original otra vez y descomprimelo en otra
-carpeta. Asi cada cliente tiene la suya y no se mezclan.
-
-Dentro del editor tambien tienes "Empezar de cero", que
-deja la plantilla como vino.
+PARA OTRO CLIENTE
+-----------------
+Baja el .zip otra vez y abrelo EN OTRA CARPETA.
+Cada carpeta guarda lo suyo y no se mezclan.
 
 
-COMO TE LLEGAN LOS CLIENTES
+COMO LE LLEGAN LOS CLIENTES
 ---------------------------
-Todos los botones de la pagina abren WhatsApp con el
-mensaje ya escrito, con el servicio que escogio el
-visitante. El solo le da a enviar.
-
-Si esta pagina ademas trae formulario (mira si tiene una
-seccion de "escribenos" con cajas para llenar), lo que
-manden te queda guardado en Netlify. Lo ves en:
-Forms -> la lista de mensajes
-(hay que prenderlo una vez en Site settings -> Forms)
+Todos los botones abren WhatsApp con el mensaje ya
+escrito, con el servicio que escogio la persona.
+Solo le da a enviar.
 
 
 SI ALGO SE ROMPE
 ----------------
-Baja el .zip otra vez y empieza de nuevo. El original
-nunca se toca, siempre tienes una copia buena.
+La pagina te lo dice en pantalla al abrirla.
+Baja el .zip otra vez y empieza de nuevo. El
+original nunca se toca.
 
 ===========================================

@@ -43,7 +43,7 @@ const CONFIG = {
     sitioWeb:    "https://www.barberiaejemplo.com",
 
     // Logo del negocio. Déjalo vacío ("") y sale el nombre en letras.
-    // Si tienes el logo: mételo en la carpeta img y pon aquí "img/logo.png"
+    // Para poner uno, súbelo desde EDITOR.html como cualquier foto.
     logo:        "",
 
     // Zona horaria del LOCAL. Sin esto, el cartel de "Abierto ahora" usaría
@@ -130,12 +130,9 @@ const CONFIG = {
   fotoHero: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80", // [FOTO_HERO]
 
   /* ---------- 6. LAS FOTOS DE LA GALERÍA ----------
-     PARA USAR LAS FOTOS DE TU CLIENTE:
-     1. Haz una carpeta llamada  img  al lado de este archivo
-     2. Mete ahí las fotos: foto-1.jpg, foto-2.jpg...
-     3. Cambia el link largo por el nombre corto:
-            "https://images.unsplash.com/..."   ->   "img/foto-1.jpg"
-     Nombres en minúsculas, sin espacios, sin acentos y sin ñ. */
+     Las de ejemplo vienen de internet. Cámbialas por las del
+     cliente desde EDITOR.html: le das a "Elegir foto" y ya.
+     El editor las achica y las mete dentro del archivo. */
   galeria: [
     "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80", // [FOTO_GALERIA_1]
     "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80",  // [FOTO_GALERIA_2]

@@ -37,7 +37,7 @@ const CONFIG = {
     sitioWeb:    "https://www.luxirapr.com",
 
     // Logo. Déjalo vacío ("") y sale la inicial y el nombre en letras.
-    // Si tienes el logo: mételo en la carpeta img y pon "img/logo.png"
+    // Para poner uno, súbelo desde EDITOR.html como cualquier foto.
     logo:        "",
 
     // Zona horaria de la OFICINA. Sin esto, el cartel de "Abierto ahora"
@@ -64,10 +64,8 @@ const CONFIG = {
      estado: "disponible", "reservada" o "vendida"
      periodo: solo para alquileres. En venta déjalo en null
 
-     PARA USAR TUS PROPIAS FOTOS:
-     1. Mete las fotos en la carpeta img
-     2. Cambia el link largo por el corto: "img/propiedad-1.jpg"
-     Nombres en minúscula, sin espacios, sin acentos y sin ñ. */
+     Las fotos de ejemplo vienen de internet. Cámbialas por las
+     del cliente desde EDITOR.html: "Elegir foto" y ya. */
   propiedades: [
     { nombre: { es: "Villa Altamar",            en: "Altamar Villa" },
       zona: "Ocean Park", tipo: "venta", estado: "disponible",
