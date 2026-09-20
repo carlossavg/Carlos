@@ -1,5 +1,5 @@
-# Configuración de Netlify para la landing de barbería.
-# Con arrastrar la carpeta a https://app.netlify.com/drop se aplica sola.
+# Configuración de Netlify. Con arrastrar el ZIP o la carpeta a
+# https://app.netlify.com/drop se aplica sola. No hay que tocarla.
 
 [[headers]]
   for = "/*"
@@ -20,6 +20,3 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-# El formulario avisa aquí cuando alguien reserva (opcional).
-# [[plugins]] no hace falta: Netlify Forms se activa solo al detectar data-netlify.

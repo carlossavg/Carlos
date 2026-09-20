@@ -78,10 +78,13 @@ deja la plantilla como vino.
 COMO TE LLEGAN LOS CLIENTES
 ---------------------------
 Todos los botones de la pagina abren WhatsApp con el
-mensaje ya escrito. El cliente solo le da a enviar.
+mensaje ya escrito, con el servicio que escogio el
+visitante. El solo le da a enviar.
 
-Y si alguien llena el formulario, ademas te queda guardado
-en Netlify. Lo ves en:  Forms -> la lista de mensajes
+Si esta pagina ademas trae formulario (mira si tiene una
+seccion de "escribenos" con cajas para llenar), lo que
+manden te queda guardado en Netlify. Lo ves en:
+Forms -> la lista de mensajes
 (hay que prenderlo una vez en Site settings -> Forms)
 
 
