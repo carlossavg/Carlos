@@ -7,27 +7,46 @@ Sin frameworks, sin build, sin dependencias.
 
 ```
 plantillas/<nicho>/
-├── LEEME-PRIMERO.txt      la guía que lee el comprador
+├── LEEME-PRIMERO.txt      la guía que lee el comprador  · igual en todas
+├── EDITOR.html            el editor visual              · igual en todas
 └── web/                   lo que se sube a Netlify
-    ├── index.html         la página (no se toca)
-    ├── config.js          TODO lo editable
-    ├── netlify.toml       cabeceras de caché y seguridad
-    ├── robots.txt
-    └── img/               las fotos del cliente
+    ├── index.html         la página entera: HTML, CSS y JS dentro
+    ├── config.js          lo único propio de cada plantilla
+    ├── netlify.toml       cabeceras de caché y seguridad · igual en todas
+    └── robots.txt                                       · igual en todas
 ```
 
-Para empaquetar una plantilla: `./hacer-zip.sh barberia` → `GrowthOS-Barberia.zip`
+Ni un archivo más. Las fotos van metidas dentro de `config.js` como
+`data:image/...`, no en una carpeta aparte: así el botón "Descargar mi web
+lista" puede armar el ZIP entero desde el navegador.
 
-El script comprueba que `config.js` no tenga errores y avisa si quedaron fotos de prueba.
+### Las herramientas
+
+| Comando | Qué hace |
+|---|---|
+| `node revisar-plantillas.js` | Comprueba que todas tienen la misma forma y que **cada dato del config sale como una caja** en el editor |
+| `./hacer-zip.sh <nicho>` | Arma el ZIP para vender. Valida el `config.js` y mete una copia de `web/` dentro del `EDITOR.html` |
+
+Para añadir una plantilla nueva: **[PORTAR-PLANTILLA.md](PORTAR-PLANTILLA.md)**.
+
+### Cómo lo vive el comprador
+
+1. Doble clic a `EDITOR.html` → llena cajas normales, arrastra fotos
+2. "Ver en vivo" → la página al lado, cambiando mientras escribe
+3. "Descargar mi web lista" → **un** ZIP que arrastra a Netlify
+
+Se guarda solo mientras escribe (IndexedDB, por carpeta), así que cerrar la
+pestaña no le borra el trabajo.
 
 ---
 
-## Personalizar en 20 minutos
+## Lo que hay dentro del config
 
-Todo se edita en **`web/config.js`**. El `index.html` no se toca nunca.
+El comprador no abre esto: lo llena desde `EDITOR.html`. La tabla es para ti,
+cuando montes una plantilla nueva.
 
-Los bloques están ordenados por lo que más se cambia: datos del negocio, horario,
-servicios, equipo, fotos, reseñas... y al final el look y los ajustes.
+Esta es la forma de **barbería**; cada nicho tiene la suya, pero las reglas
+comunes (`plantilla`, `negocio`, `estilo`, las fotos) son iguales en todas.
 
 | # | Bloque en CONFIG | Qué cambias |
 |---|---|---|
@@ -54,8 +73,8 @@ servicios, equipo, fotos, reseñas... y al final el look y los ajustes.
    `America/Mexico_City`, `Europe/Madrid`…).
 2. **`negocio.whatsapp`** — formato internacional con código de país y sin espacios:
    `+17875550142`. Si está mal, el botón no abre ningún chat.
-3. **El `<link rel="preload">` del `<head>`** — debe llevar la misma URL que `CONFIG.fotoHero`.
-   Si no coinciden, la foto principal se descarga dos veces.
+3. **`plantilla`** — tiene que ser igual que el nombre de la carpeta. Es lo que usa
+   el editor para reconocer el trabajo guardado de cada plantilla.
 
 **La consola te avisa.** Abre el inspector (F12) y busca el grupo **"Barbería · revisa CONFIG"**:
 lista todo lo que quedó sin personalizar antes de que lo vea el cliente.
@@ -64,8 +83,7 @@ lista todo lo que quedó sin personalizar antes de que lo vea el cliente.
 El JS los actualiza en el navegador, pero los buscadores y WhatsApp leen el HTML tal cual.
 Es lo único fuera de `config.js` que hay que tocar.
 
-La precarga de la foto principal sí se genera sola desde `CONFIG.fotoHero`, así que esa no
-hay que mantenerla a mano.
+La precarga de la foto principal se genera sola desde `CONFIG.fotoHero`.
 
 ### El look: 3 líneas en `CONFIG.estilo`
 
@@ -106,30 +124,32 @@ cualquier banco de imágenes, y además evitan que dos clientes tuyos tengan la 
 Si una foto no carga, el espacio muestra un degradado oscuro con dorado y la etiqueta del hueco,
 así la página nunca se rompe y sabes cuál falta.
 
-### Usar las fotos del cliente
+### Las fotos del cliente
 
-1. Haz una carpeta `img` al lado del `index.html`
-2. Mete ahí las fotos: `hero.jpg`, `foto-1.jpg`, `barbero-1.jpg`
-3. En CONFIG cambia el link largo por el corto: `"img/foto-1.jpg"`
-4. Sube la carpeta **completa** a Netlify, no solo el HTML
+El comprador no hace nada de esto a mano. En `EDITOR.html` le da a
+**"Elegir foto"** (o la arrastra encima) y el editor se encarga:
 
-**Nombres en minúscula, sin espacios, sin acentos y sin ñ.** `Foto Barbería 1.JPG` no
-carga y no avisa por qué. La consola te marca las que estén mal escritas.
+- La achica y la comprime hasta dejarla por debajo de 260 KB. Si la foto es
+  muy detallada y con bajar la calidad no basta, además le reduce el ancho.
+  Una de 2400×1600 y 1.2 MB acaba en 973×649 y 183 KB.
+- La mete **dentro** del `config.js` como `data:image/...`.
 
-**Bájales el peso antes de meterlas.** Una foto de celular pesa 5 MB y hunde la página.
-Pásalas por squoosh.app o tinypng.com hasta dejarlas por debajo de 300 KB.
+Por eso no hay carpeta `img`, no hay nombres que cuadrar y no hay nada que
+renombrar. Las del celular valen tal cual, con acentos y espacios incluidos.
 
-| Foto | Tamaño | Peso máximo |
-|---|---|---|
-| Hero | 1920×1080 | 400 KB |
-| Galería | 800×800 | 250 KB |
-| Equipo | 800×1000 | 250 KB |
-| Logo | ~400 de ancho | 100 KB |
+**Las de ejemplo hay que cambiarlas siempre.** La barra de abajo del editor
+las cuenta y no deja publicar tranquilo hasta que se cambien: compara cada
+foto con el config original, así que detecta igual las de Unsplash que las
+que vienen metidas dentro del archivo.
+
+Si aun así una foto no carga, el hueco muestra un degradado con la etiqueta,
+y en local además dice **qué archivo estaba buscando**. La página nunca se
+rompe del todo.
 
 ### Logo
 
-`CONFIG.negocio.logo` vacío = sale el nombre en letras. Con el logo: mételo en `img/logo.png`
-y pon `logo: "img/logo.png"`. Que sea PNG con fondo transparente.
+`CONFIG.negocio.logo` vacío = sale el nombre en letras. Con logo, el editor
+lo trata como cualquier otra foto. Que sea PNG con fondo transparente.
 
 ---
 
