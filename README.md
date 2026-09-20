@@ -25,9 +25,25 @@ lista" puede armar el ZIP entero desde el navegador.
 | Comando | Qué hace |
 |---|---|
 | `node revisar-plantillas.js` | Comprueba que todas tienen la misma forma y que **cada dato del config sale como una caja** en el editor |
+| `node probar-el-dinero.js` | Recorre las seis y comprueba el camino por donde entra el dinero: sin WhatsApp no se abre ningún chat, con WhatsApp se abre el correcto |
 | `./hacer-zip.sh <nicho>` | Arma el ZIP para vender. Valida el `config.js` y mete una copia de `web/` dentro del `EDITOR.html` |
 
-Para añadir una plantilla nueva: **[PORTAR-PLANTILLA.md](PORTAR-PLANTILLA.md)**.
+- Para añadir una plantilla nueva: **[PORTAR-PLANTILLA.md](PORTAR-PLANTILLA.md)**
+- Para cobrar y tuitear: **[VENDER.md](VENDER.md)**
+
+### Las seis plantillas
+
+| Carpeta | Nicho | Datos editables |
+|---|---|---|
+| `barberia` | Barbería | 185 · bilingüe ES/EN |
+| `real-estate` | Bienes raíces | 193 · bilingüe ES/EN |
+| `car-wash` | Car wash / detailing | 54 |
+| `landscaping` | Jardinería y patios | 66 |
+| `solar` | Paneles solares | 72 |
+| `plomeria` | Plomería | 67 |
+
+El `EDITOR.html` es **el mismo archivo en las seis**. Se edita uno y se copia
+a las demás.
 
 ### Cómo lo vive el comprador
 
