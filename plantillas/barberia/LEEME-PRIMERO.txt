@@ -71,6 +71,28 @@ que se te quedo algo sin cambiar. Te dice exactamente que es.
 Si no sale nada, esta limpia.
 
 
+MUY IMPORTANTE SI ESTAS EN MAC
+------------------------------
+NO abras config.js con Chrome. Chrome solo lo ENSENA, no lo edita.
+
+Y si lo abres con TextEdit, hazle esto ANTES de escribir nada:
+
+   Menu TextEdit -> Ajustes -> Desmarca "Comillas tipograficas"
+
+Si no lo haces, TextEdit te cambia las comillas rectas ("asi")
+por comillas curvas, y eso ROMPE el archivo. La pagina se queda
+en blanco y no entiendes por que.
+
+Lo mas seguro: bajate VS Code (es gratis, code.visualstudio.com).
+Nunca te va a romper nada y ves los colores del codigo.
+
+
+SI SE TE ROMPE
+--------------
+Abre la pagina en Chrome. Si config.js quedo mal, sale un cartel
+que te dice exactamente que paso y como arreglarlo.
+
+
 SE ME ROMPIO ALGO
 -----------------
 Baja el ZIP otra vez y empieza de nuevo.

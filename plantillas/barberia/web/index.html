@@ -1218,6 +1218,42 @@ body::after{
 "use strict";
 
 /* ================================================================
+   SI config.js ESTÁ ROTO, AVISAMOS EN PANTALLA
+   Sin esto el comprador ve una página en blanco y no sabe por qué.
+   ================================================================ */
+function avisoConfigRoto(){
+  document.body.innerHTML =
+    '<div style="min-height:100vh;display:grid;place-items:center;padding:30px;'+
+    'font-family:system-ui,sans-serif;background:#fff6f5;color:#2a1a18">'+
+      '<div style="max-width:560px">'+
+        '<p style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#b0453a;margin:0 0 14px">'+
+          'El archivo config.js tiene un error</p>'+
+        '<h1 style="font-size:28px;line-height:1.25;margin:0 0 18px;font-weight:600">'+
+          'Se rompió algo al editar los datos</h1>'+
+        '<p style="font-size:16px;line-height:1.65;color:#5a4340;margin:0 0 22px">'+
+          'La página no puede cargar porque <b>config.js</b> quedó mal escrito. '+
+          'Casi siempre es una de estas cuatro cosas:</p>'+
+        '<ol style="font-size:15.5px;line-height:1.75;color:#5a4340;padding-left:20px;margin:0 0 24px">'+
+          '<li><b>Las comillas cambiaron de forma.</b> Tienen que ser rectas ("así"), '+
+              'no curvas (&#8220;así&#8221;). Pasa mucho al editar con TextEdit en Mac o con Word.</li>'+
+          '<li><b>Falta una coma</b> al final de una línea.</li>'+
+          '<li><b>Falta una llave</b> { o } al cerrar un bloque.</li>'+
+          '<li><b>Se borró un trozo de más</b> al quitar algo.</li>'+
+        '</ol>'+
+        '<p style="font-size:15.5px;line-height:1.65;color:#5a4340;margin:0 0 10px">'+
+          '<b>Cómo saber exactamente qué es:</b> aprieta <b>F12</b> '+
+          '(en Mac, Cmd + Option + I). En la ventanita que se abre, el mensaje en rojo '+
+          'te dice la línea del error.</p>'+
+        '<p style="font-size:15.5px;line-height:1.65;color:#5a4340;margin:0">'+
+          '<b>Si no lo encuentras:</b> baja el ZIP otra vez y empieza de nuevo. '+
+          'El original nunca se toca.</p>'+
+      '</div>'+
+    '</div>';
+}
+if(typeof CONFIG === "undefined" || typeof T === "undefined"){ avisoConfigRoto(); return; }
+
+
+/* ================================================================
    1. UTILIDADES
    ================================================================ */
 const $  = (s,c)=> (c||document).querySelector(s);
