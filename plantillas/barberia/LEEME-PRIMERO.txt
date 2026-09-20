@@ -34,20 +34,39 @@ Ahi mismo ves el cambio.
 
 PASO 3 - PONLE LAS FOTOS
 ------------------------
-Mete las fotos del negocio en la carpeta "img".
+Esta es la parte donde mas gente se traba. Hazlo asi y no falla:
 
-Ponles nombres cortos y en minuscula: foto-1.jpg, foto-2.jpg
-Sin espacios, sin acentos y sin enye. Eso rompe las fotos.
+1. Mete la foto en la carpeta "img"
 
-Despues, en config.js, cambia el link largo por el corto:
+2. RENOMBRA el archivo a algo corto y simple:
+      agente-1.png       <- SI
+      propiedad-1.jpg    <- SI
 
-   ANTES:    "https://images.unsplash.com/photo-1503951914875..."
-   DESPUES:  "img/foto-1.jpg"
+      Alejandro.foto.agente.png   <- NO (mayusculas y puntos)
+      Foto Casa 1.JPG             <- NO (espacios y mayusculas)
 
-Bajale el peso a las fotos antes de meterlas.
-Entra a squoosh.app (gratis) y dejalas por debajo de 300 KB.
-Una foto del celular pesa 5 MB y hace que la pagina cargue lentisima.
+3. En config.js pon EXACTAMENTE ese nombre:
+      "img/agente-1.png"
 
+   Ojo con la extension: si el archivo es .png, en config.js
+   tiene que decir .png. Si pones .jpg no carga.
+
+COMO SABER SI ESTA BIEN
+Abre la pagina. Si la foto no carga, en el hueco te sale:
+
+      [FOTO_AGENTE_1]
+      no se encontro
+      img/agente-1.png
+
+Esa ultima linea es el nombre que la pagina esta buscando.
+Comparalo con el nombre del archivo que tienes en la carpeta img.
+Si no son identicos, ahi esta el problema.
+
+EL PESO
+Bajale el peso antes de meterlas. Entra a squoosh.app (gratis)
+y dejalas por debajo de 300 KB.
+Una foto del celular pesa 5 MB y hace la pagina lentisima.
+Si alguna pesa de mas, la consola (F12) te lo dice.
 
 PASO 4 - SUBELA A INTERNET
 --------------------------

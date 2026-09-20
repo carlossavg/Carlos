@@ -1433,12 +1433,64 @@ function foto(url, alt, marcador, opciones){
     (o.ansioso ? 'fetchpriority="high"' : 'loading="lazy"')+' decoding="async">'+
     '<span class="foto__etiqueta">'+esc(marcador)+'</span></'+etiqueta+'>';
 }
-document.addEventListener("error", e=>{
-  const el = e.target;
-  if(el && el.tagName === "IMG"){
-    const caja = el.closest(".foto");
-    if(caja) caja.classList.add("foto--fallback");
+/* ================================================================
+   FOTOS QUE NO CARGAN — decir CUÁL falta y por qué
+   El error más común al personalizar es que el nombre del archivo
+   no coincide con lo que dice config.js. Antes solo salía un
+   degradado gris y nadie sabía qué archivo buscaba la página.
+   ================================================================ */
+const enPruebas = location.protocol === "file:" ||
+                  /(^|\.)netlify\.app$|localhost|127\.0\.0\.1/.test(location.hostname);
+const fotosRotas = [];
+
+function marcarFotoRota(img){
+  const caja = img.closest(".foto");
+  if(!caja) return;
+  caja.classList.add("foto--fallback");
+  const archivo = (img.getAttribute("src") || "").split("?")[0];
+  if(archivo && fotosRotas.indexOf(archivo) === -1) fotosRotas.push(archivo);
+  // Mientras pruebas, el hueco te dice qué archivo esperaba encontrar
+  if(enPruebas && archivo){
+    const et = caja.querySelector(".foto__etiqueta");
+    if(et && et.dataset.avisado !== "1"){
+      et.dataset.avisado = "1";
+      et.innerHTML = '<span style="display:block;line-height:1.8">' + et.textContent +
+        '<br><b style="color:#c0564a">no se encontró</b><br>' +
+        '<span style="font-weight:400;opacity:.85;word-break:break-all">' + esc(archivo) + '</span></span>';
+    }
   }
+}
+
+/* Avisa de las fotos rotas y de las que pesan demasiado */
+function revisarFotos(){
+  const lineas = [];
+  if(fotosRotas.length){
+    lineas.push("Estas fotos NO cargan. Revisa que el nombre en config.js sea idéntico al del archivo, " +
+                "incluidas mayúsculas y la extensión (.jpg no es lo mismo que .png):");
+    fotosRotas.forEach(f => lineas.push("   " + f));
+  }
+  try{
+    const pesadas = performance.getEntriesByType("resource")
+      .filter(r => r.initiatorType === "img" && r.transferSize > 400000)
+      .map(r => "   " + r.name.split("/").pop().split("?")[0] + " — " + Math.round(r.transferSize/1024) + " KB");
+    if(pesadas.length){
+      lineas.push("Estas fotos pesan demasiado y hacen la página lenta en el celular. " +
+                  "Pásalas por squoosh.app y déjalas por debajo de 300 KB:");
+      pesadas.forEach(l => lineas.push(l));
+    }
+  }catch(e){}
+  if(!lineas.length) return;
+  try{
+    console.groupCollapsed("%cRevisa las fotos (" + (fotosRotas.length ? fotosRotas.length + " no cargan" : "algunas pesan mucho") + ")",
+      "color:#c0564a;font-weight:700");
+    lineas.forEach(l => console.warn(l));
+    console.groupEnd();
+  }catch(e){}
+}
+window.addEventListener("load", ()=> setTimeout(revisarFotos, 1200));
+
+document.addEventListener("error", e=>{
+  if(e.target && e.target.tagName === "IMG") marcarFotoRota(e.target);
 }, true);
 
 /* ================================================================
@@ -2085,6 +2137,11 @@ function revisarConfig(){
     .filter(u => u && /^img\//.test(u) && /[ ÁÉÍÓÚÑáéíóúñ]/.test(u));
   if(conEspacios.length)
     avisos.push("Hay fotos con espacios o acentos en el nombre y no van a cargar: " + conEspacios.join(", "));
+  const C = CONFIG.confianza || {};
+  const enCero = ["anos", "clientes", "calificacion", "resenas"].filter(k => !C[k]);
+  if(enCero.length)
+    avisos.push("Estos números están vacíos o en cero y se van a ver mal en la página: " +
+                enCero.map(k => "confianza." + k).join(", "));
   const vacias = [];
   if(!CONFIG.servicios.length) vacias.push("servicios");
   if(!CONFIG.galeria.length)   vacias.push("galeria");
