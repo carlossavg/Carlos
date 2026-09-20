@@ -207,6 +207,7 @@ body::after{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+[hidden]{display:none !important}
 .contenedor{width:min(100% - 40px,var(--ancho));margin-inline:auto}
 .oro{color:var(--oro-texto)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
@@ -423,6 +424,10 @@ body::after{
 .galeria .foto:hover img{transform:scale(1.07)}
 .galeria .foto:nth-child(1){grid-column:span 2;grid-row:span 2}
 .galeria .foto:nth-child(6){grid-column:span 2;grid-row:span 2}
+/* Con menos de 6 fotos el mosaico deja huecos, así que se reparten parejas */
+.galeria--simple{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));grid-auto-rows:250px}
+.galeria--simple .foto:nth-child(1),
+.galeria--simple .foto:nth-child(6){grid-column:auto;grid-row:auto}
 .galeria__pie{margin-top:26px;text-align:center;color:var(--texto-tenue);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
 
 /* Visor de foto ampliada */
@@ -1215,6 +1220,21 @@ const CONFIG = {
     fuente:      "clasica"
   },
 
+  /* ---------- 0b. QUÉ SECCIONES SE VEN ----------
+     Pon false en la que no quieras y desaparece de la página Y del menú.
+
+     No hace falta tocarlo casi nunca: si vacías una lista (por ejemplo
+     borras todos los barberos), esa sección se esconde sola. */
+  secciones: {
+    porque:      true,   // Por qué escogernos
+    galeria:     true,   // Galería de fotos
+    equipo:      true,   // Los barberos
+    testimonios: true,   // Reseñas
+    cita:        true,   // Formulario para pedir cita
+    ubicacion:   true,   // Horario y mapa
+    faq:         true    // Preguntas frecuentes
+  },
+
   /* ---------- 1. DATOS DEL NEGOCIO ---------- */
   negocio: {
     nombre:      "Barbería Ejemplo",
@@ -1946,11 +1966,36 @@ function render(){
   $("#barraLlamar").href  = telURL();
   $("#btnLlamarCta").href = telURL();
 
+  aplicarSecciones();
   schema();
   restaurarEstado(estado);
   observarReveal(yaMontada);
   observarSecciones();
   yaMontada = true;
+}
+
+/* Esconde las secciones apagadas en CONFIG y las que se quedaron sin
+   contenido. Si borras todos los barberos, la sección Equipo desaparece
+   entera, con su enlace del menú y del pie: nunca queda un hueco vacío. */
+function aplicarSecciones(){
+  const sec = CONFIG.secciones || {};
+  const encendida = {
+    porque:      sec.porque      !== false && CONFIG.beneficios.length  > 0,
+    galeria:     sec.galeria     !== false && CONFIG.galeria.length     > 0,
+    equipo:      sec.equipo      !== false && CONFIG.barberos.length    > 0,
+    testimonios: sec.testimonios !== false && CONFIG.testimonios.length > 0,
+    cita:        sec.cita        !== false,
+    ubicacion:   sec.ubicacion   !== false,
+    faq:         sec.faq         !== false && CONFIG.faq.length         > 0
+  };
+  Object.keys(encendida).forEach(id => {
+    const seccion = document.getElementById(id);
+    if(seccion) seccion.hidden = !encendida[id];
+    $$('a[href="#' + id + '"]').forEach(a => { a.hidden = !encendida[id]; });
+  });
+  /* La galería cambia de reparto según cuántas fotos haya */
+  const g = $("#galeriaGrid");
+  if(g) g.classList.toggle("galeria--simple", CONFIG.galeria.length < 6);
 }
 
 /* Guarda lo que el visitante tenía escrito o abierto antes de redibujar */
@@ -2007,12 +2052,14 @@ function schema(){
       "@type":"OpeningHoursSpecification","dayOfWeek":dias[d.clave],"opens":d.abre,"closes":d.cierra})),
     "aggregateRating":{"@type":"AggregateRating","ratingValue":C.calificacion,"reviewCount":C.resenas,
                        "bestRating":5,"worstRating":1},
-    "review":CONFIG.testimonios.map(r=>({
+    "review":CONFIG.testimonios.length ? CONFIG.testimonios.map(r=>({
       "@type":"Review",
       "author":{"@type":"Person","name":r.nombre},
       "reviewRating":{"@type":"Rating","ratingValue":r.estrellas,"bestRating":5},
-      "reviewBody":bi(r.texto)})),
-    "employee":CONFIG.barberos.map(b=>({"@type":"Person","name":b.nombre,"jobTitle":bi(b.rol),"image":b.foto})),
+      "reviewBody":bi(r.texto)})) : undefined,
+    "employee":CONFIG.barberos.length
+      ? CONFIG.barberos.map(b=>({"@type":"Person","name":b.nombre,"jobTitle":bi(b.rol),"image":b.foto}))
+      : undefined,
     "sameAs":Object.keys(CONFIG.redes).map(k=>CONFIG.redes[k]).filter(Boolean),
     "hasOfferCatalog":{"@type":"OfferCatalog","name":idioma === "es" ? "Servicios" : "Services",
       "itemListElement":CONFIG.servicios.map(s=>({
@@ -2378,6 +2425,12 @@ function revisarConfig(){
     .filter(u => u && /^img\//.test(u) && /[ ÁÉÍÓÚÑáéíóúñ]/.test(u));
   if(conEspacios.length)
     avisos.push("Hay fotos con espacios o acentos en el nombre y no van a cargar: " + conEspacios.join(", "));
+  const vacias = [];
+  if(!CONFIG.servicios.length) vacias.push("servicios");
+  if(!CONFIG.galeria.length)   vacias.push("galeria");
+  if(!CONFIG.barberos.length)  vacias.push("barberos");
+  if(vacias.length)
+    avisos.push("Estas listas están vacías y sus secciones no se van a ver: " + vacias.join(", "));
   const est = CONFIG.estilo || {};
   if(est.fuente && !FUENTES[est.fuente])
     avisos.push('estilo.fuente solo acepta "clasica", "elegante" o "moderna". Pusiste: ' + est.fuente);
