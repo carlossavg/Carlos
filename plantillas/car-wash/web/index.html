@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101110">
+<meta name="description" content="">
+<title>Car Wash</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e5fa38'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23101110'/%3E%3C/svg%3E">
+
+<!-- Los datos del negocio. Este es el unico archivo que cambia. -->
+<script src="config.js"></script>
+
+<style>
+@charset "UTF-8";
+:root{--accent:#e5fa38;--button-text:#11120e;--bg:#101110;--panel:#1b1d1b;--muted:#a5a9a2;--line:#ffffff24;--white:#f5f6ee}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--white);font:16px/1.6 Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:5px}[hidden]{display:none!important}.container{width:min(1240px,calc(100% - 112px));margin:auto}.hero{min-height:760px;height:min(920px,100svh);position:relative;isolation:isolate;display:flex;flex-direction:column}.hero-image,.hero-shade{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;object-position:62% 50%}.hero-shade{z-index:-1;background:linear-gradient(90deg,#0a0d0dc9 0%,#10111044 57%,#10111008),linear-gradient(0deg,#101110 0%,transparent 45%,#0b0c0b80)}header{height:112px;display:flex;align-items:center;justify-content:space-between;gap:30px}.brand{display:flex;align-items:center;gap:12px;line-height:1.1}.brand strong{font-size:20px;letter-spacing:2px}.brand small{font-size:9px;letter-spacing:2px;display:block;margin-top:7px}.brand-mark{color:var(--accent);font-size:43px;font-weight:900;line-height:1}.brand img{max-width:175px;max-height:58px;object-fit:contain}nav{display:flex;gap:34px;font-size:14px}nav a{transition:color .2s}nav a:hover{color:var(--accent)}.button{border:0;border-radius:60px;display:inline-flex;align-items:center;justify-content:center;gap:28px;padding:17px 25px;background:var(--accent);color:var(--button-text);font-size:15px;font-weight:600;line-height:1.4;transition:transform .2s,filter .2s}.button:hover{filter:brightness(1.08);transform:translateY(-2px)}.button.small{padding:12px 22px;font-size:14px}.button span[aria-hidden]{font-size:20px}.hero-content{flex:1;display:grid;grid-template-columns:1.5fr 1fr;align-items:end;gap:50px;padding-top:80px;padding-bottom:52px}.eyebrow{font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase}.hero .eyebrow{color:#d5d9c9;margin-bottom:24px}h1{font-size:clamp(60px,6.6vw,96px);font-weight:500;letter-spacing:-5px;line-height:1.01;margin:0 0 36px;white-space:pre-line;max-width:720px}h2{font-size:clamp(38px,4vw,54px);font-weight:400;letter-spacing:-2px;line-height:1.08;margin:16px 0 0;white-space:pre-line}p{margin:0 0 18px}.hero-caption{max-width:300px;justify-self:end;padding-bottom:6px;font-size:16px;color:#e2e4dd}.hero-caption .line{height:2px;width:42px;background:var(--accent);display:block;margin-bottom:26px}.hero-caption a{font-size:14px;display:flex;justify-content:space-between;margin-top:26px}.hero-footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding:24px 0 30px;font-size:12px;color:#c0c4bb}.edition{letter-spacing:1.5px}.section{padding-top:95px;padding-bottom:95px}.muted{color:var(--muted)}.section-heading{display:flex;justify-content:space-between;gap:50px;align-items:end;margin-bottom:44px}.section-heading>p{max-width:365px;color:var(--muted);margin:0;font-size:16px}.service-tabs{display:flex;gap:8px;padding:7px;background:#181a17;border:1px solid #ffffff0c;border-radius:50px;width:fit-content;margin-bottom:22px}.service-tabs button{background:none;color:#bfc2b8;border:0;border-radius:40px;padding:12px 26px;font-size:14px}.service-tabs button[aria-selected=true]{background:var(--accent);color:var(--button-text)}.service-panel{display:grid;grid-template-columns:1.5fr 1fr;background:var(--panel);border:1px solid #ffffff0a;border-radius:20px;overflow:hidden;min-height:350px}.service-copy{padding:40px}.service-copy h3{font-size:30px;line-height:1.15;font-weight:400;letter-spacing:-.8px;margin:14px 0}.service-copy>p{max-width:520px;color:var(--muted);font-size:15px}.service-copy ul{padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:11px 18px;font-size:14px;margin:24px 0 0}.service-copy li{display:flex;align-items:start;gap:10px}.service-copy li:before{content:'↗';color:var(--accent)}.service-price{border-left:1px solid var(--line);padding:42px;background:#21241d;display:flex;flex-direction:column;align-items:start;justify-content:center}.price-label{font-size:11px;letter-spacing:1.5px;color:var(--muted)}.service-price strong{font-size:clamp(30px,3.4vw,48px);letter-spacing:-2px;font-weight:400;line-height:1.2;margin:12px 0 18px;color:var(--accent)}.service-price p{font-size:15px;color:#c2c7b7}.service-price .button{margin-top:10px}.pricing-note{font-size:13px;color:var(--muted);margin:18px 0 0}.process-wrap{background:#171916;border-top:1px solid #ffffff08;border-bottom:1px solid #ffffff08}.process-note{color:var(--muted);font-size:14px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:50px}.step{border-top:1px solid #ffffff28;padding-top:25px}.step>span{font-size:14px;color:var(--accent)}.step h3{font-size:21px;font-weight:400;letter-spacing:-.4px;margin:30px 0 10px}.step p{font-size:15px;color:var(--muted);max-width:320px;margin:0}.contact{display:grid;grid-template-columns:1.4fr 1fr;gap:75px}.contact h2{margin-bottom:24px}.contact>div>p:not(.eyebrow){color:var(--muted)}.contact .button{margin-top:12px}.contact-info{padding-top:18px}.contact-info>div{padding:24px 0;border-bottom:1px solid var(--line)}.contact-info>div:first-child{padding-top:0}.contact-info p{margin:12px 0 5px}.contact-info span:not(.eyebrow),.contact-info small{font-size:14px;color:var(--muted)}.contact-info a{display:block;color:var(--accent);font-size:14px;margin-top:12px}footer{padding:30px 0;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.footer-name{font-size:20px;letter-spacing:2px;color:var(--white)}#demo-label{flex-basis:100%;font-size:12px;opacity:.7}dialog{background:#1b1d19;color:var(--white);border:1px solid #44483c;border-radius:24px;padding:40px;max-width:480px;width:calc(100% - 32px)}dialog::backdrop{background:#000b;backdrop-filter:blur(7px)}dialog h2{font-size:38px;margin-bottom:24px}.close{position:absolute;right:20px;top:12px;color:var(--white);border:0;background:none;font-size:32px}label{display:block;font-size:14px;margin:18px 0 8px}input,select{width:100%;background:#282b25;color:white;border:1px solid #51564b;border-radius:10px;padding:13px;min-height:48px}.modal-note{font-size:13px;color:var(--muted);margin:18px 0}.modal-note+.button{width:100%}#booking-status{font-size:14px;color:var(--accent);margin:18px 0 0}.skip{position:absolute;top:-100px;left:20px;background:var(--accent);color:#111;padding:12px;z-index:5}.skip:focus{top:20px}@media(min-width:1500px){.hero{max-height:1000px}.container{max-width:1350px}}@media(max-width:850px){.container{width:calc(100% - 48px)}nav{gap:20px}nav a:nth-child(2){display:none}.hero{height:auto;min-height:820px}.hero-content{padding-top:160px;grid-template-columns:1fr;gap:28px}.hero-caption{justify-self:start;max-width:400px}.hero-caption .line,.hero-caption a{display:none}h1{font-size:72px;letter-spacing:-3.5px}.hero-footer .edition{display:none}.section{padding:65px 0}.section-heading{gap:30px}.section-heading>p{max-width:280px}.service-panel{grid-template-columns:1.3fr 1fr}.service-copy,.service-price{padding:28px}.service-copy ul{grid-template-columns:1fr}.steps{gap:25px}.contact{gap:35px}.service-price .button{gap:12px;padding:15px}.service-tabs button{padding:12px 18px}}@media(max-width:560px){header{height:90px;gap:12px}.brand strong{font-size:16px;letter-spacing:1.2px}.brand small{font-size:8px;letter-spacing:1px}.brand-mark{font-size:35px}nav{display:none}.button.small{padding:11px 16px;gap:10px;font-size:13px}.hero{min-height:780px}.hero-image{object-position:65% 50%}.hero-shade{background:linear-gradient(90deg,#0a0d0daa,#10111011),linear-gradient(0deg,#101110 0%,#10111070 45%,transparent 80%)}.hero-content{padding-top:190px;padding-bottom:24px;gap:22px}h1{font-size:61px;letter-spacing:-3px;margin-bottom:26px}.hero .eyebrow{font-size:10px;letter-spacing:1.3px;margin-bottom:18px}.hero-caption{font-size:14px;max-width:320px}.hero-caption p{margin:0}.hero-footer{font-size:11px;gap:15px;padding-top:18px}.hero-footer span:last-of-type{display:none}.section-heading{display:block;margin-bottom:30px}.section-heading>p{margin-top:22px;max-width:none}.section-heading .process-note{display:none}h2{font-size:39px;letter-spacing:-1.8px}.service-tabs{width:100%;gap:3px;padding:5px}.service-tabs button{flex:1;min-width:0;padding:11px 8px;font-size:12px}.service-panel{grid-template-columns:1fr}.service-copy{padding:27px 24px}.service-copy h3{font-size:28px}.service-price{border-top:1px solid var(--line);border-left:0;padding:24px}.service-price strong{font-size:42px}.service-price p{display:none}.service-price .button{width:100%}.steps{grid-template-columns:1fr;gap:28px}.step{display:grid;grid-template-columns:32px 1fr;gap:0 12px;padding-top:20px}.step h3{margin:0 0 10px}.step p{grid-column:2}.contact{grid-template-columns:1fr;gap:26px}.contact-info{padding-top:0}.contact .button{gap:16px}.contact h2{font-size:42px}footer{gap:15px}footer>span{font-size:12px}dialog{padding:30px 24px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+</style>
+</head>
+
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ============ PORTADA ============ -->
+<section class="hero" id="inicio">
+  <img class="hero-image" alt="" fetchpriority="high" width="1600" height="1000">
+  <div class="hero-shade"></div>
+
+  <header class="container">
+    <a href="#inicio" class="brand" aria-label="Inicio">
+      <span class="brand-mark" aria-hidden="true">O</span>
+      <span><strong data-text="negocio.nombre"></strong><small data-text="negocio.categoria"></small></span>
+    </a>
+    <nav aria-label="Navegacion principal">
+      <a href="#servicios" data-t="navServicios"></a>
+      <a href="#proceso" data-t="navProceso"></a>
+      <a href="#contacto" data-t="navContacto"></a>
+    </nav>
+    <button class="button small" data-book><span data-t="reservar"></span> <span aria-hidden="true">&#8599;</span></button>
+  </header>
+
+  <main id="contenido" class="hero-content container">
+    <div>
+      <p class="eyebrow" data-text="portada.etiqueta"></p>
+      <h1 data-text="portada.titulo"></h1>
+      <button class="button" data-book><span data-text="portada.boton"></span><span aria-hidden="true">&#8599;</span></button>
+    </div>
+    <div class="hero-caption">
+      <span class="line"></span>
+      <p data-text="portada.descripcion"></p>
+      <a href="#servicios"><span data-t="explorar"></span> <span aria-hidden="true">&#8595;</span></a>
+    </div>
+  </main>
+
+  <div class="hero-footer container">
+    <span data-text="negocio.ciudad"></span>
+    <span>Lavado a mano &middot; Cuidado al detalle</span>
+    <span class="edition">01 / THE DETAIL STUDIO</span>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="section container services" id="servicios">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow muted" data-t="ojoServicios"></p>
+      <h2 data-text="textos.tituloServicios"></h2>
+    </div>
+    <p data-text="textos.descripcionServicios"></p>
+  </div>
+
+  <div class="service-tabs" role="tablist" aria-label="Servicios"></div>
+
+  <div class="service-panel" id="service-panel" role="tabpanel" tabindex="0">
+    <div class="service-copy">
+      <span class="eyebrow muted" id="service-duration"></span>
+      <h3 id="service-title"></h3>
+      <p id="service-description"></p>
+      <ul id="service-includes"></ul>
+    </div>
+    <div class="service-price">
+      <span class="price-label" data-t="etiquetaPrecio"></span>
+      <strong id="service-price"></strong>
+      <p data-t="frasePrecio"></p>
+      <button class="button" id="service-book"><span data-t="elegirServicio"></span> <span aria-hidden="true">&#8599;</span></button>
+    </div>
+  </div>
+
+  <p class="pricing-note" data-text="textos.notaPrecios"></p>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="process-wrap" id="proceso">
+  <div class="container section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow muted" data-t="ojoProceso"></p>
+        <h2 data-t="tituloProceso"></h2>
+      </div>
+      <span class="process-note" data-t="notaProceso"></span>
+    </div>
+    <div class="steps"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="contact container section" id="contacto">
+  <div>
+    <p class="eyebrow muted" data-t="ojoContacto"></p>
+    <h2 data-text="textos.tituloContacto"></h2>
+    <p data-text="textos.descripcionContacto"></p>
+    <button class="button" data-book><span data-t="escribenos"></span> <span aria-hidden="true">&#8599;</span></button>
+  </div>
+  <div class="contact-info">
+    <div>
+      <span class="eyebrow muted" data-t="donde"></span>
+      <p data-text="negocio.ciudad"></p>
+      <span data-text="negocio.direccion"></span>
+      <a id="map-link" hidden target="_blank" rel="noopener noreferrer"><span data-t="comoLlegar"></span> &#8599;</a>
+    </div>
+    <div>
+      <span class="eyebrow muted" data-t="cuando"></span>
+      <p data-text="negocio.horario"></p>
+      <small data-t="notaHorario"></small>
+    </div>
+  </div>
+</section>
+
+<footer class="container">
+  <a class="footer-name" href="#inicio" data-text="negocio.nombre"></a>
+  <span data-t="piePie"></span>
+  <a id="instagram-link" hidden target="_blank" rel="noopener noreferrer">Instagram &#8599;</a>
+</footer>
+
+<!-- ============ VENTANA DE RESERVA ============ -->
+<dialog id="booking">
+  <form method="dialog"><button class="close" aria-label="Cerrar">&times;</button></form>
+  <p class="eyebrow muted" data-t="modalOjo"></p>
+  <h2 data-t="modalTitulo"></h2>
+  <form id="booking-form">
+    <label for="service-select" data-t="modalServicio"></label>
+    <select id="service-select" required></select>
+    <label for="vehicle" data-t="modalVehiculo"></label>
+    <input id="vehicle" name="vehicle" maxlength="100" required>
+    <p class="modal-note" data-t="modalNota"></p>
+    <button class="button" type="submit"><span data-t="modalBoton"></span> &#8599;</button>
+    <p id="booking-status" role="status" aria-live="polite"></p>
+  </form>
+</dialog>
+
+<noscript><p>Activa JavaScript para ver los datos del negocio y coordinar tu servicio.</p></noscript>
+
+<script>
+/* ================================================================
+   AQUÍ NO HACE FALTA TOCAR NADA. Todo se cambia en config.js,
+   y config.js se llena solo desde EDITOR.html.
+   ================================================================ */
+(() => {
+"use strict";
+
+/* ================================================================
+   SI config.js ESTÁ ROTO, AVISAMOS EN PANTALLA
+   Sin esto el comprador ve una página en blanco y no sabe por qué.
+   ================================================================ */
+function avisoConfigRoto(){
+  document.body.innerHTML =
+    '<div style="min-height:100vh;display:grid;place-items:center;padding:30px;'+
+    'font-family:system-ui,sans-serif;background:#fff6f5;color:#2a1a18">'+
+      '<div style="max-width:560px">'+
+        '<p style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#b0453a;margin:0 0 14px">'+
+          'El archivo config.js tiene un error</p>'+
+        '<h1 style="font-size:28px;line-height:1.25;margin:0 0 18px;font-weight:600">'+
+          'Se rompió algo al editar los datos</h1>'+
+        '<p style="font-size:16px;line-height:1.65;color:#5a4340;margin:0 0 22px">'+
+          'La página no puede cargar porque <b>config.js</b> quedó mal escrito. '+
+          'Casi siempre es una de estas cuatro cosas:</p>'+
+        '<ol style="font-size:15.5px;line-height:1.75;color:#5a4340;padding-left:20px;margin:0 0 24px">'+
+          '<li><b>Las comillas cambiaron de forma.</b> Tienen que ser rectas ("así"), '+
+              'no curvas (&#8220;así&#8221;). Pasa mucho al editar con TextEdit en Mac o con Word.</li>'+
+          '<li><b>Falta una coma</b> entre dos datos.</li>'+
+          '<li><b>Falta una llave</b> { o } al cerrar un bloque.</li>'+
+          '<li><b>Se borró un trozo de más</b> sin querer.</li>'+
+        '</ol>'+
+        '<p style="font-size:16px;line-height:1.65;color:#5a4340;margin:0">'+
+          'Lo más rápido: vuelve a abrir <b>EDITOR.html</b> y dale otra vez a '+
+          '«Descargar mi web lista». Si quieres ver el error exacto, aprieta '+
+          '<b>F12</b> y mira la pestaña Console.</p>'+
+      '</div></div>';
+}
+if(typeof CONFIG === "undefined" || typeof T === "undefined"){ avisoConfigRoto(); return; }
+
+const $ = s => document.querySelector(s);
+const leer = ruta => ruta.split(".").reduce((o,k)=> (o==null?o:o[k]), CONFIG);
+const pon = (id, v) => { document.getElementById(id).textContent = v; };
+const pestanas = $(".service-tabs"), lista = document.getElementById("service-select");
+const pasos = $(".steps");
+const marcaOriginal = $(".brand").innerHTML;
+let actual = 0;
+
+/* ================================================================
+   PINTAR LA PÁGINA
+   Está metido en una función para poder repetirlo: así la vista
+   previa del editor puede refrescar sin recargar nada.
+   ================================================================ */
+function pintar(){
+const N = CONFIG.negocio, P = CONFIG.portada, E = CONFIG.enlaces, S = CONFIG.estilo || {};
+
+/* ---------- El logo va primero ----------
+   Si lo dejamos para después, al devolver la marca de siempre
+   borraríamos el nombre que acabamos de escribir. */
+if(N.logo){
+  const img = document.createElement("img");
+  img.src = N.logo; img.alt = N.nombre;
+  $(".brand").replaceChildren(img);
+}else if($(".brand img")){
+  $(".brand").innerHTML = marcaOriginal;
+}
+
+/* ---------- Los textos ---------- */
+document.querySelectorAll("[data-text]").forEach(el => { el.textContent = leer(el.dataset.text) || ""; });
+document.querySelectorAll("[data-t]").forEach(el => { el.textContent = T[el.dataset.t] || ""; });
+
+document.title = N.nombre + " — " + N.categoria;
+$('meta[name="description"]').content = P.descripcion || "";
+
+/* ---------- Los colores ---------- */
+if(/^#[0-9a-f]{6}$/i.test(S.acento))      document.documentElement.style.setProperty("--accent", S.acento);
+if(/^#[0-9a-f]{6}$/i.test(S.acentoTexto)) document.documentElement.style.setProperty("--button-text", S.acentoTexto);
+
+/* ---------- La foto de portada y el logo ---------- */
+const foto = $(".hero-image");
+if(P.fotoHero){ foto.src = P.fotoHero; foto.alt = P.altHero || ""; }
+/* ---------- Los enlaces de fuera ---------- */
+const seguro = v => { try{ const u = new URL(v); return ["https:","http:"].includes(u.protocol) ? u.href : null; }catch{ return null; } };
+[["map-link", E.mapa], ["instagram-link", E.instagram]].forEach(([id, url])=>{
+  const ok = seguro(url), el = document.getElementById(id);
+  if(ok) el.href = ok;
+  el.hidden = !ok;
+});
+
+/* ---------- Los servicios ---------- */
+function mostrar(i){
+  actual = i;
+  const s = CONFIG.servicios[i];
+  pestanas.querySelectorAll("button").forEach((b, n)=>{
+    b.setAttribute("aria-selected", String(n === i));
+    b.tabIndex = n === i ? 0 : -1;
+  });
+  document.getElementById("service-panel").setAttribute("aria-labelledby", "service-" + i);
+  pon("service-duration", s.duracion); pon("service-title", s.titulo);
+  pon("service-description", s.descripcion); pon("service-price", s.precio);
+  const ul = document.getElementById("service-includes");
+  ul.replaceChildren();
+  (s.incluye || []).forEach(txt => { const li = document.createElement("li"); li.textContent = txt; ul.append(li); });
+  lista.value = String(i);
+}
+
+pestanas.replaceChildren(); lista.replaceChildren();
+CONFIG.servicios.forEach((s, i)=>{
+  const b = document.createElement("button");
+  b.type = "button"; b.id = "service-" + i; b.role = "tab";
+  b.setAttribute("aria-controls", "service-panel");
+  b.textContent = s.nombre;
+  b.addEventListener("click", ()=> mostrar(i));
+  b.addEventListener("keydown", e=>{
+    const n = CONFIG.servicios.length;
+    let x;
+    if(e.key === "ArrowRight") x = (i+1) % n;
+    if(e.key === "ArrowLeft")  x = (i+n-1) % n;
+    if(e.key === "Home") x = 0;
+    if(e.key === "End")  x = n-1;
+    if(x !== undefined){ e.preventDefault(); mostrar(x); pestanas.children[x].focus(); }
+  });
+  pestanas.append(b);
+  const o = document.createElement("option");
+  o.value = i; o.textContent = s.nombre + " · " + s.precio;
+  lista.append(o);
+});
+if(CONFIG.servicios.length) mostrar(Math.min(actual, CONFIG.servicios.length - 1));
+
+/* Si se quedan sin servicios, escondemos la sección entera en vez de
+   dejar un hueco vacío con un enlace del menú que no lleva a nada. */
+esconder("servicios", 'nav a[href="#servicios"]', !CONFIG.servicios.length);
+
+/* ---------- Los pasos ---------- */
+pasos.replaceChildren();
+CONFIG.pasos.forEach((s, i)=>{
+  const art = document.createElement("article"); art.className = "step";
+  const n = document.createElement("span"); n.textContent = "0" + (i+1);
+  const h = document.createElement("h3"); h.textContent = s.titulo;
+  const p = document.createElement("p");  p.textContent = s.texto;
+  art.append(n, h, p); pasos.append(art);
+});
+esconder("proceso", 'nav a[href="#proceso"]', !CONFIG.pasos.length);
+}   /* ---- fin de pintar() ---- */
+
+function esconder(idSeccion, selEnlace, vacia){
+  document.getElementById(idSeccion).hidden = vacia;
+  const enlace = document.querySelector(selEnlace);
+  if(enlace) enlace.hidden = vacia;
+}
+
+pintar();
+
+/* ---------- La ventana de reservar ---------- */
+const ventana = document.getElementById("booking");
+const abrir = ()=>{ lista.value = String(actual); pon("booking-status", ""); ventana.showModal(); };
+document.querySelectorAll("[data-book]").forEach(b => b.addEventListener("click", abrir));
+document.getElementById("service-book").addEventListener("click", abrir);
+ventana.addEventListener("click", e=>{
+  if(e.target !== ventana) return;
+  const r = ventana.getBoundingClientRect();
+  if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) ventana.close();
+});
+
+document.getElementById("booking-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const tel = String(CONFIG.negocio.whatsapp).replace(/\D/g, "");
+  if(!/^\d{8,15}$/.test(tel)){ pon("booking-status", T.sinWhatsapp); return; }
+  const s = CONFIG.servicios[Number(lista.value)];
+  const texto = CONFIG.negocio.mensaje + "\nServicio: " + s.nombre +
+                "\nVehículo: " + document.getElementById("vehicle").value.trim() +
+                "\n" + T.disponibilidad;
+  window.location.assign("https://wa.me/" + tel + "?text=" + encodeURIComponent(texto));
+});
+
+/* ================================================================
+   VISTA PREVIA EN VIVO
+   Cuando el editor abre esta página, le vamos mandando los cambios
+   y aquí se repintan al momento. Solo funciona abierta desde el
+   editor y en local: en la web publicada esto no se enciende.
+   ================================================================ */
+(function(){
+  const enPruebas = location.protocol === "file:" ||
+                    /(^|\.)netlify\.app$|localhost|127\.0\.0\.1/.test(location.hostname);
+  if(!enPruebas || !window.opener) return;
+  window.addEventListener("message", e=>{
+    const d = e.data;
+    if(!d || d.gws !== "config" || !d.datos) return;
+    try{
+      Object.keys(CONFIG).forEach(k => { delete CONFIG[k]; });
+      Object.keys(d.datos).forEach(k => { CONFIG[k] = d.datos[k]; });
+      pintar();
+    }catch(err){ console.warn("vista previa:", err); }
+  });
+  try{ window.opener.postMessage({gws:"listo"}, "*"); }catch(e){}
+})();
+})();
+
+</script>
+</body>
+</html>

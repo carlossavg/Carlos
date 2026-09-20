@@ -178,9 +178,15 @@ const SECCIONES = {
   datosHero:   {n:"Los números sobre la foto",d:""},
   socios:      {n:"Con quién trabajan",     d:"Deja la lista vacía para ocultarlo"},
   confianza:   {n:"Los números de arriba",  d:"Años, clientes y estrellas"},
-  enlaces:     {n:"Los enlaces de Google",  d:"Para las reseñas y el mapa"},
+  enlaces:     {n:"Los enlaces",            d:"El mapa, las reseñas y el correo"},
   redes:       {n:"Las redes sociales",     d:"Deja vacía la que no tenga"},
-  secciones:   {n:"Qué partes se ven",      d:"Quita el visto a lo que no necesites"}
+  secciones:   {n:"Qué partes se ven",      d:"Quita el visto a lo que no necesites"},
+  portada:     {n:"La portada",             d:"Lo primero que ve el cliente"},
+  nosotros:    {n:"Sobre nosotros",         d:"Quiénes son y cómo trabajan"},
+  proyecto:    {n:"El trabajo terminado",   d:"La sección del antes y después"},
+  pasos:       {n:"Cómo funciona",          d:"Los pasos para reservar"},
+  cierre:      {n:"El cierre de la página", d:"El último empujón antes de escribir"},
+  textos:      {n:"Los títulos de cada sección", d:"Los encabezados de la página"}
 };
 const CAMPOS = {
   nombre:"Nombre", slogan:"Frase de la marca", ciudad:"Ciudad", region:"Estado o país",
@@ -203,7 +209,19 @@ const CAMPOS = {
   nosotros:"Sobre nosotros", equipo:"El equipo", porque:"Por qué escogernos",
   galeria:"La galería", cita:"El formulario", contacto:"El formulario",
   ubicacion:"El mapa y el horario", clave:"Día", abre:"Abre", cierra:"Cierra",
-  lun:"Lunes", mar:"Martes", mie:"Miércoles", jue:"Jueves", vie:"Viernes", sab:"Sábado", dom:"Domingo"
+  lun:"Lunes", mar:"Martes", mie:"Miércoles", jue:"Jueves", vie:"Viernes", sab:"Sábado", dom:"Domingo",
+  categoria:"Debajo del nombre (ej. BARBERÍA Y AFEITADO)",
+  mensaje:"Mensaje con el que se abre WhatsApp",
+  horario:"Horario (escrito de corrido)",
+  etiqueta:"La línea pequeña de arriba", boton:"Lo que dice el botón",
+  descripcion:"Descripción", incluye:"Qué incluye", puntos:"Los puntos de la lista",
+  mapa:"Enlace del mapa (opcional)",
+  altHero:"Qué se ve en la foto (para buscadores)",
+  altNosotros:"Qué se ve en la foto (para buscadores)",
+  altProyecto:"Qué se ve en la foto (para buscadores)",
+  tituloServicios:"Título de los servicios", descripcionServicios:"Texto de los servicios",
+  notaPrecios:"La nota de debajo de los precios",
+  tituloContacto:"Título del contacto", descripcionContacto:"Texto del contacto"
 };
 /* Lo que NO se enseña: son ajustes avanzados que casi nadie toca */
 const OCULTAS = ["plantilla","estilo","idioma","creditos"];
@@ -220,10 +238,11 @@ const bilingue = v => v && typeof v==="object" && !Array.isArray(v) && ("es" in 
 /* Solo es una foto si la clave lo dice, o si la dirección apunta de verdad a
    una imagen. Antes cualquier https:// contaba y el Instagram salía con
    botón de "elegir foto". */
-const esFoto = (k,v) => /^(foto|logo|imagen)/i.test(k) || (typeof v === "string" && (
+const esFoto = (k,v) => !/(alt|texto|descripcion)$/i.test(k) &&
+  (/^(foto|logo|imagen)/i.test(k) || (typeof v === "string" && (
      /^data:image/.test(v) || /^img\//.test(v) ||
      /\.(jpe?g|png|webp|avif|gif|svg)(\?|#|$)/i.test(v) ||
-     /images\.unsplash\.com|cloudinary|imgur|\/photo-/i.test(v)));
+     /images\.unsplash\.com|cloudinary|imgur|\/photo-/i.test(v))));
 const $  = (s,c)=> (c||document).querySelector(s);
 const $$ = (s,c)=> Array.prototype.slice.call((c||document).querySelectorAll(s));
 
@@ -380,7 +399,7 @@ function listaSimple(ruta, arr, etiqueta){
 function listaFichas(ruta, arr, clave){
   const singular = {servicios:"servicio", propiedades:"propiedad", barberos:"persona", agentes:"agente",
                     testimonios:"reseña", faq:"pregunta", beneficios:"motivo", ventajas:"motivo",
-                    datosHero:"número", galeria:"foto"}[clave] || "elemento";
+                    datosHero:"número", galeria:"foto", pasos:"paso", puntos:"punto"}[clave] || "elemento";
   let html = '<div id="'+id(ruta)+'_fichas">';
   arr.forEach((item, i)=>{
     html += '<div class="ficha">'+
@@ -543,17 +562,29 @@ document.addEventListener("click", e=>{
 function revisar(){
   const a = [], N = CONFIG.negocio || {};
   $("#deQuien").textContent = N.nombre || "Llena los datos y descarga el archivo";
-  if(!N.nombre)  a.push("Falta el nombre del negocio");
-  if(String(N.whatsapp||"").replace(/\D/g,"").length < 10)
+  /* Cada plantilla tiene los campos que tiene: solo avisamos de los
+     que existen, para no pedir un teléfono a una que no lo lleva. */
+  if(!N.nombre) a.push("Falta el nombre del negocio");
+  if("whatsapp" in N && String(N.whatsapp||"").replace(/\D/g,"").length < 10)
     a.push("El WhatsApp tiene que llevar el código del país, así: +17875550142");
-  if(!N.telefono) a.push("Falta el teléfono");
-  if(!N.direccion) a.push("Falta la dirección");
+  if("telefono" in N && !N.telefono)  a.push("Falta el teléfono");
+  if("direccion" in N && !N.direccion) a.push("Falta la dirección");
   if(String(CONFIG.enlaces && CONFIG.enlaces.googleReviews).indexOf("TU_PLACE_ID") > -1)
     a.push("Los enlaces de Google siguen sin poner (dicen TU_PLACE_ID)");
   const C = CONFIG.confianza || {};
   Object.keys(C).forEach(k => { if(!C[k]) a.push("El número «"+nombreCampo(k)+"» está vacío"); });
+  /* Una foto sigue siendo la de ejemplo si no ha cambiado desde que
+     abriste el ZIP. Vale igual para las de internet y para las que
+     vienen metidas dentro del archivo. */
   let deEjemplo = 0;
-  JSON.stringify(CONFIG).replace(/https:\/\/images\.unsplash\.com/g, ()=> { deEjemplo++; return ""; });
+  (function comparar(ahora, antes){
+    if(!antes || typeof antes !== "object" || !ahora || typeof ahora !== "object") return;
+    Object.keys(antes).forEach(k => {
+      const a1 = ahora[k], b1 = antes[k];
+      if(typeof b1 === "string"){ if(b1 && a1 === b1 && esFoto(k, b1)) deEjemplo++; }
+      else comparar(a1, b1);
+    });
+  })(CONFIG, ORIGINAL);
   if(deEjemplo) a.push(deEjemplo + " foto(s) siguen siendo las de ejemplo");
 
   const caja = $("#revisionTxt");

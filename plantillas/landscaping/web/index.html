@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="">
+<meta name="theme-color" content="#123d32">
+<title>Jardineria</title>
+
+<!-- Los datos del negocio. Este es el unico archivo que cambia. -->
+<script src="config.js"></script>
+
+<style>
+:root{--green:#123d32;--accent:#e7ff73;--paper:#f5f4ed;--ink:#17231d;--muted:#667068;--line:#d9ddd4}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Arial,sans-serif;-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:4px}[hidden]{display:none!important}.skip{position:fixed;top:-100px;left:20px;z-index:20;background:white;padding:12px}.skip:focus{top:15px}.header{height:90px;display:flex;align-items:center;justify-content:space-between;gap:30px;padding:0 max(32px,calc((100vw - 1240px)/2));background:var(--paper);position:relative;z-index:5}.brand{display:flex;align-items:center;gap:11px;line-height:1}.brand strong{display:block;font-size:19px;letter-spacing:1.8px}.brand small{display:block;font-size:8px;letter-spacing:1.5px;margin-top:7px}.leaf{width:35px;height:35px;border-radius:60% 35% 60% 35%;display:grid;place-items:center;background:var(--green);color:var(--accent);font-weight:bold}.brand img{max-width:180px;max-height:55px}nav{display:flex;gap:32px;font-size:14px}nav a:hover{color:#26765d}.button{border:0;border-radius:100px;padding:16px 24px;background:var(--accent);color:#15251d;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:24px;transition:transform .2s,filter .2s}.button:hover{transform:translateY(-2px);filter:brightness(1.05)}.button.compact{padding:12px 20px;font-size:14px}.button.dark{background:var(--green);color:white}.hero{min-height:680px;height:calc(100svh - 90px);max-height:900px;position:relative;margin:0 auto;width:min(1420px,calc(100% - 38px));border-radius:22px;overflow:hidden;display:flex;align-items:end}.hero>img,.shade{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}.hero>img{object-position:center}.shade{z-index:-1;background:linear-gradient(90deg,#09261ed1 0%,#123d326e 44%,transparent 72%),linear-gradient(0deg,#071e1780,transparent 45%)}.hero-copy{color:white;padding:80px clamp(30px,6vw,90px);width:min(730px,68%)}.eyebrow{font-size:12px;letter-spacing:1.8px;font-weight:700;margin:0 0 18px}.eyebrow.green{color:#38725e}.eyebrow.pale{color:#c5dac9}h1{font:500 clamp(63px,7vw,105px)/.95 Arial,sans-serif;letter-spacing:-6px;white-space:pre-line;margin:0 0 28px}.hero-copy>p:not(.eyebrow){font-size:18px;max-width:520px;color:#e4ece5}.actions{display:flex;align-items:center;gap:30px;margin-top:32px}.actions>a{color:white;font-size:14px;border-bottom:1px solid #ffffff99}.hero aside{position:absolute;right:35px;bottom:35px;width:270px;background:#f7f5ed;padding:25px;border-radius:16px;color:var(--ink);box-shadow:0 15px 50px #0002}.hero aside span{font-size:10px;letter-spacing:1.3px;color:#607068}.hero aside strong,.hero aside small{display:block}.hero aside strong{font-size:18px;margin:10px 0}.hero aside small{font-size:13px;color:var(--muted)}.section{width:min(1160px,calc(100% - 64px));margin:auto;padding:105px 0}.intro{display:grid;grid-template-columns:1fr 1.05fr;gap:95px;align-items:center}.portrait{position:relative}.portrait img{display:block;width:100%;height:610px;object-fit:cover;border-radius:18px}.portrait span{position:absolute;left:22px;bottom:22px;background:white;padding:18px 21px;border-radius:12px;font-weight:700;font-size:14px;box-shadow:0 10px 35px #0002}.intro-copy h2,.section-head h2,.project h2,.process h2,.closing h2,dialog h2{font-size:clamp(42px,5vw,67px);line-height:1.03;letter-spacing:-3.5px;font-weight:500;white-space:pre-line;margin:0 0 26px}.intro-copy>p:not(.eyebrow),.project-copy>p:not(.eyebrow),.closing>div>p{color:var(--muted);max-width:530px}.intro-copy ul{padding:0;list-style:none;margin:28px 0}.intro-copy li{padding:9px 0;display:flex;gap:11px}.intro-copy li:before{content:'✓';color:#207055;font-weight:bold}.service-wrap{background:var(--green);color:white}.section-head{display:flex;align-items:end;justify-content:space-between;gap:70px;margin-bottom:45px}.section-head>p{max-width:410px;color:#c6d4ca}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{background:#1b5143;border-radius:15px;overflow:hidden;min-height:330px;padding:28px;display:flex;flex-direction:column}.card-index{font-size:12px;color:#a9c4b7}.card h3{font-size:22px;line-height:1.2;margin:55px 0 13px;font-weight:500}.card>p{font-size:14px;color:#c6d7ce}.card ul{padding:0;list-style:none;font-size:13px;color:#d6e1d9}.card li{padding:5px 0}.card footer{margin-top:auto;padding:20px 0 0;border-top:1px solid #ffffff21;display:flex;justify-content:space-between;align-items:center}.card footer span{font-size:11px;color:#b6cabf}.card footer strong{color:var(--accent);font-size:18px}.card button{border:0;background:none;color:white;padding:0;font-size:20px}.price-note{font-size:12px;color:#a9c2b6;margin:22px 0 0}.project{display:grid;grid-template-columns:.8fr 1.2fr;gap:75px;align-items:center}.project>img{width:100%;height:560px;object-fit:cover;border-radius:18px}.process{background:#e2ebca}.process h2{margin-bottom:55px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:55px}.step{border-top:1px solid #8fa180;padding-top:20px}.step>span{font-size:13px;color:#537153}.step h3{font-size:21px;margin:30px 0 10px}.step p{color:#596656;font-size:15px}.closing{display:grid;grid-template-columns:1.3fr .7fr;align-items:end;gap:80px}.closing h2{margin-bottom:0}.closing>div:last-child{padding-bottom:7px}footer:not(.card footer){background:var(--green);color:white;padding:44px max(32px,calc((100vw - 1160px)/2));display:grid;grid-template-columns:1fr 1fr 1fr;gap:35px;position:relative}.footer-name{font-size:25px;letter-spacing:2px;font-weight:bold}footer:not(.card footer)>div{display:flex;flex-direction:column;color:#c3d4cb;font-size:14px}footer:not(.card footer)>small{grid-column:1/-1;font-size:12px;color:#a9c2b6}.footer-name+div span{margin-bottom:5px}dialog{border:0;border-radius:20px;padding:38px;width:min(500px,calc(100% - 30px));background:var(--paper);color:var(--ink)}dialog::backdrop{background:#0b2a22bb;backdrop-filter:blur(5px)}dialog h2{font-size:45px}.close{position:absolute;right:18px;top:10px;background:none;border:0;font-size:32px}label{display:block;margin:14px 0 7px;font-weight:700;font-size:14px}input,select,textarea{width:100%;border:1px solid #bbc5bb;background:white;border-radius:9px;padding:12px;min-height:48px}textarea{height:100px;resize:vertical}#quote-form>p{font-size:12px;color:var(--muted);margin:15px 0}#quote-form .button{width:100%}#status{display:block;margin-top:14px;color:#286b55;font-size:14px}@media(max-width:900px){.header{padding:0 28px}.hero{width:calc(100% - 24px)}.intro{gap:45px}.portrait img{height:520px}.cards{grid-template-columns:1fr 1fr}.project{gap:40px}.section-head{gap:35px}}@media(max-width:600px){.header{height:78px;padding:0 20px}.brand strong{font-size:16px}.brand small{font-size:7px}nav{display:none}.button.compact{font-size:12px;padding:11px 15px;gap:8px}.hero{height:auto;min-height:700px;width:100%;border-radius:0}.hero>img{object-position:62% center}.shade{background:linear-gradient(90deg,#09261ed0,#123d3238),linear-gradient(0deg,#071e17b8,transparent 55%)}.hero-copy{width:100%;padding:190px 24px 175px}.hero-copy h1{font-size:64px;letter-spacing:-4px}.hero-copy>p:not(.eyebrow){font-size:16px}.actions{align-items:flex-start;flex-direction:column;gap:20px}.hero aside{left:20px;right:20px;bottom:20px;width:auto;padding:18px}.section{width:calc(100% - 40px);padding:70px 0}.intro{grid-template-columns:1fr;gap:45px}.portrait img{height:470px}.intro-copy h2,.section-head h2,.project h2,.process h2,.closing h2{font-size:43px;letter-spacing:-2.5px}.section-head{display:block}.section-head>p{margin-top:22px}.cards{grid-template-columns:1fr}.card{min-height:300px}.project{grid-template-columns:1fr;gap:42px}.project>img{height:400px;order:-1}.steps{grid-template-columns:1fr;gap:28px}.step h3{margin:18px 0 7px}.closing{grid-template-columns:1fr;gap:15px}.closing>div:last-child{padding:0}footer:not(.card footer){grid-template-columns:1fr;gap:18px}.button{gap:15px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main" data-t="saltar"></a>
+
+<header class="header">
+  <a class="brand" href="#home">
+    <span class="leaf" aria-hidden="true">V</span>
+    <span><strong data-text="negocio.nombre"></strong><small data-text="negocio.categoria"></small></span>
+  </a>
+  <nav aria-label="Navegacion principal">
+    <a href="#services" data-t="navServicios"></a>
+    <a href="#about" data-t="navNosotros"></a>
+    <a href="#process" data-t="navProceso"></a>
+  </nav>
+  <button class="button compact" data-contact><span data-t="pedirEstimado"></span> <span>&#8599;</span></button>
+</header>
+
+<main id="main">
+
+  <!-- ============ PORTADA ============ -->
+  <section class="hero" id="home">
+    <img id="hero-img" alt="" width="1600" height="960">
+    <div class="shade"></div>
+    <div class="hero-copy">
+      <p class="eyebrow" data-text="portada.etiqueta"></p>
+      <h1 data-text="portada.titulo"></h1>
+      <p data-text="portada.descripcion"></p>
+      <div class="actions">
+        <button class="button" data-contact><span data-text="portada.boton"></span> <span>&#8599;</span></button>
+        <a href="#services" data-t="verServicios"></a>
+      </div>
+    </div>
+    <aside>
+      <span data-t="asideOjo"></span>
+      <strong data-text="negocio.ciudad"></strong>
+      <small data-t="asideNota"></small>
+    </aside>
+  </section>
+
+  <!-- ============ SOBRE NOSOTROS ============ -->
+  <section class="intro section" id="about">
+    <div class="portrait">
+      <img id="about-img" alt="" width="800" height="1000">
+      <span data-t="retratoNota"></span>
+    </div>
+    <div class="intro-copy">
+      <p class="eyebrow green" data-t="ojoNosotros"></p>
+      <h2 data-text="nosotros.titulo"></h2>
+      <p data-text="nosotros.texto"></p>
+      <ul id="about-list"></ul>
+      <button class="button dark" data-contact><span data-t="botonNosotros"></span> <span>&#8599;</span></button>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section class="service-wrap" id="services">
+    <div class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow pale" data-t="ojoServicios"></p>
+          <h2 data-text="textos.tituloServicios"></h2>
+        </div>
+        <p data-text="textos.descripcionServicios"></p>
+      </div>
+      <div class="cards" id="service-cards"></div>
+      <p class="price-note" data-text="textos.notaPrecios"></p>
+    </div>
+  </section>
+
+  <!-- ============ EL TRABAJO TERMINADO ============ -->
+  <section class="project section">
+    <div class="project-copy">
+      <p class="eyebrow green" data-text="proyecto.etiqueta"></p>
+      <h2 data-text="proyecto.titulo"></h2>
+      <p data-text="proyecto.texto"></p>
+      <button class="button dark" data-contact><span data-text="proyecto.boton"></span> <span>&#8599;</span></button>
+    </div>
+    <img id="project-img" alt="" width="1000" height="750">
+  </section>
+
+  <!-- ============ COMO TRABAJAMOS ============ -->
+  <section class="process" id="process">
+    <div class="section">
+      <p class="eyebrow pale" data-t="ojoProceso"></p>
+      <h2 data-t="tituloProceso"></h2>
+      <div class="steps" id="steps"></div>
+    </div>
+  </section>
+
+  <!-- ============ CIERRE ============ -->
+  <section class="closing section">
+    <div>
+      <p class="eyebrow green" data-text="cierre.etiqueta"></p>
+      <h2 data-text="cierre.titulo"></h2>
+    </div>
+    <div>
+      <p data-text="cierre.texto"></p>
+      <button class="button dark" data-contact><span data-text="portada.boton"></span> <span>&#8599;</span></button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <a href="#home" class="footer-name" data-text="negocio.nombre"></a>
+  <div>
+    <span data-text="negocio.ciudad"></span>
+    <span data-text="negocio.horario"></span>
+  </div>
+  <div>
+    <a id="map-link" hidden target="_blank" rel="noopener"><span data-t="comoLlegar"></span> &#8599;</a>
+    <a id="instagram-link" hidden target="_blank" rel="noopener">Instagram &#8599;</a>
+    <a id="email-link" hidden><span data-t="correo"></span> &#8599;</a>
+  </div>
+</footer>
+
+<!-- ============ VENTANA DEL ESTIMADO ============ -->
+<dialog id="quote-dialog">
+  <form method="dialog"><button class="close" aria-label="Cerrar">&times;</button></form>
+  <p class="eyebrow green" data-t="modalOjo"></p>
+  <h2 data-t="modalTitulo"></h2>
+  <form id="quote-form">
+    <label for="service" data-t="modalServicio"></label>
+    <select id="service" required></select>
+    <label for="place" data-t="modalZona"></label>
+    <input id="place" maxlength="100" data-ph="modalZonaEj" required>
+    <label for="details" data-t="modalDetalles"></label>
+    <textarea id="details" maxlength="400" data-ph="modalDetallesEj" required></textarea>
+    <p data-t="modalNota"></p>
+    <button class="button dark" type="submit"><span data-t="modalBoton"></span> <span>&#8599;</span></button>
+    <span id="status" role="status" aria-live="polite"></span>
+  </form>
+</dialog>
+
+<noscript><p>Activa JavaScript para ver los datos del negocio.</p></noscript>
+
+<script>
+/* ================================================================
+   AQUÍ NO HACE FALTA TOCAR NADA. Todo se cambia en config.js,
+   y config.js se llena solo desde EDITOR.html.
+   ================================================================ */
+(() => {
+"use strict";
+
+/* ================================================================
+   SI config.js ESTÁ ROTO, AVISAMOS EN PANTALLA
+   Sin esto el comprador ve una página en blanco y no sabe por qué.
+   ================================================================ */
+function avisoConfigRoto(){
+  document.body.innerHTML =
+    '<div style="min-height:100vh;display:grid;place-items:center;padding:30px;'+
+    'font-family:system-ui,sans-serif;background:#fff6f5;color:#2a1a18">'+
+      '<div style="max-width:560px">'+
+        '<p style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#b0453a;margin:0 0 14px">'+
+          'El archivo config.js tiene un error</p>'+
+        '<h1 style="font-size:28px;line-height:1.25;margin:0 0 18px;font-weight:600">'+
+          'Se rompió algo al editar los datos</h1>'+
+        '<p style="font-size:16px;line-height:1.65;color:#5a4340;margin:0 0 22px">'+
+          'La página no puede cargar porque <b>config.js</b> quedó mal escrito. '+
+          'Casi siempre es una de estas cuatro cosas:</p>'+
+        '<ol style="font-size:15.5px;line-height:1.75;color:#5a4340;padding-left:20px;margin:0 0 24px">'+
+          '<li><b>Las comillas cambiaron de forma.</b> Tienen que ser rectas ("así"), '+
+              'no curvas (&#8220;así&#8221;). Pasa mucho al editar con TextEdit en Mac o con Word.</li>'+
+          '<li><b>Falta una coma</b> entre dos datos.</li>'+
+          '<li><b>Falta una llave</b> { o } al cerrar un bloque.</li>'+
+          '<li><b>Se borró un trozo de más</b> sin querer.</li>'+
+        '</ol>'+
+        '<p style="font-size:16px;line-height:1.65;color:#5a4340;margin:0">'+
+          'Lo más rápido: vuelve a abrir <b>EDITOR.html</b> y dale otra vez a '+
+          '«Descargar mi web lista». Si quieres ver el error exacto, aprieta '+
+          '<b>F12</b> y mira la pestaña Console.</p>'+
+      '</div></div>';
+}
+if(typeof CONFIG === "undefined" || typeof T === "undefined"){ avisoConfigRoto(); return; }
+
+const $ = s => document.querySelector(s);
+const leer = ruta => ruta.split(".").reduce((o,k)=> (o==null?o:o[k]), CONFIG);
+const tarjetas = $("#service-cards"), lista = $("#service");
+const puntos = $("#about-list"), pasos = $("#steps");
+const marcaOriginal = $(".brand").innerHTML;
+
+/* ================================================================
+   PINTAR LA PÁGINA
+   Está metido en una función para poder repetirlo: así la vista
+   previa del editor puede refrescar sin recargar nada.
+   ================================================================ */
+function pintar(){
+const N = CONFIG.negocio, E = CONFIG.enlaces, S = CONFIG.estilo || {};
+
+/* ---------- El logo va primero ----------
+   Si lo dejamos para después, al devolver la marca de siempre
+   borraríamos el nombre que acabamos de escribir. */
+if(N.logo){
+  const img = document.createElement("img");
+  img.src = N.logo; img.alt = N.nombre;
+  $(".brand").replaceChildren(img);
+}else if($(".brand img")){
+  $(".brand").innerHTML = marcaOriginal;
+}
+
+/* ---------- Los textos ---------- */
+document.querySelectorAll("[data-text]").forEach(el => { el.textContent = leer(el.dataset.text) || ""; });
+document.querySelectorAll("[data-t]").forEach(el => { el.textContent = T[el.dataset.t] || ""; });
+document.querySelectorAll("[data-ph]").forEach(el => { el.placeholder = T[el.dataset.ph] || ""; });
+
+document.title = N.nombre + " — " + N.categoria;
+$('meta[name="description"]').content = CONFIG.portada.descripcion || "";
+
+/* ---------- Los colores ---------- */
+if(/^#[0-9a-f]{6}$/i.test(S.acento)) document.documentElement.style.setProperty("--accent", S.acento);
+if(/^#[0-9a-f]{6}$/i.test(S.verde))  document.documentElement.style.setProperty("--green", S.verde);
+
+/* ---------- Las fotos y el logo ---------- */
+[["#hero-img", "portada.fotoHero", "portada.altHero"],
+ ["#about-img", "nosotros.fotoNosotros", "nosotros.altNosotros"],
+ ["#project-img", "proyecto.fotoProyecto", "proyecto.altProyecto"]].forEach(([q, foto, alt])=>{
+  const el = $(q), src = leer(foto);
+  if(src){ el.src = src; el.alt = leer(alt) || ""; }
+  el.hidden = !src;   /* sin foto escondemos el hueco, no la sección */
+});
+/* ---------- Los enlaces de fuera ---------- */
+const seguro = v => { try{ const u = new URL(v); return ["https:","http:"].includes(u.protocol) ? u.href : null; }catch{ return null; } };
+[["#map-link", E.mapa], ["#instagram-link", E.instagram]].forEach(([q, v])=>{
+  const ok = seguro(v), el = $(q);
+  if(ok) el.href = ok;
+  el.hidden = !ok;
+});
+const hayCorreo = /^\S+@\S+\.\S+$/.test(E.email || "");
+const elCorreo = $("#email-link");
+if(hayCorreo) elCorreo.href = "mailto:" + E.email;
+elCorreo.hidden = !hayCorreo;
+
+/* ---------- Los puntos de "sobre nosotros" ---------- */
+puntos.replaceChildren();
+(CONFIG.nosotros.puntos || []).forEach(txt => {
+  const li = document.createElement("li"); li.textContent = txt; puntos.append(li);
+});
+
+/* ---------- Los servicios ---------- */
+tarjetas.replaceChildren(); lista.replaceChildren();
+CONFIG.servicios.forEach((s, i)=>{
+  const art = document.createElement("article"); art.className = "card";
+  const n = document.createElement("span"); n.className = "card-index"; n.textContent = "0" + (i+1);
+  const h = document.createElement("h3"); h.textContent = s.nombre;
+  const p = document.createElement("p"); p.textContent = s.texto;
+  const ul = document.createElement("ul");
+  (s.incluye || []).forEach(x => { const li = document.createElement("li"); li.textContent = "— " + x; ul.append(li); });
+  const pie = document.createElement("footer");
+  const et = document.createElement("span"); et.textContent = T.etiquetaPrecio;
+  const pr = document.createElement("strong"); pr.textContent = s.precio;
+  const b = document.createElement("button");
+  b.type = "button"; b.ariaLabel = T.pedirEstimado + ": " + s.nombre; b.textContent = "↗";
+  b.addEventListener("click", ()=> abrir(i));
+  pie.append(et, pr, b);
+  art.append(n, h, p, ul, pie);
+  tarjetas.append(art);
+  const o = document.createElement("option");
+  o.value = i; o.textContent = s.nombre;
+  lista.append(o);
+});
+esconder("services", 'nav a[href="#services"]', !CONFIG.servicios.length);
+
+/* ---------- Los pasos ---------- */
+pasos.replaceChildren();
+CONFIG.pasos.forEach((s, i)=>{
+  const art = document.createElement("article"); art.className = "step";
+  const n = document.createElement("span"); n.textContent = T.paso + " 0" + (i+1);
+  const h = document.createElement("h3"); h.textContent = s.titulo;
+  const p = document.createElement("p"); p.textContent = s.texto;
+  art.append(n, h, p); pasos.append(art);
+});
+esconder("process", 'nav a[href="#process"]', !CONFIG.pasos.length);
+}   /* ---- fin de pintar() ---- */
+
+function esconder(idSeccion, selEnlace, vacia){
+  document.getElementById(idSeccion).hidden = vacia;
+  const enlace = $(selEnlace);
+  if(enlace) enlace.hidden = vacia;
+}
+
+pintar();
+
+/* ---------- La ventana del estimado ---------- */
+const ventana = $("#quote-dialog");
+function abrir(i = 0){ lista.value = i; $("#status").textContent = ""; ventana.showModal(); }
+document.querySelectorAll("[data-contact]").forEach(b => b.addEventListener("click", ()=> abrir()));
+ventana.addEventListener("click", e=>{
+  if(e.target !== ventana) return;
+  const r = ventana.getBoundingClientRect();
+  if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) ventana.close();
+});
+
+$("#quote-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const tel = String(CONFIG.negocio.whatsapp).replace(/\D/g, "");
+  if(!/^\d{8,15}$/.test(tel)){ $("#status").textContent = T.sinWhatsapp; return; }
+  const s = CONFIG.servicios[Number(lista.value)];
+  const texto = CONFIG.negocio.mensaje +
+    "\n" + T.servicioLinea + ": " + s.nombre +
+    "\n" + T.zonaLinea + ": " + $("#place").value.trim() +
+    "\n" + T.proyectoLinea + ": " + $("#details").value.trim();
+  location.href = "https://wa.me/" + tel + "?text=" + encodeURIComponent(texto);
+});
+
+/* ================================================================
+   VISTA PREVIA EN VIVO
+   Cuando el editor abre esta página, le vamos mandando los cambios
+   y aquí se repintan al momento. Solo funciona abierta desde el
+   editor y en local: en la web publicada esto no se enciende.
+   ================================================================ */
+(function(){
+  const enPruebas = location.protocol === "file:" ||
+                    /(^|\.)netlify\.app$|localhost|127\.0\.0\.1/.test(location.hostname);
+  if(!enPruebas || !window.opener) return;
+  window.addEventListener("message", e=>{
+    const d = e.data;
+    if(!d || d.gws !== "config" || !d.datos) return;
+    try{
+      Object.keys(CONFIG).forEach(k => { delete CONFIG[k]; });
+      Object.keys(d.datos).forEach(k => { CONFIG[k] = d.datos[k]; });
+      pintar();
+    }catch(err){ console.warn("vista previa:", err); }
+  });
+  try{ window.opener.postMessage({gws:"listo"}, "*"); }catch(e){}
+})();
+})();
+
+</script>
+</body>
+</html>

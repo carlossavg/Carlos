@@ -1,0 +1,93 @@
+===========================================
+  TU PAGINA WEB - 3 PASOS
+===========================================
+
+No hay que tocar codigo. Todo se hace con el editor.
+
+
+PASO 1 - ABRE EL EDITOR
+-----------------------
+Dale doble clic a  EDITOR.html
+
+Se abre en el navegador. Vas a ver cajas normales para
+llenar, como cualquier formulario.
+
+Se guarda solo mientras escribes. Si cierras la pestana
+sin querer, al volver a abrirlo esta todo como lo dejaste.
+Arriba a la izquierda te avisa cada vez que guarda.
+
+
+PASO 2 - LLENA LOS DATOS
+------------------------
+Vas bajando y cambiando lo que dice cada caja:
+
+   Los datos del negocio   nombre, telefono, WhatsApp, direccion
+   El horario              marca "cerrado" el dia que no abren
+   Las listas              anade o quita los que quieras
+   Las fotos               le das a "Elegir foto" y ya
+   Que partes se ven       quita el visto a lo que no necesites
+
+LAS FOTOS: solo eliges el archivo. Se achican solas y se
+meten dentro. No tienes que renombrar nada ni crear
+carpetas. Las del celular sirven perfectamente.
+
+EL WHATSAPP: con el codigo del pais y sin espacios.
+   Asi:  +17875550142
+
+PARA IRLA VIENDO: dale a "Ver en vivo" arriba. Se abre la
+pagina al lado y va cambiando sola segun escribes. Dejala
+abierta mientras trabajas.
+
+Abajo del todo hay una barra que te dice lo que te falta
+antes de publicar. Cuando diga "Todo listo", ya esta.
+
+
+PASO 3 - SUBELA A INTERNET
+--------------------------
+1. Dale al boton verde  "Descargar mi web lista"
+   Se te baja UN archivo .zip con todo dentro
+
+2. Entra a:  app.netlify.com/drop
+
+3. Arrastra ese .zip ahi
+
+4. Ya esta publicada. Te dan la direccion
+
+5. En "Domain settings" le pones el dominio de tu cliente
+
+Si Netlify te pide una carpeta en vez del .zip: descomprimelo
+primero (doble clic encima) y arrastra la carpeta que sale.
+
+
+PARA CAMBIAR ALGO DESPUES
+-------------------------
+Vuelve a abrir EDITOR.html. Sale todo como lo dejaste.
+Cambias lo que sea, descargas de nuevo y lo vuelves a
+arrastrar a Netlify, encima del sitio que ya hiciste.
+
+
+PARA EMPEZAR OTRA PAGINA, DE OTRO CLIENTE
+-----------------------------------------
+Baja el .zip original otra vez y descomprimelo en otra
+carpeta. Asi cada cliente tiene la suya y no se mezclan.
+
+Dentro del editor tambien tienes "Empezar de cero", que
+deja la plantilla como vino.
+
+
+COMO TE LLEGAN LOS CLIENTES
+---------------------------
+Todos los botones de la pagina abren WhatsApp con el
+mensaje ya escrito. El cliente solo le da a enviar.
+
+Y si alguien llena el formulario, ademas te queda guardado
+en Netlify. Lo ves en:  Forms -> la lista de mensajes
+(hay que prenderlo una vez en Site settings -> Forms)
+
+
+SI ALGO SE ROMPE
+----------------
+Baja el .zip otra vez y empieza de nuevo. El original
+nunca se toca, siempre tienes una copia buena.
+
+===========================================

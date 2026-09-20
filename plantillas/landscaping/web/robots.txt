@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Cambia el dominio por el del cliente cuando publiques con dominio propio.
+Sitemap: https://www.barberiaejemplo.com/sitemap.xml
