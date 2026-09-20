@@ -2177,6 +2177,26 @@ try{
   else if(cfgIdioma.autodetectar && (navigator.language||"").toLowerCase().indexOf("en") === 0) idioma = "en";
 }catch(e){}
 
+/* ================================================================
+   VISTA PREVIA EN VIVO
+   Si esta página la abrió el editor, le avisa y se queda escuchando
+   los cambios para repintarse al momento. Solo mientras se prueba:
+   en un dominio propio esto no se activa.
+   ================================================================ */
+(function(){
+  if(!enPruebas || !window.opener) return;
+  window.addEventListener("message", e=>{
+    const d = e.data;
+    if(!d || d.gws !== "config" || !d.datos) return;
+    try{
+      Object.keys(d.datos).forEach(k => { CONFIG[k] = d.datos[k]; });
+      aplicarEstilo();
+      render();
+    }catch(err){ console.warn("vista previa:", err); }
+  });
+  try{ window.opener.postMessage({gws:"listo"}, "*"); }catch(e){}
+})();
+
 try{
   aplicarEstilo();
   render();

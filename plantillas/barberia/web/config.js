@@ -1,17 +1,18 @@
 /* ==================================================================
-   CONFIG.JS — AQUÍ CAMBIAS TODO
+   CONFIG.JS — LOS DATOS DE LA PAGINA
    ==================================================================
 
-   Este es el ÚNICO archivo que tienes que abrir.
+   NO HACE FALTA ABRIR ESTE ARCHIVO.
 
-   Ábrelo con el Bloc de notas (en Mac, TextEdit), cambia lo que
-   está entre comillas, guarda, y refresca la página en Chrome.
+   Todo esto se cambia solo, desde EDITOR.html. Dale doble clic al
+   EDITOR, llena las cajas y dale a "Descargar mi web lista".
 
-   Lo que está entre comillas "así" es texto que puedes cambiar.
-   Lo que tiene // delante son notas para ti; no hacen nada.
+   Si de todas formas quieres mirarlo por dentro: lo que esta entre
+   comillas "asi" es texto; lo que lleva // delante son notas.
+   No borres las comas ni las llaves { }.
 
-   No borres las comas ni las llaves { }. Si algo se rompe,
-   baja el archivo otra vez y empieza de nuevo.
+   Si lo editas a mano y se rompe, la pagina te lo dice en pantalla
+   al abrirla. Entonces vuelve al EDITOR y descarga otra vez.
    ================================================================== */
 
 /* ================================================================
@@ -21,6 +22,10 @@
    Los textos con { es, en } aparecen en los dos idiomas.
    ================================================================ */
 const CONFIG = {
+
+  /* Nombre de la plantilla. No lo cambies: es lo que usa el editor
+     para reconocer tu trabajo cuando vuelves a abrirlo. */
+  plantilla: "barberia",
 
   /* ---------- 1. DATOS DEL NEGOCIO — empieza por aquí ---------- */
   negocio: {

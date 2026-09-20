@@ -6,6 +6,11 @@
 <title>Editor de tu página</title>
 <!-- Carga los datos actuales de la plantilla -->
 <script src="web/config.js"></script>
+
+<!-- Copia de los archivos de la carpeta "web". La mete hacer-zip.sh al
+     empaquetar. Va aquí dentro porque los navegadores no dejan leer
+     archivos de al lado cuando la pagina se abre con doble clic. -->
+<script id="archivosWeb" type="application/json">{}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -34,6 +39,11 @@ input,select,textarea{font:inherit;color:inherit;width:100%}
 .btn--linea{border-color:var(--linea);background:var(--panel);color:var(--tinta)}
 .btn--linea:hover{border-color:var(--suave)}
 .btn--mini{min-height:34px;padding:0 13px;font-size:12.5px}
+.estado{font-size:12.5px;color:var(--tenue);margin-right:auto;padding-left:14px;white-space:nowrap}
+.estado.mal{color:#b0453a;font-weight:600}
+.rescate{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px;
+  padding:14px 18px;border-radius:12px;background:#fff8e3;border:1px solid #e8d089;font-size:14.5px}
+.rescate span{color:var(--tenue)}
 .btn--borrar{border-color:#e6cfcb;color:var(--aviso);background:#fff}
 .btn--borrar:hover{background:#fdf3f2}
 
@@ -103,19 +113,28 @@ input,select,textarea{font:inherit;color:inherit;width:100%}
 <div class="barra">
   <div class="barra__in">
     <h1>Editor de tu página<small id="deQuien">Llena los datos y descarga el archivo</small></h1>
-    <button class="btn btn--linea" id="btnVer" type="button">Ver la página</button>
-    <button class="btn btn--ok" id="btnBajar" type="button">Descargar config.js</button>
+    <span class="estado" id="estado"></span>
+    <button class="btn btn--linea" id="btnVer" type="button">Ver en vivo</button><button class="btn btn--linea" id="btnSoloConfig" type="button" title="Solo el archivo de datos">Solo config.js</button>
+    <button class="btn btn--ok" id="btnWeb" type="button">Descargar mi web lista</button>
   </div>
 </div>
 
 <div class="envoltura">
+  <div class="rescate" id="rescate" hidden>
+    <div>
+      <b>Seguimos donde lo dejaste.</b>
+      <span id="rescateCuando"></span>
+    </div>
+    <button class="btn btn--linea btn--mini" id="btnDeCero" type="button">Empezar de cero</button>
+  </div>
+
   <div class="intro">
     <h2>Cómo se usa esto</h2>
     <ol>
       <li>Llena las cajas de abajo con los datos del negocio de tu cliente.</li>
       <li>Arrastra las fotos donde te las pida. Se achican solas, no tienes que hacer nada.</li>
-      <li>Dale a <b>Descargar config.js</b> y guarda el archivo dentro de la carpeta <b>web</b>, encima del que ya está.</li>
-      <li>Sube la carpeta <b>web</b> a Netlify y listo.</li>
+      <li>Dale a <b>Ver en vivo</b> y se abre la página al lado. Va cambiando sola mientras escribes.</li>
+      <li>Cuando te guste, dale a <b>Descargar mi web lista</b> y arrastra ese archivo a Netlify. Ya está.</li>
     </ol>
   </div>
 
@@ -125,7 +144,7 @@ input,select,textarea{font:inherit;color:inherit;width:100%}
 <div class="revision">
   <div class="revision__in">
     <div class="revision__txt" id="revisionTxt">Revisando…</div>
-    <button class="btn btn--ok" id="btnBajar2" type="button">Descargar config.js</button>
+    <button class="btn btn--ok" id="btnWeb2" type="button">Descargar mi web lista</button>
   </div>
 </div>
 
@@ -187,7 +206,11 @@ const CAMPOS = {
   lun:"Lunes", mar:"Martes", mie:"Miércoles", jue:"Jueves", vie:"Viernes", sab:"Sábado", dom:"Domingo"
 };
 /* Lo que NO se enseña: son ajustes avanzados que casi nadie toca */
-const OCULTAS = ["estilo","idioma","creditos"];
+const OCULTAS = ["plantilla","estilo","idioma","creditos"];
+
+/* Copia del config tal como vino en el ZIP. La guardamos antes de tocar
+   nada para que "Empezar de cero" pueda devolverlo todo a su sitio. */
+const ORIGINAL = JSON.parse(JSON.stringify(CONFIG));
 
 const nombreSeccion = k => (SECCIONES[k] || {n:k}).n;
 const ayudaSeccion  = k => (SECCIONES[k] || {d:""}).d;
@@ -265,6 +288,8 @@ function escribir(ruta, valor){
   for(let i=0;i<ruta.length-1;i++) o = o[ruta[i]];
   o[ruta[ruta.length-1]] = valor;
   revisar();
+  if(typeof avisarPrevia === "function") avisarPrevia();
+  if(typeof guardarLuego === "function") guardarLuego();
 }
 const id = ruta => "c_" + ruta.join("_").replace(/[^\w]/g,"");
 
@@ -407,8 +432,8 @@ function dibujarTodo(){
       '</summary>'+
       '<div class="grupo__cuerpo">'+cuerpo+'</div></details>';
   }).join("");
-  $("#deQuien").textContent = (CONFIG.negocio && CONFIG.negocio.nombre) || "Llena los datos y descarga el archivo";
   revisar();
+  if(typeof guardarLuego === "function") guardarLuego();
 }
 
 /* ================================================================
@@ -423,6 +448,7 @@ document.addEventListener("input", e=>{
   if(el.dataset.num)  v = v === "" ? 0 : Number(v);
   if(el.dataset.bool) v = el.checked;
   escribir(rutaDe(el.dataset.ruta), v);
+  avisarPrevia();
 });
 document.addEventListener("change", e=>{
   const el = e.target;
@@ -500,6 +526,7 @@ document.addEventListener("click", e=>{
   const ruta = rutaDe(b.dataset.anadir), arr = leer(ruta);
   arr.push(arr.length ? vaciar(arr[0]) : "");
   dibujarTodo();
+  avisarPrevia();
   const fichas = $$("#" + id(ruta) + "_fichas .ficha");
   if(fichas.length) fichas[fichas.length-1].scrollIntoView({block:"center"});
 });
@@ -515,6 +542,7 @@ document.addEventListener("click", e=>{
    ================================================================ */
 function revisar(){
   const a = [], N = CONFIG.negocio || {};
+  $("#deQuien").textContent = N.nombre || "Llena los datos y descarga el archivo";
   if(!N.nombre)  a.push("Falta el nombre del negocio");
   if(String(N.whatsapp||"").replace(/\D/g,"").length < 10)
     a.push("El WhatsApp tiene que llevar el código del país, así: +17875550142");
@@ -531,10 +559,10 @@ function revisar(){
   const caja = $("#revisionTxt");
   if(!a.length){
     caja.className = "revision__txt ok";
-    caja.innerHTML = "<b>Todo listo.</b> Descarga el archivo y súbelo a Netlify.";
+    caja.innerHTML = "<b>Todo listo.</b> Dale a «Descargar mi web lista» y arrastra ese archivo a Netlify.";
   }else{
     caja.className = "revision__txt";
-    caja.innerHTML = "<b>Te falta "+a.length+" cosa"+(a.length>1?"s":"")+" antes de publicar</b>"+
+    caja.innerHTML = "<b>Te falta"+(a.length>1?"n ":" ")+a.length+" cosa"+(a.length>1?"s":"")+" antes de publicar</b>"+
       '<ul class="lista-avisos">'+a.slice(0,5).map(x=>"<li>"+esc(x)+"</li>").join("")+
       (a.length>5 ? "<li>y "+(a.length-5)+" más…</li>" : "")+"</ul>";
   }
@@ -585,6 +613,244 @@ function generar(){
   txt += "const T = " + aTexto(T, 0) + ";\n";
   return txt;
 }
+/* ================================================================
+   ARMAR EL ZIP DE LA WEB
+   Para no tener que explicar "descarga esto y reemplaza aquello",
+   el editor entrega la carpeta entera lista para soltar en Netlify.
+   ================================================================ */
+const TABLA_CRC = (function(){
+  const t = new Uint32Array(256);
+  for(let n=0;n<256;n++){
+    let c = n;
+    for(let k=0;k<8;k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+    t[n] = c >>> 0;
+  }
+  return t;
+})();
+function crc32(bytes){
+  let c = 0xFFFFFFFF;
+  for(let i=0;i<bytes.length;i++) c = TABLA_CRC[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function crearZip(archivos){
+  const cod = new TextEncoder();
+  const partes = [], central = [];
+  let desplazamiento = 0;
+
+  archivos.forEach(a=>{
+    const nombre = cod.encode(a.nombre);
+    const datos  = typeof a.datos === "string" ? cod.encode(a.datos) : a.datos;
+    const suma   = crc32(datos);
+
+    const cab = new DataView(new ArrayBuffer(30));
+    cab.setUint32(0, 0x04034b50, true);   // firma
+    cab.setUint16(4, 20, true);           // versión
+    cab.setUint16(6, 0x0800, true);       // nombres en UTF-8
+    cab.setUint16(8, 0, true);            // sin comprimir
+    cab.setUint16(10, 0, true); cab.setUint16(12, 0x21, true);  // hora y fecha
+    cab.setUint32(14, suma, true);
+    cab.setUint32(18, datos.length, true);
+    cab.setUint32(22, datos.length, true);
+    cab.setUint16(26, nombre.length, true);
+    cab.setUint16(28, 0, true);
+    partes.push(new Uint8Array(cab.buffer), nombre, datos);
+
+    const dir = new DataView(new ArrayBuffer(46));
+    dir.setUint32(0, 0x02014b50, true);
+    dir.setUint16(4, 20, true); dir.setUint16(6, 20, true);
+    dir.setUint16(8, 0x0800, true); dir.setUint16(10, 0, true);
+    dir.setUint16(12, 0, true); dir.setUint16(14, 0x21, true);
+    dir.setUint32(16, suma, true);
+    dir.setUint32(20, datos.length, true);
+    dir.setUint32(24, datos.length, true);
+    dir.setUint16(28, nombre.length, true);
+    dir.setUint32(42, desplazamiento, true);
+    central.push(new Uint8Array(dir.buffer), nombre);
+
+    desplazamiento += 30 + nombre.length + datos.length;
+  });
+
+  const largoCentral = central.reduce((s,x)=> s + x.length, 0);
+  const fin = new DataView(new ArrayBuffer(22));
+  fin.setUint32(0, 0x06054b50, true);
+  fin.setUint16(8, archivos.length, true);
+  fin.setUint16(10, archivos.length, true);
+  fin.setUint32(12, largoCentral, true);
+  fin.setUint32(16, desplazamiento, true);
+  return new Blob(partes.concat(central, [new Uint8Array(fin.buffer)]), {type:"application/zip"});
+}
+
+/* Los archivos que van dentro del ZIP.
+   Primero miramos la copia que trae el propio editor: así funciona aunque
+   lo abras con doble clic, sin servidor y sin internet. Si no estuviera
+   (por ejemplo abriéndolo desde localhost mientras se desarrolla), lo
+   pedimos a la carpeta de al lado. */
+function copiaGuardada(nombre){
+  const caja = document.getElementById("archivosWeb");
+  if(!caja) return null;
+  let mapa;
+  try{ mapa = JSON.parse(caja.textContent || "{}"); }catch(e){ return null; }
+  const b64 = mapa && mapa[nombre];
+  if(typeof b64 !== "string" || !b64) return null;
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for(let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return bytes;
+}
+async function leerDeLaCarpeta(nombre){
+  const guardada = copiaGuardada(nombre);
+  if(guardada) return guardada;
+  const r = await fetch("web/" + nombre);
+  if(!r.ok) throw new Error(nombre);
+  return await r.text();
+}
+async function bajarWebLista(){
+  const btn = $("#btnWeb");
+  const original = btn.textContent;
+  btn.textContent = "Preparando…"; btn.disabled = true;
+  try{
+    const archivos = [{nombre:"config.js", datos:generar()}];
+    for(const f of ["index.html","netlify.toml","robots.txt"]){
+      try{ archivos.push({nombre:f, datos: await leerDeLaCarpeta(f)}); }catch(e){}
+    }
+    if(archivos.length < 2) throw new Error("no pude leer index.html");
+    const nombre = (CONFIG.negocio.nombre || "mi-web").toLowerCase()
+      .normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(crearZip(archivos));
+    a.download = "web-" + (nombre || "lista") + ".zip";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=> URL.revokeObjectURL(a.href), 6000);
+    btn.textContent = "Listo, revisa tus descargas";
+    setTimeout(()=>{ btn.textContent = original; btn.disabled = false; }, 2600);
+  }catch(err){
+    btn.disabled = false; btn.textContent = original;
+    alert("No pude armar la carpeta desde aquí.\n\nUsa el otro botón, el de \"Solo config.js\": descarga ese archivo y mételo dentro de la carpeta web, encima del que ya está. Después sube esa carpeta a Netlify.");
+  }
+}
+
+/* ================================================================
+   GUARDADO AUTOMÁTICO
+   El navegador se queda con lo que llevas escrito, fotos incluidas.
+   Si cierras la pestaña sin querer, al volver a abrir el editor
+   sigue todo ahí.
+
+   Usamos IndexedDB y no localStorage porque localStorage se llena a
+   los 5 MB y una sola foto ya ocupa 200 KB.
+   ================================================================ */
+/* Una carpeta = un cliente. Metemos la ruta en la llave para que si
+   descomprimes el ZIP otra vez en otro sitio, ese empiece limpio y no
+   te salga encima el trabajo del cliente anterior. */
+const LLAVE = "trabajo-" + (CONFIG.plantilla || "editor") + "|" +
+              decodeURIComponent(location.pathname).replace(/[^\/]*$/, "");
+let base = null, primerDibujo = true;
+
+function abrirBase(){
+  if(base) return Promise.resolve(base);
+  return new Promise((ok, mal)=>{
+    if(!window.indexedDB) return mal(new Error("este navegador no guarda"));
+    const pet = indexedDB.open("growthos", 1);
+    pet.onupgradeneeded = ()=> pet.result.createObjectStore("trabajos");
+    pet.onsuccess = ()=>{ base = pet.result; ok(base); };
+    pet.onerror   = ()=> mal(pet.error);
+    pet.onblocked = ()=> mal(new Error("hay otra pestaña abierta"));
+  });
+}
+function enLaBase(modo, hacer){
+  return abrirBase().then(bd => new Promise((ok, mal)=>{
+    const t = bd.transaction("trabajos", modo);
+    const pedido = hacer(t.objectStore("trabajos"));
+    t.oncomplete = ()=> ok(pedido && pedido.result);
+    t.onerror    = ()=> mal(t.error);
+    t.onabort    = ()=> mal(t.error);
+  }));
+}
+function decirEstado(txt, mal){
+  const e = $("#estado");
+  if(!e) return;
+  e.textContent = txt;
+  e.className = "estado" + (mal ? " mal" : "");
+}
+function guardar(){
+  return enLaBase("readwrite", s => s.put(
+      {cuando: Date.now(), datos: JSON.parse(JSON.stringify(CONFIG))}, LLAVE))
+    .then(()=> decirEstado("Guardado"))
+    .catch(()=> decirEstado("No pude guardar aquí — descarga tu web para no perderla", true));
+}
+let guardadoPendiente = null;
+function guardarLuego(){
+  if(primerDibujo) return;
+  decirEstado("Guardando…");
+  clearTimeout(guardadoPendiente);
+  guardadoPendiente = setTimeout(guardar, 700);
+}
+function haceCuanto(cuando){
+  const m = Math.round((Date.now() - cuando) / 60000);
+  if(m < 2)  return "Lo guardé hace un momento.";
+  if(m < 60) return "Lo guardé hace " + m + " minutos.";
+  const h = Math.round(m / 60);
+  if(h < 24) return "Lo guardé hace " + h + (h === 1 ? " hora." : " horas.");
+  const d = Math.round(h / 24);
+  return "Lo guardé hace " + d + (d === 1 ? " día." : " días.");
+}
+function empezarDeCero(){
+  if(!confirm("Esto borra todo lo que llevas escrito y deja la plantilla como vino.\n\n¿Seguro?")) return;
+  Object.keys(CONFIG).forEach(k => { delete CONFIG[k]; });
+  Object.keys(ORIGINAL).forEach(k => { CONFIG[k] = JSON.parse(JSON.stringify(ORIGINAL[k])); });
+  $("#rescate").hidden = true;
+  /* Volvemos a dibujar con el guardado apagado: si no, el redibujo
+     guardaría otra vez y al reabrir saldría el cartel sobre una
+     plantilla en blanco. */
+  clearTimeout(guardadoPendiente);
+  primerDibujo = true;
+  dibujarTodo();
+  avisarPrevia();
+  enLaBase("readwrite", s => s.delete(LLAVE))
+    .then(()=> decirEstado(""))
+    .catch(()=> decirEstado(""))
+    .then(()=>{ primerDibujo = false; });
+}
+
+/* Al abrir: si hay trabajo guardado, lo devolvemos antes de dibujar,
+   para que nunca vean la plantilla en blanco y crean que se perdió. */
+function arrancar(){
+  return enLaBase("readonly", s => s.get(LLAVE)).then(guardado => {
+    if(guardado && guardado.datos){
+      Object.keys(guardado.datos).forEach(k => { CONFIG[k] = guardado.datos[k]; });
+      dibujarTodo();
+      $("#rescateCuando").textContent = haceCuanto(guardado.cuando);
+      $("#rescate").hidden = false;
+    }else{
+      dibujarTodo();
+    }
+  }).catch(()=>{
+    dibujarTodo();
+    decirEstado("Este navegador no guarda solo — descarga tu web antes de cerrar", true);
+  }).then(()=>{ primerDibujo = false; });
+}
+
+/* ================================================================
+   VISTA PREVIA EN VIVO — abre la página al lado y la va actualizando
+   ================================================================ */
+let ventanaPrevia = null, listaPrevia = false, envioPendiente = null;
+window.addEventListener("message", e=>{
+  if(e.data && e.data.gws === "listo"){ listaPrevia = true; mandarPrevia(); }
+});
+function mandarPrevia(){
+  if(!ventanaPrevia || ventanaPrevia.closed || !listaPrevia) return;
+  try{ ventanaPrevia.postMessage({gws:"config", datos:JSON.parse(JSON.stringify(CONFIG))}, "*"); }catch(e){}
+}
+function avisarPrevia(){
+  clearTimeout(envioPendiente);
+  envioPendiente = setTimeout(mandarPrevia, 350);
+}
+function abrirPrevia(){
+  listaPrevia = false;
+  ventanaPrevia = window.open("web/index.html", "previaGrowthOS");
+  if(!ventanaPrevia){ alert("Tu navegador bloqueó la ventana. Permítela y vuelve a darle."); return; }
+  try{ ventanaPrevia.focus(); }catch(e){}
+}
+
 function bajar(){
   const blob = new Blob([generar()], {type:"text/javascript;charset=utf-8"});
   const a = document.createElement("a");
@@ -593,12 +859,11 @@ function bajar(){
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=> URL.revokeObjectURL(a.href), 4000);
 }
-$("#btnBajar").addEventListener("click", bajar);
-$("#btnBajar2").addEventListener("click", bajar);
-$("#btnVer").addEventListener("click", ()=>{
-  alert("Primero descarga el config.js y ponlo dentro de la carpeta web.\n\nDespués abre web/index.html para ver cómo quedó.");
-  window.open("web/index.html", "_blank");
-});
+$("#btnWeb").addEventListener("click", bajarWebLista);
+$("#btnWeb2").addEventListener("click", bajarWebLista);
+$("#btnSoloConfig").addEventListener("click", bajar);
+$("#btnVer").addEventListener("click", abrirPrevia);
+$("#btnDeCero").addEventListener("click", empezarDeCero);
 
 /* Arrastrar una foto encima de su recuadro también vale */
 document.addEventListener("dragover", e=>{ if(e.target.closest(".foto-campo")) e.preventDefault(); });
@@ -613,7 +878,7 @@ document.addEventListener("drop", e=>{
   }
 });
 
-dibujarTodo();
+arrancar();
 </script>
 </body>
 </html>
