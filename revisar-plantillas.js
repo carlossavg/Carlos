@@ -54,6 +54,27 @@ IGUALES.forEach(f => {
      (new Set(sumas).size === 1 ? " (" + sumas[0] + ")" : " — hay " + new Set(sumas).size + " versiones distintas"));
 });
 
+/* ---------- 2b. Los diccionarios del editor ----------
+   Una clave repetida en SECCIONES o CAMPOS no da error: JavaScript
+   se queda con la última y la otra etiqueta desaparece sin avisar.
+   Pasó de verdad al añadir plantillas, así que se comprueba. */
+console.log("\n=== 2b. LAS ETIQUETAS DEL EDITOR ===");
+{
+  const ed = fs.readFileSync(path.join(RAIZ, plantillas[0], "EDITOR.html"), "utf8");
+  ["SECCIONES", "CAMPOS"].forEach(nombre => {
+    const bloque = (ed.match(new RegExp("const " + nombre + " = \\{([\\s\\S]*?)\\n\\};")) || [])[1] || "";
+    const ks = [];
+    bloque.split("\n").forEach(linea => {
+      const plana = linea.replace(/\{[^}]*\}/g, "X");     // aplasta los objetos anidados
+      const re = /(?:^|,)\s*"?([a-zA-Z][\w.]*)"?\s*:/g;
+      let m; while((m = re.exec(plana))) ks.push(m[1]);
+    });
+    const dup = [...new Set(ks.filter(k => ks.filter(x => x === k).length > 1))];
+    ok(dup.length === 0, nombre + ": " + ks.length + " etiquetas, ninguna repetida" +
+       (dup.length ? " — repetidas: " + dup.join(", ") : ""));
+  });
+}
+
 /* ---------- 3. El config ---------- */
 console.log("\n=== 3. EL CONFIG ===");
 plantillas.forEach(p => {

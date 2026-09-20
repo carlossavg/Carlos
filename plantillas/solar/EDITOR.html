@@ -173,7 +173,6 @@ const SECCIONES = {
   galeria:     {n:"Las fotos del trabajo",  d:"Entre 6 y 9 fotos"},
   testimonios: {n:"Lo que dicen los clientes",d:"Reseñas de gente real"},
   faq:         {n:"Preguntas frecuentes",   d:"Las dudas que quitan la venta"},
-  beneficios:  {n:"Por qué escogernos",     d:"Cuatro motivos"},
   ventajas:    {n:"Por qué escogernos",     d:"Tres motivos"},
   datosHero:   {n:"Los números sobre la foto",d:""},
   socios:      {n:"Con quién trabajan",     d:"Deja la lista vacía para ocultarlo"},
@@ -184,11 +183,13 @@ const SECCIONES = {
   portada:     {n:"La portada",             d:"Lo primero que ve el cliente"},
   nosotros:    {n:"Sobre nosotros",         d:"Quiénes son y cómo trabajan"},
   proyecto:    {n:"El trabajo terminado",   d:"La sección del antes y después"},
-  pasos:       {n:"Cómo funciona",          d:"Los pasos para reservar"},
   cierre:      {n:"El cierre de la página", d:"El último empujón antes de escribir"},
   textos:      {n:"Los títulos de cada sección", d:"Los encabezados de la página"},
   beneficios:  {n:"Por qué escogernos",     d:"Los motivos para confiar"},
-  formulario:  {n:"El formulario",          d:"Lo que le pides al visitante"}
+  formulario:  {n:"El formulario",          d:"Lo que le pides al visitante"},
+  principios:  {n:"Cómo trabajamos",        d:"Lo que te hace distinto"},
+  franja:      {n:"La franja de frases",    d:"La tira de texto bajo la portada"},
+  pasos:       {n:"Cómo funciona",          d:"Los pasos para reservar"}
 };
 const CAMPOS = {
   nombre:"Nombre", slogan:"Frase de la marca", ciudad:"Ciudad", region:"Estado o país",
@@ -200,6 +201,8 @@ const CAMPOS = {
   rol:"Puesto", especialidad:"En qué es bueno", instagram:"Instagram", foto:"Foto",
   estrellas:"Estrellas (1 a 5)", fecha:"Cuándo la dejó", texto:"Lo que dice",
   p:"La pregunta", r:"La respuesta", titulo:"Título", icono:"Dibujo",
+  "beneficios.icono":"Dibujo: reloj, tijera, corona o local",
+  "servicios.icono":"Dibujo: drop, drain, heat o tap",
   zona:"Barrio o zona", tipo:"Venta o alquiler", estado:"Estado", periodo:"Cada cuánto se paga",
   habitaciones:"Habitaciones", banos:"Baños", metros:"Metros cuadrados",
   numero:"El número", anos:"Años abiertos", clientes:"Clientes atendidos",
@@ -224,13 +227,21 @@ const CAMPOS = {
   tituloServicios:"Título de los servicios", descripcionServicios:"Texto de los servicios",
   notaPrecios:"La nota de debajo de los precios",
   tituloContacto:"Título del contacto", descripcionContacto:"Texto del contacto",
-  zona:"Zona donde trabaja", notaPie:"La frase del pie de página",
+  "negocio.zona":"Zona donde trabaja", notaPie:"La frase del pie de página",
   nota:"La frase pequeña de debajo", pieFoto:"El texto encima de la foto",
   tituloBeneficios:"Título de «por qué escogernos»", textoBeneficios:"Texto de «por qué escogernos»",
   tituloProceso:"Título de «cómo funciona»", tituloFaq:"Título de las preguntas",
   textoServicios:"Texto de los servicios",
   interesOtro:"La última opción de la lista (\"Necesito orientación\")",
-  rangos:"Los rangos de precio que puede elegir", privacidad:"El aviso de privacidad"
+  rangos:"Los rangos de precio que puede elegir", privacidad:"El aviso de privacidad",
+  botonLlamar:"Lo que dice el botón de llamar",
+  nota1:"Primera promesa pequeña", nota2:"Segunda promesa pequeña",
+  etiquetaFoto:"El cartelito encima de la foto",
+  etiquetaVertical:"La frase de lado de la foto",
+  frasePie:"La frase del pie de página",
+  otroServicio:"La última opción de la lista (\"Otra cosa\")",
+  tituloPrincipios:"Título de «cómo trabajamos»", botonPrincipios:"Botón de «cómo trabajamos»",
+  tituloPasos:"Título de «cómo funciona»"
 };
 /* Lo que NO se enseña: son ajustes avanzados que casi nadie toca */
 const OCULTAS = ["plantilla","estilo","idioma","creditos"];
@@ -241,7 +252,14 @@ const ORIGINAL = JSON.parse(JSON.stringify(CONFIG));
 
 const nombreSeccion = k => (SECCIONES[k] || {n:k}).n;
 const ayudaSeccion  = k => (SECCIONES[k] || {d:""}).d;
-const nombreCampo   = k => CAMPOS[k] || (k.charAt(0).toUpperCase() + k.slice(1).replace(/([A-Z])/g,' $1').toLowerCase());
+/* La etiqueta de un campo. Si dos plantillas usan el mismo nombre
+   para cosas distintas (la "zona" de una propiedad y la "zona" donde
+   trabaja el negocio), se puede afinar poniendo la ruta entera en
+   CAMPOS, por ejemplo CAMPOS["negocio.zona"]. */
+const sinNumeros = ruta => ruta.filter(x => typeof x !== "number").join(".");
+const nombreCampo = (k, ruta) =>
+  (ruta && CAMPOS[sinNumeros(ruta)]) || CAMPOS[k] ||
+  (k.charAt(0).toUpperCase() + k.slice(1).replace(/([A-Z])/g,' $1').toLowerCase());
 const esc = s => String(s==null?"":s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const bilingue = v => v && typeof v==="object" && !Array.isArray(v) && ("es" in v);
 /* Solo es una foto si la clave lo dice, o si la dirección apunta de verdad a
@@ -378,12 +396,12 @@ function campoFoto(ruta, valor, etiqueta, ancho){
 }
 
 function dibujarValor(ruta, clave, valor){
-  if(esFoto(clave, valor)) return campoFoto(ruta, valor, nombreCampo(clave), /hero/i.test(clave) ? 1600 : 900);
-  if(bilingue(valor))      return campoBilingue(ruta, valor, nombreCampo(clave));
-  if(typeof valor === "number")  return campoNumero(ruta, valor, nombreCampo(clave));
-  if(typeof valor === "boolean") return campoSiNo(ruta, valor, nombreCampo(clave));
-  if(valor === null || typeof valor === "string") return campoTexto(ruta, valor, nombreCampo(clave));
-  if(Array.isArray(valor)) return listaSimple(ruta, valor, nombreCampo(clave));
+  if(esFoto(clave, valor)) return campoFoto(ruta, valor, nombreCampo(clave, ruta), /hero/i.test(clave) ? 1600 : 900);
+  if(bilingue(valor))      return campoBilingue(ruta, valor, nombreCampo(clave, ruta));
+  if(typeof valor === "number")  return campoNumero(ruta, valor, nombreCampo(clave, ruta));
+  if(typeof valor === "boolean") return campoSiNo(ruta, valor, nombreCampo(clave, ruta));
+  if(valor === null || typeof valor === "string") return campoTexto(ruta, valor, nombreCampo(clave, ruta));
+  if(Array.isArray(valor)) return listaSimple(ruta, valor, nombreCampo(clave, ruta));
   if(typeof valor === "object"){
     return '<div style="margin-top:16px;padding-left:14px;border-left:2px solid #e2ded6">'+
       Object.keys(valor).map(k => dibujarValor(ruta.concat(k), k, valor[k])).join("")+'</div>';
@@ -409,7 +427,7 @@ function listaFichas(ruta, arr, clave){
   const singular = {servicios:"servicio", propiedades:"propiedad", barberos:"persona", agentes:"agente",
                     testimonios:"reseña", faq:"pregunta", beneficios:"motivo", ventajas:"motivo",
                     datosHero:"número", galeria:"foto", pasos:"paso", puntos:"punto",
-                    rangos:"rango"}[clave] || "elemento";
+                    rangos:"rango", principios:"motivo", franja:"frase"}[clave] || "elemento";
   let html = '<div id="'+id(ruta)+'_fichas">';
   arr.forEach((item, i)=>{
     html += '<div class="ficha">'+

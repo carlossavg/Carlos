@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="">
+<title>Plomeria</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%230e3350'/%3E%3Cpath d='M20 7C16 14 10 20 10 25a10 10 0 0020 0c0-5-6-11-10-18' fill='%237bcbea'/%3E%3C/svg%3E">
+
+<!-- Los datos del negocio. Este es el unico archivo que cambia. -->
+<script src="config.js"></script>
+
+<style>
+:root{--ink:#102f47;--navy:#0e3350;--blue:#d9eef5;--accent:#fa643b;--muted:#536977;--line:#dce5e9;--paper:#fff;scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;color:var(--ink);font:16px/1.6 Arial,Helvetica,sans-serif;background:var(--paper)}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}a,button,input,select,textarea,summary{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #167eaa;outline-offset:5px}.wrap{width:min(1180px,calc(100% - 80px));margin:auto}.topbar{background:var(--navy);color:#e1eef4;font-size:12px;letter-spacing:.025em;padding:9px 0}.topbar .wrap{display:flex;justify-content:space-between}.header{display:flex;align-items:center;justify-content:space-between;height:104px;gap:24px}.brand{display:flex;align-items:center;gap:10px;line-height:1}.brand b{font-size:30px;letter-spacing:-1.3px}.brand small{display:block;font-size:9px;letter-spacing:2.5px;margin-top:8px;font-weight:700}.brand-icon{display:grid;place-items:center;background:var(--navy);color:#94d6ec;font-size:43px;font-weight:bold;width:45px;height:48px;border-radius:16px 16px 16px 3px}.header nav{display:flex;gap:35px;font-size:14px;font-weight:600}.header nav a:hover,.textlink:hover{color:#bb3b1a}.button{display:inline-flex;justify-content:space-between;align-items:center;gap:28px;padding:18px 25px;border:0;border-radius:99px;font-size:14px;font-weight:700;cursor:pointer;transition:transform .2s,background .2s}.button:hover{transform:translateY(-2px)}.button span{font-size:20px;font-weight:400;line-height:1}.button.orange{background:var(--accent);color:#172c3a}.button.orange:hover{background:#ff805b}.button.dark{background:var(--navy);color:white}.button.small{padding:13px 22px}.hero{display:grid;grid-template-columns:1.08fr 1fr;gap:38px;align-items:center;padding:20px 0 66px}.eyebrow{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:1.8px}.eyebrow i{height:7px;width:7px;border-radius:50%;background:var(--accent)}h1{font-size:clamp(45px,4.7vw,66px);font-weight:500;letter-spacing:-3.8px;line-height:1.06;margin:27px 0 23px}h2{font-size:43px;line-height:1.12;font-weight:500;letter-spacing:-1.9px;margin:20px 0 24px}h3{font-size:20px;line-height:1.3;letter-spacing:-.5px;margin:0 0 12px}p{color:var(--muted);margin:0}.hero-copy>p{max-width:450px;font-size:17px;line-height:1.8}.actions{display:flex;align-items:center;gap:22px;margin-top:32px;flex-wrap:wrap}.textlink{font-size:13px;font-weight:700}.hero-notes{display:flex;gap:22px;font-size:12px;color:var(--muted);margin-top:36px}.hero-visual{height:535px;position:relative;border-radius:9px 100px 9px 9px;background:var(--blue)}.hero-visual img{width:100%;height:100%;object-fit:cover;border-radius:inherit}.photo-label{position:absolute;bottom:28px;left:-25px;background:white;padding:18px 23px;display:flex;align-items:center;gap:14px;box-shadow:0 10px 35px #102f4710;border-radius:6px;line-height:1.5;font-size:14px}.label-icon{width:40px;height:40px;border-radius:50%;background:#e4f3f8;display:grid;place-items:center;font-size:22px}.vertical-label{position:absolute;right:15px;top:130px;writing-mode:vertical-rl;font-size:10px;letter-spacing:2px;background:#ffffffbd;padding:15px 5px;border-radius:20px}.service-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:23px 0;background:#f8fafb}.service-strip .wrap{display:flex;justify-content:space-between;gap:20px;font-size:13px;font-weight:600}.service-strip span:before{content:'+';margin-right:14px;color:#3681a0}.section{padding:90px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}.section-head h2{margin-bottom:0}.section-head>p{font-size:15px}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.service-card{border:1px solid var(--line);border-radius:7px;padding:28px 24px;display:flex;flex-direction:column;align-items:start;min-height:290px;transition:background .2s,border .2s}.service-card:hover{background:#f1f8fb;border-color:#b5d6e2}.service-icon{width:44px;height:44px;color:#257da2;margin-bottom:32px}.service-card p{font-size:14px;line-height:1.75;margin-bottom:25px}.service-card a{font-size:12px;font-weight:700;margin-top:auto;display:flex;justify-content:space-between;width:100%}.approach-section{background:var(--navy);color:white}.approach{padding:75px 0;display:grid;grid-template-columns:1fr 1fr;gap:90px}.approach .eyebrow{color:#a6c5d5}.statement h2{font-size:49px;line-height:1.16;margin:25px 0 32px}.statement em{font-style:normal;color:#95d0e6}.principles{padding-top:20px}.principles article{display:flex;gap:24px;padding:28px 0;border-bottom:1px solid #ffffff26}.principles article:last-child{border-bottom:0}.principles article>span{font-size:12px;color:#94c8dc;padding-top:3px}.principles p{color:#bfd0dc;font-size:15px;max-width:360px}.process{display:grid;grid-template-columns:.85fr 1.5fr;gap:55px;align-items:start}.process h2{font-size:35px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:27px}.steps b{display:grid;place-items:center;width:37px;height:37px;background:#e7f3f8;border-radius:50%;margin-bottom:25px;font-size:14px}.steps h3{font-size:17px}.steps p{font-size:14px}.contact-section{background:#e7f3f8}.contact{display:grid;grid-template-columns:1fr 1fr;gap:90px;padding:80px 0;align-items:center}.contact h2{font-size:55px;letter-spacing:-2.4px}.contact-call{font-weight:700;font-size:20px;display:block;margin:30px 0 16px}.contact-meta{display:flex;flex-direction:column;font-size:13px;color:var(--muted);gap:7px}form{background:white;padding:34px;border-radius:10px;box-shadow:0 12px 50px #193a4710}form h3{font-size:23px}.form-intro{font-size:14px;margin:-3px 0 22px}label{display:block;font-size:12px;font-weight:700;margin-bottom:15px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}input,select,textarea{display:block;width:100%;border:1px solid #d7e0e5;background:#fff;border-radius:5px;padding:12px 13px;margin-top:6px;min-height:46px;color:var(--ink);font-size:14px;outline-offset:2px}input:focus,select:focus,textarea:focus{outline:2px solid #438eac}.optional{font-weight:400;color:#6b7d88}textarea{resize:vertical}form .button{width:100%;padding:16px 23px}.form-note{font-size:11px;text-align:center;margin-top:13px}#form-status{font-size:14px;background:#edf7fb;padding:15px;margin-top:15px;border-radius:5px}.faq{display:grid;grid-template-columns:1fr 1.2fr;gap:80px}.faq h2{font-size:36px}details{border-bottom:1px solid var(--line)}summary{list-style:none;font-size:15px;font-weight:600;cursor:pointer;padding:22px 30px 22px 0;position:relative}summary::-webkit-details-marker{display:none}summary:after{content:'+';position:absolute;right:0;font-size:22px;font-weight:400;top:16px}details[open] summary:after{content:'−'}details p{font-size:14px;padding:0 25px 22px 0}footer{border-top:1px solid var(--line);padding:40px 0 20px}.footer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:40px}.footer-top p{font-size:16px}.footer-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}.skip{position:absolute;top:-60px;left:10px;background:white;padding:10px;z-index:10}.skip:focus{top:10px}.mobile-cta{display:none}
+@media(min-width:1450px){.hero{gap:70px}.hero-visual{height:560px}}@media(max-width:1000px){.wrap{width:calc(100% - 48px)}h1{font-size:49px;letter-spacing:-2.5px}.hero{gap:25px}.hero-visual{height:490px}.header nav{gap:20px}.services{grid-template-columns:repeat(2,1fr)}.service-card{min-height:260px}.approach,.contact{gap:45px}.process{grid-template-columns:1fr}.service-strip .wrap{font-size:11px}.hero-notes{flex-direction:column;gap:5px}.faq{gap:35px}.contact h2{font-size:45px}}
+@media(max-width:650px){.wrap{width:calc(100% - 40px)}.topbar{font-size:11px}.topbar .wrap>span:last-child{display:none}.header{height:85px}.header nav{display:none}.brand b{font-size:25px}.brand small{font-size:8px}.brand-icon{width:38px;height:42px;font-size:34px}.header .button{font-size:12px;padding:11px 16px;gap:15px}.hero{grid-template-columns:1fr;padding-top:25px;padding-bottom:45px;gap:30px}.hero-copy{padding-bottom:0}h1{font-size:49px;letter-spacing:-2.8px;max-width:420px;margin:21px 0}.hero-copy>p{font-size:16px}.eyebrow{font-size:10px;letter-spacing:1.5px}.actions{gap:20px;margin-top:25px}.hero-notes{flex-direction:row;gap:15px;font-size:10px;margin-top:23px}.hero-visual{height:410px;margin-left:12px;border-top-right-radius:85px}.photo-label{left:-12px;bottom:20px;padding:15px 18px}.service-strip .wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:10px}.service-strip span:before{margin-right:7px}.section{padding:60px 0}h2{font-size:35px}.section-head{display:block}.section-head>p{margin-top:20px}.desktop{display:none}.services{gap:12px}.service-card{padding:21px 17px;min-height:300px}.service-card h3{font-size:18px}.service-card p{font-size:13px}.service-icon{margin-bottom:22px}.approach{grid-template-columns:1fr;gap:20px;padding:55px 0}.statement h2{font-size:43px}.principles{padding:0}.principles article{padding:23px 0}.process{gap:18px}.process h2{margin-bottom:15px}.steps{grid-template-columns:1fr;gap:23px}.steps article{display:grid;grid-template-columns:38px 1fr;column-gap:17px}.steps b{grid-row:span 2;margin:0}.steps h3{margin:0 0 5px}.steps p{grid-column:2}.contact{grid-template-columns:1fr;padding:55px 0;gap:32px}.contact h2{font-size:45px}form{padding:24px 20px}.form-row{grid-template-columns:1fr;gap:0}input,select,textarea{font-size:16px}.faq{grid-template-columns:1fr;gap:10px}.faq h2{font-size:35px}.footer-top{flex-wrap:wrap;gap:25px}.footer-top p{font-size:14px}.footer-bottom{flex-direction:column;gap:8px}footer{padding-bottom:90px}.mobile-cta{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:1fr 1.3fr;background:white;padding:10px 15px max(10px,env(safe-area-inset-bottom));gap:10px;border-top:1px solid var(--line);z-index:20}.mobile-cta a{padding:12px;text-align:center;border-radius:99px;background:var(--navy);color:white;font-size:13px;font-weight:bold}.mobile-cta a:last-child{background:var(--accent);color:var(--ink)}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}*{transition:none!important}}
+/* Readable form labels and service descriptions. */
+label{font-size:14px}.service-card p,.steps p{font-size:14px}.form-note{font-size:12px}.hero-notes{font-size:13px}
+@media(max-width:650px){.hero-notes{font-size:12px;flex-wrap:wrap}.service-card p{font-size:14px}.service-card{min-height:315px}}
+
+/* El logo del cliente, si sube uno */
+.brand .logo-img{max-width:170px;max-height:46px;object-fit:contain;display:block}
+
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main" data-t="saltar"></a>
+
+<div class="topbar">
+  <div class="wrap">
+    <span data-text="negocio.zona"></span>
+    <span data-t="fraseArriba"></span>
+  </div>
+</div>
+
+<header class="wrap header">
+  <a class="brand" href="#" aria-label="Inicio">
+    <span class="brand-icon" aria-hidden="true">&#8779;</span>
+    <span><b data-text="negocio.nombre"></b><small data-text="negocio.categoria"></small></span>
+  </a>
+  <nav aria-label="Navegacion principal">
+    <a href="#services" data-t="navServicios"></a>
+    <a href="#approach" data-t="navPorque"></a>
+    <a href="#questions" data-t="navPreguntas"></a>
+  </nav>
+  <a href="#contact" class="button small dark"><span data-t="navBoton"></span> <span>&#8599;</span></a>
+</header>
+
+<main id="main">
+
+  <!-- ============ PORTADA ============ -->
+  <section class="hero wrap">
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i> <span data-text="portada.etiqueta"></span></span>
+      <h1 id="headline" data-saltos="portada.titulo"></h1>
+      <p id="description" data-text="portada.descripcion"></p>
+      <div class="actions">
+        <a class="button orange" href="#contact"><span data-text="portada.boton"></span> <span>&#8599;</span></a>
+        <a class="textlink call-link" href="#contact"><span aria-hidden="true">&#9742;</span> <span data-etiqueta-llamar></span></a>
+      </div>
+      <div class="hero-notes">
+        <span>&#10003; <span data-text="portada.nota1"></span></span>
+        <span>&#10003; <span data-text="portada.nota2"></span></span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img id="hero-image" alt="" fetchpriority="high">
+      <div class="photo-label">
+        <span class="label-icon">&#10003;</span>
+        <span data-saltos="portada.etiquetaFoto"></span>
+      </div>
+      <span class="vertical-label" data-text="portada.etiquetaVertical"></span>
+    </div>
+  </section>
+
+  <!-- ============ LA FRANJA ============ -->
+  <div class="service-strip"><div class="wrap"></div></div>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section class="wrap section" id="services">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow" data-t="ojoServicios"></span>
+        <h2 data-saltos="textos.tituloServicios"></h2>
+      </div>
+      <p data-text="textos.textoServicios"></p>
+    </div>
+    <div class="services" id="service-grid"></div>
+  </section>
+
+  <!-- ============ POR QUE NOSOTROS ============ -->
+  <section class="approach-section" id="approach">
+    <div class="wrap approach">
+      <div class="statement">
+        <span class="eyebrow" data-t="ojoPrincipios"></span>
+        <h2 data-saltos="textos.tituloPrincipios"></h2>
+        <a href="#contact" class="button orange"><span data-text="textos.botonPrincipios"></span> <span>&#8599;</span></a>
+      </div>
+      <div class="principles"></div>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <section class="wrap section process">
+    <div>
+      <span class="eyebrow" data-t="ojoPasos"></span>
+      <h2 data-saltos="textos.tituloPasos"></h2>
+    </div>
+    <div class="steps"></div>
+  </section>
+
+  <!-- ============ FORMULARIO ============ -->
+  <section class="contact-section" id="contact">
+    <div class="wrap contact">
+      <div>
+        <span class="eyebrow" data-t="ojoContacto"></span>
+        <h2 data-saltos="textos.tituloContacto"></h2>
+        <p data-saltos="textos.textoContacto"></p>
+        <a class="contact-call call-link" href="#request-form">&#9742; <span data-etiqueta-llamar></span></a>
+        <div class="contact-meta">
+          <span data-text="negocio.zona"></span>
+          <span data-text="negocio.horario"></span>
+        </div>
+      </div>
+
+      <form id="request-form">
+        <h3 data-text="formulario.titulo"></h3>
+        <p class="form-intro" data-text="formulario.texto"></p>
+        <div class="form-row">
+          <label><span data-t="campoNombre"></span><input name="name" autocomplete="name" data-ph="campoNombreEj" required maxlength="100"></label>
+          <label><span data-t="campoTelefono"></span><input name="phone" type="tel" autocomplete="tel" data-ph="campoTelefonoEj" required maxlength="30"></label>
+        </div>
+        <label><span data-t="campoCorreo"></span> <span class="optional" data-t="opcional"></span><input name="email" type="email" autocomplete="email" data-ph="campoCorreoEj" maxlength="150"></label>
+        <label><span data-t="campoServicio"></span><select name="service" required></select></label>
+        <label><span data-t="campoMensaje"></span> <span class="optional" data-t="opcional"></span><textarea name="message" rows="3" data-ph="campoMensajeEj" maxlength="2000"></textarea></label>
+        <button class="button orange" type="submit"><span data-t="enviar"></span> <span>&#8599;</span></button>
+        <p class="form-note" data-text="formulario.nota"></p>
+        <p id="form-status" role="status" tabindex="-1" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ PREGUNTAS ============ -->
+  <section class="wrap section faq" id="questions">
+    <div>
+      <span class="eyebrow" data-t="ojoFaq"></span>
+      <h2 data-saltos="textos.tituloFaq"></h2>
+    </div>
+    <div id="faq-list"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-top">
+    <a class="brand" href="#">
+      <span class="brand-icon">&#8779;</span>
+      <span><b data-text="negocio.nombre"></b><small data-text="negocio.categoria"></small></span>
+    </a>
+    <p data-saltos="negocio.frasePie"></p>
+    <a href="#contact" class="textlink"><span data-t="hablemos"></span> &#8599;</a>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; <span id="year"></span> <span data-text="negocio.nombre"></span>. <span data-t="derechos"></span></span>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="call-link" href="#contact">&#9742; <span data-t="llamar"></span></a>
+  <a href="#contact"><span data-t="pedirCorto"></span> &#8599;</a>
+</div>
+
+<script>
+/* ================================================================
+   AQUÍ NO HACE FALTA TOCAR NADA. Todo se cambia en config.js,
+   y config.js se llena solo desde EDITOR.html.
+   ================================================================ */
+(() => {
+"use strict";
+
+/* ================================================================
+   SI config.js ESTÁ ROTO, AVISAMOS EN PANTALLA
+   Sin esto el comprador ve una página en blanco y no sabe por qué.
+   ================================================================ */
+function avisoConfigRoto(){
+  document.body.innerHTML =
+    '<div style="min-height:100vh;display:grid;place-items:center;padding:30px;'+
+    'font-family:system-ui,sans-serif;background:#fff6f5;color:#2a1a18">'+
+      '<div style="max-width:560px">'+
+        '<p style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#b0453a;margin:0 0 14px">'+
+          'El archivo config.js tiene un error</p>'+
+        '<h1 style="font-size:28px;line-height:1.25;margin:0 0 18px;font-weight:600">'+
+          'Se rompió algo al editar los datos</h1>'+
+        '<p style="font-size:16px;line-height:1.65;color:#5a4340;margin:0 0 22px">'+
+          'La página no puede cargar porque <b>config.js</b> quedó mal escrito. '+
+          'Casi siempre es una de estas cuatro cosas:</p>'+
+        '<ol style="font-size:15.5px;line-height:1.75;color:#5a4340;padding-left:20px;margin:0 0 24px">'+
+          '<li><b>Las comillas cambiaron de forma.</b> Tienen que ser rectas ("así"), '+
+              'no curvas (&#8220;así&#8221;). Pasa mucho al editar con TextEdit en Mac o con Word.</li>'+
+          '<li><b>Falta una coma</b> entre dos datos.</li>'+
+          '<li><b>Falta una llave</b> { o } al cerrar un bloque.</li>'+
+          '<li><b>Se borró un trozo de más</b> sin querer.</li>'+
+        '</ol>'+
+        '<p style="font-size:16px;line-height:1.65;color:#5a4340;margin:0">'+
+          'Lo más rápido: vuelve a abrir <b>EDITOR.html</b> y dale otra vez a '+
+          '«Descargar mi web lista». Si quieres ver el error exacto, aprieta '+
+          '<b>F12</b> y mira la pestaña Console.</p>'+
+      '</div></div>';
+}
+if(typeof CONFIG === "undefined" || typeof T === "undefined"){ avisoConfigRoto(); return; }
+
+const $ = s => document.querySelector(s);
+const leer = ruta => ruta.split(".").reduce((o,k)=> (o==null?o:o[k]), CONFIG);
+
+/* Los dibujitos de los servicios. El comprador escoge cuál con la
+   palabra drop, drain, heat o tap. Si pone otra cosa, sale la gota. */
+const DIBUJOS = {
+  drop: "M24 4C20 12 10 21 10 29a14 14 0 0 0 28 0C38 21 28 12 24 4ZM17 29a7 7 0 0 0 7 7",
+  drain:"M5 9h38M9 17h30M12 17v13a12 12 0 0 0 24 0V17M24 4v8M20 8l4 4 4-4M24 30v14",
+  heat: "M13 10h22v33H13zM18 5v5M30 5v5M18 20h12M25 25l-5 7h7l-5 7",
+  tap:  "M7 29v-8h27a7 7 0 0 1 7 7v5h-9v-4H7ZM18 21V10M12 10h13M18 5v5M36 38v5"
+};
+function icono(nombre){
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 48 48");
+  svg.setAttribute("fill", "none"); svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "1.8"); svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("stroke-linejoin", "round"); svg.setAttribute("aria-hidden", "true");
+  svg.classList.add("service-icon");
+  const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  p.setAttribute("d", DIBUJOS[nombre] || DIBUJOS.drop);
+  svg.append(p);
+  return svg;
+}
+
+/* Los saltos de línea del config se respetan en los títulos */
+function conSaltos(el, texto){
+  el.replaceChildren();
+  String(texto || "").split("\n").forEach((linea, i)=>{
+    if(i) el.append(document.createElement("br"));
+    el.append(document.createTextNode(linea));
+  });
+}
+
+/* ================================================================
+   PINTAR LA PÁGINA
+   Está metido en una función para poder repetirlo: así la vista
+   previa del editor puede refrescar sin recargar nada.
+   ================================================================ */
+function pintar(){
+const N = CONFIG.negocio, P = CONFIG.portada, TX = CONFIG.textos, F = CONFIG.formulario, S = CONFIG.estilo || {};
+
+/* ---------- El logo va primero ----------
+   Si lo dejamos para después, al devolver la marca de siempre
+   borraríamos el nombre que acabamos de escribir. */
+document.querySelectorAll(".brand").forEach(marca => {
+  if(!marca.dataset.original) marca.dataset.original = marca.innerHTML;
+  if(N.logo){
+    const img = document.createElement("img");
+    img.src = N.logo; img.alt = N.nombre; img.className = "logo-img";
+    marca.replaceChildren(img);
+  }else if(marca.querySelector("img")){
+    marca.innerHTML = marca.dataset.original;
+  }
+});
+
+/* ---------- Los textos ---------- */
+document.querySelectorAll("[data-text]").forEach(e => { e.textContent = leer(e.dataset.text) || ""; });
+document.querySelectorAll("[data-t]").forEach(e => { e.textContent = T[e.dataset.t] || ""; });
+document.querySelectorAll("[data-ph]").forEach(e => { e.placeholder = T[e.dataset.ph] || ""; });
+document.querySelectorAll("[data-saltos]").forEach(e => conSaltos(e, leer(e.dataset.saltos)));
+document.querySelectorAll("[data-saltos-t]").forEach(e => conSaltos(e, T[e.dataset.saltosT]));
+
+document.title = N.nombre + " — " + N.categoria;
+$('meta[name="description"]').content = P.descripcion || "";
+if(/^#[0-9a-f]{6}$/i.test(S.acento)) document.documentElement.style.setProperty("--accent", S.acento);
+
+/* ---------- La foto ---------- */
+const foto = document.getElementById("hero-image");
+if(P.fotoHero){ foto.src = P.fotoHero; foto.alt = P.altHero || ""; }
+foto.hidden = !P.fotoHero;
+
+/* ---------- Los botones de llamar ----------
+   Si no hay número todavía, en vez de un enlace muerto bajan al
+   formulario, que es donde el visitante sí puede escribir. */
+const tel = String(N.whatsapp || "").replace(/\D/g, "");
+document.querySelectorAll(".call-link").forEach(el => { el.href = tel ? "tel:+" + tel : "#contact"; });
+document.querySelectorAll("[data-etiqueta-llamar]").forEach(el => {
+  el.textContent = tel ? (P.botonLlamar || "") : T.llamarSinNumero;
+});
+
+/* ---------- La franja ---------- */
+const franja = $(".service-strip .wrap");
+franja.replaceChildren();
+(CONFIG.franja || []).forEach(txt => {
+  const s = document.createElement("span"); s.textContent = txt; franja.append(s);
+});
+franja.closest(".service-strip").hidden = !(CONFIG.franja || []).length;
+
+/* ---------- Los servicios ---------- */
+const rejilla = document.getElementById("service-grid");
+const lista = $('select[name="service"]');
+rejilla.replaceChildren();
+lista.replaceChildren(new Option(T.eligeServicio, ""));
+CONFIG.servicios.forEach(s => {
+  const art = document.createElement("article"); art.className = "service-card";
+  const h = document.createElement("h3"); h.textContent = s.titulo;
+  const p = document.createElement("p");  p.textContent = s.texto;
+  const a = document.createElement("a");
+  a.href = "#contact"; a.textContent = T.arreglarlo + " ↗";
+  a.setAttribute("aria-label", T.arreglarlo + ": " + s.titulo);
+  a.addEventListener("click", ()=> { lista.value = s.titulo; });
+  art.append(icono(s.icono), h, p, a);
+  rejilla.append(art);
+  lista.add(new Option(s.titulo, s.titulo));
+});
+lista.add(new Option(F.otroServicio, F.otroServicio));
+esconder("services", 'nav a[href="#services"]', !CONFIG.servicios.length);
+
+/* ---------- Por qué nosotros ---------- */
+const principios = $(".principles");
+principios.replaceChildren();
+CONFIG.principios.forEach((x, i)=>{
+  const art = document.createElement("article");
+  const n = document.createElement("span"); n.textContent = "0" + (i+1);
+  const caja = document.createElement("div");
+  const h = document.createElement("h3"); h.textContent = x.titulo;
+  const p = document.createElement("p");  p.textContent = x.texto;
+  caja.append(h, p); art.append(n, caja); principios.append(art);
+});
+esconder("approach", 'nav a[href="#approach"]', !CONFIG.principios.length);
+
+/* ---------- Los pasos ---------- */
+const pasos = $(".steps");
+pasos.replaceChildren();
+CONFIG.pasos.forEach((x, i)=>{
+  const art = document.createElement("article");
+  const b = document.createElement("b"); b.textContent = i + 1;
+  const h = document.createElement("h3"); h.textContent = x.titulo;
+  const p = document.createElement("p");  p.textContent = x.texto;
+  art.append(b, h, p); pasos.append(art);
+});
+
+/* ---------- Las preguntas ---------- */
+const faq = document.getElementById("faq-list");
+faq.replaceChildren();
+CONFIG.faq.forEach(x => {
+  const d = document.createElement("details");
+  const s = document.createElement("summary"); s.textContent = x.p;
+  const p = document.createElement("p");       p.textContent = x.r;
+  d.append(s, p); faq.append(d);
+});
+esconder("questions", 'nav a[href="#questions"]', !CONFIG.faq.length);
+
+document.getElementById("year").textContent = new Date().getFullYear();
+}   /* ---- fin de pintar() ---- */
+
+function esconder(idSeccion, selEnlace, vacia){
+  const sec = document.getElementById(idSeccion);
+  if(sec) sec.hidden = vacia;
+  const enlace = $(selEnlace);
+  if(enlace) enlace.hidden = vacia;
+}
+
+pintar();
+
+/* ---------- El formulario ----------
+   Manda a WhatsApp, igual que el resto de plantillas. Antes esta
+   página solo decía "esto es una demostración" y no enviaba nada:
+   el comprador la publicaba y no le llegaba ni un cliente. */
+document.getElementById("request-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const aviso = document.getElementById("form-status");
+  aviso.hidden = false;
+  const tel = String(CONFIG.negocio.whatsapp).replace(/\D/g, "");
+  if(!/^\d{8,15}$/.test(tel)){ aviso.textContent = T.sinWhatsapp; aviso.focus(); return; }
+  aviso.textContent = "";
+  aviso.hidden = true;
+  const f = new FormData(e.currentTarget);
+  const lineas = [
+    CONFIG.negocio.mensaje, "",
+    T.lineaNombre   + ": " + f.get("name"),
+    T.lineaTelefono + ": " + f.get("phone")
+  ];
+  if(f.get("email"))   lineas.push(T.lineaCorreo + ": " + f.get("email"));
+  lineas.push(T.lineaServicio + ": " + f.get("service"));
+  if(f.get("message")) lineas.push(T.lineaMensaje + ": " + f.get("message"));
+  window.location.href = "https://wa.me/" + tel + "?text=" + encodeURIComponent(lineas.join("\n"));
+});
+
+/* ================================================================
+   VISTA PREVIA EN VIVO
+   Cuando el editor abre esta página, le vamos mandando los cambios
+   y aquí se repintan al momento. Solo funciona abierta desde el
+   editor y en local: en la web publicada esto no se enciende.
+   ================================================================ */
+(function(){
+  const enPruebas = location.protocol === "file:" ||
+                    /(^|\.)netlify\.app$|localhost|127\.0\.0\.1/.test(location.hostname);
+  if(!enPruebas || !window.opener) return;
+  window.addEventListener("message", e=>{
+    const d = e.data;
+    if(!d || d.gws !== "config" || !d.datos) return;
+    try{
+      Object.keys(CONFIG).forEach(k => { delete CONFIG[k]; });
+      Object.keys(d.datos).forEach(k => { CONFIG[k] = d.datos[k]; });
+      pintar();
+    }catch(err){ console.warn("vista previa:", err); }
+  });
+  try{ window.opener.postMessage({gws:"listo"}, "*"); }catch(e){}
+})();
+})();
+
+</script>
+</body>
+</html>
