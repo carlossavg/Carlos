@@ -152,12 +152,12 @@ Sin apps. Sin cuentas. Sin mensualidad.
 5/
 Míralas funcionando, las 6:
 
-💈 [link]
-🏠 [link]
-🚘 [link]
-🌿 [link]
-☀️ [link]
-🔧 [link]
+💈 superb-croissant-c02202.netlify.app
+🏠 gleeful-basbousa-d75c6a.netlify.app
+🚘 gleeful-selkie-096b34.netlify.app
+🌿 moonlit-pudding-b340cc.netlify.app
+☀️ friendly-conkies-4bfa8b.netlify.app
+🔧 delicate-gecko-57fab2.netlify.app
 
 Ábrelas en el celular. Están hechas para eso.
 ```
@@ -244,7 +244,36 @@ Llenas cajas. Arrastras fotos. Le das a un botón.
 
 ---
 
-## 4. Los primeros 30 días
+## 4. El video de 3 minutos
+
+Grábalo con la **barbería**, que es la que mejor entra por los ojos.
+
+**Usa un nombre de negocio de verdad**, no "Barbería Ejemplo". Inventa
+uno de tu pueblo. Se siente real y la gente se lo cree.
+
+| Tiempo | Qué se ve |
+|---|---|
+| 0:00 – 0:15 | La demo ya terminada. *"Esto es lo que vas a poder hacer"* |
+| 0:15 – 0:30 | Descomprimes el ZIP y le das doble clic a EDITOR.html |
+| 0:30 – 1:15 | Escribes **solo 4 cosas**: nombre, WhatsApp, un precio, un servicio |
+| 1:15 – 1:45 | **Ver en vivo** — la página cambiando mientras escribes ← el momento clave |
+| 1:45 – 2:10 | Arrastras una foto. Se achica sola |
+| 2:10 – 2:35 | Botón verde → se baja el archivo → lo arrastras a Netlify |
+| 2:35 – 3:00 | La web abierta **en tu celular**. Le das al botón y abre WhatsApp |
+
+**Lo que NO hagas:**
+
+- No llenes las 185 cajas. Llena cuatro. Lo que vendes es *"es solo
+  escribir"*, no *"mira cuánto hay que llenar"*.
+- No expliques nada de fondo. Enseña.
+- No lo hagas de 10 minutos. A los 3 se va todo el mundo.
+
+**Termina en el celular.** Es donde lo van a ver los clientes de tus
+clientes, y es lo que cierra la venta.
+
+---
+
+## 5. Los primeros 30 días
 
 | Semana | Qué haces |
 |---|---|
