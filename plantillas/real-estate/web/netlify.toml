@@ -15,7 +15,7 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Cualquier imagen o fuente que subas junto al HTML se cachea un año.
+# Si además pones fotos sueltas en una carpeta img, se cachean un año.
 [[headers]]
   for = "/img/*"
   [headers.values]

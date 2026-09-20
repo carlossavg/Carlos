@@ -12,6 +12,7 @@ zip="GrowthOS-${bonito}.zip"
 
 # Revisiones antes de empaquetar
 [ -f "$d/LEEME-PRIMERO.txt" ] || { echo "Falta LEEME-PRIMERO.txt"; exit 1; }
+[ -f "$d/EDITOR.html" ]        || { echo "Falta EDITOR.html"; exit 1; }
 [ -f "$d/web/config.js" ]     || { echo "Falta web/config.js"; exit 1; }
 [ -f "$d/web/index.html" ]    || { echo "Falta web/index.html"; exit 1; }
 node --check "$d/web/config.js" || { echo "config.js tiene un error"; exit 1; }
@@ -20,6 +21,6 @@ if ls "$d/web/img/"*.png "$d/web/img/"*.jpg >/dev/null 2>&1; then
 fi
 
 rm -f "$zip"
-( cd "$d" && zip -qr "../../$zip" LEEME-PRIMERO.txt web -x '.*' -x '__MACOSX/*' )
+( cd "$d" && zip -qr "../../$zip" LEEME-PRIMERO.txt EDITOR.html web -x '.*' -x '__MACOSX/*' )
 echo "$zip  ($(du -h "$zip" | cut -f1))"
 unzip -l "$zip" | tail -n +4 | head -n -2 | awk '{print "   " $4}'

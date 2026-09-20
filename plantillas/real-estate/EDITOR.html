@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor de tu página</title>
+<!-- Carga los datos actuales de la plantilla -->
+<script src="web/config.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --fondo:#f6f5f2; --panel:#fff; --tinta:#16161a; --suave:#5d5952; --tenue:#8a857d;
+  --linea:#e2ded6; --acento:#2f6f4e; --acento-claro:#eaf3ee; --aviso:#b0453a; --ok:#2f7d52;
+  --radio:14px;
+}
+body{background:var(--fondo);color:var(--tinta);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15.5px;line-height:1.6;padding-bottom:120px}
+h1,h2,h3{line-height:1.25}
+button{font:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit;width:100%}
+:focus-visible{outline:2px solid var(--acento);outline-offset:2px;border-radius:6px}
+
+/* ---------- Barra de arriba ---------- */
+.barra{position:sticky;top:0;z-index:50;background:rgba(246,245,242,.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--linea)}
+.barra__in{max-width:980px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.barra h1{font-size:17px;font-weight:650;flex:1;min-width:150px}
+.barra h1 small{display:block;font-size:12.5px;font-weight:400;color:var(--tenue);margin-top:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;
+  border-radius:999px;border:1px solid transparent;font-size:14px;font-weight:550;
+  transition:transform .2s,background .2s,border-color .2s}
+.btn--ok{background:var(--acento);color:#fff}
+.btn--ok:hover{transform:translateY(-1px);background:#255a3f}
+.btn--linea{border-color:var(--linea);background:var(--panel);color:var(--tinta)}
+.btn--linea:hover{border-color:var(--suave)}
+.btn--mini{min-height:34px;padding:0 13px;font-size:12.5px}
+.btn--borrar{border-color:#e6cfcb;color:var(--aviso);background:#fff}
+.btn--borrar:hover{background:#fdf3f2}
+
+/* ---------- Contenido ---------- */
+.envoltura{max-width:980px;margin:0 auto;padding:26px 22px}
+.intro{background:var(--acento-claro);border:1px solid #cfe3d8;border-radius:var(--radio);padding:20px 22px;margin-bottom:26px}
+.intro h2{font-size:17px;margin-bottom:10px}
+.intro ol{padding-left:19px;color:#2c4a3a;font-size:14.5px}
+.intro li{margin-bottom:5px}
+
+.grupo{background:var(--panel);border:1px solid var(--linea);border-radius:var(--radio);margin-bottom:14px;overflow:hidden}
+.grupo__cab{width:100%;display:flex;align-items:center;gap:12px;padding:17px 20px;background:none;border:0;text-align:left}
+.grupo__cab:hover{background:#faf9f7}
+.grupo__num{width:26px;height:26px;flex:none;border-radius:50%;background:var(--acento-claro);color:var(--acento);
+  display:grid;place-items:center;font-size:12.5px;font-weight:650}
+.grupo__tit{flex:1;font-size:15.5px;font-weight:600}
+.grupo__tit small{display:block;font-size:12.5px;font-weight:400;color:var(--tenue);margin-top:1px}
+.grupo__flecha{color:var(--tenue);transition:transform .25s}
+.grupo[open] .grupo__flecha{transform:rotate(180deg)}
+.grupo__cuerpo{padding:4px 20px 22px;border-top:1px solid var(--linea)}
+
+.campo{margin-top:17px}
+.campo label{display:block;font-size:13px;font-weight:550;margin-bottom:6px}
+.campo .ayuda{font-size:12.5px;color:var(--tenue);font-weight:400;margin-top:-3px;margin-bottom:7px}
+.campo input[type=text],.campo input[type=number],.campo input[type=time],.campo input[type=url],
+.campo select,.campo textarea{
+  padding:11px 13px;border:1px solid var(--linea);border-radius:10px;background:#fcfbfa}
+.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--acento);background:#fff;outline:none}
+.campo textarea{min-height:76px;resize:vertical}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bandera{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--tenue);
+  background:#f0eee9;border-radius:5px;padding:2px 6px;margin-right:6px}
+
+.ficha{border:1px solid var(--linea);border-radius:12px;padding:16px 17px;margin-top:14px;background:#fcfbfa;position:relative}
+.ficha__cab{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.ficha__n{font-size:12.5px;font-weight:650;color:var(--tenue);flex:1}
+.fila-btn{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+
+/* ---------- Fotos ---------- */
+.foto-campo{display:flex;gap:14px;align-items:flex-start;margin-top:8px}
+.foto-vista{width:104px;height:78px;flex:none;border-radius:10px;overflow:hidden;background:#ece8e1;
+  border:1px solid var(--linea);display:grid;place-items:center;font-size:11px;color:var(--tenue);text-align:center;padding:5px}
+.foto-vista img{width:100%;height:100%;object-fit:cover}
+.foto-datos{flex:1;min-width:0}
+.foto-peso{font-size:12.5px;color:var(--tenue);margin-top:6px}
+.foto-peso b{color:var(--ok)}
+.foto-peso.pesa b{color:var(--aviso)}
+.oculto{display:none}
+
+/* ---------- Avisos ---------- */
+.revision{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--panel);
+  border-top:1px solid var(--linea);box-shadow:0 -6px 24px rgba(0,0,0,.06)}
+.revision__in{max-width:980px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.revision__txt{flex:1;min-width:190px;font-size:14px}
+.revision__txt b{color:var(--aviso)}
+.revision__txt.ok b{color:var(--ok)}
+.lista-avisos{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--suave)}
+@media (max-width:620px){
+  .dupla{grid-template-columns:1fr}
+  .envoltura{padding:20px 16px}
+  .barra__in{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <div class="barra__in">
+    <h1>Editor de tu página<small id="deQuien">Llena los datos y descarga el archivo</small></h1>
+    <button class="btn btn--linea" id="btnVer" type="button">Ver la página</button>
+    <button class="btn btn--ok" id="btnBajar" type="button">Descargar config.js</button>
+  </div>
+</div>
+
+<div class="envoltura">
+  <div class="intro">
+    <h2>Cómo se usa esto</h2>
+    <ol>
+      <li>Llena las cajas de abajo con los datos del negocio de tu cliente.</li>
+      <li>Arrastra las fotos donde te las pida. Se achican solas, no tienes que hacer nada.</li>
+      <li>Dale a <b>Descargar config.js</b> y guarda el archivo dentro de la carpeta <b>web</b>, encima del que ya está.</li>
+      <li>Sube la carpeta <b>web</b> a Netlify y listo.</li>
+    </ol>
+  </div>
+
+  <div id="formulario"></div>
+</div>
+
+<div class="revision">
+  <div class="revision__in">
+    <div class="revision__txt" id="revisionTxt">Revisando…</div>
+    <button class="btn btn--ok" id="btnBajar2" type="button">Descargar config.js</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+if(typeof CONFIG === "undefined"){
+  document.body.innerHTML = '<div style="padding:60px 24px;text-align:center;font-family:system-ui">'+
+    '<h1 style="font-size:24px;margin-bottom:12px">No encuentro el archivo de tu página</h1>'+
+    '<p style="color:#5d5952">Este editor tiene que estar al lado de la carpeta <b>web</b>.<br>'+
+    'Mételo en la misma carpeta que el LEEME y vuelve a abrirlo.</p></div>';
+  throw new Error("config.js no encontrado");
+}
+
+/* ================================================================
+   1. NOMBRES BONITOS — así el editor habla en cristiano
+   ================================================================ */
+const SECCIONES = {
+  negocio:     {n:"Los datos del negocio",  d:"Nombre, teléfono, dirección y WhatsApp"},
+  horario:     {n:"El horario",             d:"Deja vacío el día que cierra"},
+  servicios:   {n:"Los servicios y precios",d:"Puedes añadir o quitar los que quieras"},
+  propiedades: {n:"Las propiedades",        d:"Puedes añadir o quitar las que quieras"},
+  barberos:    {n:"El equipo",              d:"Las personas que trabajan ahí"},
+  agentes:     {n:"Los agentes",            d:"Las personas que atienden"},
+  fotoHero:    {n:"La foto grande de arriba",d:"La primera que ve el cliente"},
+  fotoNosotros:{n:"La foto de 'sobre nosotros'",d:""},
+  galeria:     {n:"Las fotos del trabajo",  d:"Entre 6 y 9 fotos"},
+  testimonios: {n:"Lo que dicen los clientes",d:"Reseñas de gente real"},
+  faq:         {n:"Preguntas frecuentes",   d:"Las dudas que quitan la venta"},
+  beneficios:  {n:"Por qué escogernos",     d:"Cuatro motivos"},
+  ventajas:    {n:"Por qué escogernos",     d:"Tres motivos"},
+  datosHero:   {n:"Los números sobre la foto",d:""},
+  socios:      {n:"Con quién trabajan",     d:"Deja la lista vacía para ocultarlo"},
+  confianza:   {n:"Los números de arriba",  d:"Años, clientes y estrellas"},
+  enlaces:     {n:"Los enlaces de Google",  d:"Para las reseñas y el mapa"},
+  redes:       {n:"Las redes sociales",     d:"Deja vacía la que no tenga"},
+  secciones:   {n:"Qué partes se ven",      d:"Quita el visto a lo que no necesites"}
+};
+const CAMPOS = {
+  nombre:"Nombre", slogan:"Frase de la marca", ciudad:"Ciudad", region:"Estado o país",
+  pais:"Código del país", direccion:"Dirección", telefono:"Teléfono (como se ve)",
+  whatsapp:"WhatsApp (con código de país, sin espacios)", email:"Correo", moneda:"Símbolo de moneda",
+  sitioWeb:"Dirección de la web", logo:"Logo", zonaHoraria:"Zona horaria", geo:"Coordenadas",
+  lat:"Latitud", lng:"Longitud", pagos:"Formas de pago",
+  desc:"Descripción", precio:"Precio", duracion:"Minutos que dura", destacado:"Marcarlo como el más pedido",
+  rol:"Puesto", especialidad:"En qué es bueno", instagram:"Instagram", foto:"Foto",
+  estrellas:"Estrellas (1 a 5)", fecha:"Cuándo la dejó", texto:"Lo que dice",
+  p:"La pregunta", r:"La respuesta", titulo:"Título", icono:"Dibujo",
+  zona:"Barrio o zona", tipo:"Venta o alquiler", estado:"Estado", periodo:"Cada cuánto se paga",
+  habitaciones:"Habitaciones", banos:"Baños", metros:"Metros cuadrados",
+  numero:"El número", anos:"Años abiertos", clientes:"Clientes atendidos",
+  operaciones:"Operaciones cerradas", calificacion:"Estrellas en Google", resenas:"Cuántas reseñas",
+  desde:"Año en que abrió",
+  googleReviews:"Enlace a las reseñas", googleDejarResena:"Enlace para dejar reseña",
+  googleMaps:"Enlace del mapa (opcional)", googleMapsEmbed:"Mapa propio (opcional)",
+  facebook:"Facebook", tiktok:"TikTok", linkedin:"LinkedIn",
+  nosotros:"Sobre nosotros", equipo:"El equipo", porque:"Por qué escogernos",
+  galeria:"La galería", cita:"El formulario", contacto:"El formulario",
+  ubicacion:"El mapa y el horario", clave:"Día", abre:"Abre", cierra:"Cierra",
+  lun:"Lunes", mar:"Martes", mie:"Miércoles", jue:"Jueves", vie:"Viernes", sab:"Sábado", dom:"Domingo"
+};
+/* Lo que NO se enseña: son ajustes avanzados que casi nadie toca */
+const OCULTAS = ["estilo","idioma","creditos"];
+
+const nombreSeccion = k => (SECCIONES[k] || {n:k}).n;
+const ayudaSeccion  = k => (SECCIONES[k] || {d:""}).d;
+const nombreCampo   = k => CAMPOS[k] || (k.charAt(0).toUpperCase() + k.slice(1).replace(/([A-Z])/g,' $1').toLowerCase());
+const esc = s => String(s==null?"":s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const bilingue = v => v && typeof v==="object" && !Array.isArray(v) && ("es" in v);
+/* Solo es una foto si la clave lo dice, o si la dirección apunta de verdad a
+   una imagen. Antes cualquier https:// contaba y el Instagram salía con
+   botón de "elegir foto". */
+const esFoto = (k,v) => /^(foto|logo|imagen)/i.test(k) || (typeof v === "string" && (
+     /^data:image/.test(v) || /^img\//.test(v) ||
+     /\.(jpe?g|png|webp|avif|gif|svg)(\?|#|$)/i.test(v) ||
+     /images\.unsplash\.com|cloudinary|imgur|\/photo-/i.test(v)));
+const $  = (s,c)=> (c||document).querySelector(s);
+const $$ = (s,c)=> Array.prototype.slice.call((c||document).querySelectorAll(s));
+
+/* ================================================================
+   2. FOTOS — se achican solas al soltarlas
+   ================================================================ */
+function comprimir(file, maxAncho){
+  return new Promise((ok, mal)=>{
+    const lector = new FileReader();
+    lector.onerror = ()=> mal(new Error("No pude leer el archivo"));
+    lector.onload = ()=>{
+      const img = new Image();
+      img.onerror = ()=> mal(new Error("Eso no parece una foto"));
+      img.onload = ()=>{
+        const escala = Math.min(1, maxAncho / img.width);
+        const c = document.createElement("canvas");
+        c.width  = Math.max(1, Math.round(img.width  * escala));
+        c.height = Math.max(1, Math.round(img.height * escala));
+        const ctx = c.getContext("2d");
+        ctx.fillStyle = "#fff"; ctx.fillRect(0,0,c.width,c.height);
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        const TOPE = 260000;   // ~195 KB de foto ya comprimida
+        function dibujar(ancho){
+          const cc = document.createElement("canvas");
+          const e2 = ancho / img.width;
+          cc.width = Math.max(1, Math.round(img.width * e2));
+          cc.height = Math.max(1, Math.round(img.height * e2));
+          const cx = cc.getContext("2d");
+          cx.fillStyle = "#fff"; cx.fillRect(0,0,cc.width,cc.height);
+          cx.drawImage(img, 0, 0, cc.width, cc.height);
+          return cc;
+        }
+        let lienzo = c, salida = "", ancho = lienzo.width;
+        // Primero baja la calidad; si la foto es muy detallada y sigue pesando,
+        // además la va haciendo más pequeña hasta que entre.
+        for(let intento = 0; intento < 5; intento++){
+          let calidad = 0.74;
+          salida = lienzo.toDataURL("image/jpeg", calidad);
+          while(salida.length > TOPE && calidad > 0.40){
+            calidad -= 0.08;
+            salida = lienzo.toDataURL("image/jpeg", calidad);
+          }
+          if(salida.length <= TOPE || ancho <= 620) break;
+          ancho = Math.round(ancho * 0.78);
+          lienzo = dibujar(ancho);
+        }
+        ok({datos:salida, ancho:lienzo.width, alto:lienzo.height});
+      };
+      img.src = lector.result;
+    };
+    lector.readAsDataURL(file);
+  });
+}
+const pesoKB = s => Math.round((String(s).length * 0.75) / 1024);
+
+/* ================================================================
+   3. LEER Y ESCRIBIR EN EL CONFIG
+   ================================================================ */
+const leer = ruta => ruta.reduce((o,k)=> (o==null?o:o[k]), CONFIG);
+function escribir(ruta, valor){
+  let o = CONFIG;
+  for(let i=0;i<ruta.length-1;i++) o = o[ruta[i]];
+  o[ruta[ruta.length-1]] = valor;
+  revisar();
+}
+const id = ruta => "c_" + ruta.join("_").replace(/[^\w]/g,"");
+
+/* ================================================================
+   4. DIBUJAR EL FORMULARIO
+   ================================================================ */
+function campoTexto(ruta, valor, etiqueta, ayuda){
+  const largo = String(valor||"").length > 70;
+  const i = id(ruta);
+  return '<div class="campo"><label for="'+i+'">'+esc(etiqueta)+'</label>'+
+    (ayuda ? '<p class="ayuda">'+esc(ayuda)+'</p>' : '')+
+    (largo
+      ? '<textarea id="'+i+'" data-ruta="'+esc(ruta.join("."))+'">'+esc(valor)+'</textarea>'
+      : '<input id="'+i+'" type="text" value="'+esc(valor)+'" data-ruta="'+esc(ruta.join("."))+'">')+
+    '</div>';
+}
+function campoNumero(ruta, valor, etiqueta){
+  const i = id(ruta);
+  return '<div class="campo"><label for="'+i+'">'+esc(etiqueta)+'</label>'+
+    '<input id="'+i+'" type="number" step="any" value="'+esc(valor)+'" data-ruta="'+esc(ruta.join("."))+'" data-num="1"></div>';
+}
+function campoSiNo(ruta, valor, etiqueta){
+  const i = id(ruta);
+  return '<div class="campo"><label style="display:flex;align-items:center;gap:9px;font-weight:450">'+
+    '<input id="'+i+'" type="checkbox" style="width:auto" '+(valor?'checked':'')+' data-ruta="'+esc(ruta.join("."))+'" data-bool="1">'+
+    esc(etiqueta)+'</label></div>';
+}
+function campoBilingue(ruta, valor, etiqueta){
+  const largo = String(valor.es||"").length > 70;
+  const ie = id(ruta.concat("es")), ien = id(ruta.concat("en"));
+  const caja = (sub, v, ide) => largo
+    ? '<textarea id="'+ide+'" data-ruta="'+esc(ruta.concat(sub).join("."))+'">'+esc(v)+'</textarea>'
+    : '<input id="'+ide+'" type="text" value="'+esc(v)+'" data-ruta="'+esc(ruta.concat(sub).join("."))+'">';
+  return '<div class="campo"><label for="'+ie+'">'+esc(etiqueta)+'</label>'+
+    caja("es", valor.es, ie)+
+    '<div style="margin-top:8px"><span class="bandera">EN</span>'+
+    '<span style="font-size:12.5px;color:#8a857d">Lo mismo en inglés. Si lo dejas vacío se copia el español.</span></div>'+
+    '<div style="margin-top:5px">'+caja("en", valor.en, ien)+'</div></div>';
+}
+function campoFoto(ruta, valor, etiqueta, ancho){
+  const i = id(ruta), esDatos = /^data:image/.test(String(valor));
+  const vista = valor
+    ? '<img src="'+esc(valor)+'" alt="">'
+    : 'sin foto';
+  return '<div class="campo"><label>'+esc(etiqueta)+'</label>'+
+    '<div class="foto-campo">'+
+      '<div class="foto-vista" id="v_'+i+'">'+vista+'</div>'+
+      '<div class="foto-datos">'+
+        '<input class="oculto" type="file" accept="image/*" id="f_'+i+'" data-ruta="'+esc(ruta.join("."))+'" data-ancho="'+ancho+'">'+
+        '<button class="btn btn--linea btn--mini" type="button" onclick="document.getElementById(\'f_'+i+'\').click()">Elegir foto</button>'+
+        (valor ? ' <button class="btn btn--borrar btn--mini" type="button" data-quitar-foto="'+esc(ruta.join("."))+'">Quitar</button>' : '')+
+        '<p class="foto-peso" id="p_'+i+'">'+
+          (esDatos ? 'Ya está lista · <b>'+pesoKB(valor)+' KB</b>'
+                   : (valor ? 'Foto de ejemplo. Cámbiala por una del negocio.' : 'Arrastra o elige una foto.'))+
+        '</p>'+
+      '</div>'+
+    '</div></div>';
+}
+
+function dibujarValor(ruta, clave, valor){
+  if(esFoto(clave, valor)) return campoFoto(ruta, valor, nombreCampo(clave), /hero/i.test(clave) ? 1600 : 900);
+  if(bilingue(valor))      return campoBilingue(ruta, valor, nombreCampo(clave));
+  if(typeof valor === "number")  return campoNumero(ruta, valor, nombreCampo(clave));
+  if(typeof valor === "boolean") return campoSiNo(ruta, valor, nombreCampo(clave));
+  if(valor === null || typeof valor === "string") return campoTexto(ruta, valor, nombreCampo(clave));
+  if(Array.isArray(valor)) return listaSimple(ruta, valor, nombreCampo(clave));
+  if(typeof valor === "object"){
+    return '<div style="margin-top:16px;padding-left:14px;border-left:2px solid #e2ded6">'+
+      Object.keys(valor).map(k => dibujarValor(ruta.concat(k), k, valor[k])).join("")+'</div>';
+  }
+  return "";
+}
+
+/* Lista de textos sueltos (formas de pago, socios...) */
+function listaSimple(ruta, arr, etiqueta){
+  return '<div class="campo"><label>'+esc(etiqueta)+'</label>'+
+    '<div id="'+id(ruta)+'_lista">'+
+      arr.map((v,i)=>
+        '<div style="display:flex;gap:8px;margin-bottom:7px">'+
+          '<input type="text" value="'+esc(v)+'" data-ruta="'+esc(ruta.concat(i).join("."))+'">'+
+          '<button class="btn btn--borrar btn--mini" type="button" data-quitar="'+esc(ruta.join("."))+'" data-i="'+i+'">Quitar</button>'+
+        '</div>').join("")+
+    '</div>'+
+    '<button class="btn btn--linea btn--mini" type="button" data-anadir-texto="'+esc(ruta.join("."))+'">+ Añadir</button></div>';
+}
+
+/* Lista de fichas (servicios, agentes, reseñas, preguntas...) */
+function listaFichas(ruta, arr, clave){
+  const singular = {servicios:"servicio", propiedades:"propiedad", barberos:"persona", agentes:"agente",
+                    testimonios:"reseña", faq:"pregunta", beneficios:"motivo", ventajas:"motivo",
+                    datosHero:"número", galeria:"foto"}[clave] || "elemento";
+  let html = '<div id="'+id(ruta)+'_fichas">';
+  arr.forEach((item, i)=>{
+    html += '<div class="ficha">'+
+      '<div class="ficha__cab"><span class="ficha__n">'+esc(singular.toUpperCase())+' '+(i+1)+'</span>'+
+      '<button class="btn btn--borrar btn--mini" type="button" data-quitar="'+esc(ruta.join("."))+'" data-i="'+i+'">Quitar</button></div>';
+    if(typeof item === "string"){
+      html += campoFoto(ruta.concat(i), item, "Foto "+(i+1), 1200);
+    }else{
+      html += Object.keys(item).map(k => dibujarValor(ruta.concat(i, k), k, item[k])).join("");
+    }
+    html += '</div>';
+  });
+  html += '</div><div class="fila-btn">'+
+    '<button class="btn btn--linea btn--mini" type="button" data-anadir="'+esc(ruta.join("."))+'">+ Añadir '+esc(singular)+'</button></div>';
+  return html;
+}
+
+/* El horario va aparte: una fila por día con sus horas */
+function bloqueHorario(arr){
+  return '<div class="campo"><p class="ayuda">Marca "cerrado" el día que no abren.</p>'+
+    arr.map((d,i)=>
+      '<div style="display:grid;grid-template-columns:100px 1fr 1fr auto;gap:10px;align-items:center;margin-bottom:9px">'+
+        '<span style="font-size:14px">'+esc(nombreCampo(d.clave))+'</span>'+
+        '<input type="time" value="'+esc(d.abre||"")+'" data-ruta="horario.'+i+'.abre" '+(d.abre?'':'disabled')+'>'+
+        '<input type="time" value="'+esc(d.cierra||"")+'" data-ruta="horario.'+i+'.cierra" '+(d.abre?'':'disabled')+'>'+
+        '<label style="display:flex;align-items:center;gap:6px;font-size:13px;white-space:nowrap">'+
+          '<input type="checkbox" style="width:auto" data-cerrado="'+i+'" '+(d.abre?'':'checked')+'>cerrado</label>'+
+      '</div>').join("")+'</div>';
+}
+
+function dibujarTodo(){
+  const claves = Object.keys(CONFIG).filter(k => OCULTAS.indexOf(k) === -1);
+  let n = 0;
+  $("#formulario").innerHTML = claves.map(clave=>{
+    const valor = CONFIG[clave];
+    n++;
+    let cuerpo;
+    if(clave === "horario")            cuerpo = bloqueHorario(valor);
+    else if(Array.isArray(valor) && valor.length && typeof valor[0] !== "string") cuerpo = listaFichas([clave], valor, clave);
+    else if(Array.isArray(valor) && (clave === "galeria"))                        cuerpo = listaFichas([clave], valor, clave);
+    else if(Array.isArray(valor))      cuerpo = listaSimple([clave], valor, nombreSeccion(clave));
+    else                               cuerpo = dibujarValor([clave], clave, valor);
+    return '<details class="grupo"'+(n===1?" open":"")+'>'+
+      '<summary class="grupo__cab">'+
+        '<span class="grupo__num">'+n+'</span>'+
+        '<span class="grupo__tit">'+esc(nombreSeccion(clave))+
+          (ayudaSeccion(clave) ? '<small>'+esc(ayudaSeccion(clave))+'</small>' : '')+'</span>'+
+        '<span class="grupo__flecha">&#9662;</span>'+
+      '</summary>'+
+      '<div class="grupo__cuerpo">'+cuerpo+'</div></details>';
+  }).join("");
+  $("#deQuien").textContent = (CONFIG.negocio && CONFIG.negocio.nombre) || "Llena los datos y descarga el archivo";
+  revisar();
+}
+
+/* ================================================================
+   5. LO QUE PASA CUANDO TOCAS ALGO
+   ================================================================ */
+const rutaDe = s => s.split(".").map(x => /^\d+$/.test(x) ? Number(x) : x);
+
+document.addEventListener("input", e=>{
+  const el = e.target;
+  if(!el.dataset || !el.dataset.ruta) return;
+  let v = el.value;
+  if(el.dataset.num)  v = v === "" ? 0 : Number(v);
+  if(el.dataset.bool) v = el.checked;
+  escribir(rutaDe(el.dataset.ruta), v);
+});
+document.addEventListener("change", e=>{
+  const el = e.target;
+  if(el.dataset && el.dataset.bool){ escribir(rutaDe(el.dataset.ruta), el.checked); return; }
+  /* El check de "cerrado" apaga las horas de ese día */
+  if(el.dataset && el.dataset.cerrado !== undefined){
+    const i = Number(el.dataset.cerrado), fila = el.closest("div");
+    const horas = $$('input[type=time]', fila);
+    if(el.checked){
+      CONFIG.horario[i].abre = null; CONFIG.horario[i].cierra = null;
+      horas.forEach(h => { h.disabled = true; h.value = ""; });
+    }else{
+      CONFIG.horario[i].abre = "09:00"; CONFIG.horario[i].cierra = "18:00";
+      horas[0].disabled = false; horas[0].value = "09:00";
+      horas[1].disabled = false; horas[1].value = "18:00";
+    }
+    revisar();
+  }
+});
+
+/* Subir una foto */
+document.addEventListener("change", async e=>{
+  const el = e.target;
+  if(el.type !== "file" || !el.dataset.ruta) return;
+  const file = el.files && el.files[0];
+  if(!file) return;
+  const i = el.id.slice(2);
+  const cajaPeso = document.getElementById("p_" + i);
+  cajaPeso.innerHTML = "Achicando la foto…";
+  try{
+    const r = await comprimir(file, Number(el.dataset.ancho) || 900);
+    escribir(rutaDe(el.dataset.ruta), r.datos);
+    const vista = document.getElementById("v_" + i);
+    vista.innerHTML = '<img src="'+r.datos+'" alt="">';
+    const kb = pesoKB(r.datos);
+    cajaPeso.className = "foto-peso" + (kb > 300 ? " pesa" : "");
+    cajaPeso.innerHTML = "Lista · <b>"+kb+" KB</b> · "+r.ancho+"×"+r.alto+" px";
+  }catch(err){
+    cajaPeso.innerHTML = '<b style="color:#b0453a">Eso no es una foto. Prueba con un .jpg o un .png</b>';
+  }
+});
+
+/* Quitar una foto */
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-quitar-foto]");
+  if(!b) return;
+  escribir(rutaDe(b.dataset.quitarFoto), "");
+  dibujarTodo();
+});
+
+/* Quitar un elemento de una lista */
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-quitar]");
+  if(!b) return;
+  const arr = leer(rutaDe(b.dataset.quitar));
+  if(arr.length <= 1 && !confirm("Vas a quitar el último. Esa sección desaparecerá de la página. ¿Seguro?")) return;
+  arr.splice(Number(b.dataset.i), 1);
+  dibujarTodo();
+});
+
+/* Añadir un elemento nuevo, copiando la forma del primero */
+function vaciar(x){
+  if(typeof x === "string") return /^(https?:\/\/|img\/|data:image)/.test(x) ? x : "";
+  if(typeof x === "number") return 0;
+  if(typeof x === "boolean") return false;
+  if(x === null) return null;
+  if(Array.isArray(x)) return x.map(vaciar);
+  const o = {};
+  Object.keys(x).forEach(k => o[k] = vaciar(x[k]));
+  return o;
+}
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-anadir]");
+  if(!b) return;
+  const ruta = rutaDe(b.dataset.anadir), arr = leer(ruta);
+  arr.push(arr.length ? vaciar(arr[0]) : "");
+  dibujarTodo();
+  const fichas = $$("#" + id(ruta) + "_fichas .ficha");
+  if(fichas.length) fichas[fichas.length-1].scrollIntoView({block:"center"});
+});
+document.addEventListener("click", e=>{
+  const b = e.target.closest("[data-anadir-texto]");
+  if(!b) return;
+  leer(rutaDe(b.dataset.anadirTexto)).push("");
+  dibujarTodo();
+});
+
+/* ================================================================
+   6. REVISIÓN — avisa de lo que falta antes de publicar
+   ================================================================ */
+function revisar(){
+  const a = [], N = CONFIG.negocio || {};
+  if(!N.nombre)  a.push("Falta el nombre del negocio");
+  if(String(N.whatsapp||"").replace(/\D/g,"").length < 10)
+    a.push("El WhatsApp tiene que llevar el código del país, así: +17875550142");
+  if(!N.telefono) a.push("Falta el teléfono");
+  if(!N.direccion) a.push("Falta la dirección");
+  if(String(CONFIG.enlaces && CONFIG.enlaces.googleReviews).indexOf("TU_PLACE_ID") > -1)
+    a.push("Los enlaces de Google siguen sin poner (dicen TU_PLACE_ID)");
+  const C = CONFIG.confianza || {};
+  Object.keys(C).forEach(k => { if(!C[k]) a.push("El número «"+nombreCampo(k)+"» está vacío"); });
+  let deEjemplo = 0;
+  JSON.stringify(CONFIG).replace(/https:\/\/images\.unsplash\.com/g, ()=> { deEjemplo++; return ""; });
+  if(deEjemplo) a.push(deEjemplo + " foto(s) siguen siendo las de ejemplo");
+
+  const caja = $("#revisionTxt");
+  if(!a.length){
+    caja.className = "revision__txt ok";
+    caja.innerHTML = "<b>Todo listo.</b> Descarga el archivo y súbelo a Netlify.";
+  }else{
+    caja.className = "revision__txt";
+    caja.innerHTML = "<b>Te falta "+a.length+" cosa"+(a.length>1?"s":"")+" antes de publicar</b>"+
+      '<ul class="lista-avisos">'+a.slice(0,5).map(x=>"<li>"+esc(x)+"</li>").join("")+
+      (a.length>5 ? "<li>y "+(a.length-5)+" más…</li>" : "")+"</ul>";
+  }
+}
+
+/* ================================================================
+   7. GENERAR EL ARCHIVO config.js
+   ================================================================ */
+function aTexto(v, sangria){
+  const s = "  ".repeat(sangria);
+  if(v === null) return "null";
+  if(typeof v === "string") return JSON.stringify(v);
+  if(typeof v === "number" || typeof v === "boolean") return String(v);
+  if(Array.isArray(v)){
+    if(!v.length) return "[]";
+    const simple = v.every(x => typeof x === "string" || typeof x === "number");
+    if(simple && JSON.stringify(v).length < 90) return "[" + v.map(x=>JSON.stringify(x)).join(", ") + "]";
+    return "[\n" + v.map(x => s + "  " + aTexto(x, sangria+1)).join(",\n") + "\n" + s + "]";
+  }
+  const claves = Object.keys(v);
+  if(!claves.length) return "{}";
+  if(JSON.stringify(v).length < 90)
+    return "{ " + claves.map(k => k + ": " + aTexto(v[k], sangria)).join(", ") + " }";
+  return "{\n" + claves.map(k => s + "  " + k + ": " + aTexto(v[k], sangria+1)).join(",\n") + "\n" + s + "}";
+}
+function generar(){
+  /* Si dejaron el inglés vacío, se copia el español */
+  (function rellenar(o){
+    if(!o || typeof o !== "object") return;
+    if(bilingue(o) && !o.en) o.en = o.es;
+    Object.keys(o).forEach(k => rellenar(o[k]));
+  })(CONFIG);
+
+  let txt = "/* ==================================================================\n" +
+            "   CONFIG.JS — generado con el editor\n" +
+            "   ==================================================================\n\n" +
+            "   Este archivo lo hizo el editor por ti. No hace falta que lo abras.\n" +
+            "   Si quieres cambiar algo, vuelve a abrir EDITOR.html.\n" +
+            "   ================================================================== */\n\n" +
+            "const CONFIG = {\n";
+  const claves = Object.keys(CONFIG);
+  txt += claves.map(k => {
+    const nombre = SECCIONES[k] ? "\n  /* ---------- " + SECCIONES[k].n + " ---------- */\n" : "";
+    return nombre + "  " + k + ": " + aTexto(CONFIG[k], 1);
+  }).join(",\n") + "\n};\n\n";
+
+  txt += "/* Los textos de la página. Salen igual que antes. */\n";
+  txt += "const T = " + aTexto(T, 0) + ";\n";
+  return txt;
+}
+function bajar(){
+  const blob = new Blob([generar()], {type:"text/javascript;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "config.js";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=> URL.revokeObjectURL(a.href), 4000);
+}
+$("#btnBajar").addEventListener("click", bajar);
+$("#btnBajar2").addEventListener("click", bajar);
+$("#btnVer").addEventListener("click", ()=>{
+  alert("Primero descarga el config.js y ponlo dentro de la carpeta web.\n\nDespués abre web/index.html para ver cómo quedó.");
+  window.open("web/index.html", "_blank");
+});
+
+/* Arrastrar una foto encima de su recuadro también vale */
+document.addEventListener("dragover", e=>{ if(e.target.closest(".foto-campo")) e.preventDefault(); });
+document.addEventListener("drop", e=>{
+  const caja = e.target.closest(".foto-campo");
+  if(!caja) return;
+  e.preventDefault();
+  const input = $('input[type=file]', caja);
+  if(input && e.dataTransfer.files.length){
+    input.files = e.dataTransfer.files;
+    input.dispatchEvent(new Event("change", {bubbles:true}));
+  }
+});
+
+dibujarTodo();
+</script>
+</body>
+</html>
