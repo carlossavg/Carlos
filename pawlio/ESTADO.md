@@ -50,8 +50,22 @@ La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es
   pesos por debajo de 500. Ahora se carga con `ital` y 300–800: todas las cursivas de los títulos
   de la tienda son reales.
 
+## Auditoría antes de anuncios (25/09, por API y escaparate)
+- Publicado: todavía `pawlio-tema` (roto). Contraseña: puesta.
+- **Pagos: la tienda no muestra ningún método de pago activo** (`shop.enabled_payment_types` vacío).
+- **Píxel de Meta: no conectado** (solo los píxeles propios de Shopify).
+- Políticas: solo Privacy (y dice "My Store"). Faltan Refund, Shipping, Terms, Contact.
+- Páginas: solo Contact. Menú: Home · Catalog · Contact (el de fábrica).
+- Envíos: los 9 packs en la tarifa de CJ "General shipping profile" = **gratis siempre**
+  (las de 2 Collars habían caído en la general, $8; movidas el 25/09). El tema dice "free
+  shipping on 2+ collars" y el carrito cuenta hasta $45: no coincide, aunque a favor del cliente.
+- Suscripción: 0 planes, pero la tienda la anuncia (barra, portada, sección).
+
 ## Pendiente del lado del dueño
 - [ ] Revisar la vista previa y **publicar "Pawlio"** (Temas → ⋯ → Publicar). El publicado está roto.
+- [ ] Activar pagos (Settings → Payments → Shopify Payments + banco)
+- [ ] Conectar el píxel (app Facebook & Instagram, Data sharing: Maximum)
+- [ ] Comprar dominio y verificarlo en Meta Business
 - [ ] Mapear `2 Collars` en la app de CJ (2 × 1 pcs)
 - [ ] Decidir los textos: todo el tema habla de un collar que se recorta ("Fit & trim",
       "cut-to-fit", "waterproof"); el producto real es un clip
