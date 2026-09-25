@@ -236,12 +236,12 @@ def faq(layout="split", bg="white"):
 
 
 STORY = sec("pw-image-text", {
-    "use_product_image": False, "image_url": IMG['story'], "image_position": "50% 35%", "image_alt": "Happy dog on a beach in Puerto Rico",
+    "use_product_image": False, "image_url": IMG['story'], "image_position": "50% 35%", "image_alt": "Happy dog sitting on a sunny beach",
     "ratio": "portrait", "layout": "left", "float_title": "", "float_text": "",
-    "eyebrow": "Our story", "heading": "Born in Puerto Rico, <em>where flea season never ends.</em>",
-    "text": "<p>On our island, heat and humidity mean fleas and ticks never take a day off. We were tired of greasy monthly drops, forgotten doses and harsh chemicals — so we started [brand] with one mission: make flea &amp; tick protection simple, long-lasting and plant-powered.</p><p>Every order is backed by real people who love dogs as much as you do.</p>",
-    "bullets": "", "signature": "— The [brand] team, Puerto Rico", "button_label": "", "button_style": "primary", "anchor": "",
-    "bg": "sand", "text_align": "left", "heading_size": 46, "body_size": 18, "padding_top": 96, "padding_bottom": 96,
+    "eyebrow": "Our story", "heading": "Made for the life <em>you share with them.</em>",
+    "text": "<p>[brand] began with a simple belief: keeping your dog protected shouldn't mean greasy monthly drops, forgotten doses or a cabinet full of products.</p><p>So we made one quiet, everyday piece of protection — designed to be worn, not remembered. Less to think about, and more time for the walks, the naps and everything in between.</p>",
+    "bullets": "", "signature": "The [brand] team", "button_label": "", "button_style": "primary", "anchor": "",
+    "bg": "sand", "text_align": "left", "heading_size": 40, "body_size": 16, "padding_top": 96, "padding_bottom": 96, "style": "editorial",
 })
 
 CTA = sec("pw-cta", {
@@ -343,12 +343,13 @@ dump('templates/index.json', template([
 
 # ------------------------------------------------------------------ OUR STORY
 about_hero = json.loads(json.dumps(HERO))
-about_hero["settings"].update({"image_url": IMG['story'], "image_position": "50% 35%", "eyebrow": "Our story",
-                               "heading": "Made on an island where <em>flea season never ends.</em>",
-                               "text": "[brand] started in Puerto Rico with one simple idea: protecting your dog should be easy, long-lasting and kind.",
+about_hero["settings"].update({"image_url": IMG['story'], "image_position": "50% 35%", "eyebrow": "Our story", "mobile_image_url": "",
+                               "image_alt": "Happy dog sitting on a sunny beach",
+                               "heading": "Made for the life <em>you share with them.</em>",
+                               "text": "[brand] started with one simple idea: protecting your dog should be easy, long-lasting and kind.",
                                "button_label": "Shop the collar", "secondary_label": "", "chips": "", "height": 70, "height_mobile": 76})
 about_mission = json.loads(json.dumps(STORY))
-about_mission["settings"].update({"image_url": IMG['lifestyle'], "layout": "right", "eyebrow": "Why we exist",
+about_mission["settings"].update({"image_url": IMG['lifestyle'], "image_alt": "Happy dog cuddling at home", "layout": "right", "eyebrow": "Why we exist",
                                   "heading": "Dogs are family. <em>Their protection should be simple.</em>",
                                   "bullets": "Plant-powered protection\nMonths per collar, not weeks\nReal humans behind every order",
                                   "button_label": "Protect my dog"})
@@ -382,7 +383,7 @@ json.dump(hg, open(os.path.join(T, 'sections/header-group.json'), 'w'), indent=2
 
 fg = json.load(open(os.path.join(T, 'sections/footer-group.json')))
 fg["sections"] = {"pw-footer": {"type": "pw-footer", "settings": {
-    "logo_width": 150, "tagline": "Plant-powered flea & tick protection for dogs who live life outside. Born in Puerto Rico.",
+    "logo_width": 150, "tagline": "Plant-powered flea & tick protection for dogs who live life outside.",
     "show_social": True, "menu_1_title": "Shop", "menu_2_title": "Help", "show_newsletter": True, "news_title": "Join the pack",
     "news_text": "Flea-season tips, new drops and members-only offers. No spam, ever.", "news_placeholder": "Your email",
     "news_button": "Join", "news_success": "Welcome to the pack! Check your inbox.", "show_payment_icons": True, "padding_top": 72}}}

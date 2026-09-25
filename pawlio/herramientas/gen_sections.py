@@ -43,6 +43,15 @@ def design(bg="cream", pt=80, pb=80, h=48, body=18, align="center", heading=True
     return out
 
 
+def design_with_style(*args, **kwargs):
+    d = design(*args, **kwargs)
+    d.insert(1, {"type": "select", "id": "style", "label": "Estilo",
+                 "info": "Editorial: título fino, texto sobrio y firma en versalitas. Para historia y marca.",
+                 "options": [{"value": "standard", "label": "Estándar"}, {"value": "editorial", "label": "Editorial (premium)"}],
+                 "default": "standard"})
+    return d
+
+
 def head(eyebrow, heading, text=""):
     out = [{"type": "header", "content": "Encabezado"},
            {"type": "paragraph", "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."},
@@ -356,7 +365,7 @@ write('pw-image-text', r'''
     assign pw_img = pw_fp.featured_image
   endif
 -%}
-<section class="pw pw-split-section pw-on-{{ section.settings.bg }}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %}>
+<section class="pw pw-split-section pw-split-section--{{ section.settings.style | default: 'standard' }} pw-on-{{ section.settings.bg }}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %}>
   <div class="pw-container pw-split pw-split--image-{{ section.settings.layout }}">
     <div class="pw-split__media pw-media pw-reveal">
       {%- render 'pw-image', image: pw_img, fallback: section.settings.image_url, position: section.settings.image_position, sizes: '(min-width: 990px) 50vw, 100vw', alt: section.settings.image_alt -%}
@@ -415,7 +424,7 @@ write('pw-image-text', r'''
         {"type": "select", "id": "button_style", "label": "Estilo del botón", "options": [
             {"value": "primary", "label": "Verde"}, {"value": "ghost", "label": "Contorno"}, {"value": "light", "label": "Blanco"}], "default": "primary"},
         {"type": "text", "id": "anchor", "label": "ID para enlazar (opcional, ej. how)"},
-    ] + design("cream", 88, 88, 48, 18, "left"),
+    ] + design_with_style("cream", 88, 88, 48, 18, "left"),
     "presets": [{"name": "Pawlio · Imagen y texto"}],
 })
 

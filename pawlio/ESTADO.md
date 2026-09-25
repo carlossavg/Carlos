@@ -4,29 +4,87 @@
 - **Marca:** Pawlio · producto 1: collar antipulgas y garrapatas (flea & tick collar)
 - **Idioma de la tienda:** inglés (EE.UU.). Idioma del dueño: español.
 - **Tema:** `pawlio/tema/`, basado en Dawn 16.0.0 (Shopify, Aug 2026) + secciones propias `pw-*`
-- **Última entrega:** 2026-09-25, ZIP para subir a mano (Online Store → Themes → Upload zip)
+- **Última entrega:** 2026-09-25 (sesión local), tema **"Pawlio" `#151634804780` subido sin publicar**
+  por Admin API (`themeCreate` desde un ZIP en staged upload). 379/379 archivos comprobados.
+- **v3 (sesión en la nube, 25/09, unida con la local):** página general para cualquier producto
+  (cama, arnés…), fotos dentro del tema, productos de prueba (`productos-prueba.csv`), carrito sin
+  `$NaN`. **No está en la tienda todavía**: el tema #151634804780 es la versión anterior.
+  Subirla como tema nuevo con `herramientas/admin/subir-tema.mjs` o el ZIP `pawlio-tema-v3.zip`.
+- **Cuenta:** contact.pawlio@gmail.com. El login de temas del CLI (`theme list/push`) está con
+  otra cuenta; todo se hizo con `shopify store auth` + `store execute`, que sí funciona.
+
+## Temas en la tienda (25/09)
+| Tema | id | Estado |
+|---|---|---|
+| **Pawlio** | 151634804780 | Sin publicar. **El bueno.** Vista previa: `https://vt9vns-xz.myshopify.com/?preview_theme_id=151634804780` |
+| pawlio-tema | 151634018348 | **Publicado y roto**: le faltan `sections/pw-product.liquid`, `templates/index.json` y `templates/product.json` (ver abajo) |
+| Horizon, Helio, Pawlio — Preview | — | Sin publicar, antiguos |
+
+**Por qué se rompió el ZIP:** la etiqueta del ajuste `show_rating` de `pw-product` tenía 72
+caracteres (máximo de Shopify: 70). Shopify descarta `pw-product.liquid` entero sin avisar, y
+con él las dos plantillas que lo usan. Arreglado en el repo. `theme check` no lo detecta.
+
+## Producto real (leído el 25/09) — `gid://shopify/Product/8549411160108`
+- Importado de **CJ Dropshipping** (SKUs `CJYD2382878…`). Handle: `pawlio™-flea-tick-collar-for-dogs`.
+- **No es un collar**: es un **clip de silicona** que se engancha al collar del perro, con
+  cápsulas de aceite esencial. Fotos del proveedor con marca **Sindax** y "12 MONTH PROTECTION".
+- Costo CJ: 1 ud $10.10 · pack de 3 $22.98 (verde $22.48). Sin envío.
+- Copia de cómo estaba: `respaldos/producto-antes-2026-09-25.json`. Fotos: `fotos-producto/`.
+
+**Configurado el 25/09:**
+- Opciones `Color` (Dark Pink · Black · Green) × `Pack` (1 Collar · 2 Collars · 3 Collars) = 9 variantes.
+- Precios $32.95 / $49.95 / $59.95, compare-at vacío, inventario sin seguimiento.
+- `1 Collar` y `3 Collars` conservan el SKU de CJ (1 pcs y 3 pcs). **`2 Collars` es nueva y no tiene
+  SKU**: hay que mapearla en la app de CJ a 2 × la de 1 pcs. Se borraron las de 5 pcs.
+- Foto de color asignada a cada variante. Plantilla: la por defecto (`product.json` = `pw-product`).
+- Descripción de CJ sustituida por una corta y sin cifras (clip que se engancha al collar).
+- Tema: `pw_featured_product` apunta al producto; nuevo ajuste `swatch_colors` en pw-product.
+
+## Marca: nada de Puerto Rico (decidido 25/09)
+Carlos pidió que la tienda **no mencione Puerto Rico** en ningún sitio. Quitado de la
+historia (portada y ficha), About (hero y misión), pie de página y `POLITICAS.md`.
+La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es.
+`ADS.md`: el ángulo 8 y el guion del fundador ya no mencionan Puerto Rico.
+
+## Estilo editorial (25/09)
+- `pw-image-text` tiene el ajuste **Estilo → Editorial (premium)**: título a peso 380 y 40 px,
+  cursiva a 300 del mismo color (no verde), filetes finos en vez del punto, firma en versalitas,
+  foto sin sombra. Activado en "Our story" (portada y ficha) y "Why we exist" (About).
+- La fuente Fraunces se cargaba **sin cursiva** (el navegador la inclinaba a la fuerza) y sin
+  pesos por debajo de 500. Ahora se carga con `ital` y 300–800: todas las cursivas de los títulos
+  de la tienda son reales.
+
+## Auditoría antes de anuncios (25/09, por API y escaparate)
+- Publicado: todavía `pawlio-tema` (roto). Contraseña: puesta.
+- **Pagos: la tienda no muestra ningún método de pago activo** (`shop.enabled_payment_types` vacío).
+- **Píxel de Meta: no conectado** (solo los píxeles propios de Shopify).
+- Políticas: solo Privacy (y dice "My Store"). Faltan Refund, Shipping, Terms, Contact.
+- Páginas: solo Contact. Menú: Home · Catalog · Contact (el de fábrica).
+- Envíos: los 9 packs en la tarifa de CJ "General shipping profile" = **gratis siempre**
+  (las de 2 Collars habían caído en la general, $8; movidas el 25/09). El tema dice "free
+  shipping on 2+ collars" y el carrito cuenta hasta $45: no coincide, aunque a favor del cliente.
+- Suscripción: 0 planes, pero la tienda la anuncia (barra, portada, sección).
 
 ## Pendiente del lado del dueño
-- [ ] Subir el ZIP y publicar el tema
-- [ ] Variantes `Pack` = `1 Collar` / `2 Collars` / `3 Collars` ($32.95 / $49.95 / $59.95)
+- [ ] Revisar la vista previa y **publicar "Pawlio"** (Temas → ⋯ → Publicar). El publicado está roto.
+- [ ] Activar pagos (Settings → Payments → Shopify Payments + banco)
+- [ ] Conectar el píxel (app Facebook & Instagram, Data sharing: Maximum)
+- [ ] Comprar dominio y verificarlo en Meta Business
+- [ ] Mapear `2 Collars` en la app de CJ (2 × 1 pcs)
+- [ ] Decidir los textos: todo el tema habla de un collar que se recorta ("Fit & trim",
+      "cut-to-fit", "waterproof"); el producto real es un clip
+- [ ] Meses reales de protección (ajuste en 4; la foto del proveedor dice 12)
+- [ ] Nombre de la tienda: sigue "My Store" (sale en la pestaña del navegador)
 - [ ] Shopify Subscriptions: plan "Subscribe & Save", cada N meses (= duración del collar), 20%
-- [ ] Meses reales de protección y días de garantía en Theme settings → Pawlio · Marca
 - [ ] Envío gratis ≥ $45, $4.95 por debajo
 - [ ] Políticas (POLITICAS.md), páginas About/FAQ/Contact, menú
 - [ ] Verificar con el proveedor: ingredientes y estatus EPA (25(b) o registro)
-- [ ] Costo por collar (para recalcular precios)
 - [ ] Reseñas reales (Judge.me + 10 collares regalados)
 
 ## Pendiente para la próxima sesión de Claude
-La sesión del 25/09 no tenía red hacia `*.shopify.com`, `*.myshopify.com` ni el
-CDN de Higgsfield (`d8j0ntlcm91z4.cloudfront.net`). En una sesión nueva con
-esos dominios permitidos:
-1. `shopify theme push --unpublished` (login con código de dispositivo).
-2. Leer el producto real (título, fotos, variantes, costo) y ajustar el copy/precios.
-3. Descargar las 10 fotos de Higgsfield, optimizarlas y subirlas a Shopify Files;
-   cambiar los `image_url` de las plantillas por `image` (image_picker).
-4. `shopify store auth` usa callback a 127.0.0.1: desde la nube hay que pegar
-   la URL de retorno a mano, o pedir al dueño que haga los pasos del panel.
+1. Subir v3 a la tienda como tema nuevo (sin publicar) y revisar la vista previa.
+   (Las fotos ya van dentro del tema: no hace falta subirlas a Files.)
+2. Revisar la ficha en móvil (con contraseña no se pudo desde el Chrome de escritorio).
 
 ## Decisiones de diseño
 - **Paleta:** verde bosque #0E3B2E, verde botón #12833F, crema #FAF6EE, arena #F2EADB,
@@ -35,7 +93,7 @@ esos dominios permitidos:
 - **Estructura de venta (producto):** caja de compra → cinta → problema → solución
   → cómo funciona → beneficios → estilo de vida → comparación → aventura
   → suscripción → garantía → galería de perros → reseñas (apagada) → FAQ
-  → historia PR → llamado final.
+  → historia → llamado final.
 - **Bundles:** variantes de la opción `Pack` como tarjetas; bloque "Tarjeta de bundle"
   por valor. 2 Collars preseleccionado (Most popular). El ahorro se calcula contra
   1 unidad × cantidad (compare-at vacío).
@@ -45,8 +103,8 @@ esos dominios permitidos:
 - **Comodines de texto:** `[months]`, `[months2]`, `[months3]`, `[days]`, `[brand]`
   → snippet `pw-t`. Se cambian en Theme settings → Pawlio · Marca.
 - **Reseñas:** sección `pw-reviews` desactivada con 3 bloques de ejemplo. Solo reseñas reales.
-- **Imágenes de respaldo:** URLs `_min.webp` de Higgsfield en `image_url` (ajuste de texto);
-  el `image_picker` de cada sección tiene prioridad.
+- **Imágenes de respaldo:** fotos dentro del tema (`assets/pw-img-*-800.jpg` y `-1600.jpg`),
+  nombradas en `image_url`; el `image_picker` de cada sección tiene prioridad.
 
 ## Visibilidad por producto (v3)
 - `snippets/pw-match.liquid`: devuelve yes/no según una palabra (`flea`) en título, tipo o etiquetas;

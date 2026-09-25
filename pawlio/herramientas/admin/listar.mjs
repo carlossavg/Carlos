@@ -1,0 +1,20 @@
+import { gql } from './gql.mjs';
+import { readdirSync, statSync } from 'node:fs';
+import { join, relative, sep } from 'node:path';
+const id = process.argv[2];
+const t = gql(`query($id:ID!){ theme(id:$id){ name role processing processingFailed } }`, { id });
+console.log(JSON.stringify(t.theme));
+if (t.theme.processing) process.exit(0);
+let after = null, remote = new Set();
+do {
+  const r = gql(`query($id:ID!,$after:String){ theme(id:$id){ files(first:250, after:$after){ nodes{ filename } pageInfo{ hasNextPage endCursor } } } }`, { id, after });
+  r.theme.files.nodes.forEach(n => remote.add(n.filename));
+  after = r.theme.files.pageInfo.hasNextPage ? r.theme.files.pageInfo.endCursor : null;
+} while (after);
+const root = 'C:/tiendas/carlos-gh/pawlio/tema';
+const local = [];
+const walk = d => readdirSync(d).forEach(f => { const p = join(d, f); statSync(p).isDirectory() ? walk(p) : local.push(relative(root, p).split(sep).join("/")); });
+['assets','config','layout','locales','sections','snippets','templates'].forEach(d => walk(join(root, d)));
+console.log('remote', remote.size, 'local', local.length);
+console.log('FALTAN:', local.filter(f => !remote.has(f)));
+console.log('SOBRAN:', [...remote].filter(f => !local.includes(f)));

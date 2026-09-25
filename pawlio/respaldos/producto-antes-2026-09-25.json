@@ -1,0 +1,628 @@
+{
+  "shop": {
+    "name": "My Store",
+    "myshopifyDomain": "vt9vns-xz.myshopify.com",
+    "primaryDomain": {
+      "url": "https://vt9vns-xz.myshopify.com"
+    },
+    "currencyCode": "USD",
+    "plan": {
+      "displayName": "Basic"
+    }
+  },
+  "themes": {
+    "nodes": [
+      {
+        "id": "gid://shopify/OnlineStoreTheme/151510122540",
+        "name": "Horizon",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "createdAt": "2026-09-21T02:52:09Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/151511040044",
+        "name": "Pawlio — Preview",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "createdAt": "2026-09-21T03:58:37Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/151512711212",
+        "name": "Helio",
+        "role": "UNPUBLISHED",
+        "processing": false,
+        "createdAt": "2026-09-21T05:18:57Z"
+      },
+      {
+        "id": "gid://shopify/OnlineStoreTheme/151634018348",
+        "name": "pawlio-tema",
+        "role": "MAIN",
+        "processing": false,
+        "createdAt": "2026-09-25T17:43:36Z"
+      }
+    ]
+  },
+  "products": {
+    "nodes": [
+      {
+        "id": "gid://shopify/Product/8549411160108",
+        "title": "Pawlio™ Flea & Tick Collar for Dogs",
+        "handle": "pawlio™-flea-tick-collar-for-dogs",
+        "status": "ACTIVE",
+        "templateSuffix": "pawlio-flea-tick-collar-f",
+        "vendor": "Pawlio",
+        "productType": "Dog Flea & Tick Collars",
+        "tags": [],
+        "descriptionHtml": "<p>\n <b>Product information:</b>\n <br>\n Pattern: color matching\n <br>\n Color: black, dark pink, green\n <br>\n Material: polyethylene\n <br>\n Applicable object: Dog\n <br>\n Applicable holiday: Other festivals\n <br>\n Suitable season: Four Seasons Universal\n <br>\n Style: Casual\n <br>\n <br>\n</p>\n<br>\n<b>Packing list: </b>\n<br>\nCollar *1（\n<span style=\"font-size: 16px;\">essential oil color is random</span>\n）\n<br>\n<p>\n <br>\n</p>\n<b>Product Image:</b>\n<div>\n <b>\n  <br>\n </b>\n <img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/22/07/0d265248-987c-4cf9-95df-6a65c8fdda2b.jpg\">\n <img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/22/07/9d64e2e1-3f77-4f15-8050-eef27c335735.jpg\">\n <img src=\"https://oss-cf.cjdropshipping.com/product/2025/05/22/07/80d400ba-8f25-4735-a8fa-f5de3a814261.jpg\">\n <img src=\"https://oss-cf.cjdropshipping.com/product/2025/07/01/01/e7913bb0-eee3-4ce0-a248-c13642ca4991.jpg\" contenteditable=\"false\" style=\"max-width: 100%;\">\n <img src=\"https://oss-cf.cjdropshipping.com/product/2025/07/01/01/645fe824-a106-4f30-84e2-1af79e6b067b.jpg\" style=\"max-width:100%;\" contenteditable=\"false\">\n <img src=\"https://oss-cf.cjdropshipping.com/product/2025/07/01/01/28aeba7d-59a5-4f1d-8f79-face744d81d3.jpg\" style=\"max-width:100%;\" contenteditable=\"false\">\n</div>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/10811485814828",
+            "name": "Color",
+            "position": 1,
+            "optionValues": [
+              {
+                "id": "gid://shopify/ProductOptionValue/5699187310636",
+                "name": "Black"
+              },
+              {
+                "id": "gid://shopify/ProductOptionValue/5699187146796",
+                "name": "Dark Pink"
+              },
+              {
+                "id": "gid://shopify/ProductOptionValue/5699187179564",
+                "name": "Green"
+              }
+            ]
+          },
+          {
+            "id": "gid://shopify/ProductOption/10811485847596",
+            "name": "style",
+            "position": 2,
+            "optionValues": [
+              {
+                "id": "gid://shopify/ProductOptionValue/5699187343404",
+                "name": "1pcs"
+              },
+              {
+                "id": "gid://shopify/ProductOptionValue/5699187245100",
+                "name": "3pc"
+              },
+              {
+                "id": "gid://shopify/ProductOptionValue/5699187277868",
+                "name": "5pc"
+              }
+            ]
+          }
+        ],
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46214078070828",
+              "title": "Black / 1pcs",
+              "price": "36.45",
+              "compareAtPrice": null,
+              "sku": "CJYD238287801AZ",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Black"
+                },
+                {
+                  "name": "style",
+                  "value": "1pcs"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597303852",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "10.1"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078103596",
+              "title": "Black / 3pc",
+              "price": "83.70",
+              "compareAtPrice": null,
+              "sku": "CJYD238287804DW",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Black"
+                },
+                {
+                  "name": "style",
+                  "value": "3pc"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597336620",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "22.98"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078136364",
+              "title": "Black / 5pc",
+              "price": "136.83",
+              "compareAtPrice": null,
+              "sku": "CJYD238287805EV",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Black"
+                },
+                {
+                  "name": "style",
+                  "value": "5pc"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597369388",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "35.64"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078169132",
+              "title": "Dark Pink / 1pcs",
+              "price": "35.91",
+              "compareAtPrice": null,
+              "sku": "CJYD238287802BY",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Dark Pink"
+                },
+                {
+                  "name": "style",
+                  "value": "1pcs"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597402156",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "10.1"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078201900",
+              "title": "Dark Pink / 3pc",
+              "price": "83.70",
+              "compareAtPrice": null,
+              "sku": "CJYD238287806FU",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Dark Pink"
+                },
+                {
+                  "name": "style",
+                  "value": "3pc"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597434924",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "22.98"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078234668",
+              "title": "Dark Pink / 5pc",
+              "price": "136.83",
+              "compareAtPrice": null,
+              "sku": "CJYD238287807GT",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Dark Pink"
+                },
+                {
+                  "name": "style",
+                  "value": "5pc"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597467692",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "35.64"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078267436",
+              "title": "Green / 1pcs",
+              "price": "30.34",
+              "compareAtPrice": null,
+              "sku": "CJYD238287803CX",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Green"
+                },
+                {
+                  "name": "style",
+                  "value": "1pcs"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597500460",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "10.1"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078300204",
+              "title": "Green / 3pc",
+              "price": "83.20",
+              "compareAtPrice": null,
+              "sku": "CJYD238287808HS",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Green"
+                },
+                {
+                  "name": "style",
+                  "value": "3pc"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597533228",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "22.48"
+                }
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46214078332972",
+              "title": "Green / 5pc",
+              "price": "135.99",
+              "compareAtPrice": null,
+              "sku": "CJYD238287809IR",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Color",
+                  "value": "Green"
+                },
+                {
+                  "name": "style",
+                  "value": "5pc"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48323597565996",
+                "tracked": true,
+                "unitCost": {
+                  "amount": "34.8"
+                }
+              }
+            }
+          ]
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/38795842650156",
+              "mediaContentType": "IMAGE",
+              "alt": "25b342d4668a742684482b3fab54593c",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/c7a534a2-723d-4dfa-8f04-a0deb2ead461.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842682924",
+              "mediaContentType": "IMAGE",
+              "alt": "24144f47183a3b8ff8f9c38449d38940",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/3eb38819-2a47-4364-975d-9c3f1970e3c3.jpg?v=1789967938",
+                "width": 791,
+                "height": 791
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842715692",
+              "mediaContentType": "IMAGE",
+              "alt": "889faed58c9e598cde09d11b80d58d7c",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/7054fe8b-a9f7-4dd6-bca0-731ef7e1b9a6.jpg?v=1789967938",
+                "width": 713,
+                "height": 713
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842748460",
+              "mediaContentType": "IMAGE",
+              "alt": "1a03831b74800b5430ad30b87bb1b130",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/55a94d64-eb1b-468e-825a-dd4d517f2ea0.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842781228",
+              "mediaContentType": "IMAGE",
+              "alt": "371f28236de4692272d5e6c00b0cf4b7",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/cf68fcf5-0c91-4be8-8496-cb9f5bcc3233.jpg?v=1789967938",
+                "width": 531,
+                "height": 531
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842813996",
+              "mediaContentType": "IMAGE",
+              "alt": "b72474383528ac547965d3d33316323a",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/0da2b0f6-b9a9-44d6-b6d3-f77be35d1c9c.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842846764",
+              "mediaContentType": "IMAGE",
+              "alt": "8c361463b283129fc72fa430fc888494",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/6434ee57-cc4c-4892-8779-7bf94561d2fd.jpg?v=1789967938",
+                "width": 713,
+                "height": 713
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842879532",
+              "mediaContentType": "IMAGE",
+              "alt": "7ab84c0a8deb80e7825440c7e61935b9",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/487b0a20-421d-48ab-b31b-808926008f5a.jpg?v=1789967938",
+                "width": 602,
+                "height": 602
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842912300",
+              "mediaContentType": "IMAGE",
+              "alt": "6f47d7ade2eb23b6dd63def4663328d7",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/7abcc102-095d-42ba-8aa0-9e1671992d44.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842945068",
+              "mediaContentType": "IMAGE",
+              "alt": "7bbdf3bba54c33400ce8d189cc26454f",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/e56ddcd4-1168-403f-b5ec-36ed8557227c.jpg?v=1789967938",
+                "width": 421,
+                "height": 570
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842977836",
+              "mediaContentType": "IMAGE",
+              "alt": "ed30a093d1e605c5050bfa62c0c5a953",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/6f130cb7-c378-4566-9f3c-4d5d92265d8a.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795843010604",
+              "mediaContentType": "IMAGE",
+              "alt": "d7b056921022f9ae9ff523dae0ab0335",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/1ba43038-8d71-4ab8-be13-2a24848d5f9c.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795843043372",
+              "mediaContentType": "IMAGE",
+              "alt": "989e26157f4dcc932f46340287c5c0ae",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/9a5c1430-d69a-4f98-8524-07336d1b609a.jpg?v=1789967938",
+                "width": 713,
+                "height": 713
+              }
+            }
+          ]
+        },
+        "sellingPlanGroupsCount": {
+          "count": 0
+        },
+        "resourcePublicationsCount": {
+          "count": 3
+        }
+      },
+      {
+        "id": "gid://shopify/Product/8549162844204",
+        "title": "Pawlio Loop — Collar Accessory",
+        "handle": "pawlio-loop",
+        "status": "DRAFT",
+        "templateSuffix": "pawlio",
+        "vendor": "Pawlio",
+        "productType": "",
+        "tags": [],
+        "descriptionHtml": "<p>A little detail for your dog's everyday adventures. A bright green, slide-on collar accessory with a compact profile.</p><p>Choose a single, duo or trio pack.</p>",
+        "options": [
+          {
+            "id": "gid://shopify/ProductOption/10811221835820",
+            "name": "Pack",
+            "position": 1,
+            "optionValues": [
+              {
+                "id": "gid://shopify/ProductOptionValue/5698602729516",
+                "name": "1 Loop"
+              },
+              {
+                "id": "gid://shopify/ProductOptionValue/5698602762284",
+                "name": "2 Loops"
+              },
+              {
+                "id": "gid://shopify/ProductOptionValue/5698602795052",
+                "name": "3 Loops"
+              }
+            ]
+          }
+        ],
+        "variants": {
+          "nodes": [
+            {
+              "id": "gid://shopify/ProductVariant/46213443256364",
+              "title": "1 Loop",
+              "price": "24.99",
+              "compareAtPrice": null,
+              "sku": "PAWLIO-LOOP-1",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Pack",
+                  "value": "1 Loop"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48322960916524",
+                "tracked": true,
+                "unitCost": null
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46213443289132",
+              "title": "2 Loops",
+              "price": "39.99",
+              "compareAtPrice": null,
+              "sku": "PAWLIO-LOOP-2",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Pack",
+                  "value": "2 Loops"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48322960949292",
+                "tracked": true,
+                "unitCost": null
+              }
+            },
+            {
+              "id": "gid://shopify/ProductVariant/46213443321900",
+              "title": "3 Loops",
+              "price": "49.99",
+              "compareAtPrice": null,
+              "sku": "PAWLIO-LOOP-3",
+              "inventoryPolicy": "DENY",
+              "selectedOptions": [
+                {
+                  "name": "Pack",
+                  "value": "3 Loops"
+                }
+              ],
+              "inventoryItem": {
+                "id": "gid://shopify/InventoryItem/48322960982060",
+                "tracked": true,
+                "unitCost": null
+              }
+            }
+          ]
+        },
+        "media": {
+          "nodes": [
+            {
+              "id": "gid://shopify/MediaImage/38795842650156",
+              "mediaContentType": "IMAGE",
+              "alt": "25b342d4668a742684482b3fab54593c",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/c7a534a2-723d-4dfa-8f04-a0deb2ead461.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842715692",
+              "mediaContentType": "IMAGE",
+              "alt": "889faed58c9e598cde09d11b80d58d7c",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/7054fe8b-a9f7-4dd6-bca0-731ef7e1b9a6.jpg?v=1789967938",
+                "width": 713,
+                "height": 713
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795842813996",
+              "mediaContentType": "IMAGE",
+              "alt": "b72474383528ac547965d3d33316323a",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/0da2b0f6-b9a9-44d6-b6d3-f77be35d1c9c.jpg?v=1789967938",
+                "width": 713,
+                "height": 750
+              }
+            },
+            {
+              "id": "gid://shopify/MediaImage/38795201544236",
+              "mediaContentType": "IMAGE",
+              "alt": "Golden retriever wearing a Pawlio Loop collar accessory",
+              "image": {
+                "url": "https://cdn.shopify.com/s/files/1/0744/1629/1884/files/exec-3e708336-7ecf-40d6-8e07-2876bf39a828_0c98cb67-c4d5-4f4d-abad-168769f086cf.png?v=1789963623",
+                "width": 1536,
+                "height": 1024
+              }
+            }
+          ]
+        },
+        "sellingPlanGroupsCount": {
+          "count": 0
+        },
+        "resourcePublicationsCount": {
+          "count": 0
+        }
+      }
+    ]
+  },
+  "publications": {
+    "nodes": [
+      {
+        "id": "gid://shopify/Publication/199219314732",
+        "name": "Online Store"
+      },
+      {
+        "id": "gid://shopify/Publication/199219347500",
+        "name": "Point of Sale"
+      },
+      {
+        "id": "gid://shopify/Publication/199219380268",
+        "name": "Shop"
+      }
+    ]
+  }
+}

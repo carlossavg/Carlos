@@ -87,6 +87,31 @@ const bed = {
   selling_plan_groups: [], selected_selling_plan: null, requires_selling_plan: false,
   media: bedMedia, featured_media: bedMedia[0], featured_image: { src: bedImg, alt: '' }, metafields: { reviews: {} },
 };
+// Producto real de la tienda (25/09): Color × Pack, foto por color. Con plan de suscripción y sin él (hoy no hay).
+function makeReal(withPlan) {
+  const colors = ['Dark Pink', 'Black', 'Green'];
+  const packs = [['1 Collar', 3295], ['2 Collars', 4995], ['3 Collars', 5995]];
+  const rMedia = colors.map((c, i) => ({ id: 800 + i, media_type: 'image', alt: 'Pawlio clip ' + c, src: productImgs[i], preview_image: { src: productImgs[i], alt: '' } }));
+  const rVariants = [];
+  let id = 301;
+  colors.forEach((c, ci) => packs.forEach(([pk, price]) => rVariants.push({
+    id: id++, title: c + ' / ' + pk, options: [c, pk], available: true, price, compare_at_price: null, featured_media: rMedia[ci],
+    selling_plan_allocations: withPlan ? [{ selling_plan: plan, price: Math.round(price * 0.8), compare_at_price: price }] : [],
+  })));
+  return {
+    id: 3, title: 'Pawlio™ Flea & Tick Collar for Dogs', handle: 'pawlio™-flea-tick-collar-for-dogs', url: '/products/pawlio-flea-tick-collar-for-dogs', type: '', tags: [],
+    description: '<p>A silicone clip that attaches to your dog\'s collar.</p>',
+    has_only_default_variant: false, options: ['Color', 'Pack'],
+    options_with_values: [{ name: 'Color', position: 1, values: colors.map((n) => ({ name: n })) },
+                          { name: 'Pack', position: 2, values: packs.map(([n]) => ({ name: n })) }],
+    variants: rVariants, selected_variant: null, selected_or_first_available_variant: rVariants[0],
+    selling_plan_groups: withPlan ? [{ name: 'Subscribe & save', selling_plans: [plan] }] : [], selected_selling_plan: null, requires_selling_plan: false,
+    media: rMedia, featured_media: rMedia[0], featured_image: { src: productImgs[0], alt: '' }, metafields: { reviews: {} },
+  };
+}
+const real = makeReal(true);
+const realNoPlan = makeReal(false);
+
 const shop = {
   name: 'Pawlio', email: 'hello@pawlio.com', money_format: '${{amount}}', enabled_payment_types: ['visa', 'master', 'american_express', 'apple_pay', 'google_pay', 'shopify_pay', 'paypal'],
   policies: [{ title: 'Refund policy', url: '/policies/refund-policy' }, { title: 'Privacy policy', url: '/policies/privacy-policy' }, { title: 'Terms of service', url: '/policies/terms-of-service' }, { title: 'Shipping policy', url: '/policies/shipping-policy' }],
@@ -201,9 +226,11 @@ ${head}</head><body>
   console.log('wrote', outName);
 }
 
-module.exports = { engine, settings, shop, routes, product, variants, plan, productImgs, THEME, OUT, bed };
+module.exports = { engine, settings, shop, routes, product, variants, plan, productImgs, THEME, OUT, bed, real, realNoPlan };
 if (require.main === module) (async () => {
   await renderPage('product.json', 'product', 'product.html');
   await renderPage('index.json', 'index', 'index.html');
   await renderPage('product.json', 'product', 'bed.html', bed);
+  await renderPage('product.json', 'product', 'real.html', real);
+  await renderPage('product.json', 'product', 'real-noplan.html', realNoPlan);
 })();

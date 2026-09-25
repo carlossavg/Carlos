@@ -106,7 +106,7 @@ write('pw-footer', r'''
     "settings": [
         {"type": "image_picker", "id": "logo", "label": "Logo (vacío = logo de texto Pawlio)"},
         {"type": "range", "id": "logo_width", "label": "Ancho del logo", "min": 60, "max": 300, "step": 10, "unit": "px", "default": 150},
-        {"type": "textarea", "id": "tagline", "label": "Frase de la marca", "default": "Plant-powered flea & tick protection for dogs who live life outside. Born in Puerto Rico."},
+        {"type": "textarea", "id": "tagline", "label": "Frase de la marca", "default": "Plant-powered flea & tick protection for dogs who live life outside."},
         {"type": "checkbox", "id": "show_social", "label": "Mostrar redes sociales", "info": "Los enlaces se ponen en Configuración del tema → Redes sociales.", "default": True},
         {"type": "header", "content": "Menús"},
         {"type": "text", "id": "menu_1_title", "label": "Título menú 1", "default": "Shop"},

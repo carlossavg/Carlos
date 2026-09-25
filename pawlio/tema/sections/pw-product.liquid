@@ -365,6 +365,16 @@
                                 {%- when 'rose', 'blush' -%}{%- assign sw = '#E8B8B0' -%}
                                 {%- else -%}{%- assign sw = sw_key -%}
                               {%- endcase -%}
+                              {%- comment -%} Colores propios del ajuste "Colores de las muestras" (tienen prioridad) {%- endcomment -%}
+                              {%- assign sw_key_full = vname | strip | downcase -%}
+                              {%- assign sw_lines = section.settings.swatch_colors | newline_to_br | split: '<br />' -%}
+                              {%- for sw_line in sw_lines -%}
+                                {%- assign sw_pair = sw_line | split: ':' -%}
+                                {%- assign sw_name = sw_pair.first | strip | downcase -%}
+                                {%- if sw_pair.size > 1 and sw_name == sw_key_full -%}
+                                  {%- assign sw = sw_pair.last | strip -%}
+                                {%- endif -%}
+                              {%- endfor -%}
                             {%- endif -%}
                             <i class="pw-swatch" style="--sw: {{ sw }}"></i>
                           {%- endif -%}
@@ -884,7 +894,7 @@
     { "type": "text", "id": "tagline_other", "label": "Frase bajo el título (otros productos)" },
     { "type": "range", "id": "title_size", "label": "Tamaño del título", "min": 28, "max": 64, "step": 2, "unit": "px", "default": 46 },
     { "type": "checkbox", "id": "show_price_row", "label": "Mostrar precio grande bajo el título", "default": true },
-    { "type": "checkbox", "id": "show_rating", "label": "Mostrar estrellas (solo si tienes una app de reseñas con reseñas reales)", "default": true },
+    { "type": "checkbox", "id": "show_rating", "label": "Mostrar estrellas", "info": "Solo aparecen si tienes una app de reseñas con reseñas reales.", "default": true },
     { "type": "text", "id": "reviews_word", "label": "Palabra para 'reseñas'", "default": "reviews" },
     { "type": "header", "content": "Galería" },
     { "type": "select", "id": "media_position", "label": "Posición de las fotos (escritorio)", "options": [ { "value": "left", "label": "Izquierda" }, { "value": "right", "label": "Derecha" } ], "default": "left" },
@@ -899,6 +909,7 @@
       ],
       "default": "leaf"
     },
+    { "type": "textarea", "id": "swatch_colors", "label": "Colores de las muestras", "info": "Una línea por color: Nombre: #código. Para colores que el navegador no conoce por su nombre (ej. Dark Pink).", "default": "Dark Pink: #D6317A\nGreen: #3CB54A" },
     { "type": "header", "content": "Bundles (tarjetas de paquete)" },
     { "type": "text", "id": "bundle_option_name", "label": "Nombre de la opción de bundle", "info": "Nombre de la opción de la variante en Shopify (ej. Pack). También reconoce Bundle, Quantity, Cantidad o Paquete. Color y talla se muestran como botones normales.", "default": "Pack" },
     { "type": "text", "id": "bundle_heading", "label": "Título sobre los bundles", "default": "Choose your pack" },
