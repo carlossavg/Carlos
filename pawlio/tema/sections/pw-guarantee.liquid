@@ -1,0 +1,203 @@
+{%- render 'pw-section-style' -%}
+{%- capture seal_text -%}{% render 'pw-t', t: section.settings.ring_text %}{%- endcapture -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container pw-container--narrow">
+    <div class="pw-guarantee pw-reveal">
+      <div class="pw-seal" aria-hidden="true">
+        <svg class="pw-seal__ring" viewBox="0 0 148 148">
+          <defs><path id="pw-ring-{{ section.id }}" d="M74,74 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs>
+          <text><textPath href="#pw-ring-{{ section.id }}">{{ seal_text | strip | upcase }}</textPath></text>
+        </svg>
+        <span class="pw-seal__core">
+          <span class="pw-seal__num">{% render 'pw-t', t: section.settings.seal_number %}</span>
+          <span class="pw-seal__unit">{{ section.settings.seal_unit }}</span>
+        </span>
+      </div>
+      {%- render 'pw-head' -%}
+      {%- if section.settings.points != blank -%}
+        {%- assign points = section.settings.points | newline_to_br | split: '<br />' -%}
+        <div class="pw-guarantee__points">
+          {%- for p in points -%}
+            {%- assign t = p | strip -%}
+            {%- if t != blank -%}<span class="pw-chip">{% render 'pw-icon', icon: 'check-circle', size: 17 %}{% render 'pw-t', t: t %}</span>{%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="pw-btn pw-btn--primary" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+          {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Garantía",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "seal_number",
+      "label": "Número del sello",
+      "default": "[days]"
+    },
+    {
+      "type": "text",
+      "id": "seal_unit",
+      "label": "Texto bajo el número",
+      "default": "Days"
+    },
+    {
+      "type": "text",
+      "id": "ring_text",
+      "label": "Texto que gira",
+      "default": "Money-back guarantee • Happy dog promise • "
+    },
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "Zero risk"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "The <em>Happy Dog</em> Guarantee"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Try [brand] for a full [days] days. If you and your pup aren't completely happy, email us and we'll refund your order. That's how sure we are.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "points",
+      "label": "Puntos (uno por línea)",
+      "default": "Full refund within [days] days\nNo need to send it back\nReal humans answer every email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón",
+      "default": "Try it risk-free"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Garantía"
+    }
+  ]
+}
+{% endschema %}

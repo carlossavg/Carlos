@@ -1,0 +1,278 @@
+{%- render 'pw-section-style' -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .pw-hero {
+    --pw-h1-size: {{ section.settings.heading_size }}px;
+    --pw-shade: {{ section.settings.shade | divided_by: 100.0 }};
+    --pw-hero-h: {{ section.settings.height }}vh;
+    --pw-hero-h-m: {{ section.settings.height_mobile }}svh;
+  }
+  {%- if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank %}
+    @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pw-hero__img--desktop { display: none; } }
+    @media screen and (min-width: 750px) { #shopify-section-{{ section.id }} .pw-hero__img--mobile { display: none; } }
+  {%- endif %}
+{%- endstyle -%}
+{%- liquid
+  assign ld = 'lazy'
+  if section.index <= 2
+    assign ld = 'eager'
+  endif
+-%}
+<section class="pw pw-hero pw-on-forest">
+  <div class="pw-hero__bg pw-media">
+    {%- render 'pw-image', image: section.settings.image, fallback: section.settings.image_url, class: 'pw-hero__img--desktop', loading: ld, position: section.settings.image_position, alt: section.settings.image_alt -%}
+    {%- if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank -%}
+      {%- render 'pw-image', image: section.settings.mobile_image, fallback: section.settings.mobile_image_url, class: 'pw-hero__img--mobile', loading: ld, position: section.settings.image_position, alt: section.settings.image_alt, sizes: '100vw' -%}
+    {%- endif -%}
+  </div>
+  <div class="pw-hero__shade" aria-hidden="true"></div>
+  <div class="pw-container">
+    <div class="pw-hero__inner">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="pw-eyebrow pw-reveal">{% render 'pw-t', t: section.settings.eyebrow %}</p>
+      {%- endif -%}
+      {%- if section.index == 1 -%}
+        <h1 class="pw-h1 pw-reveal" style="--pw-d:80ms">{% render 'pw-t', t: section.settings.heading %}</h1>
+      {%- else -%}
+        <h2 class="pw-h1 pw-reveal" style="--pw-d:80ms">{% render 'pw-t', t: section.settings.heading %}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="pw-lead pw-reveal" style="--pw-d:160ms">{% render 'pw-t', t: section.settings.text %}</p>
+      {%- endif -%}
+      <div class="pw-actions pw-reveal" style="--pw-d:240ms">
+        {%- if section.settings.button_label != blank -%}
+          <a class="pw-btn pw-btn--primary pw-btn--shine" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a class="pw-btn pw-btn--ghost" href="{{ section.settings.secondary_link | default: '#pw-how' }}">{{ section.settings.secondary_label }}</a>
+        {%- endif -%}
+      </div>
+      {%- assign chips = section.settings.chips | newline_to_br | split: '<br />' -%}
+      {%- if section.settings.chips != blank -%}
+        <div class="pw-chips pw-reveal" style="--pw-d:320ms">
+          {%- for chip in chips -%}
+            {%- assign c = chip | strip -%}
+            {%- if c != blank -%}
+              <span class="pw-chip">{% render 'pw-icon', icon: 'check-circle', size: 17 %}{% render 'pw-t', t: c %}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Portada",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen de fondo"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen de fondo"
+    },
+    {
+      "type": "text",
+      "id": "image_url",
+      "label": "Enlace de imagen de respaldo",
+      "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Enfoque de la imagen",
+      "options": [
+        {
+          "value": "50% 50%",
+          "label": "Centro"
+        },
+        {
+          "value": "50% 35%",
+          "label": "Centro, un poco arriba"
+        },
+        {
+          "value": "50% 20%",
+          "label": "Arriba"
+        },
+        {
+          "value": "50% 80%",
+          "label": "Abajo"
+        },
+        {
+          "value": "25% 50%",
+          "label": "Izquierda"
+        },
+        {
+          "value": "70% 50%",
+          "label": "Derecha"
+        }
+      ],
+      "default": "70% 50%"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Imagen para celular (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "mobile_image_url",
+      "label": "Enlace de imagen para celular (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de la imagen (accesibilidad)",
+      "default": "Happy dog running through a sunny meadow"
+    },
+    {
+      "type": "header",
+      "content": "Textos"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "Plant-powered flea & tick collar"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título (cursiva = resaltado)",
+      "default": "Months of protection. <em>Zero monthly hassle.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "One clip-on collar helps keep fleas and ticks away for up to [months] months. No greasy drops, no pills, no reminders."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón principal",
+      "default": "Protect my dog"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón (vacío = producto principal)"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Botón secundario",
+      "default": "How it works"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Enlace del botón secundario"
+    },
+    {
+      "type": "textarea",
+      "id": "chips",
+      "label": "Sellos de confianza (uno por línea)",
+      "default": "[days]-day money-back guarantee\nFree shipping on 2+ collars\nCancel subscriptions anytime"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título (escritorio)",
+      "min": 40,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 78
+    },
+    {
+      "type": "range",
+      "id": "shade",
+      "label": "Oscurecer la foto",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Alto en escritorio",
+      "min": 50,
+      "max": 100,
+      "step": 2,
+      "unit": "vh",
+      "default": 86
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Alto en celular",
+      "min": 50,
+      "max": 100,
+      "step": 2,
+      "unit": "vh",
+      "default": 88
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Portada"
+    }
+  ]
+}
+{% endschema %}

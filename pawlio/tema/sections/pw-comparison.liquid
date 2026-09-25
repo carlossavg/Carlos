@@ -1,0 +1,249 @@
+{%- render 'pw-section-style' -%}
+{%- capture yes_icon -%}<span class="pw-compare__yes" role="img" aria-label="Yes">{% render 'pw-icon', icon: 'check-circle', size: 26, stroke: 2 %}</span>{%- endcapture -%}
+{%- capture no_icon -%}<span class="pw-compare__no" role="img" aria-label="No">{% render 'pw-icon', icon: 'x-circle', size: 26, stroke: 2 %}</span>{%- endcapture -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container pw-container--narrow">
+    {%- render 'pw-head' -%}
+    <div class="pw-compare pw-reveal">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col"><span class="visually-hidden">Feature</span></th>
+            <th scope="col" class="is-brand">{% render 'pw-t', t: section.settings.col_brand %}</th>
+            <th scope="col">{{ section.settings.col_2 }}</th>
+            {%- if section.settings.col_3 != blank -%}<th scope="col">{{ section.settings.col_3 }}</th>{%- endif -%}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for block in section.blocks -%}
+            <tr {{ block.shopify_attributes }}>
+              <th scope="row">{% render 'pw-t', t: block.settings.feature %}</th>
+              {%- assign cells = 'brand,v2,v3' | split: ',' -%}
+              {%- for key in cells -%}
+                {%- if key == 'v3' and section.settings.col_3 == blank -%}{%- continue -%}{%- endif -%}
+                {%- assign val = block.settings[key] | strip -%}
+                {%- assign val_d = val | downcase -%}
+                <td{% if key == 'brand' %} class="is-brand"{% endif %}>
+                  {%- if val_d == 'yes' or val_d == 'si' or val_d == 'sí' -%}{{ yes_icon }}{%- elsif val_d == 'no' -%}{{ no_icon }}{%- else -%}{% render 'pw-t', t: val %}{%- endif -%}
+                </td>
+              {%- endfor -%}
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+    {%- if section.settings.note != blank -%}
+      <p class="pw-small pw-compare__hint">{{ section.settings.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Comparación",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "The smarter way"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Pawlio vs. <em>the usual routine</em>"
+    },
+    {
+      "type": "paragraph",
+      "content": "En cada fila escribe 'yes' para ✓, 'no' para ✕ o un texto corto."
+    },
+    {
+      "type": "text",
+      "id": "col_brand",
+      "label": "Columna 1 (tu marca)",
+      "default": "[brand]"
+    },
+    {
+      "type": "text",
+      "id": "col_2",
+      "label": "Columna 2",
+      "default": "Monthly drops"
+    },
+    {
+      "type": "text",
+      "id": "col_3",
+      "label": "Columna 3 (vacío = ocultar)",
+      "default": "Sprays & shampoos"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Nota al pie",
+      "default": "Comparison based on typical over-the-counter products. Always follow each product's label."
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "white"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Fila",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature",
+          "label": "Característica",
+          "default": "Lasts for months"
+        },
+        {
+          "type": "text",
+          "id": "brand",
+          "label": "Tu marca",
+          "default": "yes"
+        },
+        {
+          "type": "text",
+          "id": "v2",
+          "label": "Columna 2",
+          "default": "no"
+        },
+        {
+          "type": "text",
+          "id": "v3",
+          "label": "Columna 3",
+          "default": "no"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Comparación",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "feature": "Protection per application",
+            "brand": "Up to [months] mo",
+            "v2": "~30 days",
+            "v3": "Days"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "feature": "Nothing to remember monthly",
+            "brand": "yes",
+            "v2": "no",
+            "v3": "no"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

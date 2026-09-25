@@ -1,0 +1,252 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container pw-container--narrow">
+    <ul class="pw-trust" style="--pw-cols: 3">
+      {%- for block in section.blocks -%}
+        <li class="pw-trust__item" {{ block.shopify_attributes }}>
+          <span class="pw-trust__icon">{% render 'pw-icon', icon: block.settings.icon %}</span>
+          <span>{% render 'pw-t', t: block.settings.text %}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Sellos carrito",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Elemento",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "check-circle",
+              "label": "Check"
+            },
+            {
+              "value": "shield-check",
+              "label": "Escudo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja"
+            },
+            {
+              "value": "drop",
+              "label": "Gota (agua)"
+            },
+            {
+              "value": "scissors",
+              "label": "Tijeras (ajustable)"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "calendar",
+              "label": "Calendario"
+            },
+            {
+              "value": "refresh",
+              "label": "Renovar"
+            },
+            {
+              "value": "truck",
+              "label": "Camión"
+            },
+            {
+              "value": "lock",
+              "label": "Candado"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "paw",
+              "label": "Huella"
+            },
+            {
+              "value": "sparkle",
+              "label": "Destello"
+            },
+            {
+              "value": "moon",
+              "label": "Luna"
+            },
+            {
+              "value": "sun",
+              "label": "Sol"
+            },
+            {
+              "value": "wind",
+              "label": "Aroma"
+            },
+            {
+              "value": "smile",
+              "label": "Sonrisa"
+            },
+            {
+              "value": "ruler",
+              "label": "Regla (talla)"
+            },
+            {
+              "value": "home",
+              "label": "Casa"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "percent",
+              "label": "Porcentaje"
+            },
+            {
+              "value": "box",
+              "label": "Caja"
+            },
+            {
+              "value": "chat",
+              "label": "Chat"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo"
+            },
+            {
+              "value": "pin",
+              "label": "Ubicación"
+            },
+            {
+              "value": "bug",
+              "label": "Bicho"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "thermometer",
+              "label": "Termómetro"
+            },
+            {
+              "value": "mail",
+              "label": "Correo"
+            }
+          ],
+          "default": "shield-check"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "[days]-day money-back guarantee"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Sellos carrito",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "shield-check",
+            "text": "[days]-day money-back guarantee"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure, encrypted checkout"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "text": "Cancel subscriptions anytime"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

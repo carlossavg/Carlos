@@ -1,0 +1,345 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-on-{{ section.settings.bg }}" id="pw-how">
+  <div class="pw-container">
+    {%- render 'pw-head' -%}
+    <ol class="pw-steps">
+      {%- for block in section.blocks -%}
+        <li class="pw-step pw-card pw-reveal" style="--pw-d: {{ forloop.index0 | times: 110 }}ms" {{ block.shopify_attributes }}>
+          <span class="pw-step__num" aria-hidden="true">{{ forloop.index }}</span>
+          <span class="pw-step__icon">{% render 'pw-icon', icon: block.settings.icon %}</span>
+          <span class="pw-step__kicker">{{ section.settings.kicker }} {{ forloop.index }}</span>
+          <h3 class="pw-h3">{% render 'pw-t', t: block.settings.title %}</h3>
+          <p>{% render 'pw-t', t: block.settings.text %}</p>
+        </li>
+      {%- endfor -%}
+    </ol>
+    {%- if section.settings.button_label != blank -%}
+      <div class="pw-actions pw-reveal" style="margin-top:36px">
+        <a class="pw-btn pw-btn--primary" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+          {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Cómo funciona",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "How it works"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Protection in <em>3 easy steps</em>"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Palabra antes del número",
+      "default": "Step"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón (opcional)",
+      "default": "Get started"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "white"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Paso",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "check-circle",
+              "label": "Check"
+            },
+            {
+              "value": "shield-check",
+              "label": "Escudo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja"
+            },
+            {
+              "value": "drop",
+              "label": "Gota (agua)"
+            },
+            {
+              "value": "scissors",
+              "label": "Tijeras (ajustable)"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "calendar",
+              "label": "Calendario"
+            },
+            {
+              "value": "refresh",
+              "label": "Renovar"
+            },
+            {
+              "value": "truck",
+              "label": "Camión"
+            },
+            {
+              "value": "lock",
+              "label": "Candado"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "paw",
+              "label": "Huella"
+            },
+            {
+              "value": "sparkle",
+              "label": "Destello"
+            },
+            {
+              "value": "moon",
+              "label": "Luna"
+            },
+            {
+              "value": "sun",
+              "label": "Sol"
+            },
+            {
+              "value": "wind",
+              "label": "Aroma"
+            },
+            {
+              "value": "smile",
+              "label": "Sonrisa"
+            },
+            {
+              "value": "ruler",
+              "label": "Regla (talla)"
+            },
+            {
+              "value": "home",
+              "label": "Casa"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "percent",
+              "label": "Porcentaje"
+            },
+            {
+              "value": "box",
+              "label": "Caja"
+            },
+            {
+              "value": "chat",
+              "label": "Chat"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo"
+            },
+            {
+              "value": "pin",
+              "label": "Ubicación"
+            },
+            {
+              "value": "bug",
+              "label": "Bicho"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "thermometer",
+              "label": "Termómetro"
+            },
+            {
+              "value": "mail",
+              "label": "Correo"
+            }
+          ],
+          "default": "sparkle"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Unpack & stretch"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto",
+          "default": "Take it out of the pouch and give it a gentle stretch to activate it."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Cómo funciona",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Unpack & stretch",
+            "text": "Take the collar out of the pouch and give it a gentle stretch to activate the plant-oil blend."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "scissors",
+            "title": "Fit & trim",
+            "text": "Buckle it on so two fingers slide underneath, then snip off the extra length."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "icon": "calendar",
+            "title": "Relax for months",
+            "text": "Your dog is covered for up to [months] months. Subscribers get the next collar right on time."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

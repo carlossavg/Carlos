@@ -1,0 +1,140 @@
+{
+  "sections": {
+    "faq": {
+      "type": "pw-faq",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Questions? <em>We've got answers.</em>",
+        "layout": "stacked",
+        "open_first": true,
+        "contact_text": "Still wondering? Email us:",
+        "email": "",
+        "bg": "cream",
+        "text_align": "left",
+        "heading_size": 44,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "fq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does one collar last?",
+            "answer": "<p>Each collar provides up to [months] months of protection. For nonstop coverage, replace it every [months] months — or keep Subscribe &amp; Save on and we'll send the next one automatically.</p>"
+          }
+        },
+        "fq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it safe for my dog?",
+            "answer": "<p>Pawlio is made with plant-derived essential oils and designed for everyday wear on dogs 12 weeks and older. Watch your dog for the first 48 hours and remove the collar if you notice any irritation. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. <strong>For dogs only — never use on cats.</strong></p>"
+          }
+        },
+        "fq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it fit my dog?",
+            "answer": "<p>Yes. It's one size, adjustable and cut-to-fit for every breed. Fasten it so two fingers slide underneath, then trim the excess.</p>"
+          }
+        },
+        "fq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can my dog get wet with it on?",
+            "answer": "<p>Absolutely. Pawlio is waterproof, so baths, swims and rainy walks are no problem.</p>"
+          }
+        },
+        "fq-5": {
+          "type": "faq",
+          "settings": {
+            "question": "How does Subscribe & Save work?",
+            "answer": "<p>Subscribe &amp; Save is selected by default so your dog never runs out of protection. You pay the discounted price today, and a fresh pack ships every [months] months at that same lower price. Prefer a single order? Pick <strong>One-time purchase</strong> before adding to cart. Skip, pause or cancel anytime from your account — no fees.</p>"
+          }
+        },
+        "fq-6": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I cancel my subscription?",
+            "answer": "<p>Log in to your account, open <strong>Subscriptions</strong> and click Cancel — it takes less than a minute. Need a hand? Email us and we'll do it for you.</p>"
+          }
+        },
+        "fq-7": {
+          "type": "faq",
+          "settings": {
+            "question": "When will my order arrive?",
+            "answer": "<p>Orders ship within 1–2 business days and typically arrive in 7–12 business days. You'll get a tracking link by email as soon as your order ships.</p>"
+          }
+        },
+        "fq-8": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it doesn't work for us?",
+            "answer": "<p>You're covered by our [days]-day Happy Dog Guarantee. Email us within [days] days of delivery and we'll refund your order.</p>"
+          }
+        },
+        "fq-9": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use it with other flea treatments?",
+            "answer": "<p>Please ask your vet before combining Pawlio with any other flea or tick product.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "fq-1",
+        "fq-2",
+        "fq-3",
+        "fq-4",
+        "fq-5",
+        "fq-6",
+        "fq-7",
+        "fq-8",
+        "fq-9"
+      ]
+    },
+    "guarantee": {
+      "type": "pw-guarantee",
+      "settings": {
+        "seal_number": "[days]",
+        "seal_unit": "Days",
+        "ring_text": "Money-back guarantee • Happy dog promise • ",
+        "eyebrow": "Zero risk",
+        "heading": "The <em>Happy Dog</em> Guarantee",
+        "text": "<p>Try [brand] for a full [days] days. If you and your pup aren't completely happy, email us and we'll refund your order. That's how sure we are.</p>",
+        "points": "Full refund within [days] days\nReal humans answer every email\nNo complicated forms",
+        "button_label": "Try it risk-free",
+        "bg": "cream",
+        "text_align": "center",
+        "heading_size": 48,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    },
+    "cta": {
+      "type": "pw-cta",
+      "settings": {
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_cc7da924-b45f-4e8c-87bc-8b5de73704fd_min.webp",
+        "image_position": "50% 35%",
+        "image_alt": "Happy beagle smiling at the camera",
+        "eyebrow": "Ready when you are",
+        "heading": "Give your dog <em>months</em> of itch-free days.",
+        "text": "Plant-powered. Waterproof. Backed by our [days]-day guarantee.",
+        "button_label": "Protect my dog",
+        "chips": "Free shipping on 2+\nCancel anytime",
+        "bg": "cream",
+        "text_align": "left",
+        "heading_size": 48,
+        "body_size": 18,
+        "padding_top": 32,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": [
+    "faq",
+    "guarantee",
+    "cta"
+  ]
+}

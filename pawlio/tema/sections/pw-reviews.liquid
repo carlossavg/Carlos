@@ -1,0 +1,241 @@
+{%- render 'pw-section-style' -%}
+{%- if section.blocks.size > 0 -%}
+<section class="pw pw-on-{{ section.settings.bg }}" id="pw-reviews">
+  <div class="pw-container">
+    {%- render 'pw-head' -%}
+    {%- if section.settings.summary != blank -%}
+      <p class="pw-reviews__summary pw-reveal">
+        <span class="pw-stars" aria-hidden="true">{% for i in (1..5) %}{% render 'pw-icon', icon: 'star', size: 20 %}{% endfor %}</span>
+        <span>{{ section.settings.summary }}</span>
+      </p>
+    {%- endif -%}
+    <div class="pw-reviews">
+      {%- for block in section.blocks -%}
+        {%- if block.type == '@app' -%}
+          <div class="pw-reviews__app" {{ block.shopify_attributes }}>{% render block %}</div>
+          {%- continue -%}
+        {%- endif -%}
+        <article class="pw-review pw-card pw-reveal" style="--pw-d: {{ forloop.index0 | modulo: 3 | times: 90 }}ms" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <div class="pw-review__media pw-media">
+              {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 30vw, 90vw', widths: '360, 540, 720, 900', alt: block.settings.image.alt }}
+            </div>
+          {%- endif -%}
+          <span class="pw-stars" role="img" aria-label="{{ block.settings.rating }} out of 5 stars">
+            {%- for i in (1..5) -%}<span{% if i > block.settings.rating %} style="opacity:.25"{% endif %}>{% render 'pw-icon', icon: 'star', size: 20 %}</span>{%- endfor -%}
+          </span>
+          {%- if block.settings.title != blank -%}<p class="pw-review__title">{{ block.settings.title }}</p>{%- endif -%}
+          <p class="pw-review__quote">{{ block.settings.quote | newline_to_br }}</p>
+          <div class="pw-review__who">
+            <span class="pw-review__avatar" aria-hidden="true">{{ block.settings.name | slice: 0 }}</span>
+            <span>
+              <span class="pw-review__name">{{ block.settings.name }}</span><br>
+              <span class="pw-review__meta">
+                {%- if block.settings.verified -%}{% render 'pw-icon', icon: 'check-circle', size: 15 %}{{ section.settings.verified_label }}{%- endif -%}
+                {%- if block.settings.detail != blank -%}{% if block.settings.verified %} · {% endif %}{{ block.settings.detail }}{%- endif -%}
+              </span>
+            </span>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Pawlio · Reseñas",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Usa solo reseñas REALES de clientes (con su permiso para usar la foto de su perro). Las reseñas inventadas están prohibidas por la FTC. También puedes añadir el bloque de tu app de reseñas (ej. Judge.me)."
+    },
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "Real dogs. Real parents."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Loved by <em>happy pups</em>"
+    },
+    {
+      "type": "text",
+      "id": "summary",
+      "label": "Resumen (ej. 4.9/5 from 120 reviews) — solo números reales"
+    },
+    {
+      "type": "text",
+      "id": "verified_label",
+      "label": "Texto de comprador verificado",
+      "default": "Verified buyer"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "white"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "review",
+      "name": "Reseña",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto del perro del cliente"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Estrellas",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título de la reseña"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Reseña (texto real del cliente)",
+          "default": "Paste a real customer review here."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre del cliente",
+          "default": "Customer name"
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Detalle (ej. Golden Retriever owner)"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Compra verificada",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Reseñas"
+    }
+  ]
+}
+{% endschema %}

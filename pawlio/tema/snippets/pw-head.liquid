@@ -1,0 +1,17 @@
+{%- comment -%}
+  Pawlio · encabezado de sección (texto pequeño + título + texto).
+  Pon palabras en cursiva en el título para resaltarlas en verde.
+{%- endcomment -%}
+{%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.text != blank -%}
+  <div class="pw-head{% if section.settings.text_align == 'left' %} pw-head--left{% endif %} pw-reveal">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="pw-eyebrow">{% render 'pw-t', t: section.settings.eyebrow %}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pw-h2">{% render 'pw-t', t: section.settings.heading %}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="pw-lead pw-rte">{% render 'pw-t', t: section.settings.text %}</div>
+    {%- endif -%}
+  </div>
+{%- endif -%}

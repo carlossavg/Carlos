@@ -1,0 +1,339 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container">
+    {%- render 'pw-head' -%}
+    <div class="pw-benefits" style="--pw-cols: {{ section.settings.columns }}">
+      {%- for block in section.blocks -%}
+        <div class="pw-benefit pw-card pw-reveal" style="--pw-d: {{ forloop.index0 | modulo: 3 | times: 90 }}ms" {{ block.shopify_attributes }}>
+          <span class="pw-benefit__icon">{% render 'pw-icon', icon: block.settings.icon %}</span>
+          <h3 class="pw-h3">{% render 'pw-t', t: block.settings.title %}</h3>
+          <p>{% render 'pw-t', t: block.settings.text %}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Beneficios",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "Why dog parents switch"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Everything they need. <em>Nothing they don't.</em>"
+    },
+    {
+      "type": "select",
+      "id": "columns",
+      "label": "Columnas en escritorio",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "check-circle",
+              "label": "Check"
+            },
+            {
+              "value": "shield-check",
+              "label": "Escudo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja"
+            },
+            {
+              "value": "drop",
+              "label": "Gota (agua)"
+            },
+            {
+              "value": "scissors",
+              "label": "Tijeras (ajustable)"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "calendar",
+              "label": "Calendario"
+            },
+            {
+              "value": "refresh",
+              "label": "Renovar"
+            },
+            {
+              "value": "truck",
+              "label": "Camión"
+            },
+            {
+              "value": "lock",
+              "label": "Candado"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "paw",
+              "label": "Huella"
+            },
+            {
+              "value": "sparkle",
+              "label": "Destello"
+            },
+            {
+              "value": "moon",
+              "label": "Luna"
+            },
+            {
+              "value": "sun",
+              "label": "Sol"
+            },
+            {
+              "value": "wind",
+              "label": "Aroma"
+            },
+            {
+              "value": "smile",
+              "label": "Sonrisa"
+            },
+            {
+              "value": "ruler",
+              "label": "Regla (talla)"
+            },
+            {
+              "value": "home",
+              "label": "Casa"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "percent",
+              "label": "Porcentaje"
+            },
+            {
+              "value": "box",
+              "label": "Caja"
+            },
+            {
+              "value": "chat",
+              "label": "Chat"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo"
+            },
+            {
+              "value": "pin",
+              "label": "Ubicación"
+            },
+            {
+              "value": "bug",
+              "label": "Bicho"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "thermometer",
+              "label": "Termómetro"
+            },
+            {
+              "value": "mail",
+              "label": "Correo"
+            }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Plant-powered"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto",
+          "default": "Made with plant-derived essential oils instead of harsh synthetic chemicals."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Beneficios",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "title": "Plant-powered",
+            "text": "Made with plant-derived essential oils instead of harsh synthetic chemicals."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "clock",
+            "title": "Lasts for months",
+            "text": "Up to [months] months per collar — far fewer things to remember than monthly drops."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "title": "Waterproof",
+            "text": "Baths, beach days and rainy walks don't slow it down."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

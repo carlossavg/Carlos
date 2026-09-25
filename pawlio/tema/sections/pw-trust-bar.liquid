@@ -1,0 +1,259 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container">
+    <ul class="pw-trust" style="--pw-cols: {{ section.blocks.size | at_most: 4 | at_least: 1 }}">
+      {%- for block in section.blocks -%}
+        <li class="pw-trust__item pw-reveal" style="--pw-d: {{ forloop.index0 | times: 70 }}ms" {{ block.shopify_attributes }}>
+          <span class="pw-trust__icon">{% render 'pw-icon', icon: block.settings.icon %}</span>
+          <span>{% render 'pw-t', t: block.settings.text %}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Confianza",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "white"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Elemento",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "check-circle",
+              "label": "Check"
+            },
+            {
+              "value": "shield-check",
+              "label": "Escudo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja"
+            },
+            {
+              "value": "drop",
+              "label": "Gota (agua)"
+            },
+            {
+              "value": "scissors",
+              "label": "Tijeras (ajustable)"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "calendar",
+              "label": "Calendario"
+            },
+            {
+              "value": "refresh",
+              "label": "Renovar"
+            },
+            {
+              "value": "truck",
+              "label": "Camión"
+            },
+            {
+              "value": "lock",
+              "label": "Candado"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "paw",
+              "label": "Huella"
+            },
+            {
+              "value": "sparkle",
+              "label": "Destello"
+            },
+            {
+              "value": "moon",
+              "label": "Luna"
+            },
+            {
+              "value": "sun",
+              "label": "Sol"
+            },
+            {
+              "value": "wind",
+              "label": "Aroma"
+            },
+            {
+              "value": "smile",
+              "label": "Sonrisa"
+            },
+            {
+              "value": "ruler",
+              "label": "Regla (talla)"
+            },
+            {
+              "value": "home",
+              "label": "Casa"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "percent",
+              "label": "Porcentaje"
+            },
+            {
+              "value": "box",
+              "label": "Caja"
+            },
+            {
+              "value": "chat",
+              "label": "Chat"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo"
+            },
+            {
+              "value": "pin",
+              "label": "Ubicación"
+            },
+            {
+              "value": "bug",
+              "label": "Bicho"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "thermometer",
+              "label": "Termómetro"
+            },
+            {
+              "value": "mail",
+              "label": "Correo"
+            }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Free shipping on 2+ collars"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Confianza",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "text": "Free shipping on 2+ collars"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "shield-check",
+            "text": "[days]-day money-back guarantee"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "text": "Skip or cancel anytime"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

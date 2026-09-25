@@ -1,0 +1,55 @@
+{%- comment -%}
+  Pawlio · imagen editable con respaldo.
+  - image: imagen elegida en el editor (image_picker). Si existe, se sirve optimizada desde Shopify.
+  - fallback: enlace de imagen de respaldo (se usa si no se eligió imagen).
+  - alt, class, sizes, loading ('lazy' | 'eager'), position (ej. '50% 50%')
+{%- endcomment -%}
+{%- liquid
+  assign pw_loading = loading | default: 'lazy'
+  assign pw_sizes = sizes | default: '100vw'
+  assign pw_alt = alt | default: ''
+  assign pw_priority = 'auto'
+  if pw_loading == 'eager'
+    assign pw_priority = 'high'
+  endif
+-%}
+{%- if image != blank -%}
+  {%- liquid
+    assign pw_alt = image.alt | default: pw_alt
+    assign pw_pos = position
+    if image.presentation.focal_point != blank
+      assign pw_pos = image.presentation.focal_point
+    endif
+    assign pw_style = ''
+    if pw_pos != blank
+      assign pw_style = 'object-position: ' | append: pw_pos | append: ';'
+    endif
+  -%}
+  {{
+    image
+    | image_url: width: 2400
+    | image_tag:
+      loading: pw_loading,
+      fetchpriority: pw_priority,
+      sizes: pw_sizes,
+      widths: '360, 540, 720, 960, 1200, 1500, 1800, 2400',
+      class: class,
+      alt: pw_alt,
+      style: pw_style
+  }}
+{%- elsif fallback != blank -%}
+  <img
+    src="{{ fallback }}"
+    alt="{{ pw_alt | escape }}"
+    class="{{ class }}"
+    loading="{{ pw_loading }}"
+    fetchpriority="{{ pw_priority }}"
+    decoding="async"
+    width="{{ width | default: 1600 }}"
+    height="{{ height | default: 1600 }}"
+    {% if position != blank %}style="object-position: {{ position }};"{% endif %}
+  >
+{%- else -%}
+  {%- assign pw_ph_class = class | append: ' pw-placeholder' -%}
+  {{ 'lifestyle-2' | placeholder_svg_tag: pw_ph_class }}
+{%- endif -%}

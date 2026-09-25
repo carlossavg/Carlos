@@ -1,0 +1,231 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-on-{{ section.settings.bg }}" id="faq">
+  <div class="pw-container{% unless section.settings.layout == 'split' %} pw-container--narrow{% endunless %}">
+    <div class="pw-faq{% if section.settings.layout == 'split' %} pw-faq--split{% endif %}">
+      <div>
+        {%- render 'pw-head' -%}
+        {%- if section.settings.contact_text != blank -%}
+          <p class="pw-faq__contact pw-reveal">{% render 'pw-icon', icon: 'chat', size: 22 %}<span>{{ section.settings.contact_text }} <a href="mailto:{{ section.settings.email | default: shop.email }}">{{ section.settings.email | default: shop.email }}</a></span></p>
+        {%- endif -%}
+      </div>
+      <div class="pw-accordion pw-reveal">
+        {%- for block in section.blocks -%}
+          <details {{ block.shopify_attributes }}{% if forloop.first and section.settings.open_first %} open{% endif %}>
+            <summary>
+              <span>{% render 'pw-t', t: block.settings.question %}</span>
+              <span class="pw-accordion__toggle" aria-hidden="true">{% render 'pw-icon', icon: 'plus', size: 16, stroke: 2.2 %}</span>
+            </summary>
+            <div class="pw-accordion__content pw-rte">{% render 'pw-t', t: block.settings.answer %}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+  {%- if section.blocks.size > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {%- for block in section.blocks -%}
+            {%- capture q -%}{% render 'pw-t', t: block.settings.question %}{%- endcapture -%}
+            {%- capture a -%}{% render 'pw-t', t: block.settings.answer %}{%- endcapture -%}
+            { "@type": "Question", "name": {{ q | strip | json }}, "acceptedAnswer": { "@type": "Answer", "text": {{ a | strip_html | strip | json }} } }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Preguntas (FAQ)",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "FAQ"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Questions? <em>We've got answers.</em>"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Diseño",
+      "options": [
+        {
+          "value": "split",
+          "label": "Título a un lado"
+        },
+        {
+          "value": "stacked",
+          "label": "Título arriba"
+        }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Primera pregunta abierta",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Texto de contacto",
+      "default": "Still wondering? Email us:"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Correo (vacío = correo de la tienda)"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta",
+          "default": "How long does one collar last?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Respuesta",
+          "default": "<p>Each collar provides up to [months] months of protection.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Preguntas (FAQ)",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long does one collar last?",
+            "answer": "<p>Each collar provides up to [months] months of protection.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

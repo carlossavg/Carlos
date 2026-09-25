@@ -1,0 +1,340 @@
+{%- render 'pw-section-style' -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .pw-split__media { --pw-ratio: {% case section.settings.ratio %}{% when 'square' %}1 / 1{% when 'landscape' %}4 / 3{% else %}4 / 5{% endcase %}; }
+{%- endstyle -%}
+{%- liquid
+  assign pw_img = section.settings.image
+  if pw_img == blank and section.settings.image_url == blank and section.settings.use_product_image
+    assign pw_fp = settings.pw_featured_product
+    if template.name == 'product' and product != blank
+      assign pw_fp = product
+    endif
+    if pw_fp == blank
+      assign pw_fp = collections.all.products.first
+    endif
+    assign pw_img = pw_fp.featured_image
+  endif
+-%}
+<section class="pw pw-split-section pw-on-{{ section.settings.bg }}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %}>
+  <div class="pw-container pw-split pw-split--image-{{ section.settings.layout }}">
+    <div class="pw-split__media pw-media pw-reveal">
+      {%- render 'pw-image', image: pw_img, fallback: section.settings.image_url, position: section.settings.image_position, sizes: '(min-width: 990px) 50vw, 100vw', alt: section.settings.image_alt -%}
+      {%- if section.settings.float_title != blank -%}
+        <div class="pw-split__float">
+          <strong>{% render 'pw-t', t: section.settings.float_title %}</strong>
+          <span>{% render 'pw-t', t: section.settings.float_text %}</span>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="pw-split__content">
+      {%- render 'pw-head' -%}
+      {%- if section.settings.bullets != blank -%}
+        {%- assign bullets = section.settings.bullets | newline_to_br | split: '<br />' -%}
+        <ul class="pw-checklist pw-reveal" style="--pw-d:120ms">
+          {%- for b in bullets -%}
+            {%- assign t = b | strip -%}
+            {%- if t != blank -%}
+              <li><span class="pw-checklist__icon">{% render 'pw-icon', icon: 'check', size: 15, stroke: 2.6 %}</span><span>{% render 'pw-t', t: t %}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if section.settings.signature != blank -%}
+        <p class="pw-signature pw-reveal">{% render 'pw-t', t: section.settings.signature %}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <div class="pw-actions pw-reveal" style="--pw-d:200ms">
+          <a class="pw-btn pw-btn--{{ section.settings.button_style }}" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Imagen y texto",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "image_url",
+      "label": "Enlace de imagen de respaldo",
+      "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Enfoque de la imagen",
+      "options": [
+        {
+          "value": "50% 50%",
+          "label": "Centro"
+        },
+        {
+          "value": "50% 35%",
+          "label": "Centro, un poco arriba"
+        },
+        {
+          "value": "50% 20%",
+          "label": "Arriba"
+        },
+        {
+          "value": "50% 80%",
+          "label": "Abajo"
+        },
+        {
+          "value": "25% 50%",
+          "label": "Izquierda"
+        },
+        {
+          "value": "70% 50%",
+          "label": "Derecha"
+        }
+      ],
+      "default": "50% 50%"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_product_image",
+      "label": "Si no hay imagen, usar la foto del producto",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de la imagen"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Forma de la imagen",
+      "options": [
+        {
+          "value": "portrait",
+          "label": "Vertical"
+        },
+        {
+          "value": "square",
+          "label": "Cuadrada"
+        },
+        {
+          "value": "landscape",
+          "label": "Horizontal"
+        }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Imagen a la",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "float_title",
+      "label": "Tarjeta flotante: título (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "float_text",
+      "label": "Tarjeta flotante: texto"
+    },
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "Meet Pawlio"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "One collar. <em>Months of peace of mind.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Pawlio's slow-release collar surrounds your dog with plant-powered protection that helps keep fleas and ticks away — day and night, rain or shine.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "bullets",
+      "label": "Viñetas (una por línea)",
+      "default": "Clips on in 10 seconds\nWorks around the clock, rain or shine\nNothing to remember every month"
+    },
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Firma (opcional)"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón",
+      "default": "Protect my dog"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón (vacío = caja de compra / producto)"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Estilo del botón",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Verde"
+        },
+        {
+          "value": "ghost",
+          "label": "Contorno"
+        },
+        {
+          "value": "light",
+          "label": "Blanco"
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "ID para enlazar (opcional, ej. how)"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Imagen y texto"
+    }
+  ]
+}
+{% endschema %}

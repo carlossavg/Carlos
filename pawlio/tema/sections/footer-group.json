@@ -1,0 +1,27 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "pw-footer": {
+      "type": "pw-footer",
+      "settings": {
+        "logo_width": 150,
+        "tagline": "Plant-powered flea & tick protection for dogs who live life outside. Born in Puerto Rico.",
+        "show_social": true,
+        "menu_1_title": "Shop",
+        "menu_2_title": "Help",
+        "show_newsletter": true,
+        "news_title": "Join the pack",
+        "news_text": "Flea-season tips, new drops and members-only offers. No spam, ever.",
+        "news_placeholder": "Your email",
+        "news_button": "Join",
+        "news_success": "Welcome to the pack! Check your inbox.",
+        "show_payment_icons": true,
+        "padding_top": 72
+      }
+    }
+  },
+  "order": [
+    "pw-footer"
+  ]
+}

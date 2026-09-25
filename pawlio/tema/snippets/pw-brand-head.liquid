@@ -1,0 +1,70 @@
+{%- comment -%}
+  Pawlio · cabecera de marca: tipografía de títulos, colores de marca y favicon.
+  Se renderiza dentro del <head> en layout/theme.liquid.
+  Todo sale de Configuración del tema → "Pawlio · Marca".
+{%- endcomment -%}
+<script>
+  document.documentElement.classList.add('pw-js');
+  setTimeout(function () {
+    if (!window.pwReady) document.documentElement.classList.add('pw-ready-fallback');
+  }, 3500);
+</script>
+
+{%- if settings.favicon == blank -%}
+  <link rel="icon" type="image/svg+xml" href="{{ 'pw-favicon.svg' | asset_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'pw-favicon-32.png' | asset_url }}">
+{%- endif -%}
+<link rel="apple-touch-icon" href="{{ 'pw-apple-touch-icon.png' | asset_url }}">
+
+{%- liquid
+  assign pw_font = settings.pw_heading_font | default: 'fraunces'
+  case pw_font
+    when 'fraunces'
+      assign pw_font_url = 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..800,100&display=swap'
+      assign pw_font_family = "'Fraunces', Georgia, 'Times New Roman', serif"
+    when 'playfair'
+      assign pw_font_url = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500..800&display=swap'
+      assign pw_font_family = "'Playfair Display', Georgia, 'Times New Roman', serif"
+    when 'dmserif'
+      assign pw_font_url = 'https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap'
+      assign pw_font_family = "'DM Serif Display', Georgia, 'Times New Roman', serif"
+    else
+      assign pw_font_url = blank
+      assign pw_font_family = blank
+  endcase
+-%}
+
+{%- if pw_font_url != blank -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="{{ pw_font_url }}">
+{%- endif -%}
+
+{%- style -%}
+  :root {
+    --pw-forest: {{ settings.pw_color_forest | default: '#0E3B2E' }};
+    --pw-green: {{ settings.pw_color_green | default: '#12833F' }};
+    --pw-green-dark: {{ settings.pw_color_green_dark | default: '#0E6E34' }};
+    --pw-green-bright: {{ settings.pw_color_green_bright | default: '#1FA855' }};
+    --pw-cream: {{ settings.pw_color_cream | default: '#FAF6EE' }};
+    --pw-sand: {{ settings.pw_color_sand | default: '#F2EADB' }};
+    --pw-mint: {{ settings.pw_color_mint | default: '#E4F3E9' }};
+    --pw-white: #FFFFFF;
+    --pw-ink: {{ settings.pw_color_ink | default: '#15231C' }};
+    --pw-muted: {{ settings.pw_color_muted | default: '#5A6A62' }};
+    --pw-amber: {{ settings.pw_color_amber | default: '#F2B33D' }};
+    --pw-radius: {{ settings.pw_radius | default: 20 }}px;
+    --pw-btn-radius: {{ settings.pw_button_radius | default: 14 }}px;
+    {%- if pw_font_family != blank %}
+      --pw-font-heading: {{ pw_font_family }};
+      --font-heading-family: {{ pw_font_family }};
+      --font-heading-weight: 650;
+    {%- else %}
+      --pw-font-heading: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    {%- endif %}
+    --pw-font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+  }
+{%- endstyle -%}
+
+{{ 'pw-base.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'pw-main.js' | asset_url }}" defer="defer"></script>

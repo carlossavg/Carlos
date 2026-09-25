@@ -1,0 +1,8 @@
+{%- comment -%}
+  Pawlio · logotipo en texto (se usa si no hay logo subido en Configuración del tema → Logo).
+{%- endcomment -%}
+{%- assign pw_brand = settings.pw_brand_name | default: shop.name -%}
+<span class="pw-logo">
+  <span class="pw-logo__mark">{% render 'pw-icon', icon: 'paw-solid', size: 18 %}</span>
+  <span class="pw-logo__word">{{ pw_brand | escape }}</span>
+</span>

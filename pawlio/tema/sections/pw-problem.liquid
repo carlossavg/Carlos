@@ -1,0 +1,296 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-problem pw-problem--image-{{ section.settings.layout }} pw-on-{{ section.settings.bg }}">
+  <div class="pw-container pw-problem__grid">
+    <div class="pw-problem__media pw-media pw-reveal">
+      {%- render 'pw-image', image: section.settings.image, fallback: section.settings.image_url, position: section.settings.image_position, sizes: '(min-width: 990px) 45vw, 100vw', alt: section.settings.image_alt -%}
+      {%- if section.settings.tag != blank -%}
+        <span class="pw-problem__tag">{% render 'pw-icon', icon: 'bug', size: 20 %}{% render 'pw-t', t: section.settings.tag %}</span>
+      {%- endif -%}
+    </div>
+    <div class="pw-problem__content">
+      {%- render 'pw-head' -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="pw-stats">
+          {%- for block in section.blocks -%}
+            <div class="pw-stat pw-card pw-reveal{% if block.settings.wide %} pw-stat--wide{% endif %}" style="--pw-d: {{ forloop.index0 | times: 90 }}ms" {{ block.shopify_attributes }}>
+              <p class="pw-stat__num">{{ block.settings.prefix }}<span data-pw-count="{{ block.settings.value }}">{{ block.settings.value }}</span>{{ block.settings.suffix }}</p>
+              <p class="pw-stat__label">{% render 'pw-t', t: block.settings.label %}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.source != blank -%}
+        <p class="pw-source">{{ section.settings.source }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Problema",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "image_url",
+      "label": "Enlace de imagen de respaldo",
+      "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Enfoque de la imagen",
+      "options": [
+        {
+          "value": "50% 50%",
+          "label": "Centro"
+        },
+        {
+          "value": "50% 35%",
+          "label": "Centro, un poco arriba"
+        },
+        {
+          "value": "50% 20%",
+          "label": "Arriba"
+        },
+        {
+          "value": "50% 80%",
+          "label": "Abajo"
+        },
+        {
+          "value": "25% 50%",
+          "label": "Izquierda"
+        },
+        {
+          "value": "70% 50%",
+          "label": "Derecha"
+        }
+      ],
+      "default": "50% 50%"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de la imagen",
+      "default": "Dog scratching behind its ear"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Etiqueta sobre la imagen",
+      "default": "Sound familiar?"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Imagen a la",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "right",
+          "label": "Derecha"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "The problem"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Fleas don't just bite. <em>They move in.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>By the time you spot one flea on your dog, many more are hiding in the carpet, the couch and the bed you share. Every scratch means less sleep, more stress, and a dog who just doesn't feel like themselves.</p>"
+    },
+    {
+      "type": "text",
+      "id": "source",
+      "label": "Fuente de los datos",
+      "default": "Sources: VCA Animal Hospitals and veterinary parasitology references."
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Dato",
+      "settings": [
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Antes del número"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Número (se anima)",
+          "default": "50"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Después del número"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Texto",
+          "default": "eggs a single flea can lay every day"
+        },
+        {
+          "type": "checkbox",
+          "id": "wide",
+          "label": "Ocupar todo el ancho",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Problema",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "value": "50",
+            "label": "eggs a single female flea can lay every day"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "95",
+            "suffix": "%",
+            "label": "of a flea problem hides in your home, not on your dog"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

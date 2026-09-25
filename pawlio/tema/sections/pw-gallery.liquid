@@ -1,0 +1,212 @@
+{%- render 'pw-section-style' -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .pw-dogs { --pw-speed: {{ section.settings.speed }}s; }
+{%- endstyle -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container">
+    {%- render 'pw-head' -%}
+  </div>
+  {%- if section.blocks.size > 0 -%}
+    <div class="pw-dogs pw-reveal">
+      {%- for n in (1..2) -%}
+        <div class="pw-dogs__track"{% if n == 2 %} aria-hidden="true"{% endif %}>
+          {%- for block in section.blocks -%}
+            <figure class="pw-dog" {% if n == 1 %}{{ block.shopify_attributes }}{% endif %}>
+              <div class="pw-dog__img pw-media">
+                {%- render 'pw-image', image: block.settings.image, fallback: block.settings.image_url, sizes: '(min-width: 990px) 22vw, 60vw', alt: block.settings.caption -%}
+              </div>
+              {%- if block.settings.caption != blank -%}
+                <figcaption class="pw-dog__cap">{% render 'pw-icon', icon: 'paw-solid', size: 14 %}{% render 'pw-t', t: block.settings.caption %}</figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+  {%- if section.settings.button_label != blank -%}
+    <div class="pw-container"><div class="pw-actions pw-reveal" style="margin-top:36px">
+      <a class="pw-btn pw-btn--primary" href="{% render 'pw-cta-url', link: section.settings.button_link %}">{{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}</a>
+    </div></div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Galería perros",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "#PawlioPack"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Made for <em>every kind of pup</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Big or small, couch potato or trail runner — life's better without the itch.</p>"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Velocidad (segundos por vuelta)",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "s",
+      "default": 60
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón (opcional)"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Foto",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Enlace de imagen de respaldo"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Texto (ej. Beach days)",
+          "default": "Beach days"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Galería perros"
+    }
+  ]
+}
+{% endschema %}

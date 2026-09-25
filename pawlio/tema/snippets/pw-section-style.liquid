@@ -1,0 +1,34 @@
+{%- comment -%}
+  Pawlio · estilo común de cada sección: fondo, espacio arriba/abajo y tamaños de letra.
+  El espacio vertical vive SOLO en el contenedor de la sección, así "0" en el editor es 0 de verdad.
+{%- endcomment -%}
+{%- liquid
+  assign pw_pt = section.settings.padding_top | default: 0
+  assign pw_pb = section.settings.padding_bottom | default: 0
+  assign pw_bg = section.settings.bg | default: 'cream'
+  assign pw_pt_m = pw_pt | times: 0.66 | round
+  assign pw_pb_m = pw_pb | times: 0.66 | round
+  assign pw_h = section.settings.heading_size | default: 48
+  assign pw_h_m = pw_h | times: 0.72 | round
+  assign pw_b = section.settings.body_size | default: 18
+  assign pw_b_m = pw_b | minus: 1
+-%}
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background: var(--pw-{{ pw_bg }});
+    padding-top: {{ pw_pt_m }}px;
+    padding-bottom: {{ pw_pb_m }}px;
+    --pw-h2-size: {{ pw_h_m }}px;
+    --pw-body-size: {{ pw_b_m }}px;
+    --pw-text-align: {{ section.settings.text_align | default: 'center' }};
+    --pw-justify: {% if section.settings.text_align == 'left' %}start{% else %}center{% endif %};
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ pw_pt }}px;
+      padding-bottom: {{ pw_pb }}px;
+      --pw-h2-size: {{ pw_h }}px;
+      --pw-body-size: {{ pw_b }}px;
+    }
+  }
+{%- endstyle -%}

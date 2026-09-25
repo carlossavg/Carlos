@@ -1,0 +1,170 @@
+{
+  "sections": {
+    "hero": {
+      "type": "pw-hero",
+      "settings": {
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_dcf582f5-c6ff-4fb7-b8a9-d031a00fb6ac_min.webp",
+        "image_position": "50% 35%",
+        "mobile_image_url": "",
+        "image_alt": "Happy golden retriever running through a sunny meadow",
+        "eyebrow": "Our story",
+        "heading": "Made on an island where <em>flea season never ends.</em>",
+        "text": "[brand] started in Puerto Rico with one simple idea: protecting your dog should be easy, long-lasting and kind.",
+        "button_label": "Shop the collar",
+        "secondary_label": "",
+        "chips": "",
+        "heading_size": 80,
+        "shade": 55,
+        "height": 70,
+        "height_mobile": 76,
+        "text_align": "left",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "mission": {
+      "type": "pw-image-text",
+      "settings": {
+        "use_product_image": false,
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_081c1502-8569-4dff-97c0-97244cb00787_min.webp",
+        "image_position": "50% 35%",
+        "image_alt": "Happy dog on a beach in Puerto Rico",
+        "ratio": "portrait",
+        "layout": "right",
+        "float_title": "",
+        "float_text": "",
+        "eyebrow": "Why we exist",
+        "heading": "Dogs are family. <em>Their protection should be simple.</em>",
+        "text": "<p>On our island, heat and humidity mean fleas and ticks never take a day off. We were tired of greasy monthly drops, forgotten doses and harsh chemicals — so we started [brand] with one mission: make flea &amp; tick protection simple, long-lasting and plant-powered.</p><p>Every order is backed by real people who love dogs as much as you do.</p>",
+        "bullets": "Plant-powered protection\nMonths per collar, not weeks\nReal humans behind every order",
+        "signature": "— The [brand] team, Puerto Rico",
+        "button_label": "Protect my dog",
+        "button_style": "primary",
+        "anchor": "",
+        "bg": "sand",
+        "text_align": "left",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "benefits": {
+      "type": "pw-benefits",
+      "settings": {
+        "eyebrow": "Why dog parents switch",
+        "heading": "Everything they need. <em>Nothing they don't.</em>",
+        "columns": "3",
+        "bg": "white",
+        "text_align": "center",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "bn-1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "title": "Plant-powered",
+            "text": "Made with plant-derived essential oils instead of harsh synthetic chemicals."
+          }
+        },
+        "bn-2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "clock",
+            "title": "Lasts for months",
+            "text": "Up to [months] months per collar — far fewer things to remember than monthly drops."
+          }
+        },
+        "bn-3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "title": "Waterproof",
+            "text": "Baths, beach days and rainy walks don't slow it down."
+          }
+        },
+        "bn-4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "ruler",
+            "title": "Fits every breed",
+            "text": "Adjustable and cut-to-fit, from chihuahuas to great danes."
+          }
+        },
+        "bn-5": {
+          "type": "benefit",
+          "settings": {
+            "icon": "wind",
+            "title": "Light, fresh scent",
+            "text": "A gentle plant scent — not a chemical cloud."
+          }
+        },
+        "bn-6": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Mess-free",
+            "text": "No greasy residue on fur, furniture or hands."
+          }
+        }
+      },
+      "block_order": [
+        "bn-1",
+        "bn-2",
+        "bn-3",
+        "bn-4",
+        "bn-5",
+        "bn-6"
+      ]
+    },
+    "guarantee": {
+      "type": "pw-guarantee",
+      "settings": {
+        "seal_number": "[days]",
+        "seal_unit": "Days",
+        "ring_text": "Money-back guarantee • Happy dog promise • ",
+        "eyebrow": "Zero risk",
+        "heading": "The <em>Happy Dog</em> Guarantee",
+        "text": "<p>Try [brand] for a full [days] days. If you and your pup aren't completely happy, email us and we'll refund your order. That's how sure we are.</p>",
+        "points": "Full refund within [days] days\nReal humans answer every email\nNo complicated forms",
+        "button_label": "Try it risk-free",
+        "bg": "cream",
+        "text_align": "center",
+        "heading_size": 48,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    },
+    "cta": {
+      "type": "pw-cta",
+      "settings": {
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_cc7da924-b45f-4e8c-87bc-8b5de73704fd_min.webp",
+        "image_position": "50% 35%",
+        "image_alt": "Happy beagle smiling at the camera",
+        "eyebrow": "Ready when you are",
+        "heading": "Give your dog <em>months</em> of itch-free days.",
+        "text": "Plant-powered. Waterproof. Backed by our [days]-day guarantee.",
+        "button_label": "Protect my dog",
+        "chips": "Free shipping on 2+\nCancel anytime",
+        "bg": "cream",
+        "text_align": "left",
+        "heading_size": 48,
+        "body_size": 18,
+        "padding_top": 32,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "mission",
+    "benefits",
+    "guarantee",
+    "cta"
+  ]
+}

@@ -1,0 +1,23 @@
+{%- comment -%}
+  Pawlio · a dónde lleva un botón.
+  - link: enlace elegido en el editor. Si está vacío:
+    en la página del producto baja a la caja de compra (#pw-buy);
+    en otras páginas lleva al producto principal (Configuración del tema → Pawlio · Marca).
+{%- endcomment -%}
+{%- liquid
+  if link != blank
+    echo link
+  elsif template.name == 'product'
+    echo '#pw-buy'
+  else
+    assign pw_fp = settings.pw_featured_product
+    if pw_fp == blank
+      assign pw_fp = collections.all.products.first
+    endif
+    if pw_fp != blank
+      echo pw_fp.url
+    else
+      echo routes.all_products_collection_url
+    endif
+  endif
+-%}

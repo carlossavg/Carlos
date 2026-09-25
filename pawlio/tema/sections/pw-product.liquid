@@ -1,0 +1,1015 @@
+{%- comment -%}
+  PAWLIO · Caja de compra
+  - En la página del producto usa ese producto. En otras páginas usa el producto elegido aquí
+    (o el "Producto principal" de Configuración del tema → Pawlio · Marca).
+  - Bundles: la opción de variante llamada "Pack" (o la que pongas en "Nombre de la opción de bundle")
+    se muestra como tarjetas grandes. Cada tarjeta se personaliza con un bloque "Tarjeta de bundle".
+  - Suscripción: aparece sola cuando el producto tiene un plan de la app Shopify Subscriptions.
+{%- endcomment -%}
+{%- liquid
+  assign pw_product = product
+  if template.name != 'product' or pw_product == blank
+    assign pw_product = section.settings.product
+    if pw_product == blank
+      assign pw_product = settings.pw_featured_product
+    endif
+    if pw_product == blank
+      assign pw_product = collections.all.products.first
+    endif
+  endif
+  assign sid = section.id
+-%}
+
+{%- render 'pw-section-style' -%}
+{%- style -%}
+  #shopify-section-{{ sid }} {
+    --pw-media-ratio: {% case section.settings.media_ratio %}{% when 'portrait' %}4 / 5{% when 'landscape' %}4 / 3{% else %}1 / 1{% endcase %};
+    --pw-media-fit: {{ section.settings.media_fit }};
+    --pw-title-size: {{ section.settings.title_size }}px;
+    --pw-title-size-m: {{ section.settings.title_size | times: 0.78 | round }}px;
+  }
+{%- endstyle -%}
+
+{%- if pw_product == blank -%}
+  <section class="pw pw-product">
+    <div class="pw-container pw-head">
+      <p class="pw-eyebrow">Pawlio</p>
+      <h2 class="pw-h2">Add your product</h2>
+      <p class="pw-lead">Create a product in Shopify (Products → Add product) and it will appear here automatically.</p>
+    </div>
+  </section>
+{%- else -%}
+  {%- liquid
+    assign current_variant = pw_product.selected_or_first_available_variant
+    assign on_product_page = false
+    if template.name == 'product' and product != blank
+      assign on_product_page = true
+    endif
+
+    comment
+      Opción que se muestra como tarjetas de bundle
+    endcomment
+    assign bundle_key = section.settings.bundle_option_name | strip | downcase
+    assign bundle_index = -1
+    if pw_product.has_only_default_variant == false
+      for option in pw_product.options_with_values
+        assign oname = option.name | strip | downcase
+        if bundle_key != blank and oname == bundle_key
+          assign bundle_index = forloop.index0
+        endif
+      endfor
+      if bundle_index == -1 and pw_product.options.size == 1
+        assign bundle_index = 0
+      endif
+    endif
+
+    comment
+      Tarjeta marcada al entrar (si el cliente no llegó con una variante en el enlace)
+    endcomment
+    if bundle_index >= 0 and pw_product.selected_variant == blank
+      for b in section.blocks
+        if b.type == 'bundle' and b.settings.preselect
+          assign pre_key = b.settings.option_value | strip | downcase
+          for v in pw_product.variants
+            assign v_key = v.options[bundle_index] | strip | downcase
+            if v_key == pre_key and v.available
+              assign current_variant = v
+              break
+            endif
+          endfor
+        endif
+      endfor
+    endif
+
+    comment
+      Unidades por tarjeta y precio base de 1 unidad (para "ahorras X%")
+    endcomment
+    assign baseline = 0
+    if bundle_index >= 0
+      for v in pw_product.variants
+        assign vname = v.options[bundle_index]
+        assign vkey = vname | strip | downcase
+        assign u = vname | split: ' ' | first | plus: 0
+        for b in section.blocks
+          if b.type == 'bundle'
+            assign bkey = b.settings.option_value | strip | downcase
+            if bkey == vkey
+              assign u = b.settings.units
+            endif
+          endif
+        endfor
+        if u == 1
+          if baseline == 0 or v.price < baseline
+            assign baseline = v.price
+          endif
+        endif
+      endfor
+    endif
+
+    comment
+      Suscripción
+    endcomment
+    assign default_plan = pw_product.selected_selling_plan
+    if default_plan == blank and pw_product.selling_plan_groups.size > 0
+      assign default_plan = pw_product.selling_plan_groups.first.selling_plans.first
+    endif
+    assign subs_enabled = false
+    if section.settings.enable_subscriptions and default_plan != blank
+      assign subs_enabled = true
+    endif
+    assign current_has_plan = false
+    if subs_enabled
+      for a in current_variant.selling_plan_allocations
+        if a.selling_plan.id == default_plan.id
+          assign current_has_plan = true
+        endif
+      endfor
+    endif
+    assign purchase_mode = 'onetime'
+    if current_has_plan
+      if section.settings.default_purchase == 'subscription' or pw_product.requires_selling_plan
+        assign purchase_mode = 'subscription'
+      endif
+    endif
+    assign plan_count = 0
+    for group in pw_product.selling_plan_groups
+      assign plan_count = plan_count | plus: group.selling_plans.size
+    endfor
+
+    assign form_id = 'pw-form-' | append: sid
+  -%}
+
+  <product-component view-event-payload="{{ pw_product | standard_event_data: 'view', context: 'page' | escape }}">
+    <section
+      class="pw pw-product pw-product--media-{{ section.settings.media_position }} pw-on-{{ section.settings.bg }}"
+      id="pw-buy"
+      data-pw-product
+      data-purchase="{{ purchase_mode }}"
+      {% if default_plan != blank %}data-plan="{{ default_plan.id }}"{% endif %}
+      {% if on_product_page %}data-update-url{% endif %}
+    >
+      <div class="pw-container pw-product__grid">
+        {%- comment -%} Galería {%- endcomment -%}
+        <div class="pw-product__media">
+          {%- assign media_count = pw_product.media.size -%}
+          <div class="pw-gallery{% if media_count > 1 %} pw-gallery--multi{% endif %}" data-pw-gallery>
+            <div class="pw-gallery__main">
+              <div class="pw-gallery__track" data-pw-track>
+                {%- for media in pw_product.media -%}
+                  {%- liquid
+                    assign ld = 'lazy'
+                    assign fp = 'auto'
+                    if forloop.first and on_product_page
+                      assign ld = 'eager'
+                      assign fp = 'high'
+                    endif
+                  -%}
+                  <div class="pw-gallery__slide" data-media-id="{{ media.id }}" data-index="{{ forloop.index0 }}">
+                    {%- case media.media_type -%}
+                      {%- when 'video' -%}
+                        {{ media | video_tag: controls: true, muted: true, loop: true, playsinline: true, image_size: '1400x' }}
+                      {%- when 'external_video' -%}
+                        {{ media | external_video_tag }}
+                      {%- when 'image' -%}
+                        {{
+                          media
+                          | image_url: width: 1800
+                          | image_tag:
+                            loading: ld,
+                            fetchpriority: fp,
+                            sizes: '(min-width: 990px) 55vw, 100vw',
+                            widths: '375, 550, 750, 1000, 1300, 1600, 1800',
+                            alt: media.alt
+                        }}
+                      {%- else -%}
+                        {{ media.preview_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: media.alt }}
+                    {%- endcase -%}
+                  </div>
+                {%- else -%}
+                  <div class="pw-gallery__slide">{{ 'product-1' | placeholder_svg_tag: 'pw-placeholder' }}</div>
+                {%- endfor -%}
+              </div>
+
+              {%- if section.settings.media_badge != blank -%}
+                <span class="pw-gallery__badge">
+                  {%- render 'pw-icon', icon: section.settings.media_badge_icon -%}
+                  {{ section.settings.media_badge }}
+                </span>
+              {%- endif -%}
+
+              {%- if media_count > 1 -%}
+                <button type="button" class="pw-gallery__nav pw-gallery__nav--prev" data-pw-prev aria-label="Previous image">
+                  {%- render 'pw-icon', icon: 'arrow-right', size: 20 -%}
+                </button>
+                <button type="button" class="pw-gallery__nav pw-gallery__nav--next" data-pw-next aria-label="Next image">
+                  {%- render 'pw-icon', icon: 'arrow-right', size: 20 -%}
+                </button>
+                <div class="pw-gallery__dots">
+                  {%- for media in pw_product.media -%}
+                    <button
+                      type="button"
+                      class="pw-gallery__dot{% if forloop.first %} is-active{% endif %}"
+                      data-pw-dot
+                      data-index="{{ forloop.index0 }}"
+                      aria-label="Image {{ forloop.index }} of {{ media_count }}"
+                    ></button>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+
+            {%- if media_count > 1 -%}
+              <div class="pw-gallery__thumbs">
+                {%- for media in pw_product.media -%}
+                  <button
+                    type="button"
+                    class="pw-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+                    data-pw-thumb
+                    data-index="{{ forloop.index0 }}"
+                    aria-label="Show image {{ forloop.index }}"
+                  >
+                    {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', alt: '' }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- comment -%} Información y compra {%- endcomment -%}
+        <div class="pw-product__info">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="pw-eyebrow">{% render 'pw-t', t: section.settings.eyebrow %}</p>
+          {%- endif -%}
+
+          {%- if section.settings.show_rating and pw_product.metafields.reviews.rating.value != blank -%}
+            {%- liquid
+              assign rating = pw_product.metafields.reviews.rating.value
+              assign rating_rounded = rating.rating | round
+              assign rating_count = pw_product.metafields.reviews.rating_count.value | default: 0
+            -%}
+            <a href="#pw-reviews" class="pw-product__rating">
+              <span class="pw-stars" aria-hidden="true">
+                {%- for i in (1..5) -%}
+                  <span{% if i > rating_rounded %} style="opacity:.3"{% endif %}>{% render 'pw-icon', icon: 'star', size: 18 %}</span>
+                {%- endfor -%}
+              </span>
+              <span>{{ rating.rating | round: 1 }} ({{ rating_count }} {{ section.settings.reviews_word }})</span>
+            </a>
+          {%- endif -%}
+
+          {%- if on_product_page -%}
+            <h1 class="pw-product__title">{{ pw_product.title | escape }}</h1>
+          {%- else -%}
+            <h2 class="pw-product__title">
+              <a href="{{ pw_product.url }}" style="text-decoration:none;color:inherit">{{ pw_product.title | escape }}</a>
+            </h2>
+          {%- endif -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == '@app' -%}
+              <div {{ block.shopify_attributes }}>{% render block %}</div>
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if section.settings.tagline != blank -%}
+            <p class="pw-product__tagline">{% render 'pw-t', t: section.settings.tagline %}</p>
+          {%- endif -%}
+
+          {%- if section.settings.show_price_row -%}
+            <div class="pw-product__price-row">
+              <span class="pw-product__price" data-pw-price>{{ current_variant.price | money }}</span>
+              <s class="pw-product__compare" data-pw-compare hidden></s>
+              <span class="pw-pill" data-pw-save-badge hidden></span>
+            </div>
+          {%- endif -%}
+
+          {%- assign has_benefits = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'benefit' -%}{%- assign has_benefits = true -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if has_benefits -%}
+            <ul class="pw-benefits-list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'benefit' -%}
+                  <li {{ block.shopify_attributes }}>
+                    <span class="pw-benefits-list__icon">{% render 'pw-icon', icon: block.settings.icon %}</span>
+                    <span>{% render 'pw-t', t: block.settings.text %}</span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          {%- comment -%} Opciones que NO son el bundle (ej. talla) {%- endcomment -%}
+          {%- unless pw_product.has_only_default_variant -%}
+            {%- for option in pw_product.options_with_values -%}
+              {%- if forloop.index0 != bundle_index -%}
+                {%- assign opt_index = forloop.index0 -%}
+                {%- assign opt_lower = option.name | downcase -%}
+                {%- assign is_color = false -%}
+                {%- if opt_lower contains 'color' or opt_lower contains 'colour' -%}{%- assign is_color = true -%}{%- endif -%}
+                <fieldset class="pw-fieldset">
+                  <legend class="pw-label">{{ option.name }}</legend>
+                  <div class="pw-options">
+                    {%- for value in option.values -%}
+                      {%- assign vname = value.name | default: value -%}
+                      <label class="pw-option{% if is_color %} pw-option--swatch{% endif %}">
+                        <input
+                          type="radio"
+                          name="pw-opt-{{ sid }}-{{ opt_index }}"
+                          value="{{ vname | escape }}"
+                          data-pw-option="{{ opt_index }}"
+                          {% if current_variant.options[opt_index] == vname %}checked{% endif %}
+                        >
+                        <span>
+                          {%- if is_color -%}
+                            {%- if value.swatch.color -%}
+                              {%- assign sw = 'rgb(' | append: value.swatch.color.rgb | append: ')' -%}
+                            {%- else -%}
+                              {%- assign sw = vname | downcase | remove: ' ' -%}
+                            {%- endif -%}
+                            <i class="pw-swatch" style="--sw: {{ sw }}"></i>
+                          {%- endif -%}
+                          {{ vname }}
+                        </span>
+                      </label>
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endunless -%}
+
+          {%- comment -%} Tarjetas de bundle {%- endcomment -%}
+          {%- if bundle_index >= 0 -%}
+            {%- assign bundle_option = pw_product.options_with_values[bundle_index] -%}
+            <fieldset class="pw-fieldset">
+              <legend class="pw-label">
+                <span>{{ section.settings.bundle_heading | default: bundle_option.name }}</span>
+                {%- if section.settings.bundle_hint != blank -%}
+                  <span class="pw-label__hint">{{ section.settings.bundle_hint }}</span>
+                {%- endif -%}
+              </legend>
+              <div class="pw-bundles">
+                {%- for value in bundle_option.values -%}
+                  {%- liquid
+                    assign vname = value.name | default: value
+                    assign vkey = vname | strip | downcase
+                    assign card = nil
+                    for b in section.blocks
+                      if b.type == 'bundle'
+                        assign bkey = b.settings.option_value | strip | downcase
+                        if bkey == vkey
+                          assign card = b
+                        endif
+                      endif
+                    endfor
+
+                    assign card_variant = nil
+                    for v in pw_product.variants
+                      assign is_match = true
+                      for opt in v.options
+                        if forloop.index0 == bundle_index
+                          if opt != vname
+                            assign is_match = false
+                          endif
+                        else
+                          assign cur_opt = current_variant.options[forloop.index0]
+                          if opt != cur_opt
+                            assign is_match = false
+                          endif
+                        endif
+                      endfor
+                      if is_match
+                        assign card_variant = v
+                        break
+                      endif
+                    endfor
+                    if card_variant == nil
+                      for v in pw_product.variants
+                        if v.options[bundle_index] == vname
+                          assign card_variant = v
+                          break
+                        endif
+                      endfor
+                    endif
+
+                    assign u = vname | split: ' ' | first | plus: 0
+                    if card
+                      assign u = card.settings.units
+                    endif
+                    if u < 1
+                      assign u = 1
+                    endif
+
+                    assign c_price = card_variant.price
+                    assign c_strike = 0
+                    assign c_base = baseline | times: u
+                    if card_variant.compare_at_price > card_variant.price
+                      assign c_strike = card_variant.compare_at_price
+                    elsif c_base > card_variant.price
+                      assign c_strike = c_base
+                    endif
+                    if purchase_mode == 'subscription'
+                      for a in card_variant.selling_plan_allocations
+                        if a.selling_plan.id == default_plan.id
+                          assign c_price = a.price
+                          if card_variant.price > c_strike
+                            assign c_strike = card_variant.price
+                          endif
+                        endif
+                      endfor
+                    endif
+                    if c_strike <= c_price
+                      assign c_strike = 0
+                    endif
+                    assign c_unit = c_price | divided_by: u
+                    assign c_save = 0
+                    if c_strike > 0
+                      assign c_save = c_strike | minus: c_price | times: 100 | divided_by: c_strike
+                    endif
+                    assign is_checked = false
+                    if current_variant.options[bundle_index] == vname
+                      assign is_checked = true
+                    endif
+
+                    assign c_title = vname
+                    if card and card.settings.title != blank
+                      assign c_title = card.settings.title
+                    endif
+                  -%}
+                  {%- capture c_sub_once -%}{%- if card -%}{% render 'pw-t', t: card.settings.subtitle %}{%- endif -%}{%- endcapture -%}
+                  {%- capture c_sub_sub -%}{%- if card -%}{% render 'pw-t', t: card.settings.subtitle_subscription %}{%- endif -%}{%- endcapture -%}
+                  {%- liquid
+                    assign c_sub_once = c_sub_once | strip
+                    assign c_sub_sub = c_sub_sub | strip
+                    assign c_sub_now = c_sub_once
+                    if purchase_mode == 'subscription' and c_sub_sub != blank
+                      assign c_sub_now = c_sub_sub
+                    endif
+                  -%}
+                  <label
+                    class="pw-bundle{% if is_checked %} is-selected{% endif %}{% if card_variant.available == false %} is-unavailable{% endif %}"
+                    data-pw-card
+                    {% if card %}{{ card.shopify_attributes }}{% endif %}
+                  >
+                    <input
+                      type="radio"
+                      name="pw-opt-{{ sid }}-{{ bundle_index }}"
+                      value="{{ vname | escape }}"
+                      data-pw-option="{{ bundle_index }}"
+                      {% if is_checked %}checked{% endif %}
+                    >
+                    {%- if card and card.settings.badge != blank -%}
+                      <span class="pw-pill pw-pill--{{ card.settings.badge_style }} pw-bundle__badge">{{ card.settings.badge }}</span>
+                    {%- endif -%}
+                    <span class="pw-pill pw-pill--amber pw-bundle__save" data-save {% if c_save <= 0 %}hidden{% endif %}>
+                      {%- if c_save > 0 -%}
+                        {%- assign c_save_amt = c_strike | minus: c_price | money -%}
+                        {%- assign c_pct = c_save | append: '%' -%}
+                        {{- section.settings.save_label | replace: '[percent]', c_pct | replace: '[amount]', c_save_amt -}}
+                      {%- endif -%}
+                    </span>
+                    <span class="pw-bundle__radio" aria-hidden="true"></span>
+                    <span class="pw-bundle__body">
+                      <span class="pw-bundle__title">{{ c_title }}</span>
+                      <span
+                        class="pw-bundle__sub"
+                        data-sub-onetime="{{ c_sub_once | escape }}"
+                        data-sub-subscription="{{ c_sub_sub | escape }}"
+                        {% if c_sub_once == blank and c_sub_sub == blank %}hidden{% endif %}
+                      >
+                        {{- c_sub_now -}}
+                      </span>
+                      {%- if card and card.settings.perks != blank -%}
+                        <span class="pw-bundle__perks">
+                          {%- assign perks = card.settings.perks | newline_to_br | split: '<br />' -%}
+                          {%- for perk in perks -%}
+                            {%- assign perk_clean = perk | strip -%}
+                            {%- if perk_clean != blank -%}
+                              <span class="pw-bundle__perk">{% render 'pw-icon', icon: 'check', size: 13, stroke: 2.6 %}{% render 'pw-t', t: perk_clean %}</span>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </span>
+                      {%- endif -%}
+                    </span>
+                    <span class="pw-bundle__pricing">
+                      <span class="pw-bundle__price" data-price>{{ c_price | money }}</span>
+                      <s class="pw-bundle__compare" data-compare {% if c_strike == 0 %}hidden{% endif %}>
+                        {%- if c_strike > 0 %}{{ c_strike | money }}{% endif -%}
+                      </s>
+                      <span class="pw-bundle__unit" data-unit {% if u <= 1 %}hidden{% endif %}>
+                        {%- if u > 1 -%}
+                          {{- section.settings.per_unit_label | replace: '[price]', c_unit | money -}}
+                        {%- endif -%}
+                      </span>
+                    </span>
+                  </label>
+                {%- endfor -%}
+              </div>
+            </fieldset>
+          {%- endif -%}
+
+          {%- comment -%} Suscripción o compra única {%- endcomment -%}
+          {%- if subs_enabled -%}
+            {%- liquid
+              assign once_price = current_variant.price
+              assign sub_price = current_variant.price
+              for a in current_variant.selling_plan_allocations
+                if a.selling_plan.id == default_plan.id
+                  assign sub_price = a.price
+                endif
+              endfor
+            -%}
+            <fieldset class="pw-fieldset" data-pw-purchase-box {% unless current_has_plan %}hidden{% endunless %}>
+              <legend class="pw-label">{{ section.settings.purchase_heading }}</legend>
+              <div class="pw-purchase">
+                <label class="pw-purchase__opt{% if purchase_mode == 'subscription' %} is-selected{% endif %}" data-pw-purchase="subscription">
+                  <input type="radio" name="pw-purchase-{{ sid }}" value="subscription" data-pw-purchase-input {% if purchase_mode == 'subscription' %}checked{% endif %}>
+                  <span class="pw-purchase__row">
+                    <span class="pw-purchase__radio" aria-hidden="true"></span>
+                    <span class="pw-purchase__title">
+                      {{ section.settings.subscribe_title }}
+                      <span class="pw-pill" data-sub-badge hidden></span>
+                    </span>
+                    <span class="pw-purchase__price">
+                      <strong data-sub-price>{{ sub_price | money }}</strong>
+                      <s data-sub-compare {% if sub_price >= once_price %}hidden{% endif %}>{{ once_price | money }}</s>
+                    </span>
+                  </span>
+                  <span class="pw-purchase__details">
+                    {%- if section.settings.subscribe_perks != blank -%}
+                      <ul class="pw-purchase__perks">
+                        {%- assign sperks = section.settings.subscribe_perks | newline_to_br | split: '<br />' -%}
+                        {%- for perk in sperks -%}
+                          {%- assign perk_clean = perk | strip -%}
+                          {%- if perk_clean != blank -%}
+                            <li>{% render 'pw-icon', icon: 'check-circle', size: 17 %}<span>{% render 'pw-t', t: perk_clean %}</span></li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                    {%- if plan_count > 1 -%}
+                      <select class="pw-select" data-pw-plan-select aria-label="{{ section.settings.plan_select_label | escape }}">
+                        {%- for group in pw_product.selling_plan_groups -%}
+                          {%- for plan in group.selling_plans -%}
+                            <option value="{{ plan.id }}" {% if plan.id == default_plan.id %}selected{% endif %}>{{ plan.name }}</option>
+                          {%- endfor -%}
+                        {%- endfor -%}
+                      </select>
+                    {%- else -%}
+                      <p class="pw-small" data-plan-name>{{ default_plan.name }}</p>
+                    {%- endif -%}
+                  </span>
+                </label>
+                {%- unless pw_product.requires_selling_plan -%}
+                  <label class="pw-purchase__opt{% if purchase_mode == 'onetime' %} is-selected{% endif %}" data-pw-purchase="onetime">
+                    <input type="radio" name="pw-purchase-{{ sid }}" value="onetime" data-pw-purchase-input {% if purchase_mode == 'onetime' %}checked{% endif %}>
+                    <span class="pw-purchase__row">
+                      <span class="pw-purchase__radio" aria-hidden="true"></span>
+                      <span class="pw-purchase__title">{{ section.settings.onetime_title }}</span>
+                      <span class="pw-purchase__price">
+                        <strong data-once-price>{{ once_price | money }}</strong>
+                        <s data-once-compare hidden></s>
+                      </span>
+                    </span>
+                  </label>
+                {%- endunless -%}
+              </div>
+            </fieldset>
+          {%- endif -%}
+
+          {%- if section.settings.show_quantity -%}
+            <div>
+              <p class="pw-label">{{ section.settings.quantity_label }}</p>
+              <div class="pw-qty" data-pw-qty>
+                <button type="button" data-step="down" aria-label="Decrease quantity">{% render 'pw-icon', icon: 'minus', size: 18 %}</button>
+                <input type="number" min="1" value="1" inputmode="numeric" aria-label="{{ section.settings.quantity_label | escape }}">
+                <button type="button" data-step="up" aria-label="Increase quantity">{% render 'pw-icon', icon: 'plus', size: 18 %}</button>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Formulario real (usa el carrito de Dawn) {%- endcomment -%}
+          <product-form class="pw-product-form" data-hide-errors="false" data-section-id="{{ sid }}">
+            {%- form 'product', pw_product, id: form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ current_variant.id }}">
+              <input
+                type="hidden"
+                name="selling_plan"
+                value="{% if purchase_mode == 'subscription' %}{{ default_plan.id }}{% endif %}"
+                {% if purchase_mode != 'subscription' %}disabled{% endif %}
+              >
+              <input type="hidden" name="quantity" value="1">
+              <div class="product-form__error-message-wrapper pw-form-error" role="alert" hidden>
+                {%- render 'pw-icon', icon: 'x-circle', size: 20 -%}
+                <span class="product-form__error-message"></span>
+              </div>
+              {%- liquid
+                assign atc_price = current_variant.price
+                if purchase_mode == 'subscription'
+                  for a in current_variant.selling_plan_allocations
+                    if a.selling_plan.id == default_plan.id
+                      assign atc_price = a.price
+                    endif
+                  endfor
+                endif
+              -%}
+              <button
+                type="submit"
+                name="add"
+                class="pw-btn pw-btn--primary pw-atc{% if section.settings.button_shine %} pw-btn--shine{% endif %}"
+                data-pw-atc
+                {% if current_variant.available == false %}disabled{% endif %}
+              >
+                <span class="pw-atc__label" data-pw-atc-label>
+                  {%- if current_variant.available -%}
+                    {{ section.settings.button_label }}
+                  {%- else -%}
+                    {{ section.settings.sold_out_label }}
+                  {%- endif -%}
+                </span>
+                {%- if section.settings.button_price -%}
+                  <span class="pw-atc__sep" aria-hidden="true">·</span>
+                  <span class="pw-atc__price" data-pw-atc-price>{{ atc_price | money }}</span>
+                {%- endif -%}
+                <span class="sold-out-message hidden">{{ section.settings.sold_out_label }}</span>
+                {%- render 'loading-spinner' -%}
+              </button>
+              {%- if section.settings.show_dynamic_checkout -%}
+                <div style="margin-top:10px">{{ form | payment_button }}</div>
+              {%- endif -%}
+            {%- endform -%}
+          </product-form>
+
+          <p class="pw-disclosure" data-pw-disclosure hidden></p>
+
+          {%- if section.settings.assurance_1 != blank or section.settings.assurance_2 != blank or section.settings.assurance_3 != blank -%}
+            <ul class="pw-assurance">
+              {%- if section.settings.assurance_1 != blank -%}
+                <li>{% render 'pw-icon', icon: section.settings.assurance_1_icon %}<span>{% render 'pw-t', t: section.settings.assurance_1 %}</span></li>
+              {%- endif -%}
+              {%- if section.settings.assurance_2 != blank -%}
+                <li>{% render 'pw-icon', icon: section.settings.assurance_2_icon %}<span>{% render 'pw-t', t: section.settings.assurance_2 %}</span></li>
+              {%- endif -%}
+              {%- if section.settings.assurance_3 != blank -%}
+                <li>{% render 'pw-icon', icon: section.settings.assurance_3_icon %}<span>{% render 'pw-t', t: section.settings.assurance_3 %}</span></li>
+              {%- endif -%}
+            </ul>
+          {%- endif -%}
+
+          {%- if section.settings.show_delivery -%}
+            <p
+              class="pw-delivery"
+              data-pw-delivery
+              data-min="{{ section.settings.delivery_min }}"
+              data-max="{{ section.settings.delivery_max }}"
+              data-template="{{ section.settings.delivery_text | escape }}"
+              hidden
+            >
+              {%- render 'pw-icon', icon: 'truck', size: 22 -%}
+              <span data-pw-delivery-text></span>
+            </p>
+          {%- endif -%}
+
+          {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+            <ul class="pw-payments" role="list" aria-label="Payment methods">
+              {%- for type in shop.enabled_payment_types -%}
+                <li>{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          {%- if section.settings.show_guarantee -%}
+            <div class="pw-guarantee-card">
+              <span class="pw-guarantee-card__seal" aria-hidden="true">
+                <span>{% render 'pw-t', t: section.settings.guarantee_days %}<small>{{ section.settings.guarantee_unit }}</small></span>
+              </span>
+              <div>
+                <strong>{% render 'pw-t', t: section.settings.guarantee_title %}</strong>
+                <p>{% render 'pw-t', t: section.settings.guarantee_text %}</p>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- assign has_tabs = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab' -%}{%- assign has_tabs = true -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if has_tabs -%}
+            <div class="pw-accordion">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'tab' -%}
+                  <details {{ block.shopify_attributes }} {% if block.settings.open %}open{% endif %}>
+                    <summary>
+                      {%- render 'pw-icon', icon: block.settings.icon, size: 22 -%}
+                      <span>{{ block.settings.title }}</span>
+                      <span class="pw-accordion__toggle" aria-hidden="true">{% render 'pw-icon', icon: 'plus', size: 16, stroke: 2.2 %}</span>
+                    </summary>
+                    <div class="pw-accordion__content pw-rte">
+                      {%- if block.settings.use_description and pw_product.description != blank -%}
+                        {{ pw_product.description }}
+                      {%- else -%}
+                        {% render 'pw-t', t: block.settings.content %}
+                      {%- endif -%}
+                    </div>
+                  </details>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if section.settings.show_sticky -%}
+        <div class="pw-sticky" data-pw-sticky aria-hidden="true" inert>
+          <div class="pw-sticky__inner">
+            <div class="pw-sticky__img">
+              {%- if pw_product.featured_media -%}
+                {{ pw_product.featured_media.preview_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+              {%- endif -%}
+            </div>
+            <div class="pw-sticky__text">
+              <span class="pw-sticky__title">{{ pw_product.title | escape }}</span>
+              <span class="pw-sticky__meta" data-pw-sticky-meta></span>
+            </div>
+            <button type="button" class="pw-btn pw-btn--primary" data-pw-sticky-btn>
+              {{ section.settings.sticky_label }}
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <script type="application/json" data-pw-json>
+        {
+          "current": {{ current_variant.id }},
+          "bundleIndex": {{ bundle_index }},
+          "baseline": {{ baseline }},
+          "subscriptions": {{ subs_enabled | json }},
+          "requiresPlan": {{ pw_product.requires_selling_plan | json }},
+          "units": {
+            {%- if bundle_index >= 0 -%}
+              {%- for value in pw_product.options_with_values[bundle_index].values -%}
+                {%- liquid
+                  assign vname = value.name | default: value
+                  assign vkey = vname | strip | downcase
+                  assign u = vname | split: ' ' | first | plus: 0
+                  for b in section.blocks
+                    if b.type == 'bundle'
+                      assign bkey = b.settings.option_value | strip | downcase
+                      if bkey == vkey
+                        assign u = b.settings.units
+                      endif
+                    endif
+                  endfor
+                  if u < 1
+                    assign u = 1
+                  endif
+                -%}
+                {{ vname | json }}: {{ u }}{% unless forloop.last %},{% endunless %}
+              {%- endfor -%}
+            {%- endif -%}
+          },
+          "plans": [
+            {%- assign first_plan = true -%}
+            {%- for group in pw_product.selling_plan_groups -%}
+              {%- for plan in group.selling_plans -%}
+                {%- liquid
+                  assign pct = 0
+                  for adj in plan.price_adjustments
+                    if adj.value_type == 'percentage' and adj.position == 1
+                      assign pct = adj.value
+                    endif
+                  endfor
+                -%}
+                {% unless first_plan %},{% endunless %}{"id": {{ plan.id }}, "name": {{ plan.name | json }}, "pct": {{ pct | json }}}
+                {%- assign first_plan = false -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          ],
+          "variants": [
+            {%- for v in pw_product.variants -%}
+              {
+                "id": {{ v.id }},
+                "title": {{ v.title | json }},
+                "options": {{ v.options | json }},
+                "available": {{ v.available | json }},
+                "price": {{ v.price | json }},
+                "compare": {{ v.compare_at_price | default: 0 | json }},
+                "media": {{ v.featured_media.id | default: 0 | json }},
+                "plans": {
+                  {%- for a in v.selling_plan_allocations -%}
+                    "{{ a.selling_plan.id }}": {"price": {{ a.price | json }}, "compare": {{ a.compare_at_price | default: 0 | json }}}{% unless forloop.last %},{% endunless %}
+                  {%- endfor -%}
+                }
+              }{% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+          ],
+          "strings": {
+            "addToCart": {{ section.settings.button_label | json }},
+            "soldOut": {{ section.settings.sold_out_label | json }},
+            "perUnit": {{ section.settings.per_unit_label | json }},
+            "save": {{ section.settings.save_label | json }},
+            "subBadge": {{ section.settings.sub_badge_label | json }},
+            "disclosureSub": {% capture pw_ds %}{% render 'pw-t', t: section.settings.disclosure_subscription %}{% endcapture %}{{ pw_ds | json }},
+            "disclosureOnce": {% capture pw_do %}{% render 'pw-t', t: section.settings.disclosure_onetime %}{% endcapture %}{{ pw_do | json }}
+          }
+        }
+      </script>
+      <script>window.pwMoneyFormat = window.pwMoneyFormat || {{ shop.money_format | json }};</script>
+    </section>
+
+    {%- if on_product_page -%}
+      <script type="application/ld+json">
+        {{ pw_product | structured_data }}
+      </script>
+    {%- endif -%}
+  </product-component>
+
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Pawlio · Caja de compra",
+  "tag": "div",
+  "class": "pw-section pw-section--product",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "paragraph", "content": "En la página del producto se usa ese producto. En la portada u otras páginas, elige cuál mostrar. Comodines en los textos: [months], [months2], [months3], [days] (se cambian en Configuración del tema → Pawlio · Marca)." },
+    { "type": "product", "id": "product", "label": "Producto (fuera de la página del producto)" },
+    { "type": "header", "content": "Textos principales" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño arriba del título", "default": "Plant-powered flea & tick protection" },
+    { "type": "text", "id": "tagline", "label": "Frase bajo el título", "default": "No monthly drops. No pills. Just clip it on and enjoy months of peace of mind." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título", "min": 28, "max": 64, "step": 2, "unit": "px", "default": 46 },
+    { "type": "checkbox", "id": "show_price_row", "label": "Mostrar precio grande bajo el título", "default": true },
+    { "type": "checkbox", "id": "show_rating", "label": "Mostrar estrellas (solo si tienes una app de reseñas con reseñas reales)", "default": true },
+    { "type": "text", "id": "reviews_word", "label": "Palabra para 'reseñas'", "default": "reviews" },
+    { "type": "header", "content": "Galería" },
+    { "type": "select", "id": "media_position", "label": "Posición de las fotos (escritorio)", "options": [ { "value": "left", "label": "Izquierda" }, { "value": "right", "label": "Derecha" } ], "default": "left" },
+    { "type": "select", "id": "media_ratio", "label": "Forma de las fotos", "options": [ { "value": "square", "label": "Cuadrada" }, { "value": "portrait", "label": "Vertical (4:5)" }, { "value": "landscape", "label": "Horizontal (4:3)" } ], "default": "square" },
+    { "type": "select", "id": "media_fit", "label": "Ajuste de la foto", "options": [ { "value": "cover", "label": "Llenar el cuadro" }, { "value": "contain", "label": "Mostrar la foto completa" } ], "default": "cover" },
+    { "type": "text", "id": "media_badge", "label": "Etiqueta sobre la foto", "default": "Plant-powered" },
+    {
+      "type": "select", "id": "media_badge_icon", "label": "Icono de la etiqueta",
+      "options": [
+        { "value": "leaf", "label": "Hoja" }, { "value": "shield-check", "label": "Escudo" }, { "value": "sparkle", "label": "Destello" },
+        { "value": "heart", "label": "Corazón" }, { "value": "paw", "label": "Huella" }, { "value": "drop", "label": "Gota" }
+      ],
+      "default": "leaf"
+    },
+    { "type": "header", "content": "Bundles (tarjetas de paquete)" },
+    { "type": "text", "id": "bundle_option_name", "label": "Nombre de la opción de bundle", "info": "Nombre de la opción de la variante en Shopify (ej. Pack). Si el producto tiene una sola opción, se usa esa.", "default": "Pack" },
+    { "type": "text", "id": "bundle_heading", "label": "Título sobre los bundles", "default": "Choose your pack" },
+    { "type": "text", "id": "bundle_hint", "label": "Nota a la derecha del título", "default": "Most dog parents pick 2" },
+    { "type": "text", "id": "per_unit_label", "label": "Precio por unidad", "info": "[price] = precio por unidad", "default": "[price] / collar" },
+    { "type": "text", "id": "save_label", "label": "Etiqueta de ahorro", "info": "[percent] = % de ahorro", "default": "Save [percent]" },
+    { "type": "header", "content": "Suscripción" },
+    { "type": "paragraph", "content": "Aparece sola cuando el producto tiene un plan en la app gratis Shopify Subscriptions." },
+    { "type": "checkbox", "id": "enable_subscriptions", "label": "Mostrar opción de suscripción", "default": true },
+    { "type": "select", "id": "default_purchase", "label": "Opción marcada al entrar", "options": [ { "value": "subscription", "label": "Suscripción" }, { "value": "onetime", "label": "Compra única" } ], "default": "subscription" },
+    { "type": "text", "id": "purchase_heading", "label": "Título", "default": "How do you want it?" },
+    { "type": "text", "id": "subscribe_title", "label": "Nombre de la suscripción", "default": "Subscribe & Save" },
+    { "type": "text", "id": "sub_badge_label", "label": "Etiqueta de ahorro de la suscripción", "info": "[percent] = % de descuento del plan", "default": "Save [percent]" },
+    { "type": "textarea", "id": "subscribe_perks", "label": "Ventajas de la suscripción (una por línea)", "default": "A fresh collar ships right before protection runs out\nSkip, pause or cancel anytime — no fees\nFree shipping on every delivery" },
+    { "type": "text", "id": "plan_select_label", "label": "Etiqueta del selector de frecuencia", "default": "Delivery frequency" },
+    { "type": "text", "id": "onetime_title", "label": "Nombre de la compra única", "default": "One-time purchase" },
+    { "type": "text", "id": "disclosure_subscription", "label": "Aviso bajo el botón (suscripción)", "info": "[price] = precio, [plan] = frecuencia. Debe quedar claro que se renueva sola.", "default": "[price] per delivery · [plan]. Renews automatically until you cancel — skip or cancel anytime from your account." },
+    { "type": "text", "id": "disclosure_onetime", "label": "Aviso bajo el botón (compra única)", "default": "One-time purchase. No subscription, no commitment." },
+    { "type": "header", "content": "Botón de compra" },
+    { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Add to cart" },
+    { "type": "checkbox", "id": "button_price", "label": "Mostrar el precio dentro del botón", "default": true },
+    { "type": "checkbox", "id": "button_shine", "label": "Brillo animado en el botón", "default": true },
+    { "type": "text", "id": "sold_out_label", "label": "Texto si está agotado", "default": "Sold out" },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Mostrar botón de pago rápido (Shop Pay, etc.)", "default": false },
+    { "type": "checkbox", "id": "show_quantity", "label": "Mostrar selector de cantidad", "info": "Con bundles normalmente no hace falta.", "default": false },
+    { "type": "text", "id": "quantity_label", "label": "Título de la cantidad", "default": "Quantity" },
+    { "type": "header", "content": "Confianza bajo el botón" },
+    {
+      "type": "select", "id": "assurance_1_icon", "label": "Icono 1",
+      "options": [
+        { "value": "truck", "label": "Camión" }, { "value": "shield-check", "label": "Escudo" }, { "value": "lock", "label": "Candado" },
+        { "value": "return", "label": "Devolución" }, { "value": "refresh", "label": "Renovar" }, { "value": "leaf", "label": "Hoja" },
+        { "value": "chat", "label": "Chat" }, { "value": "gift", "label": "Regalo" }, { "value": "clock", "label": "Reloj" }
+      ],
+      "default": "truck"
+    },
+    { "type": "text", "id": "assurance_1", "label": "Texto 1", "default": "Free shipping on 2+ collars" },
+    {
+      "type": "select", "id": "assurance_2_icon", "label": "Icono 2",
+      "options": [
+        { "value": "truck", "label": "Camión" }, { "value": "shield-check", "label": "Escudo" }, { "value": "lock", "label": "Candado" },
+        { "value": "return", "label": "Devolución" }, { "value": "refresh", "label": "Renovar" }, { "value": "leaf", "label": "Hoja" },
+        { "value": "chat", "label": "Chat" }, { "value": "gift", "label": "Regalo" }, { "value": "clock", "label": "Reloj" }
+      ],
+      "default": "shield-check"
+    },
+    { "type": "text", "id": "assurance_2", "label": "Texto 2", "default": "[days]-day money-back guarantee" },
+    {
+      "type": "select", "id": "assurance_3_icon", "label": "Icono 3",
+      "options": [
+        { "value": "truck", "label": "Camión" }, { "value": "shield-check", "label": "Escudo" }, { "value": "lock", "label": "Candado" },
+        { "value": "return", "label": "Devolución" }, { "value": "refresh", "label": "Renovar" }, { "value": "leaf", "label": "Hoja" },
+        { "value": "chat", "label": "Chat" }, { "value": "gift", "label": "Regalo" }, { "value": "clock", "label": "Reloj" }
+      ],
+      "default": "lock"
+    },
+    { "type": "text", "id": "assurance_3", "label": "Texto 3", "default": "Secure checkout" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Mostrar logos de métodos de pago", "default": true },
+    { "type": "checkbox", "id": "show_delivery", "label": "Mostrar fecha estimada de entrega", "default": true },
+    { "type": "range", "id": "delivery_min", "label": "Entrega: días hábiles mínimos", "min": 1, "max": 30, "step": 1, "default": 7 },
+    { "type": "range", "id": "delivery_max", "label": "Entrega: días hábiles máximos", "min": 2, "max": 40, "step": 1, "default": 12 },
+    { "type": "text", "id": "delivery_text", "label": "Texto de entrega", "info": "[start] y [end] = fechas calculadas solas", "default": "Order today — arrives [start] – [end]" },
+    { "type": "header", "content": "Garantía" },
+    { "type": "checkbox", "id": "show_guarantee", "label": "Mostrar tarjeta de garantía", "default": true },
+    { "type": "text", "id": "guarantee_days", "label": "Número del sello", "default": "[days]" },
+    { "type": "text", "id": "guarantee_unit", "label": "Texto pequeño del sello", "default": "DAYS" },
+    { "type": "text", "id": "guarantee_title", "label": "Título", "default": "The Happy Dog Guarantee" },
+    { "type": "text", "id": "guarantee_text", "label": "Texto", "default": "Try it for [days] days. Not happy? Email us and we'll refund you. No awkward questions." },
+    { "type": "header", "content": "Barra fija de compra" },
+    { "type": "checkbox", "id": "show_sticky", "label": "Mostrar barra de compra al bajar", "default": true },
+    { "type": "text", "id": "sticky_label", "label": "Texto del botón de la barra", "default": "Add to cart" },
+    { "type": "header", "content": "Diseño" },
+    {
+      "type": "select", "id": "bg", "label": "Fondo",
+      "options": [
+        { "value": "cream", "label": "Crema" }, { "value": "white", "label": "Blanco" }, { "value": "sand", "label": "Arena" }, { "value": "mint", "label": "Menta" }
+      ],
+      "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "benefit",
+      "name": "Beneficio (viñeta)",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icono",
+          "options": [
+            { "value": "check", "label": "Check" }, { "value": "shield-check", "label": "Escudo" }, { "value": "leaf", "label": "Hoja" },
+            { "value": "drop", "label": "Gota (agua)" }, { "value": "scissors", "label": "Tijeras (ajustable)" }, { "value": "clock", "label": "Reloj" },
+            { "value": "calendar", "label": "Calendario" }, { "value": "wind", "label": "Aroma" }, { "value": "heart", "label": "Corazón" },
+            { "value": "paw", "label": "Huella" }, { "value": "sparkle", "label": "Destello" }, { "value": "moon", "label": "Luna" }
+          ],
+          "default": "check"
+        },
+        { "type": "text", "id": "text", "label": "Texto", "default": "Repels fleas & ticks for up to [months] months" }
+      ]
+    },
+    {
+      "type": "bundle",
+      "name": "Tarjeta de bundle",
+      "limit": 8,
+      "settings": [
+        { "type": "paragraph", "content": "Personaliza una tarjeta. 'Valor de la opción' debe ser igual al de la variante en Shopify (ej. 2 Collars)." },
+        { "type": "text", "id": "option_value", "label": "Valor de la opción", "default": "2 Collars" },
+        { "type": "text", "id": "title", "label": "Título de la tarjeta (vacío = el valor)" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo (compra única)", "default": "[months2] months of protection" },
+        { "type": "text", "id": "subtitle_subscription", "label": "Subtítulo (con suscripción)", "default": "Protects 2 dogs, year-round" },
+        { "type": "range", "id": "units", "label": "Unidades en el paquete", "min": 1, "max": 12, "step": 1, "default": 2 },
+        { "type": "checkbox", "id": "preselect", "label": "Marcada al entrar (recomendado: el pack más popular)", "default": false },
+        { "type": "text", "id": "badge", "label": "Etiqueta (ej. MOST POPULAR)" },
+        {
+          "type": "select", "id": "badge_style", "label": "Color de la etiqueta",
+          "options": [ { "value": "forest", "label": "Verde oscuro" }, { "value": "amber", "label": "Ámbar" }, { "value": "mint", "label": "Menta" } ],
+          "default": "forest"
+        },
+        { "type": "textarea", "id": "perks", "label": "Ventajas (una por línea)" }
+      ]
+    },
+    {
+      "type": "tab",
+      "name": "Pestaña desplegable",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Details" },
+        {
+          "type": "select", "id": "icon", "label": "Icono",
+          "options": [
+            { "value": "leaf", "label": "Hoja" }, { "value": "sparkle", "label": "Destello" }, { "value": "shield-check", "label": "Escudo" },
+            { "value": "truck", "label": "Camión" }, { "value": "refresh", "label": "Renovar" }, { "value": "box", "label": "Caja" },
+            { "value": "chat", "label": "Chat" }, { "value": "paw", "label": "Huella" }, { "value": "calendar", "label": "Calendario" }
+          ],
+          "default": "leaf"
+        },
+        { "type": "checkbox", "id": "use_description", "label": "Usar la descripción del producto", "default": false },
+        { "type": "richtext", "id": "content", "label": "Contenido", "default": "<p>Write the content of this tab.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Abierta al cargar", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Caja de compra",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "shield-check", "text": "Repels fleas & ticks for up to [months] months" } },
+        { "type": "benefit", "settings": { "icon": "leaf", "text": "Plant-based essential oils, no harsh chemicals" } },
+        { "type": "benefit", "settings": { "icon": "drop", "text": "Waterproof: keeps working after baths & swims" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

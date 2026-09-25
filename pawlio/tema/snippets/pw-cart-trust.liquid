@@ -1,0 +1,14 @@
+{%- comment -%} Pawlio · confianza bajo el botón de pagar (Configuración del tema → Pawlio · Carrito) {%- endcomment -%}
+<div class="pw-cart-trust">
+  {%- if settings.pw_cart_trust_1 != blank -%}
+    <span class="pw-cart-trust__line">{% render 'pw-icon', icon: 'shield-check' %}{% render 'pw-t', t: settings.pw_cart_trust_1 %}</span>
+  {%- endif -%}
+  {%- if settings.pw_cart_trust_2 != blank -%}
+    <span class="pw-cart-trust__line">{% render 'pw-icon', icon: 'refresh' %}{% render 'pw-t', t: settings.pw_cart_trust_2 %}</span>
+  {%- endif -%}
+  {%- if settings.pw_cart_payment_icons and shop.enabled_payment_types.size > 0 -%}
+    <ul class="pw-payments" role="list" aria-label="Payment methods">
+      {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>{%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>

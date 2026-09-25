@@ -1,0 +1,15 @@
+{%- comment -%}
+  Pawlio · texto con comodines. Cambia el número UNA vez en
+  Configuración del tema → Pawlio · Marca y se actualiza en toda la tienda.
+  [months]  = meses de protección de 1 collar
+  [months2] = meses con 2 collares · [months3] = meses con 3 collares
+  [days]    = días de garantía · [brand] = nombre de la marca
+{%- endcomment -%}
+{%- liquid
+  assign pw_m = settings.pw_months | default: 4
+  assign pw_m2 = pw_m | times: 2
+  assign pw_m3 = pw_m | times: 3
+  assign pw_d = settings.pw_guarantee_days | default: 60
+  assign pw_brand = settings.pw_brand_name | default: shop.name
+  echo t | replace: '[months2]', pw_m2 | replace: '[months3]', pw_m3 | replace: '[months]', pw_m | replace: '[days]', pw_d | replace: '[brand]', pw_brand
+-%}

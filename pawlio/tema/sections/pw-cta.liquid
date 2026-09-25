@@ -1,0 +1,227 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container">
+    <div class="pw-cta pw-reveal">
+      <div class="pw-cta__content">
+        {%- if section.settings.eyebrow != blank -%}<p class="pw-eyebrow">{% render 'pw-t', t: section.settings.eyebrow %}</p>{%- endif -%}
+        <h2 class="pw-h2">{% render 'pw-t', t: section.settings.heading %}</h2>
+        {%- if section.settings.text != blank -%}<p class="pw-lead">{% render 'pw-t', t: section.settings.text %}</p>{%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a class="pw-btn pw-btn--primary pw-btn--shine" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.chips != blank -%}
+          {%- assign chips = section.settings.chips | newline_to_br | split: '<br />' -%}
+          <div class="pw-chips" style="--pw-justify:start">
+            {%- for chip in chips -%}{%- assign c = chip | strip -%}{%- if c != blank -%}<span class="pw-chip">{% render 'pw-icon', icon: 'check-circle', size: 17 %}{% render 'pw-t', t: c %}</span>{%- endif -%}{%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="pw-cta__media pw-media">
+        {%- render 'pw-image', image: section.settings.image, fallback: section.settings.image_url, position: section.settings.image_position, sizes: '(min-width: 990px) 45vw, 100vw', alt: section.settings.image_alt -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Llamado final",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagen"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    },
+    {
+      "type": "text",
+      "id": "image_url",
+      "label": "Enlace de imagen de respaldo",
+      "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Enfoque de la imagen",
+      "options": [
+        {
+          "value": "50% 50%",
+          "label": "Centro"
+        },
+        {
+          "value": "50% 35%",
+          "label": "Centro, un poco arriba"
+        },
+        {
+          "value": "50% 20%",
+          "label": "Arriba"
+        },
+        {
+          "value": "50% 80%",
+          "label": "Abajo"
+        },
+        {
+          "value": "25% 50%",
+          "label": "Izquierda"
+        },
+        {
+          "value": "70% 50%",
+          "label": "Derecha"
+        }
+      ],
+      "default": "50% 50%"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Descripción de la imagen",
+      "default": "Happy dog smiling at the camera"
+    },
+    {
+      "type": "header",
+      "content": "Textos"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "Ready when you are"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Give your dog <em>months</em> of itch-free days."
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texto",
+      "default": "Plant-powered. Waterproof. Backed by our [days]-day guarantee."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón",
+      "default": "Shop Pawlio"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "textarea",
+      "id": "chips",
+      "label": "Sellos (uno por línea)",
+      "default": "Free shipping on 2+\nCancel anytime"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Llamado final"
+    }
+  ]
+}
+{% endschema %}

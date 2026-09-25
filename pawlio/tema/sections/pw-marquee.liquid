@@ -1,0 +1,145 @@
+{%- render 'pw-section-style' -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .pw-marquee { --pw-speed: {{ section.settings.speed }}s; --pw-marquee-size: {{ section.settings.size }}px; }
+  @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pw-marquee { --pw-marquee-size: {{ section.settings.size | times: 0.8 | round }}px; } }
+{%- endstyle -%}
+{%- assign items = section.settings.items | newline_to_br | split: '<br />' -%}
+<section class="pw pw-on-{{ section.settings.bg }}" aria-label="{{ section.settings.items | strip_newlines | escape }}">
+  <div class="pw-marquee">
+    {%- for n in (1..2) -%}
+      <div class="pw-marquee__track"{% if n == 2 %} aria-hidden="true"{% endif %}>
+        {%- for r in (1..2) -%}
+          {%- for item in items -%}
+            {%- assign t = item | strip -%}
+            {%- if t != blank -%}
+              <span class="pw-marquee__item">{% render 'pw-t', t: t %}<span class="pw-marquee__sep">{% render 'pw-icon', icon: section.settings.separator, size: 22 %}</span></span>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Cinta animada",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "items",
+      "label": "Frases (una por línea)",
+      "default": "Plant-powered\nUp to [months] months per collar\nWaterproof\nOne size fits all breeds\nNo monthly drops\nNo pills\nNo prescription needed"
+    },
+    {
+      "type": "select",
+      "id": "separator",
+      "label": "Separador",
+      "options": [
+        {
+          "value": "paw-solid",
+          "label": "Huella"
+        },
+        {
+          "value": "sparkle",
+          "label": "Destello"
+        },
+        {
+          "value": "leaf",
+          "label": "Hoja"
+        },
+        {
+          "value": "star",
+          "label": "Estrella"
+        }
+      ],
+      "default": "paw-solid"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Velocidad (segundos por vuelta, más = más lento)",
+      "min": 10,
+      "max": 90,
+      "step": 2,
+      "unit": "s",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "size",
+      "label": "Tamaño de letra",
+      "min": 16,
+      "max": 56,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "sand"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Cinta animada"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,378 @@
+{%- render 'pw-section-style' -%}
+<section class="pw pw-on-{{ section.settings.bg }}">
+  <div class="pw-container pw-sub">
+    <div class="pw-sub__content">
+      {%- render 'pw-head' -%}
+      {%- if section.settings.button_label != blank -%}
+        <div class="pw-actions pw-reveal">
+          <a class="pw-btn pw-btn--{% if section.settings.bg == 'forest' %}light{% else %}primary{% endif %}" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+          </a>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.fine_print != blank -%}
+        <p class="pw-small pw-reveal">{% render 'pw-t', t: section.settings.fine_print %}</p>
+      {%- endif -%}
+    </div>
+    <div class="pw-sub__card pw-card pw-reveal" style="--pw-d:120ms">
+      <div class="pw-sub__cycle">
+        <div class="pw-sub__tick">{% render 'pw-icon', icon: 'box' %}<span>{% render 'pw-t', t: section.settings.tick_1 %}</span></div>
+        <div class="pw-sub__tick">{% render 'pw-icon', icon: 'refresh' %}<span>{% render 'pw-t', t: section.settings.tick_2 %}</span></div>
+        <div class="pw-sub__tick">{% render 'pw-icon', icon: 'shield-check' %}<span>{% render 'pw-t', t: section.settings.tick_3 %}</span></div>
+      </div>
+      <ul class="pw-sub__perks">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <span class="pw-sub__perk-icon">{% render 'pw-icon', icon: block.settings.icon %}</span>
+            <span><strong>{% render 'pw-t', t: block.settings.title %}</strong><p>{% render 'pw-t', t: block.settings.text %}</p></span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pawlio · Suscripción",
+  "tag": "div",
+  "class": "pw-section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "paragraph",
+      "content": "Pon palabras en cursiva en el título para resaltarlas. Comodines: [months], [months2], [months3], [days], [brand]."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño",
+      "default": "Subscribe & Save"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Set it. Forget it. <em>Save every time.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Flea season never really ends. With Subscribe &amp; Save, a fresh collar arrives right before the old one wears off — so your dog is never left unprotected.</p>"
+    },
+    {
+      "type": "text",
+      "id": "tick_1",
+      "label": "Ciclo 1",
+      "default": "Today: your first collar"
+    },
+    {
+      "type": "text",
+      "id": "tick_2",
+      "label": "Ciclo 2",
+      "default": "Month [months]: a fresh one arrives"
+    },
+    {
+      "type": "text",
+      "id": "tick_3",
+      "label": "Ciclo 3",
+      "default": "Protected all year"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Botón",
+      "default": "Start saving"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Letra pequeña",
+      "default": "Subscriptions renew automatically at the discounted price until you cancel. Manage, skip or cancel anytime from your account."
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "bg",
+      "label": "Fondo",
+      "options": [
+        {
+          "value": "cream",
+          "label": "Crema"
+        },
+        {
+          "value": "white",
+          "label": "Blanco"
+        },
+        {
+          "value": "sand",
+          "label": "Arena"
+        },
+        {
+          "value": "mint",
+          "label": "Menta"
+        },
+        {
+          "value": "forest",
+          "label": "Verde bosque (oscuro)"
+        }
+      ],
+      "default": "forest"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación del encabezado",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "min": 24,
+      "max": 84,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño del texto",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 96
+    }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Ventaja",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            {
+              "value": "check-circle",
+              "label": "Check"
+            },
+            {
+              "value": "shield-check",
+              "label": "Escudo"
+            },
+            {
+              "value": "leaf",
+              "label": "Hoja"
+            },
+            {
+              "value": "drop",
+              "label": "Gota (agua)"
+            },
+            {
+              "value": "scissors",
+              "label": "Tijeras (ajustable)"
+            },
+            {
+              "value": "clock",
+              "label": "Reloj"
+            },
+            {
+              "value": "calendar",
+              "label": "Calendario"
+            },
+            {
+              "value": "refresh",
+              "label": "Renovar"
+            },
+            {
+              "value": "truck",
+              "label": "Camión"
+            },
+            {
+              "value": "lock",
+              "label": "Candado"
+            },
+            {
+              "value": "return",
+              "label": "Devolución"
+            },
+            {
+              "value": "heart",
+              "label": "Corazón"
+            },
+            {
+              "value": "paw",
+              "label": "Huella"
+            },
+            {
+              "value": "sparkle",
+              "label": "Destello"
+            },
+            {
+              "value": "moon",
+              "label": "Luna"
+            },
+            {
+              "value": "sun",
+              "label": "Sol"
+            },
+            {
+              "value": "wind",
+              "label": "Aroma"
+            },
+            {
+              "value": "smile",
+              "label": "Sonrisa"
+            },
+            {
+              "value": "ruler",
+              "label": "Regla (talla)"
+            },
+            {
+              "value": "home",
+              "label": "Casa"
+            },
+            {
+              "value": "gift",
+              "label": "Regalo"
+            },
+            {
+              "value": "percent",
+              "label": "Porcentaje"
+            },
+            {
+              "value": "box",
+              "label": "Caja"
+            },
+            {
+              "value": "chat",
+              "label": "Chat"
+            },
+            {
+              "value": "bolt",
+              "label": "Rayo"
+            },
+            {
+              "value": "pin",
+              "label": "Ubicación"
+            },
+            {
+              "value": "bug",
+              "label": "Bicho"
+            },
+            {
+              "value": "users",
+              "label": "Personas"
+            },
+            {
+              "value": "thermometer",
+              "label": "Termómetro"
+            },
+            {
+              "value": "mail",
+              "label": "Correo"
+            }
+          ],
+          "default": "percent"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Save on every delivery"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Subscribers always pay less than one-time buyers."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pawlio · Suscripción",
+      "blocks": [
+        {
+          "type": "perk",
+          "settings": {
+            "icon": "percent",
+            "title": "Save on every delivery",
+            "text": "Subscribers always pay less than one-time buyers."
+          }
+        },
+        {
+          "type": "perk",
+          "settings": {
+            "icon": "calendar",
+            "title": "Perfectly timed",
+            "text": "A fresh collar every [months] months — right when the old one wears off."
+          }
+        },
+        {
+          "type": "perk",
+          "settings": {
+            "icon": "refresh",
+            "title": "Skip, pause or cancel anytime",
+            "text": "No fees, no phone calls. Manage it all from your account in seconds."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,861 @@
+{
+  "sections": {
+    "hero": {
+      "type": "pw-hero",
+      "settings": {
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_03c42843-a3cb-4e47-b382-1b38e089da7e_min.webp",
+        "image_position": "70% 50%",
+        "mobile_image_url": "",
+        "image_alt": "Happy golden retriever running through a sunny meadow",
+        "eyebrow": "Plant-powered flea & tick collar",
+        "heading": "Months of protection. <em>Zero monthly hassle.</em>",
+        "text": "One clip-on collar helps keep fleas and ticks away for up to [months] months. No greasy drops, no pills, no reminders.",
+        "button_label": "Protect my dog",
+        "secondary_label": "How it works",
+        "chips": "[days]-day money-back guarantee\nFree shipping on 2+ collars\nCancel subscriptions anytime",
+        "heading_size": 80,
+        "shade": 55,
+        "height": 88,
+        "height_mobile": 88,
+        "text_align": "left",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "trust": {
+      "type": "pw-trust-bar",
+      "settings": {
+        "bg": "white",
+        "padding_top": 24,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "tr-1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "text": "Free shipping on 2+ collars"
+          }
+        },
+        "tr-2": {
+          "type": "item",
+          "settings": {
+            "icon": "shield-check",
+            "text": "[days]-day money-back guarantee"
+          }
+        },
+        "tr-3": {
+          "type": "item",
+          "settings": {
+            "icon": "refresh",
+            "text": "Skip or cancel anytime"
+          }
+        },
+        "tr-4": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout"
+          }
+        }
+      },
+      "block_order": [
+        "tr-1",
+        "tr-2",
+        "tr-3",
+        "tr-4"
+      ]
+    },
+    "problem": {
+      "type": "pw-problem",
+      "settings": {
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_afc09ba9-3e63-4526-9e1a-484f7a4b0e75_min.webp",
+        "image_position": "50% 35%",
+        "image_alt": "Dog scratching behind its ear on a sofa",
+        "tag": "Sound familiar?",
+        "layout": "left",
+        "eyebrow": "The problem",
+        "heading": "Fleas don't just bite. <em>They move in.</em>",
+        "text": "<p>By the time you spot one flea on your dog, many more are hiding in the carpet, the couch and the bed you share. Every scratch means less sleep, more stress and a dog who just doesn't feel like themselves.</p><p>Monthly drops are easy to forget, messy to apply and hard to keep up with — especially when flea season never really ends.</p>",
+        "source": "Sources: VCA Animal Hospitals and veterinary parasitology references.",
+        "bg": "cream",
+        "text_align": "left",
+        "heading_size": 50,
+        "body_size": 18,
+        "padding_top": 96,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "st-1": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "value": "50",
+            "suffix": "",
+            "label": "eggs a single female flea can lay every day",
+            "wide": false
+          }
+        },
+        "st-2": {
+          "type": "stat",
+          "settings": {
+            "prefix": "",
+            "value": "95",
+            "suffix": "%",
+            "label": "of a flea problem hides in your home — not on your dog",
+            "wide": false
+          }
+        }
+      },
+      "block_order": [
+        "st-1",
+        "st-2"
+      ]
+    },
+    "marquee": {
+      "type": "pw-marquee",
+      "settings": {
+        "items": "Plant-powered\nUp to [months] months per collar\nWaterproof\nFits every breed\nNo monthly drops\nNo pills\nNo prescription needed",
+        "separator": "paw-solid",
+        "speed": 38,
+        "size": 28,
+        "bg": "forest",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "shop": {
+      "type": "pw-product",
+      "settings": {
+        "eyebrow": "Plant-powered flea & tick protection",
+        "tagline": "No monthly drops. No pills. Just clip it on and enjoy months of peace of mind.",
+        "title_size": 46,
+        "show_price_row": true,
+        "show_rating": true,
+        "reviews_word": "reviews",
+        "media_position": "left",
+        "media_ratio": "square",
+        "media_fit": "cover",
+        "media_badge": "Plant-powered",
+        "media_badge_icon": "leaf",
+        "bundle_option_name": "Pack",
+        "bundle_heading": "Choose your pack",
+        "bundle_hint": "Most dog parents pick 2",
+        "per_unit_label": "[price] / collar",
+        "save_label": "Save [percent]",
+        "enable_subscriptions": true,
+        "default_purchase": "subscription",
+        "purchase_heading": "How do you want it?",
+        "subscribe_title": "Subscribe & Save",
+        "sub_badge_label": "Save [percent]",
+        "subscribe_perks": "A fresh pack ships every [months] months — right when protection runs out\nSkip, pause or cancel anytime — no fees\nFree shipping on every delivery",
+        "plan_select_label": "Delivery frequency",
+        "onetime_title": "One-time purchase",
+        "disclosure_subscription": "[price] today, then [price] every delivery ([plan]). Renews automatically until you cancel — skip or cancel anytime from your account.",
+        "disclosure_onetime": "One-time purchase. No subscription, no commitment.",
+        "button_label": "Add to cart",
+        "button_price": true,
+        "button_shine": true,
+        "sold_out_label": "Sold out",
+        "show_dynamic_checkout": false,
+        "show_quantity": false,
+        "quantity_label": "Quantity",
+        "assurance_1_icon": "truck",
+        "assurance_1": "Free shipping on 2+ collars",
+        "assurance_2_icon": "shield-check",
+        "assurance_2": "[days]-day money-back guarantee",
+        "assurance_3_icon": "lock",
+        "assurance_3": "Secure checkout",
+        "show_payment_icons": true,
+        "show_delivery": true,
+        "delivery_min": 7,
+        "delivery_max": 12,
+        "delivery_text": "Order today — arrives [start] – [end]",
+        "show_guarantee": true,
+        "guarantee_days": "[days]",
+        "guarantee_unit": "DAYS",
+        "guarantee_title": "The Happy Dog Guarantee",
+        "guarantee_text": "Try it for [days] days. Not happy? Email us and we'll refund you. No awkward questions.",
+        "show_sticky": true,
+        "sticky_label": "Add to cart",
+        "bg": "cream",
+        "padding_top": 88,
+        "padding_bottom": 72
+      },
+      "blocks": {
+        "pw-1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield-check",
+            "text": "Helps repel fleas & ticks for up to [months] months"
+          }
+        },
+        "pw-2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "text": "Plant-powered formula — no harsh chemicals"
+          }
+        },
+        "pw-3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "text": "Waterproof: keeps working through baths, swims & rain"
+          }
+        },
+        "pw-4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "scissors",
+            "text": "One size fits all breeds — adjustable & cut-to-fit"
+          }
+        },
+        "pw-5": {
+          "type": "bundle",
+          "settings": {
+            "option_value": "1 Collar",
+            "title": "1 Collar",
+            "subtitle": "[months] months of protection",
+            "subtitle_subscription": "Keeps 1 dog protected all year",
+            "units": 1,
+            "badge": "",
+            "badge_style": "forest",
+            "perks": "",
+            "preselect": false
+          }
+        },
+        "pw-6": {
+          "type": "bundle",
+          "settings": {
+            "option_value": "2 Collars",
+            "title": "2 Collars",
+            "subtitle": "[months2] months of protection — or 2 dogs",
+            "subtitle_subscription": "Keeps 2 dogs protected all year",
+            "units": 2,
+            "badge": "Most popular",
+            "badge_style": "forest",
+            "perks": "FREE shipping",
+            "preselect": true
+          }
+        },
+        "pw-7": {
+          "type": "bundle",
+          "settings": {
+            "option_value": "3 Collars",
+            "title": "3 Collars",
+            "subtitle": "[months3] months of protection — or 3 dogs",
+            "subtitle_subscription": "Keeps 3 dogs protected all year",
+            "units": 3,
+            "badge": "Best value",
+            "badge_style": "amber",
+            "perks": "FREE shipping\nLowest price per collar",
+            "preselect": false
+          }
+        },
+        "pw-8": {
+          "type": "tab",
+          "settings": {
+            "title": "What it is",
+            "icon": "leaf",
+            "use_description": true,
+            "open": false,
+            "content": "<p>A slow-release, plant-powered collar that helps keep fleas and ticks away from your dog for up to [months] months. Waterproof, adjustable and made for everyday wear.</p>"
+          }
+        },
+        "pw-9": {
+          "type": "tab",
+          "settings": {
+            "title": "How to use",
+            "icon": "sparkle",
+            "use_description": false,
+            "open": false,
+            "content": "<ol><li>Open the pouch and gently stretch the collar to activate it.</li><li>Fasten it around your dog's neck — two fingers should slide underneath.</li><li>Trim the extra length and throw the scraps away, out of reach of pets and kids.</li><li>Replace it every [months] months (subscribers get the next one automatically).</li></ol>"
+          }
+        },
+        "pw-10": {
+          "type": "tab",
+          "settings": {
+            "title": "Safety",
+            "icon": "shield-check",
+            "use_description": false,
+            "open": false,
+            "content": "<p><strong>For dogs only — never use on cats.</strong> Not for puppies under 12 weeks. Watch your dog for the first 48 hours; if you notice redness or irritation, remove the collar and contact your vet. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. Keep out of reach of children.</p><p>See the package label for the full ingredient list and directions.</p>"
+          }
+        },
+        "pw-11": {
+          "type": "tab",
+          "settings": {
+            "title": "Shipping & returns",
+            "icon": "truck",
+            "use_description": false,
+            "open": false,
+            "content": "<p>Orders are processed in 1–2 business days and usually arrive in 7–12 business days, with tracking. Free shipping on orders of 2+ collars.</p><p>Every order is covered by our [days]-day Happy Dog Guarantee — email us and we'll make it right.</p>"
+          }
+        },
+        "pw-12": {
+          "type": "tab",
+          "settings": {
+            "title": "Subscribe & Save",
+            "icon": "refresh",
+            "use_description": false,
+            "open": false,
+            "content": "<p>Subscribe &amp; Save is pre-selected so your dog never goes unprotected: you pay the lower price today and a fresh pack ships every [months] months at that same lower price.</p><p>Prefer a single order? Choose <strong>One-time purchase</strong> before adding to cart. Subscribers can skip, pause or cancel anytime from their account — no fees.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "pw-1",
+        "pw-2",
+        "pw-3",
+        "pw-4",
+        "pw-5",
+        "pw-6",
+        "pw-7",
+        "pw-8",
+        "pw-9",
+        "pw-10",
+        "pw-11",
+        "pw-12"
+      ]
+    },
+    "steps": {
+      "type": "pw-steps",
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Protection in <em>3 easy steps</em>",
+        "kicker": "Step",
+        "button_label": "",
+        "bg": "cream",
+        "text_align": "center",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "sp-1": {
+          "type": "step",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Unpack & stretch",
+            "text": "Take the collar out of the pouch and give it a gentle stretch to activate the plant-oil blend."
+          }
+        },
+        "sp-2": {
+          "type": "step",
+          "settings": {
+            "icon": "scissors",
+            "title": "Fit & trim",
+            "text": "Buckle it on so two fingers slide underneath, then snip off the extra length."
+          }
+        },
+        "sp-3": {
+          "type": "step",
+          "settings": {
+            "icon": "calendar",
+            "title": "Relax for months",
+            "text": "Your dog is covered for up to [months] months. Subscribers get the next collar right on time."
+          }
+        }
+      },
+      "block_order": [
+        "sp-1",
+        "sp-2",
+        "sp-3"
+      ]
+    },
+    "benefits": {
+      "type": "pw-benefits",
+      "settings": {
+        "eyebrow": "Why dog parents switch",
+        "heading": "Everything they need. <em>Nothing they don't.</em>",
+        "columns": "3",
+        "bg": "white",
+        "text_align": "center",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "bn-1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "leaf",
+            "title": "Plant-powered",
+            "text": "Made with plant-derived essential oils instead of harsh synthetic chemicals."
+          }
+        },
+        "bn-2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "clock",
+            "title": "Lasts for months",
+            "text": "Up to [months] months per collar — far fewer things to remember than monthly drops."
+          }
+        },
+        "bn-3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "drop",
+            "title": "Waterproof",
+            "text": "Baths, beach days and rainy walks don't slow it down."
+          }
+        },
+        "bn-4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "ruler",
+            "title": "Fits every breed",
+            "text": "Adjustable and cut-to-fit, from chihuahuas to great danes."
+          }
+        },
+        "bn-5": {
+          "type": "benefit",
+          "settings": {
+            "icon": "wind",
+            "title": "Light, fresh scent",
+            "text": "A gentle plant scent — not a chemical cloud."
+          }
+        },
+        "bn-6": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Mess-free",
+            "text": "No greasy residue on fur, furniture or hands."
+          }
+        }
+      },
+      "block_order": [
+        "bn-1",
+        "bn-2",
+        "bn-3",
+        "bn-4",
+        "bn-5",
+        "bn-6"
+      ]
+    },
+    "comparison": {
+      "type": "pw-comparison",
+      "settings": {
+        "eyebrow": "The smarter way",
+        "heading": "Pawlio vs. <em>the usual routine</em>",
+        "col_brand": "[brand]",
+        "col_2": "Monthly drops",
+        "col_3": "Sprays & shampoos",
+        "note": "Based on typical over-the-counter products. Always follow each product's label.",
+        "bg": "cream",
+        "text_align": "center",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "rw-1": {
+          "type": "row",
+          "settings": {
+            "feature": "Protection per application",
+            "brand": "Up to [months] months",
+            "v2": "About 1 month",
+            "v3": "A few days"
+          }
+        },
+        "rw-2": {
+          "type": "row",
+          "settings": {
+            "feature": "Nothing to remember every month",
+            "brand": "yes",
+            "v2": "no",
+            "v3": "no"
+          }
+        },
+        "rw-3": {
+          "type": "row",
+          "settings": {
+            "feature": "Plant-powered formula",
+            "brand": "yes",
+            "v2": "no",
+            "v3": "Varies"
+          }
+        },
+        "rw-4": {
+          "type": "row",
+          "settings": {
+            "feature": "No greasy residue on fur",
+            "brand": "yes",
+            "v2": "no",
+            "v3": "Varies"
+          }
+        },
+        "rw-5": {
+          "type": "row",
+          "settings": {
+            "feature": "Waterproof",
+            "brand": "yes",
+            "v2": "Varies",
+            "v3": "no"
+          }
+        }
+      },
+      "block_order": [
+        "rw-1",
+        "rw-2",
+        "rw-3",
+        "rw-4",
+        "rw-5"
+      ]
+    },
+    "subscribe": {
+      "type": "pw-subscribe",
+      "settings": {
+        "eyebrow": "Subscribe & Save",
+        "heading": "Set it. Forget it. <em>Save every time.</em>",
+        "text": "<p>Flea season never really ends. With Subscribe &amp; Save, a fresh collar arrives right before the old one wears off — so your dog is never left unprotected.</p>",
+        "tick_1": "Today: your first pack",
+        "tick_2": "Month [months]: a fresh one arrives",
+        "tick_3": "Protected all year long",
+        "button_label": "Start saving",
+        "fine_print": "Subscriptions renew automatically at the discounted price until you cancel. Skip, pause or cancel anytime from your account.",
+        "bg": "forest",
+        "text_align": "left",
+        "heading_size": 48,
+        "body_size": 18,
+        "padding_top": 104,
+        "padding_bottom": 104
+      },
+      "blocks": {
+        "pk-1": {
+          "type": "perk",
+          "settings": {
+            "icon": "percent",
+            "title": "Save on every delivery",
+            "text": "Subscribers always pay less than one-time buyers."
+          }
+        },
+        "pk-2": {
+          "type": "perk",
+          "settings": {
+            "icon": "calendar",
+            "title": "Perfectly timed",
+            "text": "A fresh pack every [months] months — right when the old one wears off."
+          }
+        },
+        "pk-3": {
+          "type": "perk",
+          "settings": {
+            "icon": "refresh",
+            "title": "Skip, pause or cancel anytime",
+            "text": "No fees, no phone calls. Manage it all from your account in seconds."
+          }
+        }
+      },
+      "block_order": [
+        "pk-1",
+        "pk-2",
+        "pk-3"
+      ]
+    },
+    "story": {
+      "type": "pw-image-text",
+      "settings": {
+        "use_product_image": false,
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_dcf582f5-c6ff-4fb7-b8a9-d031a00fb6ac_min.webp",
+        "image_position": "50% 35%",
+        "image_alt": "Happy dog on a beach in Puerto Rico",
+        "ratio": "portrait",
+        "layout": "left",
+        "float_title": "",
+        "float_text": "",
+        "eyebrow": "Our story",
+        "heading": "Born in Puerto Rico, <em>where flea season never ends.</em>",
+        "text": "<p>On our island, heat and humidity mean fleas and ticks never take a day off. We were tired of greasy monthly drops, forgotten doses and harsh chemicals — so we started [brand] with one mission: make flea &amp; tick protection simple, long-lasting and plant-powered.</p><p>Every order is backed by real people who love dogs as much as you do.</p>",
+        "bullets": "",
+        "signature": "— The [brand] team, Puerto Rico",
+        "button_label": "",
+        "button_style": "primary",
+        "anchor": "",
+        "bg": "sand",
+        "text_align": "left",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "gallery": {
+      "type": "pw-gallery",
+      "settings": {
+        "eyebrow": "#PawlioPack",
+        "heading": "Made for <em>every kind of pup</em>",
+        "text": "<p>Big or small, couch potato or trail runner — life's better without the itch.</p>",
+        "speed": 60,
+        "button_label": "",
+        "bg": "white",
+        "text_align": "center",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 72
+      },
+      "blocks": {
+        "ph-1": {
+          "type": "photo",
+          "settings": {
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171436_92286780-86ab-4a22-bcd1-4e2faec64e1a_min.webp",
+            "caption": "Road trips"
+          }
+        },
+        "ph-2": {
+          "type": "photo",
+          "settings": {
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171435_90158d9d-f056-45c5-b9e1-92b0579de57d_min.webp",
+            "caption": "Porch naps"
+          }
+        },
+        "ph-3": {
+          "type": "photo",
+          "settings": {
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171434_41d38098-e9fc-4ec5-a06c-42c41a990791_min.webp",
+            "caption": "Backyard zoomies"
+          }
+        },
+        "ph-4": {
+          "type": "photo",
+          "settings": {
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171435_07c262e2-8f87-4a9b-8498-5c5c2a9a5324_min.webp",
+            "caption": "Couch cuddles"
+          }
+        },
+        "ph-5": {
+          "type": "photo",
+          "settings": {
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_dcf582f5-c6ff-4fb7-b8a9-d031a00fb6ac_min.webp",
+            "caption": "Beach days"
+          }
+        },
+        "ph-6": {
+          "type": "photo",
+          "settings": {
+            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_0c639f2e-f968-437f-a0e0-bda68c2b9f3d_min.webp",
+            "caption": "Trail runs"
+          }
+        }
+      },
+      "block_order": [
+        "ph-1",
+        "ph-2",
+        "ph-3",
+        "ph-4",
+        "ph-5",
+        "ph-6"
+      ]
+    },
+    "guarantee": {
+      "type": "pw-guarantee",
+      "settings": {
+        "seal_number": "[days]",
+        "seal_unit": "Days",
+        "ring_text": "Money-back guarantee • Happy dog promise • ",
+        "eyebrow": "Zero risk",
+        "heading": "The <em>Happy Dog</em> Guarantee",
+        "text": "<p>Try [brand] for a full [days] days. If you and your pup aren't completely happy, email us and we'll refund your order. That's how sure we are.</p>",
+        "points": "Full refund within [days] days\nReal humans answer every email\nNo complicated forms",
+        "button_label": "Try it risk-free",
+        "bg": "cream",
+        "text_align": "center",
+        "heading_size": 48,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
+    },
+    "reviews": {
+      "type": "pw-reviews",
+      "settings": {
+        "eyebrow": "Real dogs. Real parents.",
+        "heading": "Loved by <em>happy pups</em>",
+        "summary": "",
+        "verified_label": "Verified buyer",
+        "bg": "cream",
+        "text_align": "center",
+        "heading_size": 46,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "rv-1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "detail": "",
+            "verified": true
+          }
+        },
+        "rv-2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "detail": "",
+            "verified": true
+          }
+        },
+        "rv-3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "",
+            "quote": "Paste a real customer review here.",
+            "name": "Customer name",
+            "detail": "",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "rv-1",
+        "rv-2",
+        "rv-3"
+      ],
+      "disabled": true
+    },
+    "faq": {
+      "type": "pw-faq",
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Questions? <em>We've got answers.</em>",
+        "layout": "split",
+        "open_first": true,
+        "contact_text": "Still wondering? Email us:",
+        "email": "",
+        "bg": "white",
+        "text_align": "left",
+        "heading_size": 44,
+        "body_size": 18,
+        "padding_top": 88,
+        "padding_bottom": 88
+      },
+      "blocks": {
+        "fq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does one collar last?",
+            "answer": "<p>Each collar provides up to [months] months of protection. For nonstop coverage, replace it every [months] months — or keep Subscribe &amp; Save on and we'll send the next one automatically.</p>"
+          }
+        },
+        "fq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it safe for my dog?",
+            "answer": "<p>Pawlio is made with plant-derived essential oils and designed for everyday wear on dogs 12 weeks and older. Watch your dog for the first 48 hours and remove the collar if you notice any irritation. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. <strong>For dogs only — never use on cats.</strong></p>"
+          }
+        },
+        "fq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it fit my dog?",
+            "answer": "<p>Yes. It's one size, adjustable and cut-to-fit for every breed. Fasten it so two fingers slide underneath, then trim the excess.</p>"
+          }
+        },
+        "fq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can my dog get wet with it on?",
+            "answer": "<p>Absolutely. Pawlio is waterproof, so baths, swims and rainy walks are no problem.</p>"
+          }
+        },
+        "fq-5": {
+          "type": "faq",
+          "settings": {
+            "question": "How does Subscribe & Save work?",
+            "answer": "<p>Subscribe &amp; Save is selected by default so your dog never runs out of protection. You pay the discounted price today, and a fresh pack ships every [months] months at that same lower price. Prefer a single order? Pick <strong>One-time purchase</strong> before adding to cart. Skip, pause or cancel anytime from your account — no fees.</p>"
+          }
+        },
+        "fq-6": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I cancel my subscription?",
+            "answer": "<p>Log in to your account, open <strong>Subscriptions</strong> and click Cancel — it takes less than a minute. Need a hand? Email us and we'll do it for you.</p>"
+          }
+        },
+        "fq-7": {
+          "type": "faq",
+          "settings": {
+            "question": "When will my order arrive?",
+            "answer": "<p>Orders ship within 1–2 business days and typically arrive in 7–12 business days. You'll get a tracking link by email as soon as your order ships.</p>"
+          }
+        },
+        "fq-8": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it doesn't work for us?",
+            "answer": "<p>You're covered by our [days]-day Happy Dog Guarantee. Email us within [days] days of delivery and we'll refund your order.</p>"
+          }
+        },
+        "fq-9": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use it with other flea treatments?",
+            "answer": "<p>Please ask your vet before combining Pawlio with any other flea or tick product.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "fq-1",
+        "fq-2",
+        "fq-3",
+        "fq-4",
+        "fq-5",
+        "fq-6",
+        "fq-7",
+        "fq-8",
+        "fq-9"
+      ]
+    },
+    "cta": {
+      "type": "pw-cta",
+      "settings": {
+        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_cc7da924-b45f-4e8c-87bc-8b5de73704fd_min.webp",
+        "image_position": "50% 35%",
+        "image_alt": "Happy beagle smiling at the camera",
+        "eyebrow": "Ready when you are",
+        "heading": "Give your dog <em>months</em> of itch-free days.",
+        "text": "Plant-powered. Waterproof. Backed by our [days]-day guarantee.",
+        "button_label": "Protect my dog",
+        "chips": "Free shipping on 2+\nCancel anytime",
+        "bg": "cream",
+        "text_align": "left",
+        "heading_size": 48,
+        "body_size": 18,
+        "padding_top": 32,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "problem",
+    "marquee",
+    "shop",
+    "steps",
+    "benefits",
+    "comparison",
+    "subscribe",
+    "story",
+    "gallery",
+    "guarantee",
+    "reviews",
+    "faq",
+    "cta"
+  ]
+}
