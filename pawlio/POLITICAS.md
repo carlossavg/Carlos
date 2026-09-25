@@ -1,5 +1,9 @@
 # Pawlio · Textos de políticas (pegar en Shopify → Settings → Policies)
 
+> **25/09: ya publicadas en la tienda** (Refund, Shipping, Subscription, Contact) con los
+> textos de `herramientas/politicas.mjs`, que manda sobre este archivo: envío gratis en todo,
+> correo contact.pawlio@gmail.com, sin dirección. Terms of service: "Create from template" en el panel.
+
 > Base para empezar, **no es asesoría legal**. Cambia lo que esté entre
 > [corchetes] y revisa que coincida con lo que de verdad vas a cumplir
 > (días de garantía, tiempos de envío, correo).

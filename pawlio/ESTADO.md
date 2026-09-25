@@ -21,7 +21,8 @@ caracteres (máximo de Shopify: 70). Shopify descarta `pw-product.liquid` entero
 con él las dos plantillas que lo usan. Arreglado en el repo. `theme check` no lo detecta.
 
 ## Producto real (leído el 25/09) — `gid://shopify/Product/8549411160108`
-- Importado de **CJ Dropshipping** (SKUs `CJYD2382878…`). Handle: `pawlio™-flea-tick-collar-for-dogs`.
+- Importado de **CJ Dropshipping** (SKUs `CJYD2382878…`). Handle: **`pawlio-flea-tick-collar`**
+  (antes `pawlio™-flea-tick-collar-for-dogs`, que redirige al nuevo).
 - **No es un collar**: es un **clip de silicona** que se engancha al collar del perro, con
   cápsulas de aceite esencial. Fotos del proveedor con marca **Sindax** y "12 MONTH PROTECTION".
 - Costo CJ: 1 ud $10.10 · pack de 3 $22.98 (verde $22.48). Sin envío.
@@ -30,8 +31,12 @@ con él las dos plantillas que lo usan. Arreglado en el repo. `theme check` no l
 **Configurado el 25/09:**
 - Opciones `Color` (Dark Pink · Black · Green) × `Pack` (1 Collar · 2 Collars · 3 Collars) = 9 variantes.
 - Precios $32.95 / $49.95 / $59.95, compare-at vacío, inventario sin seguimiento.
-- `1 Collar` y `3 Collars` conservan el SKU de CJ (1 pcs y 3 pcs). **`2 Collars` es nueva y no tiene
-  SKU**: hay que mapearla en la app de CJ a 2 × la de 1 pcs. Se borraron las de 5 pcs.
+- `1 Collar` y `3 Collars` conservan el SKU de CJ (1 pcs y 3 pcs). **`2 Collars` es nueva**, con
+  SKU propio `PAWLIO-2PK-PINK/BLACK/GREEN`: hay que mapearla en la app de CJ a 2 × la de 1 pcs.
+  Se borraron las de 5 pcs.
+- **Las 9 variantes están en el almacén `cjdropshipping`** y en la tarifa de CJ (envío gratis).
+  Las de 2 nacieron en "Shop location" y salían AGOTADAS al moverlas a la tarifa de CJ (esa tarifa
+  no cubre el almacén propio). CJ no deja activar una variante sin SKU; por eso los SKU propios.
 - Foto de color asignada a cada variante. Plantilla: la por defecto (`product.json` = `pw-product`).
 - Descripción de CJ sustituida por una corta y sin cifras (clip que se engancha al collar).
 - Tema: `pw_featured_product` apunta al producto; nuevo ajuste `swatch_colors` en pw-product.
@@ -61,20 +66,39 @@ La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es
   shipping on 2+ collars" y el carrito cuenta hasta $45: no coincide, aunque a favor del cliente.
 - Suscripción: 0 planes, pero la tienda la anuncia (barra, portada, sección).
 
-## Pendiente del lado del dueño
-- [ ] Revisar la vista previa y **publicar "Pawlio"** (Temas → ⋯ → Publicar). El publicado está roto.
-- [ ] Activar pagos (Settings → Payments → Shopify Payments + banco)
-- [ ] Conectar el píxel (app Facebook & Instagram, Data sharing: Maximum)
-- [ ] Comprar dominio y verificarlo en Meta Business
-- [ ] Mapear `2 Collars` en la app de CJ (2 × 1 pcs)
-- [ ] Decidir los textos: todo el tema habla de un collar que se recorta ("Fit & trim",
-      "cut-to-fit", "waterproof"); el producto real es un clip
-- [ ] Meses reales de protección (ajuste en 4; la foto del proveedor dice 12)
-- [ ] Nombre de la tienda: sigue "My Store" (sale en la pestaña del navegador)
-- [ ] Shopify Subscriptions: plan "Subscribe & Save", cada N meses (= duración del collar), 20%
-- [ ] Envío gratis ≥ $45, $4.95 por debajo
-- [ ] Políticas (POLITICAS.md), páginas About/FAQ/Contact, menú
-- [ ] Verificar con el proveedor: ingredientes y estatus EPA (25(b) o registro)
+## Hecho el 25/09 para poder vender
+- **Textos adaptados al clip** (`herramientas/textos-clip.mjs`): fuera "cut-to-fit", "Fit & trim",
+  "waterproof" (ahora "water-resistant", como dice el envase), pasos nuevos (abrir la lata, engancharlo
+  al collar). Meses: **se quedan en 4** a propósito — por debajo de los 12 del envase; la FAQ explica
+  "the tin says up to 12 months… we recommend a fresh Pawlio every 4". Se cambia en Pawlio · Marca.
+- **Envío gratis en todo** (es lo que cobra la tarifa de CJ): barra, sellos, carrito
+  ("Free US shipping is included", umbral 1 $) y pestaña de envío. Nada de "2+ collars".
+- **Suscripción**: app oficial **Shopify Subscriptions** instalada. Plan "Subscribe & Save",
+  cada 4 meses, 20 %, en las 9 variantes (grupo del app 66228322305). Página "Subscriptions" en la
+  cuenta del cliente (menú de cuenta), botón en pedidos y enlace en la página de gracias.
+  Precios con suscripción: $26.36 / $39.96 / $47.96. Probado en el carrito.
+- **Políticas** (`herramientas/politicas.mjs`): Refund, Shipping, Subscription, Contact publicadas
+  con contact.pawlio@gmail.com. Privacy la gestiona Shopify sola (se regenera al renombrar la tienda).
+- **Páginas** About (`page.about`) y FAQ (`page.faq`). **Menú**: Shop · How it works · Our story
+  · FAQ · Contact. El pie enlaza todas las políticas + "Your Privacy Choices".
+- **Producto**: handle limpio con redirección, título y descripción SEO, fuera de la galería las 3
+  fotos "5pcs" y el collage de la picadura (desenlazadas, siguen en Content → Files).
+
+## Pendiente del lado del dueño (en este orden)
+- [ ] **Activar pagos** (Settings → Payments → Shopify Payments + banco). Sin esto no cobra, y las
+      suscripciones solo funcionan con Shopify Payments.
+- [ ] **Nombre de la tienda** → "Pawlio" (Settings → General). Arregla pestaña, checkout, correos y privacidad.
+- [ ] **Terms of service** → Settings → Policies → Create from template (después de renombrar).
+- [ ] **App de CJ**: mapear `PAWLIO-2PK-PINK/BLACK/GREEN` → 2 × la variante de 1 pcs de su color.
+      Y apagar la sincronización de precios de CJ si la tiene, o pisará los precios.
+- [ ] **Píxel**: app Facebook & Instagram, Data sharing: Maximum.
+- [ ] **Dominio**: comprarlo (Settings → Domains), ponerlo como principal y verificarlo en Meta Business.
+- [ ] **Publicar "Pawlio"** (Online Store → Themes → Publish). El publicado está roto.
+- [ ] **Compra de prueba** real con suscripción: comprobar que CJ recibe el pedido y cancelar
+      desde la cuenta (Subscriptions). Luego reembolsar.
+- [ ] **Quitar la contraseña** (Online Store → Preferences). Lo último.
+- [ ] Pedir a CJ la etiqueta con ingredientes (EPA 25(b)). Las fotos del proveedor llevan marca
+      Sindax y "NON-TOXIC": no usarlas en anuncios.
 - [ ] Reseñas reales (Judge.me + 10 collares regalados)
 
 ## Pendiente para la próxima sesión de Claude
@@ -89,7 +113,7 @@ La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es
 - **Estructura de venta (producto):** caja de compra → cinta → problema → solución
   → cómo funciona → beneficios → estilo de vida → comparación → aventura
   → suscripción → garantía → galería de perros → reseñas (apagada) → FAQ
-  → historia PR → llamado final.
+  → historia (editorial) → llamado final.
 - **Bundles:** variantes de la opción `Pack` como tarjetas; bloque "Tarjeta de bundle"
   por valor. 2 Collars preseleccionado (Most popular). El ahorro se calcula contra
   1 unidad × cantidad (compare-at vacío).

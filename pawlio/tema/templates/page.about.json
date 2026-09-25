@@ -7,12 +7,12 @@
         "image_position": "50% 35%",
         "mobile_image_url": "",
         "image_alt": "Happy golden retriever running through a sunny meadow",
-        "eyebrow": "Our story",
+        "eyebrow": "Plant-powered flea & tick protection",
         "heading": "Made for the life <em>you share with them.</em>",
-        "text": "[brand] started with one simple idea: protecting your dog should be easy, long-lasting and kind.",
-        "button_label": "Shop the collar",
+        "text": "One little clip on their collar helps keep fleas and ticks away — for months. No greasy drops, no pills, no reminders.",
+        "button_label": "Shop Pawlio",
         "secondary_label": "",
-        "chips": "",
+        "chips": "[days]-day money-back guarantee\nFree US shipping\nCancel subscriptions anytime",
         "heading_size": 80,
         "shade": 55,
         "height": 70,
@@ -36,7 +36,7 @@
         "eyebrow": "Why we exist",
         "heading": "Dogs are family. <em>Their protection should be simple.</em>",
         "text": "<p>[brand] began with a simple belief: keeping your dog protected shouldn't mean greasy monthly drops, forgotten doses or a cabinet full of products.</p><p>So we made one quiet, everyday piece of protection — designed to be worn, not remembered. Less to think about, and more time for the walks, the naps and everything in between.</p>",
-        "bullets": "Plant-powered protection\nMonths per collar, not weeks\nReal humans behind every order",
+        "bullets": "Plant-powered protection\nMonths of protection, not weeks\nReal humans behind every order",
         "signature": "The [brand] team",
         "button_label": "Protect my dog",
         "button_style": "primary",
@@ -69,7 +69,7 @@
           "settings": {
             "icon": "leaf",
             "title": "Plant-powered",
-            "text": "Made with plant-derived essential oils instead of harsh synthetic chemicals."
+            "text": "Made with essential oils — no drops, no sprays, no pills."
           }
         },
         "bn-2": {
@@ -77,15 +77,15 @@
           "settings": {
             "icon": "clock",
             "title": "Lasts for months",
-            "text": "Up to [months] months per collar — far fewer things to remember than monthly drops."
+            "text": "One fresh Pawlio every [months] months — far less to remember than monthly drops."
           }
         },
         "bn-3": {
           "type": "benefit",
           "settings": {
             "icon": "drop",
-            "title": "Waterproof",
-            "text": "Baths, beach days and rainy walks don't slow it down."
+            "title": "Water-resistant",
+            "text": "Rainy walks and splashes are no problem."
           }
         },
         "bn-4": {
@@ -93,15 +93,15 @@
           "settings": {
             "icon": "ruler",
             "title": "Fits every breed",
-            "text": "Adjustable and cut-to-fit, from chihuahuas to great danes."
+            "text": "Clips onto the collar they already wear — from chihuahuas to huskies."
           }
         },
         "bn-5": {
           "type": "benefit",
           "settings": {
-            "icon": "wind",
-            "title": "Light, fresh scent",
-            "text": "A gentle plant scent — not a chemical cloud."
+            "icon": "bolt",
+            "title": "Clips on in seconds",
+            "text": "No buckles, no trimming. Slide it on and you're done."
           }
         },
         "bn-6": {
@@ -109,7 +109,7 @@
           "settings": {
             "icon": "sparkle",
             "title": "Mess-free",
-            "text": "No greasy residue on fur, furniture or hands."
+            "text": "It sits on the collar, so nothing greasy touches fur, furniture or hands."
           }
         }
       },
@@ -149,9 +149,9 @@
         "image_alt": "Happy beagle smiling at the camera",
         "eyebrow": "Ready when you are",
         "heading": "Give your dog <em>months</em> of itch-free days.",
-        "text": "Plant-powered. Waterproof. Backed by our [days]-day guarantee.",
+        "text": "Plant-powered. Water-resistant. Backed by our [days]-day guarantee.",
         "button_label": "Protect my dog",
-        "chips": "Free shipping on 2+\nCancel anytime",
+        "chips": "Free US shipping\nCancel anytime",
         "bg": "cream",
         "text_align": "left",
         "heading_size": 48,

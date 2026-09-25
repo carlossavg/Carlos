@@ -84,6 +84,11 @@
         {%- for policy in shop.policies -%}
           <a href="{{ policy.url }}">{{ policy.title }}</a>
         {%- endfor -%}
+        {%- comment -%} Página que crea Shopify para la exclusión de venta de datos (leyes de privacidad de EE. UU.) {%- endcomment -%}
+        {%- assign pw_optout = pages['data-sharing-opt-out'] -%}
+        {%- if pw_optout.url != blank -%}
+          <a href="{{ pw_optout.url }}">{{ pw_optout.title }}</a>
+        {%- endif -%}
       </div>
       {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
         <ul class="pw-payments" role="list" aria-label="Payment methods">

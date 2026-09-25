@@ -7,12 +7,12 @@
         "image_position": "70% 50%",
         "mobile_image_url": "",
         "image_alt": "Happy golden retriever running through a sunny meadow",
-        "eyebrow": "Plant-powered flea & tick collar",
+        "eyebrow": "Plant-powered flea & tick protection",
         "heading": "Months of protection. <em>Zero monthly hassle.</em>",
-        "text": "One clip-on collar helps keep fleas and ticks away for up to [months] months. No greasy drops, no pills, no reminders.",
+        "text": "One little clip on their collar helps keep fleas and ticks away — for months. No greasy drops, no pills, no reminders.",
         "button_label": "Protect my dog",
         "secondary_label": "How it works",
-        "chips": "[days]-day money-back guarantee\nFree shipping on 2+ collars\nCancel subscriptions anytime",
+        "chips": "[days]-day money-back guarantee\nFree US shipping\nCancel subscriptions anytime",
         "heading_size": 80,
         "shade": 55,
         "height": 88,
@@ -34,7 +34,7 @@
           "type": "item",
           "settings": {
             "icon": "truck",
-            "text": "Free shipping on 2+ collars"
+            "text": "Free US shipping on every order"
           }
         },
         "tr-2": {
@@ -115,7 +115,7 @@
     "marquee": {
       "type": "pw-marquee",
       "settings": {
-        "items": "Plant-powered\nUp to [months] months per collar\nWaterproof\nFits every breed\nNo monthly drops\nNo pills\nNo prescription needed",
+        "items": "Plant-powered\nA fresh one every [months] months\nWater-resistant\nFits every breed\nNo monthly drops\nNo pills\nNo prescription needed",
         "separator": "paw-solid",
         "speed": 38,
         "size": 28,
@@ -161,7 +161,7 @@
         "show_quantity": false,
         "quantity_label": "Quantity",
         "assurance_1_icon": "truck",
-        "assurance_1": "Free shipping on 2+ collars",
+        "assurance_1": "Free US shipping",
         "assurance_2_icon": "shield-check",
         "assurance_2": "[days]-day money-back guarantee",
         "assurance_3_icon": "lock",
@@ -187,28 +187,28 @@
           "type": "benefit",
           "settings": {
             "icon": "shield-check",
-            "text": "Helps repel fleas & ticks for up to [months] months"
+            "text": "Helps repel fleas & ticks, day and night"
           }
         },
         "pw-2": {
           "type": "benefit",
           "settings": {
             "icon": "leaf",
-            "text": "Plant-powered formula — no harsh chemicals"
+            "text": "Essential-oil formula — no drops, no sprays, no pills"
           }
         },
         "pw-3": {
           "type": "benefit",
           "settings": {
             "icon": "drop",
-            "text": "Waterproof: keeps working through baths, swims & rain"
+            "text": "Water-resistant: rain and splashes are no problem"
           }
         },
         "pw-4": {
           "type": "benefit",
           "settings": {
-            "icon": "scissors",
-            "text": "One size fits all breeds — adjustable & cut-to-fit"
+            "icon": "paw",
+            "text": "Clips onto the collar your dog already wears"
           }
         },
         "pw-5": {
@@ -235,7 +235,7 @@
             "units": 2,
             "badge": "Most popular",
             "badge_style": "forest",
-            "perks": "FREE shipping",
+            "perks": "",
             "preselect": true
           }
         },
@@ -249,7 +249,7 @@
             "units": 3,
             "badge": "Best value",
             "badge_style": "amber",
-            "perks": "FREE shipping\nLowest price per collar",
+            "perks": "Lowest price per collar",
             "preselect": false
           }
         },
@@ -260,7 +260,7 @@
             "icon": "leaf",
             "use_description": true,
             "open": false,
-            "content": "<p>A slow-release, plant-powered collar that helps keep fleas and ticks away from your dog for up to [months] months. Waterproof, adjustable and made for everyday wear.</p>"
+            "content": "<p>A soft clip that slides onto your dog's everyday collar and holds a slow-release essential-oil capsule that helps repel fleas and ticks. Water-resistant, suitable for all breeds and made for everyday wear.</p><p>We recommend a fresh Pawlio every [months] months for steady protection.</p>"
           }
         },
         "pw-9": {
@@ -270,7 +270,7 @@
             "icon": "sparkle",
             "use_description": false,
             "open": false,
-            "content": "<ol><li>Open the pouch and gently stretch the collar to activate it.</li><li>Fasten it around your dog's neck — two fingers should slide underneath.</li><li>Trim the extra length and throw the scraps away, out of reach of pets and kids.</li><li>Replace it every [months] months (subscribers get the next one automatically).</li></ol>"
+            "content": "<ol><li>Open the tin and take out your Pawlio clip.</li><li>Check that the essential-oil capsule sits inside the clip.</li><li>Slide the clip onto your dog's collar so it sits snugly.</li><li>Replace it every [months] months (subscribers get the next one automatically).</li></ol>"
           }
         },
         "pw-10": {
@@ -290,7 +290,7 @@
             "icon": "truck",
             "use_description": false,
             "open": false,
-            "content": "<p>Orders are processed in 1–2 business days and usually arrive in 7–12 business days, with tracking. Free shipping on orders of 2+ collars.</p><p>Every order is covered by our [days]-day Happy Dog Guarantee — email us and we'll make it right.</p>"
+            "content": "<p>Orders are processed in 1–2 business days and usually arrive within 7–12 business days, with tracking. Shipping is free on every US order.</p><p>Every order is covered by our [days]-day Happy Dog Guarantee — email us and we'll make it right.</p>"
           }
         },
         "pw-12": {
@@ -337,17 +337,17 @@
         "sp-1": {
           "type": "step",
           "settings": {
-            "icon": "sparkle",
-            "title": "Unpack & stretch",
-            "text": "Take the collar out of the pouch and give it a gentle stretch to activate the plant-oil blend."
+            "icon": "box",
+            "title": "Open the tin",
+            "text": "Take out your Pawlio clip — the essential-oil capsule sits right inside it."
           }
         },
         "sp-2": {
           "type": "step",
           "settings": {
-            "icon": "scissors",
-            "title": "Fit & trim",
-            "text": "Buckle it on so two fingers slide underneath, then snip off the extra length."
+            "icon": "paw",
+            "title": "Clip it on",
+            "text": "Slide it onto the collar your dog already wears. No buckles, no trimming."
           }
         },
         "sp-3": {
@@ -355,7 +355,7 @@
           "settings": {
             "icon": "calendar",
             "title": "Relax for months",
-            "text": "Your dog is covered for up to [months] months. Subscribers get the next collar right on time."
+            "text": "Swap in a fresh one every [months] months. Subscribers get the next one right on time."
           }
         }
       },
@@ -384,7 +384,7 @@
           "settings": {
             "icon": "leaf",
             "title": "Plant-powered",
-            "text": "Made with plant-derived essential oils instead of harsh synthetic chemicals."
+            "text": "Made with essential oils — no drops, no sprays, no pills."
           }
         },
         "bn-2": {
@@ -392,15 +392,15 @@
           "settings": {
             "icon": "clock",
             "title": "Lasts for months",
-            "text": "Up to [months] months per collar — far fewer things to remember than monthly drops."
+            "text": "One fresh Pawlio every [months] months — far less to remember than monthly drops."
           }
         },
         "bn-3": {
           "type": "benefit",
           "settings": {
             "icon": "drop",
-            "title": "Waterproof",
-            "text": "Baths, beach days and rainy walks don't slow it down."
+            "title": "Water-resistant",
+            "text": "Rainy walks and splashes are no problem."
           }
         },
         "bn-4": {
@@ -408,15 +408,15 @@
           "settings": {
             "icon": "ruler",
             "title": "Fits every breed",
-            "text": "Adjustable and cut-to-fit, from chihuahuas to great danes."
+            "text": "Clips onto the collar they already wear — from chihuahuas to huskies."
           }
         },
         "bn-5": {
           "type": "benefit",
           "settings": {
-            "icon": "wind",
-            "title": "Light, fresh scent",
-            "text": "A gentle plant scent — not a chemical cloud."
+            "icon": "bolt",
+            "title": "Clips on in seconds",
+            "text": "No buckles, no trimming. Slide it on and you're done."
           }
         },
         "bn-6": {
@@ -424,7 +424,7 @@
           "settings": {
             "icon": "sparkle",
             "title": "Mess-free",
-            "text": "No greasy residue on fur, furniture or hands."
+            "text": "It sits on the collar, so nothing greasy touches fur, furniture or hands."
           }
         }
       },
@@ -475,7 +475,7 @@
         "rw-3": {
           "type": "row",
           "settings": {
-            "feature": "Plant-powered formula",
+            "feature": "Essential-oil based",
             "brand": "yes",
             "v2": "no",
             "v3": "Varies"
@@ -493,7 +493,7 @@
         "rw-5": {
           "type": "row",
           "settings": {
-            "feature": "Waterproof",
+            "feature": "Water-resistant",
             "brand": "yes",
             "v2": "Varies",
             "v3": "no"
@@ -749,29 +749,29 @@
         "fq-1": {
           "type": "faq",
           "settings": {
-            "question": "How long does one collar last?",
-            "answer": "<p>Each collar provides up to [months] months of protection. For nonstop coverage, replace it every [months] months — or keep Subscribe &amp; Save on and we'll send the next one automatically.</p>"
+            "question": "How long does one Pawlio last?",
+            "answer": "<p>The tin says up to 12 months, but essential oils fade faster with baths, rain and heat. For steady protection we recommend a fresh Pawlio every [months] months — or keep Subscribe &amp; Save on and we'll send the next one automatically.</p>"
           }
         },
         "fq-2": {
           "type": "faq",
           "settings": {
             "question": "Is it safe for my dog?",
-            "answer": "<p>Pawlio is made with plant-derived essential oils and designed for everyday wear on dogs 12 weeks and older. Watch your dog for the first 48 hours and remove the collar if you notice any irritation. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. <strong>For dogs only — never use on cats.</strong></p>"
+            "answer": "<p>Pawlio is made with essential oils and sits on your dog's collar, not on the skin. It's designed for everyday wear on dogs 12 weeks and older. Watch your dog for the first 48 hours and remove the clip if you notice any irritation. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. <strong>For dogs only — never use on cats.</strong></p>"
           }
         },
         "fq-3": {
           "type": "faq",
           "settings": {
             "question": "Will it fit my dog?",
-            "answer": "<p>Yes. It's one size, adjustable and cut-to-fit for every breed. Fasten it so two fingers slide underneath, then trim the excess.</p>"
+            "answer": "<p>Yes. Pawlio clips onto most everyday collars and is suitable for dogs of every size — from chihuahuas to huskies. No trimming needed.</p>"
           }
         },
         "fq-4": {
           "type": "faq",
           "settings": {
             "question": "Can my dog get wet with it on?",
-            "answer": "<p>Absolutely. Pawlio is waterproof, so baths, swims and rainy walks are no problem.</p>"
+            "answer": "<p>Yes. Pawlio is water-resistant, so rainy walks and bath time are fine. Frequent swimming can make the essential oils fade sooner — another reason we recommend a fresh one every [months] months.</p>"
           }
         },
         "fq-5": {
@@ -830,9 +830,9 @@
         "image_alt": "Happy beagle smiling at the camera",
         "eyebrow": "Ready when you are",
         "heading": "Give your dog <em>months</em> of itch-free days.",
-        "text": "Plant-powered. Waterproof. Backed by our [days]-day guarantee.",
+        "text": "Plant-powered. Water-resistant. Backed by our [days]-day guarantee.",
         "button_label": "Protect my dog",
-        "chips": "Free shipping on 2+\nCancel anytime",
+        "chips": "Free US shipping\nCancel anytime",
         "bg": "cream",
         "text_align": "left",
         "heading_size": 48,

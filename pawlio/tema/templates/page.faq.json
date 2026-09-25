@@ -20,29 +20,29 @@
         "fq-1": {
           "type": "faq",
           "settings": {
-            "question": "How long does one collar last?",
-            "answer": "<p>Each collar provides up to [months] months of protection. For nonstop coverage, replace it every [months] months — or keep Subscribe &amp; Save on and we'll send the next one automatically.</p>"
+            "question": "How long does one Pawlio last?",
+            "answer": "<p>The tin says up to 12 months, but essential oils fade faster with baths, rain and heat. For steady protection we recommend a fresh Pawlio every [months] months — or keep Subscribe &amp; Save on and we'll send the next one automatically.</p>"
           }
         },
         "fq-2": {
           "type": "faq",
           "settings": {
             "question": "Is it safe for my dog?",
-            "answer": "<p>Pawlio is made with plant-derived essential oils and designed for everyday wear on dogs 12 weeks and older. Watch your dog for the first 48 hours and remove the collar if you notice any irritation. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. <strong>For dogs only — never use on cats.</strong></p>"
+            "answer": "<p>Pawlio is made with essential oils and sits on your dog's collar, not on the skin. It's designed for everyday wear on dogs 12 weeks and older. Watch your dog for the first 48 hours and remove the clip if you notice any irritation. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. <strong>For dogs only — never use on cats.</strong></p>"
           }
         },
         "fq-3": {
           "type": "faq",
           "settings": {
             "question": "Will it fit my dog?",
-            "answer": "<p>Yes. It's one size, adjustable and cut-to-fit for every breed. Fasten it so two fingers slide underneath, then trim the excess.</p>"
+            "answer": "<p>Yes. Pawlio clips onto most everyday collars and is suitable for dogs of every size — from chihuahuas to huskies. No trimming needed.</p>"
           }
         },
         "fq-4": {
           "type": "faq",
           "settings": {
             "question": "Can my dog get wet with it on?",
-            "answer": "<p>Absolutely. Pawlio is waterproof, so baths, swims and rainy walks are no problem.</p>"
+            "answer": "<p>Yes. Pawlio is water-resistant, so rainy walks and bath time are fine. Frequent swimming can make the essential oils fade sooner — another reason we recommend a fresh one every [months] months.</p>"
           }
         },
         "fq-5": {
@@ -120,9 +120,9 @@
         "image_alt": "Happy beagle smiling at the camera",
         "eyebrow": "Ready when you are",
         "heading": "Give your dog <em>months</em> of itch-free days.",
-        "text": "Plant-powered. Waterproof. Backed by our [days]-day guarantee.",
+        "text": "Plant-powered. Water-resistant. Backed by our [days]-day guarantee.",
         "button_label": "Protect my dog",
-        "chips": "Free shipping on 2+\nCancel anytime",
+        "chips": "Free US shipping\nCancel anytime",
         "bg": "cream",
         "text_align": "left",
         "heading_size": 48,

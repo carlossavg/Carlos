@@ -190,11 +190,12 @@
       }
     },
     "pw_brand_name": "Pawlio",
-    "pw_featured_product": "pawlio™-flea-tick-collar-for-dogs",
+    "pw_featured_product": "pawlio-flea-tick-collar",
     "pw_months": 4,
     "pw_guarantee_days": 60,
     "pw_heading_font": "fraunces",
-    "pw_free_shipping_threshold": 45
+    "pw_free_shipping_threshold": 1,
+    "pw_ship_success": "Free US shipping is included"
   },
   "presets": {
     "Dawn": {
