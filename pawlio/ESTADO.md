@@ -48,6 +48,17 @@ esos dominios permitidos:
 - **Imágenes de respaldo:** URLs `_min.webp` de Higgsfield en `image_url` (ajuste de texto);
   el `image_picker` de cada sección tiene prioridad.
 
+## Visibilidad por producto (v3)
+- `snippets/pw-match.liquid`: devuelve yes/no según una palabra (`flea`) en título, tipo o etiquetas;
+  `-flea` = negación. Cada sección `pw-*` tiene el ajuste `show_for`; bloques de viñetas y pestañas también.
+- `templates/product.json`: secciones del collar con `show_for: flea` + secciones generales con `-flea`
+  (`trust-other`, `faq-other`, `cta-other` que vende el collar).
+- `snippets/pw-star-handle.liquid`: producto estrella para botones de la portada (Producto principal
+  o el primero con la palabra `pw_star_keyword`, por defecto `flea`).
+- Fotos de estilo de vida dentro del tema: `assets/pw-img-*-800.jpg` y `-1600.jpg` (+ `pw-img-hero-m`
+  recorte vertical para celular). `image_url` de las plantillas usa esos nombres.
+- `productos-prueba.csv`: 6 productos de prueba (etiqueta `pawlio-test`).
+
 ## Secciones creadas (`pawlio/tema/sections/`)
 | Archivo | Qué hace |
 |---|---|

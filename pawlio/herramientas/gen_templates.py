@@ -2,18 +2,9 @@ import json, os
 
 T = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tema')
 B = 'https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/'
-IMG = {k: B + v + '_min.webp' for k, v in {
-    'hero': 'hf_20260925_165428_03c42843-a3cb-4e47-b382-1b38e089da7e',
-    'problem': 'hf_20260925_165427_afc09ba9-3e63-4526-9e1a-484f7a4b0e75',
-    'lifestyle': 'hf_20260925_165427_081c1502-8569-4dff-97c0-97244cb00787',
-    'adventure': 'hf_20260925_165427_0c639f2e-f968-437f-a0e0-bda68c2b9f3d',
-    'story': 'hf_20260925_165428_dcf582f5-c6ff-4fb7-b8a9-d031a00fb6ac',
-    'portrait': 'hf_20260925_165427_cc7da924-b45f-4e8c-87bc-8b5de73704fd',
-    'lab': 'hf_20260925_171435_90158d9d-f056-45c5-b9e1-92b0579de57d',
-    'chihuahua': 'hf_20260925_171435_07c262e2-8f87-4a9b-8498-5c5c2a9a5324',
-    'pitbull': 'hf_20260925_171434_41d38098-e9fc-4ec5-a06c-42c41a990791',
-    'doodle': 'hf_20260925_171436_92286780-86ab-4a22-bcd1-4e2faec64e1a',
-}.items()}
+IMG = {k: 'pw-img-' + k for k in [
+    'hero', 'problem', 'lifestyle', 'adventure', 'story', 'portrait', 'lab', 'chihuahua', 'pitbull', 'doodle']}
+IMG['hero-m'] = 'pw-img-hero-m'
 
 
 def blocks(prefix, items):
@@ -49,10 +40,14 @@ def dump(path, data, header=None):
 
 # ------------------------------------------------------------------ piezas reutilizables
 BUY_BENEFITS = [
-    ("benefit", {"icon": "shield-check", "text": "Helps repel fleas & ticks for up to [months] months"}),
-    ("benefit", {"icon": "leaf", "text": "Plant-powered formula — no harsh chemicals"}),
-    ("benefit", {"icon": "drop", "text": "Waterproof: keeps working through baths, swims & rain"}),
-    ("benefit", {"icon": "scissors", "text": "One size fits all breeds — adjustable & cut-to-fit"}),
+    ("benefit", {"icon": "shield-check", "text": "Helps repel fleas & ticks for up to [months] months", "show_for": "flea"}),
+    ("benefit", {"icon": "leaf", "text": "Plant-powered formula — no harsh chemicals", "show_for": "flea"}),
+    ("benefit", {"icon": "drop", "text": "Waterproof: keeps working through baths, swims & rain", "show_for": "flea"}),
+    ("benefit", {"icon": "scissors", "text": "One size fits all breeds — adjustable & cut-to-fit", "show_for": "flea"}),
+    ("benefit", {"icon": "truck", "text": "Free shipping on orders over $45", "show_for": "-flea"}),
+    ("benefit", {"icon": "shield-check", "text": "[days]-day Happy Dog Guarantee", "show_for": "-flea"}),
+    ("benefit", {"icon": "heart", "text": "Designed for comfort, built for everyday life", "show_for": "-flea"}),
+    ("benefit", {"icon": "chat", "text": "Real humans answer every email", "show_for": "-flea"}),
 ]
 BUNDLES = [
     ("bundle", {"option_value": "1 Collar", "title": "1 Collar", "subtitle": "[months] months of protection",
@@ -66,28 +61,29 @@ BUNDLES = [
                 "perks": "FREE shipping\nLowest price per collar", "preselect": False}),
 ]
 TABS = [
-    ("tab", {"title": "What it is", "icon": "leaf", "use_description": True, "open": False,
+    ("tab", {"title": "Details", "icon": "leaf", "use_description": True, "open": False, "show_for": "",
              "content": "<p>A slow-release, plant-powered collar that helps keep fleas and ticks away from your dog for up to [months] months. Waterproof, adjustable and made for everyday wear.</p>"}),
-    ("tab", {"title": "How to use", "icon": "sparkle", "use_description": False, "open": False,
+    ("tab", {"title": "How to use", "icon": "sparkle", "use_description": False, "open": False, "show_for": "flea",
              "content": "<ol><li>Open the pouch and gently stretch the collar to activate it.</li><li>Fasten it around your dog's neck — two fingers should slide underneath.</li><li>Trim the extra length and throw the scraps away, out of reach of pets and kids.</li><li>Replace it every [months] months (subscribers get the next one automatically).</li></ol>"}),
-    ("tab", {"title": "Safety", "icon": "shield-check", "use_description": False, "open": False,
+    ("tab", {"title": "Safety", "icon": "shield-check", "use_description": False, "open": False, "show_for": "flea",
              "content": "<p><strong>For dogs only — never use on cats.</strong> Not for puppies under 12 weeks. Watch your dog for the first 48 hours; if you notice redness or irritation, remove the collar and contact your vet. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. Keep out of reach of children.</p><p>See the package label for the full ingredient list and directions.</p>"}),
-    ("tab", {"title": "Shipping & returns", "icon": "truck", "use_description": False, "open": False,
-             "content": "<p>Orders are processed in 1–2 business days and usually arrive in 7–12 business days, with tracking. Free shipping on orders of 2+ collars.</p><p>Every order is covered by our [days]-day Happy Dog Guarantee — email us and we'll make it right.</p>"}),
-    ("tab", {"title": "Subscribe & Save", "icon": "refresh", "use_description": False, "open": False,
+    ("tab", {"title": "Shipping & returns", "icon": "truck", "use_description": False, "open": False, "show_for": "",
+             "content": "<p>Orders are processed in 1–2 business days and usually arrive in 7–12 business days, with tracking. Free shipping on orders over $45.</p><p>Every order is covered by our [days]-day Happy Dog Guarantee — email us and we'll make it right.</p>"}),
+    ("tab", {"title": "Subscribe & Save", "icon": "refresh", "use_description": False, "open": False, "show_for": "flea",
              "content": "<p>Subscribe &amp; Save is pre-selected so your dog never goes unprotected: you pay the lower price today and a fresh pack ships every [months] months at that same lower price.</p><p>Prefer a single order? Choose <strong>One-time purchase</strong> before adding to cart. Subscribers can skip, pause or cancel anytime from their account — no fees.</p>"}),
 ]
 
 
 def buy_box(padding_top=24):
     return sec("pw-product", {
+        "special_for": "flea", "eyebrow_other": "", "tagline_other": "",
         "eyebrow": "Plant-powered flea & tick protection",
         "tagline": "No monthly drops. No pills. Just clip it on and enjoy months of peace of mind.",
         "title_size": 46, "show_price_row": True, "show_rating": True, "reviews_word": "reviews",
         "media_position": "left", "media_ratio": "square", "media_fit": "cover",
         "media_badge": "Plant-powered", "media_badge_icon": "leaf",
         "bundle_option_name": "Pack", "bundle_heading": "Choose your pack", "bundle_hint": "Most dog parents pick 2",
-        "per_unit_label": "[price] / collar", "save_label": "Save [percent]",
+        "per_unit_label": "[price] each", "save_label": "Save [percent]",
         "enable_subscriptions": True, "default_purchase": "subscription",
         "purchase_heading": "How do you want it?", "subscribe_title": "Subscribe & Save", "sub_badge_label": "Save [percent]",
         "subscribe_perks": "A fresh pack ships every [months] months — right when protection runs out\nSkip, pause or cancel anytime — no fees\nLocked-in subscriber price on every delivery",
@@ -96,7 +92,7 @@ def buy_box(padding_top=24):
         "disclosure_onetime": "One-time purchase. No subscription, no commitment.",
         "button_label": "Add to cart", "button_price": True, "button_shine": True, "sold_out_label": "Sold out",
         "show_dynamic_checkout": False, "show_quantity": False, "quantity_label": "Quantity",
-        "assurance_1_icon": "truck", "assurance_1": "Free shipping on 2+ collars",
+        "assurance_1_icon": "truck", "assurance_1": "Free shipping over $45",
         "assurance_2_icon": "shield-check", "assurance_2": "[days]-day money-back guarantee",
         "assurance_3_icon": "lock", "assurance_3": "Secure checkout",
         "show_payment_icons": True, "show_delivery": True, "delivery_min": 7, "delivery_max": 12,
@@ -263,7 +259,7 @@ TRUST = sec("pw-trust-bar", {"bg": "white", "padding_top": 24, "padding_bottom":
     ("item", {"icon": "lock", "text": "Secure checkout"})], 'tr')
 
 HERO = sec("pw-hero", {
-    "image_url": IMG['hero'], "image_position": "70% 50%", "mobile_image_url": "", "image_alt": "Happy golden retriever running through a sunny meadow",
+    "image_url": IMG['hero'], "image_position": "70% 50%", "mobile_image_url": IMG['hero-m'], "image_alt": "Happy golden retriever running through a sunny meadow",
     "eyebrow": "Plant-powered flea & tick collar", "heading": "Months of protection. <em>Zero monthly hassle.</em>",
     "text": "One clip-on collar helps keep fleas and ticks away for up to [months] months. No greasy drops, no pills, no reminders.",
     "button_label": "Protect my dog", "secondary_label": "How it works", "chips": "[days]-day money-back guarantee\nFree shipping on 2+ collars\nCancel subscriptions anytime",
@@ -273,23 +269,56 @@ HERO = sec("pw-hero", {
 HEADER = "IMPORTANT: The contents of this file are auto-generated. Edit sections from the Shopify theme editor."
 
 # ------------------------------------------------------------------ PRODUCTO (la página de los anuncios)
+def only(section, kw):
+    d = json.loads(json.dumps(section))
+    d["settings"]["show_for"] = kw
+    return d
+
+
+TRUST_OTHER = only(sec("pw-trust-bar", {"bg": "white", "padding_top": 24, "padding_bottom": 24}, [
+    ("item", {"icon": "truck", "text": "Free shipping on orders over $45"}),
+    ("item", {"icon": "shield-check", "text": "[days]-day money-back guarantee"}),
+    ("item", {"icon": "lock", "text": "Secure checkout"}),
+    ("item", {"icon": "chat", "text": "Real humans, fast replies"})], 'to'), "-flea")
+
+FAQ_OTHER = only(sec("pw-faq", {
+    "eyebrow": "FAQ", "heading": "Good questions. <em>Quick answers.</em>", "layout": "split", "open_first": True,
+    "contact_text": "Still wondering? Email us:", "email": "", "bg": "white", "text_align": "left",
+    "heading_size": 44, "body_size": 18, "padding_top": 88, "padding_bottom": 88,
+}, [("faq", {"question": "When will my order arrive?", "answer": "<p>Orders ship within 1–2 business days and typically arrive in 7–12 business days. You'll get a tracking link by email as soon as your order ships.</p>"}),
+    ("faq", {"question": "Do you offer free shipping?", "answer": "<p>Yes — shipping is free on every order over $45. Orders under $45 ship for a flat $4.95.</p>"}),
+    ("faq", {"question": "What if it's not right for my dog?", "answer": "<p>You're covered by our [days]-day Happy Dog Guarantee. Email us within [days] days of delivery and we'll make it right with a refund.</p>"}),
+    ("faq", {"question": "Is checkout secure?", "answer": "<p>Yes. Checkout is powered by Shopify and fully encrypted. We accept all major cards, Apple Pay, Google Pay, Shop Pay and PayPal.</p>"}),
+    ("faq", {"question": "How can I contact you?", "answer": "<p>Email us anytime — real humans reply within 1 business day.</p>"})], 'fo'), "-flea")
+
+CTA_OTHER = only(sec("pw-cta", {
+    "image_url": IMG['adventure'], "image_position": "50% 50%", "image_alt": "Dog running on a forest trail",
+    "eyebrow": "Complete the kit", "heading": "Keep the fleas away <em>for months.</em>",
+    "text": "Pair it with the [brand] flea & tick collar — plant-powered, waterproof and backed by our [days]-day guarantee.",
+    "button_label": "Shop the collar", "link_star": True, "chips": "Free shipping on 2+\nCancel anytime",
+    "bg": "cream", "text_align": "left", "heading_size": 46, "body_size": 18, "padding_top": 32, "padding_bottom": 96,
+}), "-flea")
+
 dump('templates/product.json', template([
     ("main", buy_box(24)),
-    ("marquee", MARQUEE),
-    ("problem", PROBLEM),
-    ("solution", SOLUTION),
-    ("steps", STEPS),
-    ("benefits", BENEFITS),
-    ("lifestyle", LIFESTYLE),
-    ("comparison", COMPARISON),
-    ("adventure", ADVENTURE),
-    ("subscribe", SUBSCRIBE),
+    ("trust-other", TRUST_OTHER),
+    ("marquee", only(MARQUEE, "flea")),
+    ("problem", only(PROBLEM, "flea")),
+    ("solution", only(SOLUTION, "flea")),
+    ("steps", only(STEPS, "flea")),
+    ("benefits", only(BENEFITS, "flea")),
+    ("lifestyle", only(LIFESTYLE, "flea")),
+    ("comparison", only(COMPARISON, "flea")),
+    ("adventure", only(ADVENTURE, "flea")),
+    ("subscribe", only(SUBSCRIBE, "flea")),
     ("guarantee", GUARANTEE),
     ("gallery", GALLERY),
     ("reviews", REVIEWS),
-    ("faq", faq()),
-    ("story", STORY),
-    ("cta", CTA),
+    ("faq", only(faq(), "flea")),
+    ("faq-other", FAQ_OTHER),
+    ("story", only(STORY, "flea")),
+    ("cta", only(CTA, "flea")),
+    ("cta-other", CTA_OTHER),
 ]))
 
 # ------------------------------------------------------------------ PORTADA
@@ -343,7 +372,7 @@ dump('templates/cart.json', cart)
 hg = json.load(open(os.path.join(T, 'sections/header-group.json')))
 ab = hg["sections"]["announcement-bar"]
 ab["settings"].update({"color_scheme": "scheme-3", "show_line_separator": False, "auto_rotate": True, "change_slides_speed": 4})
-msgs = ["FREE shipping on 2+ collars", "Try it risk-free: 60-day money-back guarantee", "Subscribe & save — skip or cancel anytime"]
+msgs = ["FREE shipping on orders over $45", "Try it risk-free: 60-day money-back guarantee", "Subscribe & save — skip or cancel anytime"]
 ab["blocks"] = {f"announcement-{i + 1}": {"type": "announcement", "settings": {"text": m, "text_alignment": "center", "color_scheme": "scheme-3", "link": ""}} for i, m in enumerate(msgs)}
 ab["block_order"] = list(ab["blocks"].keys())
 hg["sections"]["header"]["settings"].update({"color_scheme": "scheme-1", "menu_color_scheme": "scheme-1", "sticky_header_type": "always",

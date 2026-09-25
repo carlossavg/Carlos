@@ -2,18 +2,19 @@
   Pawlio · a dónde lleva un botón.
   - link: enlace elegido en el editor. Si está vacío:
     en la página del producto baja a la caja de compra (#pw-buy);
-    en otras páginas lleva al producto principal (Configuración del tema → Pawlio · Marca).
+    en otras páginas (o con star: true) lleva al producto estrella.
 {%- endcomment -%}
 {%- liquid
   if link != blank
     echo link
-  elsif template.name == 'product'
+  elsif template.name == 'product' and star != true
     echo '#pw-buy'
   else
-    assign pw_fp = settings.pw_featured_product
-    if pw_fp == blank
-      assign pw_fp = collections.all.products.first
-    endif
+    capture pw_star_handle
+      render 'pw-star-handle'
+    endcapture
+    assign pw_star_handle = pw_star_handle | strip
+    assign pw_fp = all_products[pw_star_handle]
     if pw_fp != blank
       echo pw_fp.url
     else

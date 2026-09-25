@@ -1,3 +1,5 @@
+{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}
+{%- if pw_vis contains 'yes' -%}
 {%- render 'pw-section-style' -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .pw-marquee { --pw-speed: {{ section.settings.speed }}s; --pw-marquee-size: {{ section.settings.size }}px; }
@@ -20,6 +22,7 @@
     {%- endfor -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -134,6 +137,16 @@
       "step": 8,
       "unit": "px",
       "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "text",
+      "id": "show_for",
+      "label": "Mostrar solo en productos con esta palabra",
+      "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."
     }
   ],
   "presets": [

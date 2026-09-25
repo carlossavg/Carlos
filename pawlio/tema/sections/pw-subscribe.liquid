@@ -1,3 +1,5 @@
+{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}
+{%- if pw_vis contains 'yes' -%}
 {%- render 'pw-section-style' -%}
 <section class="pw pw-on-{{ section.settings.bg }}">
   <div class="pw-container pw-sub">
@@ -31,6 +33,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -193,6 +196,16 @@
       "step": 8,
       "unit": "px",
       "default": 96
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "text",
+      "id": "show_for",
+      "label": "Mostrar solo en productos con esta palabra",
+      "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."
     }
   ],
   "blocks": [

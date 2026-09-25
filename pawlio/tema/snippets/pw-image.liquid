@@ -1,7 +1,8 @@
 {%- comment -%}
   Pawlio · imagen editable con respaldo.
   - image: imagen elegida en el editor (image_picker). Si existe, se sirve optimizada desde Shopify.
-  - fallback: enlace de imagen de respaldo (se usa si no se eligió imagen).
+  - fallback: imagen de respaldo si no se eligió ninguna: nombre de una imagen del tema
+    (ej. pw-img-hero → usa pw-img-hero-800.jpg y pw-img-hero-1600.jpg) o un enlace https.
   - alt, class, sizes, loading ('lazy' | 'eager'), position (ej. '50% 50%')
 {%- endcomment -%}
 {%- liquid
@@ -38,8 +39,19 @@
       style: pw_style
   }}
 {%- elsif fallback != blank -%}
+  {%- liquid
+    if fallback contains '/'
+      assign pw_src = fallback
+      assign pw_srcset = ''
+    else
+      assign pw_small = fallback | append: '-800.jpg' | asset_url
+      assign pw_src = fallback | append: '-1600.jpg' | asset_url
+      assign pw_srcset = pw_small | append: ' 800w, ' | append: pw_src | append: ' 1600w'
+    endif
+  -%}
   <img
-    src="{{ fallback }}"
+    src="{{ pw_src }}"
+    {% if pw_srcset != blank %}srcset="{{ pw_srcset }}" sizes="{{ pw_sizes }}"{% endif %}
     alt="{{ pw_alt | escape }}"
     class="{{ class }}"
     loading="{{ pw_loading }}"

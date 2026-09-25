@@ -1,3 +1,5 @@
+{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}
+{%- if pw_vis contains 'yes' -%}
 {%- render 'pw-section-style' -%}
 <section class="pw pw-on-{{ section.settings.bg }}">
   <div class="pw-container">
@@ -7,7 +9,7 @@
         <h2 class="pw-h2">{% render 'pw-t', t: section.settings.heading %}</h2>
         {%- if section.settings.text != blank -%}<p class="pw-lead">{% render 'pw-t', t: section.settings.text %}</p>{%- endif -%}
         {%- if section.settings.button_label != blank -%}
-          <a class="pw-btn pw-btn--primary pw-btn--shine" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+          <a class="pw-btn pw-btn--primary pw-btn--shine" href="{% render 'pw-cta-url', link: section.settings.button_link, star: section.settings.link_star %}">
             {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', px: 20, class: 'pw-icon--arrow' %}
           </a>
         {%- endif -%}
@@ -24,6 +26,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -49,8 +52,8 @@
     {
       "type": "text",
       "id": "image_url",
-      "label": "Enlace de imagen de respaldo",
-      "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."
+      "label": "Imagen de respaldo",
+      "info": "Se usa si no eliges imagen arriba: nombre de una foto incluida en el tema (ej. pw-img-hero) o un enlace https."
     },
     {
       "type": "select",
@@ -122,6 +125,13 @@
       "type": "url",
       "id": "button_link",
       "label": "Enlace del botón"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_star",
+      "label": "Si no hay enlace, llevar al producto estrella",
+      "info": "Útil en otros productos para vender también el collar.",
+      "default": false
     },
     {
       "type": "textarea",
@@ -216,6 +226,16 @@
       "step": 8,
       "unit": "px",
       "default": 96
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "text",
+      "id": "show_for",
+      "label": "Mostrar solo en productos con esta palabra",
+      "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."
     }
   ],
   "presets": [

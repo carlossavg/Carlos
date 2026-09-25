@@ -3,9 +3,9 @@
     "hero": {
       "type": "pw-hero",
       "settings": {
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_03c42843-a3cb-4e47-b382-1b38e089da7e_min.webp",
+        "image_url": "pw-img-hero",
         "image_position": "70% 50%",
-        "mobile_image_url": "",
+        "mobile_image_url": "pw-img-hero-m",
         "image_alt": "Happy golden retriever running through a sunny meadow",
         "eyebrow": "Plant-powered flea & tick collar",
         "heading": "Months of protection. <em>Zero monthly hassle.</em>",
@@ -69,7 +69,7 @@
     "problem": {
       "type": "pw-problem",
       "settings": {
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_afc09ba9-3e63-4526-9e1a-484f7a4b0e75_min.webp",
+        "image_url": "pw-img-problem",
         "image_position": "50% 35%",
         "image_alt": "Dog scratching behind its ear on a sofa",
         "tag": "Sound familiar?",
@@ -127,6 +127,9 @@
     "shop": {
       "type": "pw-product",
       "settings": {
+        "special_for": "flea",
+        "eyebrow_other": "",
+        "tagline_other": "",
         "eyebrow": "Plant-powered flea & tick protection",
         "tagline": "No monthly drops. No pills. Just clip it on and enjoy months of peace of mind.",
         "title_size": 46,
@@ -141,7 +144,7 @@
         "bundle_option_name": "Pack",
         "bundle_heading": "Choose your pack",
         "bundle_hint": "Most dog parents pick 2",
-        "per_unit_label": "[price] / collar",
+        "per_unit_label": "[price] each",
         "save_label": "Save [percent]",
         "enable_subscriptions": true,
         "default_purchase": "subscription",
@@ -161,7 +164,7 @@
         "show_quantity": false,
         "quantity_label": "Quantity",
         "assurance_1_icon": "truck",
-        "assurance_1": "Free shipping on 2+ collars",
+        "assurance_1": "Free shipping over $45",
         "assurance_2_icon": "shield-check",
         "assurance_2": "[days]-day money-back guarantee",
         "assurance_3_icon": "lock",
@@ -187,31 +190,67 @@
           "type": "benefit",
           "settings": {
             "icon": "shield-check",
-            "text": "Helps repel fleas & ticks for up to [months] months"
+            "text": "Helps repel fleas & ticks for up to [months] months",
+            "show_for": "flea"
           }
         },
         "pw-2": {
           "type": "benefit",
           "settings": {
             "icon": "leaf",
-            "text": "Plant-powered formula — no harsh chemicals"
+            "text": "Plant-powered formula — no harsh chemicals",
+            "show_for": "flea"
           }
         },
         "pw-3": {
           "type": "benefit",
           "settings": {
             "icon": "drop",
-            "text": "Waterproof: keeps working through baths, swims & rain"
+            "text": "Waterproof: keeps working through baths, swims & rain",
+            "show_for": "flea"
           }
         },
         "pw-4": {
           "type": "benefit",
           "settings": {
             "icon": "scissors",
-            "text": "One size fits all breeds — adjustable & cut-to-fit"
+            "text": "One size fits all breeds — adjustable & cut-to-fit",
+            "show_for": "flea"
           }
         },
         "pw-5": {
+          "type": "benefit",
+          "settings": {
+            "icon": "truck",
+            "text": "Free shipping on orders over $45",
+            "show_for": "-flea"
+          }
+        },
+        "pw-6": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield-check",
+            "text": "[days]-day Happy Dog Guarantee",
+            "show_for": "-flea"
+          }
+        },
+        "pw-7": {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "text": "Designed for comfort, built for everyday life",
+            "show_for": "-flea"
+          }
+        },
+        "pw-8": {
+          "type": "benefit",
+          "settings": {
+            "icon": "chat",
+            "text": "Real humans answer every email",
+            "show_for": "-flea"
+          }
+        },
+        "pw-9": {
           "type": "bundle",
           "settings": {
             "option_value": "1 Collar",
@@ -225,7 +264,7 @@
             "preselect": false
           }
         },
-        "pw-6": {
+        "pw-10": {
           "type": "bundle",
           "settings": {
             "option_value": "2 Collars",
@@ -239,7 +278,7 @@
             "preselect": true
           }
         },
-        "pw-7": {
+        "pw-11": {
           "type": "bundle",
           "settings": {
             "option_value": "3 Collars",
@@ -253,53 +292,58 @@
             "preselect": false
           }
         },
-        "pw-8": {
+        "pw-12": {
           "type": "tab",
           "settings": {
-            "title": "What it is",
+            "title": "Details",
             "icon": "leaf",
             "use_description": true,
             "open": false,
+            "show_for": "",
             "content": "<p>A slow-release, plant-powered collar that helps keep fleas and ticks away from your dog for up to [months] months. Waterproof, adjustable and made for everyday wear.</p>"
           }
         },
-        "pw-9": {
+        "pw-13": {
           "type": "tab",
           "settings": {
             "title": "How to use",
             "icon": "sparkle",
             "use_description": false,
             "open": false,
+            "show_for": "flea",
             "content": "<ol><li>Open the pouch and gently stretch the collar to activate it.</li><li>Fasten it around your dog's neck — two fingers should slide underneath.</li><li>Trim the extra length and throw the scraps away, out of reach of pets and kids.</li><li>Replace it every [months] months (subscribers get the next one automatically).</li></ol>"
           }
         },
-        "pw-10": {
+        "pw-14": {
           "type": "tab",
           "settings": {
             "title": "Safety",
             "icon": "shield-check",
             "use_description": false,
             "open": false,
+            "show_for": "flea",
             "content": "<p><strong>For dogs only — never use on cats.</strong> Not for puppies under 12 weeks. Watch your dog for the first 48 hours; if you notice redness or irritation, remove the collar and contact your vet. If your dog is pregnant, nursing, elderly or on medication, check with your vet first. Keep out of reach of children.</p><p>See the package label for the full ingredient list and directions.</p>"
           }
         },
-        "pw-11": {
+        "pw-15": {
           "type": "tab",
           "settings": {
             "title": "Shipping & returns",
             "icon": "truck",
             "use_description": false,
             "open": false,
-            "content": "<p>Orders are processed in 1–2 business days and usually arrive in 7–12 business days, with tracking. Free shipping on orders of 2+ collars.</p><p>Every order is covered by our [days]-day Happy Dog Guarantee — email us and we'll make it right.</p>"
+            "show_for": "",
+            "content": "<p>Orders are processed in 1–2 business days and usually arrive in 7–12 business days, with tracking. Free shipping on orders over $45.</p><p>Every order is covered by our [days]-day Happy Dog Guarantee — email us and we'll make it right.</p>"
           }
         },
-        "pw-12": {
+        "pw-16": {
           "type": "tab",
           "settings": {
             "title": "Subscribe & Save",
             "icon": "refresh",
             "use_description": false,
             "open": false,
+            "show_for": "flea",
             "content": "<p>Subscribe &amp; Save is pre-selected so your dog never goes unprotected: you pay the lower price today and a fresh pack ships every [months] months at that same lower price.</p><p>Prefer a single order? Choose <strong>One-time purchase</strong> before adding to cart. Subscribers can skip, pause or cancel anytime from their account — no fees.</p>"
           }
         }
@@ -316,7 +360,11 @@
         "pw-9",
         "pw-10",
         "pw-11",
-        "pw-12"
+        "pw-12",
+        "pw-13",
+        "pw-14",
+        "pw-15",
+        "pw-16"
       ]
     },
     "steps": {
@@ -562,7 +610,7 @@
       "type": "pw-image-text",
       "settings": {
         "use_product_image": false,
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_dcf582f5-c6ff-4fb7-b8a9-d031a00fb6ac_min.webp",
+        "image_url": "pw-img-story",
         "image_position": "50% 35%",
         "image_alt": "Happy dog on a beach in Puerto Rico",
         "ratio": "portrait",
@@ -604,42 +652,42 @@
         "ph-1": {
           "type": "photo",
           "settings": {
-            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171436_92286780-86ab-4a22-bcd1-4e2faec64e1a_min.webp",
+            "image_url": "pw-img-doodle",
             "caption": "Road trips"
           }
         },
         "ph-2": {
           "type": "photo",
           "settings": {
-            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171435_90158d9d-f056-45c5-b9e1-92b0579de57d_min.webp",
+            "image_url": "pw-img-lab",
             "caption": "Porch naps"
           }
         },
         "ph-3": {
           "type": "photo",
           "settings": {
-            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171434_41d38098-e9fc-4ec5-a06c-42c41a990791_min.webp",
+            "image_url": "pw-img-pitbull",
             "caption": "Backyard zoomies"
           }
         },
         "ph-4": {
           "type": "photo",
           "settings": {
-            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_171435_07c262e2-8f87-4a9b-8498-5c5c2a9a5324_min.webp",
+            "image_url": "pw-img-chihuahua",
             "caption": "Couch cuddles"
           }
         },
         "ph-5": {
           "type": "photo",
           "settings": {
-            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_dcf582f5-c6ff-4fb7-b8a9-d031a00fb6ac_min.webp",
+            "image_url": "pw-img-story",
             "caption": "Beach days"
           }
         },
         "ph-6": {
           "type": "photo",
           "settings": {
-            "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_0c639f2e-f968-437f-a0e0-bda68c2b9f3d_min.webp",
+            "image_url": "pw-img-adventure",
             "caption": "Trail runs"
           }
         }
@@ -824,7 +872,7 @@
     "cta": {
       "type": "pw-cta",
       "settings": {
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_cc7da924-b45f-4e8c-87bc-8b5de73704fd_min.webp",
+        "image_url": "pw-img-portrait",
         "image_position": "50% 35%",
         "image_alt": "Happy beagle smiling at the camera",
         "eyebrow": "Ready when you are",

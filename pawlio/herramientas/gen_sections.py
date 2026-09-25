@@ -60,15 +60,28 @@ def image_settings(label="Imagen", pos="50% 50%"):
     return [
         {"type": "header", "content": label},
         {"type": "image_picker", "id": "image", "label": label},
-        {"type": "text", "id": "image_url", "label": "Enlace de imagen de respaldo",
-         "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."},
+        {"type": "text", "id": "image_url", "label": "Imagen de respaldo",
+         "info": "Se usa si no eliges imagen arriba: nombre de una foto incluida en el tema (ej. pw-img-hero) o un enlace https."},
         {"type": "select", "id": "image_position", "label": "Enfoque de la imagen", "options": [
             {"value": "50% 50%", "label": "Centro"}, {"value": "50% 35%", "label": "Centro, un poco arriba"}, {"value": "50% 20%", "label": "Arriba"},
             {"value": "50% 80%", "label": "Abajo"}, {"value": "25% 50%", "label": "Izquierda"}, {"value": "70% 50%", "label": "Derecha"}], "default": pos},
     ]
 
 
+VISIBILITY = [
+    {"type": "header", "content": "Visibilidad"},
+    {"type": "text", "id": "show_for", "label": "Mostrar solo en productos con esta palabra",
+     "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."},
+]
+
+NO_VISIBILITY = ('pw-footer', 'pw-cart-trust')
+
+
 def write(name, liquid, schema):
+    if name not in NO_VISIBILITY:
+        liquid = ("{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}\n"
+                  "{%- if pw_vis contains 'yes' -%}\n" + liquid.strip() + "\n{%- endif -%}")
+        schema["settings"] = schema["settings"] + VISIBILITY
     js = json.dumps(schema, indent=2, ensure_ascii=False)
     with open(os.path.join(ROOT, name + '.liquid'), 'w') as f:
         f.write(liquid.strip() + "\n\n{% schema %}\n" + js + "\n{% endschema %}\n")
@@ -87,8 +100,7 @@ write('pw-hero', r'''
     --pw-hero-h-m: {{ section.settings.height_mobile }}svh;
   }
   {%- if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank %}
-    @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pw-hero__img--desktop { display: none; } }
-    @media screen and (min-width: 750px) { #shopify-section-{{ section.id }} .pw-hero__img--mobile { display: none; } }
+    @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pw-hero__bg img { object-position: 50% 50% !important; } }
   {%- endif %}
 {%- endstyle -%}
 {%- liquid
@@ -99,9 +111,36 @@ write('pw-hero', r'''
 -%}
 <section class="pw pw-hero pw-on-forest">
   <div class="pw-hero__bg pw-media">
-    {%- render 'pw-image', image: section.settings.image, fallback: section.settings.image_url, class: 'pw-hero__img--desktop', loading: ld, position: section.settings.image_position, alt: section.settings.image_alt -%}
-    {%- if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank -%}
-      {%- render 'pw-image', image: section.settings.mobile_image, fallback: section.settings.mobile_image_url, class: 'pw-hero__img--mobile', loading: ld, position: section.settings.image_position, alt: section.settings.image_alt, sizes: '100vw' -%}
+    {%- liquid
+      assign pw_has_mobile = false
+      if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank
+        assign pw_has_mobile = true
+      endif
+      assign pw_pos = section.settings.image_position
+      if section.settings.image != blank and section.settings.image.presentation.focal_point != blank
+        assign pw_pos = section.settings.image.presentation.focal_point
+      endif
+    -%}
+    {%- if section.settings.image != blank or section.settings.image_url != blank -%}
+      <picture>
+        {%- if pw_has_mobile -%}
+          <source media="(max-width: 749px)" srcset="{% render 'pw-srcset', image: section.settings.mobile_image, fallback: section.settings.mobile_image_url %}" sizes="100vw">
+        {%- endif -%}
+        <img
+          src="{% render 'pw-srcset', image: section.settings.image, fallback: section.settings.image_url, mode: 'src' %}"
+          srcset="{% render 'pw-srcset', image: section.settings.image, fallback: section.settings.image_url %}"
+          sizes="100vw"
+          alt="{{ section.settings.image_alt | escape }}"
+          loading="{{ ld }}"
+          {% if ld == 'eager' %}fetchpriority="high"{% endif %}
+          decoding="async"
+          width="1600"
+          height="900"
+          style="object-position: {{ pw_pos }};"
+        >
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'pw-placeholder' }}
     {%- endif -%}
   </div>
   <div class="pw-hero__shade" aria-hidden="true"></div>
@@ -305,12 +344,14 @@ write('pw-image-text', r'''
 {%- liquid
   assign pw_img = section.settings.image
   if pw_img == blank and section.settings.image_url == blank and section.settings.use_product_image
-    assign pw_fp = settings.pw_featured_product
     if template.name == 'product' and product != blank
       assign pw_fp = product
-    endif
-    if pw_fp == blank
-      assign pw_fp = collections.all.products.first
+    else
+      capture pw_star_handle
+        render 'pw-star-handle'
+      endcapture
+      assign pw_star_handle = pw_star_handle | strip
+      assign pw_fp = all_products[pw_star_handle]
     endif
     assign pw_img = pw_fp.featured_image
   endif
@@ -834,7 +875,7 @@ write('pw-cta', r'''
         <h2 class="pw-h2">{% render 'pw-t', t: section.settings.heading %}</h2>
         {%- if section.settings.text != blank -%}<p class="pw-lead">{% render 'pw-t', t: section.settings.text %}</p>{%- endif -%}
         {%- if section.settings.button_label != blank -%}
-          <a class="pw-btn pw-btn--primary pw-btn--shine" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
+          <a class="pw-btn pw-btn--primary pw-btn--shine" href="{% render 'pw-cta-url', link: section.settings.button_link, star: section.settings.link_star %}">
             {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', px: 20, class: 'pw-icon--arrow' %}
           </a>
         {%- endif -%}
@@ -864,6 +905,7 @@ write('pw-cta', r'''
         {"type": "text", "id": "text", "label": "Texto", "default": "Plant-powered. Waterproof. Backed by our [days]-day guarantee."},
         {"type": "text", "id": "button_label", "label": "Botón", "default": "Shop Pawlio"},
         {"type": "url", "id": "button_link", "label": "Enlace del botón"},
+        {"type": "checkbox", "id": "link_star", "label": "Si no hay enlace, llevar al producto estrella", "info": "Útil en otros productos para vender también el collar.", "default": False},
         {"type": "textarea", "id": "chips", "label": "Sellos (uno por línea)", "default": "Free shipping on 2+\nCancel anytime"},
     ] + design("cream", 40, 96, 46, 18, "left"),
     "presets": [{"name": "Pawlio · Llamado final"}],

@@ -237,3 +237,33 @@ casa** (producto + envío del proveedor):
   anuncios (CPA), ganas desde la primera compra. Cada renovación de
   suscripción es casi pura ganancia (no pagas anuncio otra vez).
 - Si tu costo real es distinto, dímelo y te recalculo precios.
+
+---
+
+## Productos de prueba (para ver la tienda llena)
+
+Archivo: **`productos-prueba.csv`** (6 productos con fotos: cama, arnés, correa,
+platos plegables, juguetes y cepillo).
+
+1. Shopify → **Products → Import → Add file** → elige `productos-prueba.csv`.
+2. Pulsa **Upload and preview** y luego **Import products**. Las fotos tardan
+   1–2 minutos en aparecer.
+3. Todos llevan la etiqueta `pawlio-test`: cuando no los quieras, filtra por esa
+   etiqueta y bórralos de una vez.
+
+Son de prueba: si vas a venderlos de verdad, cambia fotos, precios y textos por
+los de tu proveedor.
+
+## Cómo sabe la página qué es el collar
+
+Las secciones del collar (problema, cómo funciona, comparación, suscripción,
+historia…) solo salen en productos cuyo **título, tipo o etiqueta tenga la
+palabra `flea`**. Cualquier otro producto (cama, arnés…) sale con la página
+general: sus viñetas, envío, garantía, preguntas generales y un bloque que
+vende también el collar.
+
+- Tu collar debe llamarse, por ejemplo, **Pawlio Flea & Tick Collar**. Si no,
+  ponle la etiqueta `flea`.
+- Cada sección tiene el ajuste **Visibilidad → "Mostrar solo en productos con
+  esta palabra"**: `flea` = solo el collar, `-flea` = todos menos el collar,
+  vacío = todos.

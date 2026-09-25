@@ -115,7 +115,7 @@
     "cta": {
       "type": "pw-cta",
       "settings": {
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_cc7da924-b45f-4e8c-87bc-8b5de73704fd_min.webp",
+        "image_url": "pw-img-portrait",
         "image_position": "50% 35%",
         "image_alt": "Happy beagle smiling at the camera",
         "eyebrow": "Ready when you are",

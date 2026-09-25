@@ -1,3 +1,5 @@
+{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}
+{%- if pw_vis contains 'yes' -%}
 {%- render 'pw-section-style' -%}
 <section class="pw pw-problem pw-problem--image-{{ section.settings.layout }} pw-on-{{ section.settings.bg }}">
   <div class="pw-container pw-problem__grid">
@@ -25,6 +27,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -50,8 +53,8 @@
     {
       "type": "text",
       "id": "image_url",
-      "label": "Enlace de imagen de respaldo",
-      "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."
+      "label": "Imagen de respaldo",
+      "info": "Se usa si no eliges imagen arriba: nombre de una foto incluida en el tema (ej. pw-img-hero) o un enlace https."
     },
     {
       "type": "select",
@@ -232,6 +235,16 @@
       "step": 8,
       "unit": "px",
       "default": 88
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "text",
+      "id": "show_for",
+      "label": "Mostrar solo en productos con esta palabra",
+      "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."
     }
   ],
   "blocks": [

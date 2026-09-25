@@ -1,3 +1,5 @@
+{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}
+{%- if pw_vis contains 'yes' -%}
 {%- render 'pw-section-style' -%}
 {%- capture yes_icon -%}<span class="pw-compare__yes" role="img" aria-label="Yes">{% render 'pw-icon', icon: 'check-circle', px: 26, stroke: 2 %}</span>{%- endcapture -%}
 {%- capture no_icon -%}<span class="pw-compare__no" role="img" aria-label="No">{% render 'pw-icon', icon: 'x-circle', px: 26, stroke: 2 %}</span>{%- endcapture -%}
@@ -38,6 +40,7 @@
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -187,6 +190,16 @@
       "step": 8,
       "unit": "px",
       "default": 88
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "text",
+      "id": "show_for",
+      "label": "Mostrar solo en productos con esta palabra",
+      "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."
     }
   ],
   "blocks": [

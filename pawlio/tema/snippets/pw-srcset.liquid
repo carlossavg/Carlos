@@ -1,0 +1,35 @@
+{%- comment -%}
+  Pawlio · devuelve el srcset (o el src si mode: 'src') de una imagen elegida o de respaldo.
+{%- endcomment -%}
+{%- liquid
+  if image != blank
+    if mode == 'src'
+      echo image | image_url: width: 1600
+    else
+      assign pw_widths = '480,800,1200,1600,2000' | split: ','
+      for w in pw_widths
+        assign pw_w = w | plus: 0
+        if pw_w <= image.width
+          echo image | image_url: width: pw_w
+          echo ' '
+          echo w
+          echo 'w'
+          unless forloop.last
+            echo ', '
+          endunless
+        endif
+      endfor
+    endif
+  elsif fallback != blank
+    if fallback contains '/'
+      echo fallback
+    elsif mode == 'src'
+      echo fallback | append: '-1600.jpg' | asset_url
+    else
+      echo fallback | append: '-800.jpg' | asset_url
+      echo ' 800w, '
+      echo fallback | append: '-1600.jpg' | asset_url
+      echo ' 1600w'
+    endif
+  endif
+-%}

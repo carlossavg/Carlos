@@ -27,6 +27,13 @@
         "info": "A dónde llevan los botones de la portada. Vacío = el primer producto de la tienda."
       },
       {
+        "type": "text",
+        "id": "pw_star_keyword",
+        "label": "Palabra del producto estrella",
+        "info": "Si no eliges Producto principal, los botones van al primer producto cuyo título, tipo o etiqueta tenga esta palabra.",
+        "default": "flea"
+      },
+      {
         "type": "range",
         "id": "pw_months",
         "label": "Meses de protección de 1 collar",

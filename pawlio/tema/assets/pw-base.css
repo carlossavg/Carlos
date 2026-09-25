@@ -313,7 +313,9 @@
 
 .pw-media > img,
 .pw-media > svg,
-.pw-media > video {
+.pw-media > video,
+.pw-media > picture,
+.pw-media > picture > img {
   position: absolute;
   inset: 0;
   width: 100%;

@@ -51,7 +51,7 @@ write('pw-footer', r'''
                 <li><a href="{{ link.url }}">{{ link.title }}</a></li>
               {%- endfor -%}
             {%- elsif i == 1 -%}
-              <li><a href="{% render 'pw-cta-url' %}">Shop the collar</a></li>
+              <li><a href="{% render 'pw-cta-url', star: true %}">Shop the collar</a></li>
               <li><a href="{{ routes.root_url }}#pw-how">How it works</a></li>
               {%- if pages.about.url != blank -%}<li><a href="{{ pages.about.url }}">Our story</a></li>{%- endif -%}
             {%- else -%}

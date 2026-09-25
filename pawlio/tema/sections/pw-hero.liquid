@@ -1,3 +1,5 @@
+{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}
+{%- if pw_vis contains 'yes' -%}
 {%- render 'pw-section-style' -%}
 {%- style -%}
   #shopify-section-{{ section.id }} .pw-hero {
@@ -7,8 +9,7 @@
     --pw-hero-h-m: {{ section.settings.height_mobile }}svh;
   }
   {%- if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank %}
-    @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pw-hero__img--desktop { display: none; } }
-    @media screen and (min-width: 750px) { #shopify-section-{{ section.id }} .pw-hero__img--mobile { display: none; } }
+    @media screen and (max-width: 749px) { #shopify-section-{{ section.id }} .pw-hero__bg img { object-position: 50% 50% !important; } }
   {%- endif %}
 {%- endstyle -%}
 {%- liquid
@@ -19,9 +20,36 @@
 -%}
 <section class="pw pw-hero pw-on-forest">
   <div class="pw-hero__bg pw-media">
-    {%- render 'pw-image', image: section.settings.image, fallback: section.settings.image_url, class: 'pw-hero__img--desktop', loading: ld, position: section.settings.image_position, alt: section.settings.image_alt -%}
-    {%- if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank -%}
-      {%- render 'pw-image', image: section.settings.mobile_image, fallback: section.settings.mobile_image_url, class: 'pw-hero__img--mobile', loading: ld, position: section.settings.image_position, alt: section.settings.image_alt, sizes: '100vw' -%}
+    {%- liquid
+      assign pw_has_mobile = false
+      if section.settings.mobile_image != blank or section.settings.mobile_image_url != blank
+        assign pw_has_mobile = true
+      endif
+      assign pw_pos = section.settings.image_position
+      if section.settings.image != blank and section.settings.image.presentation.focal_point != blank
+        assign pw_pos = section.settings.image.presentation.focal_point
+      endif
+    -%}
+    {%- if section.settings.image != blank or section.settings.image_url != blank -%}
+      <picture>
+        {%- if pw_has_mobile -%}
+          <source media="(max-width: 749px)" srcset="{% render 'pw-srcset', image: section.settings.mobile_image, fallback: section.settings.mobile_image_url %}" sizes="100vw">
+        {%- endif -%}
+        <img
+          src="{% render 'pw-srcset', image: section.settings.image, fallback: section.settings.image_url, mode: 'src' %}"
+          srcset="{% render 'pw-srcset', image: section.settings.image, fallback: section.settings.image_url %}"
+          sizes="100vw"
+          alt="{{ section.settings.image_alt | escape }}"
+          loading="{{ ld }}"
+          {% if ld == 'eager' %}fetchpriority="high"{% endif %}
+          decoding="async"
+          width="1600"
+          height="900"
+          style="object-position: {{ pw_pos }};"
+        >
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'pw-placeholder' }}
     {%- endif -%}
   </div>
   <div class="pw-hero__shade" aria-hidden="true"></div>
@@ -62,6 +90,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -87,8 +116,8 @@
     {
       "type": "text",
       "id": "image_url",
-      "label": "Enlace de imagen de respaldo",
-      "info": "Se usa si no eliges imagen arriba. Para que cargue más rápido, sube la foto a Shopify y elígela arriba."
+      "label": "Imagen de respaldo",
+      "info": "Se usa si no eliges imagen arriba: nombre de una foto incluida en el tema (ej. pw-img-hero) o un enlace https."
     },
     {
       "type": "select",
@@ -267,6 +296,16 @@
       "step": 8,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "text",
+      "id": "show_for",
+      "label": "Mostrar solo en productos con esta palabra",
+      "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."
     }
   ],
   "presets": [

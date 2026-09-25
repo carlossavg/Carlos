@@ -3,9 +3,9 @@
     "hero": {
       "type": "pw-hero",
       "settings": {
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165428_dcf582f5-c6ff-4fb7-b8a9-d031a00fb6ac_min.webp",
+        "image_url": "pw-img-story",
         "image_position": "50% 35%",
-        "mobile_image_url": "",
+        "mobile_image_url": "pw-img-hero-m",
         "image_alt": "Happy golden retriever running through a sunny meadow",
         "eyebrow": "Our story",
         "heading": "Made on an island where <em>flea season never ends.</em>",
@@ -26,7 +26,7 @@
       "type": "pw-image-text",
       "settings": {
         "use_product_image": false,
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_081c1502-8569-4dff-97c0-97244cb00787_min.webp",
+        "image_url": "pw-img-lifestyle",
         "image_position": "50% 35%",
         "image_alt": "Happy dog on a beach in Puerto Rico",
         "ratio": "portrait",
@@ -143,7 +143,7 @@
     "cta": {
       "type": "pw-cta",
       "settings": {
-        "image_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3DvRigiWzRpDDUnGkPjPoaCth02/hf_20260925_165427_cc7da924-b45f-4e8c-87bc-8b5de73704fd_min.webp",
+        "image_url": "pw-img-portrait",
         "image_position": "50% 35%",
         "image_alt": "Happy beagle smiling at the camera",
         "eyebrow": "Ready when you are",

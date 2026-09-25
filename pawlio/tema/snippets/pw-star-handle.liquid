@@ -1,0 +1,28 @@
+{%- comment -%}
+  Pawlio · handle del producto estrella.
+  1) El "Producto principal" de Configuración del tema → Pawlio · Marca.
+  2) Si está vacío: el primer producto cuyo título, tipo o etiqueta contenga la
+     "Palabra del producto estrella" (por defecto: flea).
+  3) Si no hay ninguno: el primer producto de la tienda.
+{%- endcomment -%}
+{%- liquid
+  if settings.pw_featured_product != blank
+    echo settings.pw_featured_product.handle
+  else
+    assign pw_kw = settings.pw_star_keyword | default: 'flea' | strip | downcase
+    assign pw_found = ''
+    for pw_p in collections.all.products limit: 50
+      assign pw_t = pw_p.title | downcase
+      assign pw_ty = pw_p.type | downcase
+      assign pw_tg = pw_p.tags | join: ' ' | downcase
+      if pw_t contains pw_kw or pw_ty contains pw_kw or pw_tg contains pw_kw
+        assign pw_found = pw_p.handle
+        break
+      endif
+    endfor
+    if pw_found == blank
+      assign pw_found = collections.all.products.first.handle
+    endif
+    echo pw_found
+  endif
+-%}
