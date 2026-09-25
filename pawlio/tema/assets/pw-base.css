@@ -51,10 +51,11 @@
 .pw *::after { box-sizing: border-box; }
 
 .pw p { margin: 0; }
+.pw [hidden] { display: none !important; }
 .pw ul,
 .pw ol { margin: 0; padding: 0; list-style: none; }
 .pw img { max-width: 100%; display: block; }
-.pw a { color: inherit; }
+.pw a:not(.pw-btn) { color: inherit; }
 
 .pw-container {
   width: 100%;
@@ -76,6 +77,11 @@
 }
 
 .pw-head--left { --pw-justify: start; margin-left: 0; }
+.pw-split__content .pw-head,
+.pw-problem__content .pw-head,
+.pw-sub__content .pw-head,
+.pw-guarantee .pw-head,
+.pw-faq .pw-head { margin-bottom: 0; }
 
 @media screen and (min-width: 750px) {
   .pw-head { margin-bottom: 56px; }
@@ -1345,7 +1351,9 @@ body { letter-spacing: 0; }
   -webkit-overflow-scrolling: touch;
 }
 
-.pw-compare table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; }
+.pw-compare table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; table-layout: fixed; }
+.pw-compare col.pw-compare__feature { width: 36%; }
+.pw-compare thead th { word-break: break-word; hyphens: auto; }
 
 .pw-compare th,
 .pw-compare td { padding: 14px 8px; text-align: center; border-bottom: 1px solid var(--pw-card-line); vertical-align: middle; line-height: 1.3; }
@@ -1364,7 +1372,7 @@ body { letter-spacing: 0; }
 
 .pw-compare tbody th { text-align: left; font-weight: 700; color: var(--pw-text); font-size: 14.5px; }
 .pw-compare .is-brand { background: color-mix(in srgb, var(--pw-mint) 80%, #fff); color: var(--pw-forest); font-weight: 700; }
-.pw-compare thead .is-brand { background: var(--pw-forest); color: #fff; font-family: var(--pw-font-heading); font-size: 17px; letter-spacing: -0.01em; text-transform: none; border-radius: 14px 14px 0 0; }
+.pw-compare thead .is-brand { background: var(--pw-forest); color: #fff; font-family: var(--pw-font-heading); font-size: 15px; letter-spacing: -0.01em; text-transform: none; border-radius: 14px 14px 0 0; }
 .pw-compare__yes { color: var(--pw-green); display: inline-grid; }
 .pw-compare__no { color: #c2533f; display: inline-grid; opacity: 0.85; }
 .pw-compare__hint { margin-top: 12px; text-align: center; }

@@ -6,7 +6,7 @@
       {%- if section.settings.button_label != blank -%}
         <div class="pw-actions pw-reveal">
           <a class="pw-btn pw-btn--{% if section.settings.bg == 'forest' %}light{% else %}primary{% endif %}" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
-            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', px: 20, class: 'pw-icon--arrow' %}
           </a>
         </div>
       {%- endif -%}

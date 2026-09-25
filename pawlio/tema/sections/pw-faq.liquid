@@ -5,7 +5,7 @@
       <div>
         {%- render 'pw-head' -%}
         {%- if section.settings.contact_text != blank -%}
-          <p class="pw-faq__contact pw-reveal">{% render 'pw-icon', icon: 'chat', size: 22 %}<span>{{ section.settings.contact_text }} <a href="mailto:{{ section.settings.email | default: shop.email }}">{{ section.settings.email | default: shop.email }}</a></span></p>
+          <p class="pw-faq__contact pw-reveal">{% render 'pw-icon', icon: 'chat', px: 22 %}<span>{{ section.settings.contact_text }} <a href="mailto:{{ section.settings.email | default: shop.email }}">{{ section.settings.email | default: shop.email }}</a></span></p>
         {%- endif -%}
       </div>
       <div class="pw-accordion pw-reveal">
@@ -13,7 +13,7 @@
           <details {{ block.shopify_attributes }}{% if forloop.first and section.settings.open_first %} open{% endif %}>
             <summary>
               <span>{% render 'pw-t', t: block.settings.question %}</span>
-              <span class="pw-accordion__toggle" aria-hidden="true">{% render 'pw-icon', icon: 'plus', size: 16, stroke: 2.2 %}</span>
+              <span class="pw-accordion__toggle" aria-hidden="true">{% render 'pw-icon', icon: 'plus', px: 16, stroke: 2.2 %}</span>
             </summary>
             <div class="pw-accordion__content pw-rte">{% render 'pw-t', t: block.settings.answer %}</div>
           </details>

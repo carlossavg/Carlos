@@ -4,7 +4,7 @@
     <div class="pw-problem__media pw-media pw-reveal">
       {%- render 'pw-image', image: section.settings.image, fallback: section.settings.image_url, position: section.settings.image_position, sizes: '(min-width: 990px) 45vw, 100vw', alt: section.settings.image_alt -%}
       {%- if section.settings.tag != blank -%}
-        <span class="pw-problem__tag">{% render 'pw-icon', icon: 'bug', size: 20 %}{% render 'pw-t', t: section.settings.tag %}</span>
+        <span class="pw-problem__tag">{% render 'pw-icon', icon: 'bug', px: 20 %}{% render 'pw-t', t: section.settings.tag %}</span>
       {%- endif -%}
     </div>
     <div class="pw-problem__content">

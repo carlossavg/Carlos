@@ -41,7 +41,7 @@
       <div class="pw-actions pw-reveal" style="--pw-d:240ms">
         {%- if section.settings.button_label != blank -%}
           <a class="pw-btn pw-btn--primary pw-btn--shine" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
-            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', px: 20, class: 'pw-icon--arrow' %}
           </a>
         {%- endif -%}
         {%- if section.settings.secondary_label != blank -%}
@@ -54,7 +54,7 @@
           {%- for chip in chips -%}
             {%- assign c = chip | strip -%}
             {%- if c != blank -%}
-              <span class="pw-chip">{% render 'pw-icon', icon: 'check-circle', size: 17 %}{% render 'pw-t', t: c %}</span>
+              <span class="pw-chip">{% render 'pw-icon', icon: 'check-circle', px: 17 %}{% render 'pw-t', t: c %}</span>
             {%- endif -%}
           {%- endfor -%}
         </div>

@@ -137,6 +137,14 @@
     endfor
 
     assign form_id = 'pw-form-' | append: sid
+    assign initial_price = current_variant.price
+    if purchase_mode == 'subscription'
+      for a in current_variant.selling_plan_allocations
+        if a.selling_plan.id == default_plan.id
+          assign initial_price = a.price
+        endif
+      endfor
+    endif
   -%}
 
   <product-component view-event-payload="{{ pw_product | standard_event_data: 'view', context: 'page' | escape }}">
@@ -199,10 +207,10 @@
 
               {%- if media_count > 1 -%}
                 <button type="button" class="pw-gallery__nav pw-gallery__nav--prev" data-pw-prev aria-label="Previous image">
-                  {%- render 'pw-icon', icon: 'arrow-right', size: 20 -%}
+                  {%- render 'pw-icon', icon: 'arrow-right', px: 20 -%}
                 </button>
                 <button type="button" class="pw-gallery__nav pw-gallery__nav--next" data-pw-next aria-label="Next image">
-                  {%- render 'pw-icon', icon: 'arrow-right', size: 20 -%}
+                  {%- render 'pw-icon', icon: 'arrow-right', px: 20 -%}
                 </button>
                 <div class="pw-gallery__dots">
                   {%- for media in pw_product.media -%}
@@ -251,7 +259,7 @@
             <a href="#pw-reviews" class="pw-product__rating">
               <span class="pw-stars" aria-hidden="true">
                 {%- for i in (1..5) -%}
-                  <span{% if i > rating_rounded %} style="opacity:.3"{% endif %}>{% render 'pw-icon', icon: 'star', size: 18 %}</span>
+                  <span{% if i > rating_rounded %} style="opacity:.3"{% endif %}>{% render 'pw-icon', icon: 'star', px: 18 %}</span>
                 {%- endfor -%}
               </span>
               <span>{{ rating.rating | round: 1 }} ({{ rating_count }} {{ section.settings.reviews_word }})</span>
@@ -278,7 +286,7 @@
 
           {%- if section.settings.show_price_row -%}
             <div class="pw-product__price-row">
-              <span class="pw-product__price" data-pw-price>{{ current_variant.price | money }}</span>
+              <span class="pw-product__price" data-pw-price>{{ initial_price | money }}</span>
               <s class="pw-product__compare" data-pw-compare hidden></s>
               <span class="pw-pill" data-pw-save-badge hidden></span>
             </div>
@@ -488,7 +496,7 @@
                           {%- for perk in perks -%}
                             {%- assign perk_clean = perk | strip -%}
                             {%- if perk_clean != blank -%}
-                              <span class="pw-bundle__perk">{% render 'pw-icon', icon: 'check', size: 13, stroke: 2.6 %}{% render 'pw-t', t: perk_clean %}</span>
+                              <span class="pw-bundle__perk">{% render 'pw-icon', icon: 'check', px: 13, stroke: 2.6 %}{% render 'pw-t', t: perk_clean %}</span>
                             {%- endif -%}
                           {%- endfor -%}
                         </span>
@@ -501,7 +509,8 @@
                       </s>
                       <span class="pw-bundle__unit" data-unit {% if u <= 1 %}hidden{% endif %}>
                         {%- if u > 1 -%}
-                          {{- section.settings.per_unit_label | replace: '[price]', c_unit | money -}}
+                          {%- assign c_unit_money = c_unit | money -%}
+                          {{- section.settings.per_unit_label | replace: '[price]', c_unit_money -}}
                         {%- endif -%}
                       </span>
                     </span>
@@ -545,7 +554,7 @@
                         {%- for perk in sperks -%}
                           {%- assign perk_clean = perk | strip -%}
                           {%- if perk_clean != blank -%}
-                            <li>{% render 'pw-icon', icon: 'check-circle', size: 17 %}<span>{% render 'pw-t', t: perk_clean %}</span></li>
+                            <li>{% render 'pw-icon', icon: 'check-circle', px: 17 %}<span>{% render 'pw-t', t: perk_clean %}</span></li>
                           {%- endif -%}
                         {%- endfor -%}
                       </ul>
@@ -584,9 +593,9 @@
             <div>
               <p class="pw-label">{{ section.settings.quantity_label }}</p>
               <div class="pw-qty" data-pw-qty>
-                <button type="button" data-step="down" aria-label="Decrease quantity">{% render 'pw-icon', icon: 'minus', size: 18 %}</button>
+                <button type="button" data-step="down" aria-label="Decrease quantity">{% render 'pw-icon', icon: 'minus', px: 18 %}</button>
                 <input type="number" min="1" value="1" inputmode="numeric" aria-label="{{ section.settings.quantity_label | escape }}">
-                <button type="button" data-step="up" aria-label="Increase quantity">{% render 'pw-icon', icon: 'plus', size: 18 %}</button>
+                <button type="button" data-step="up" aria-label="Increase quantity">{% render 'pw-icon', icon: 'plus', px: 18 %}</button>
               </div>
             </div>
           {%- endif -%}
@@ -603,7 +612,7 @@
               >
               <input type="hidden" name="quantity" value="1">
               <div class="product-form__error-message-wrapper pw-form-error" role="alert" hidden>
-                {%- render 'pw-icon', icon: 'x-circle', size: 20 -%}
+                {%- render 'pw-icon', icon: 'x-circle', px: 20 -%}
                 <span class="product-form__error-message"></span>
               </div>
               {%- liquid
@@ -668,7 +677,7 @@
               data-template="{{ section.settings.delivery_text | escape }}"
               hidden
             >
-              {%- render 'pw-icon', icon: 'truck', size: 22 -%}
+              {%- render 'pw-icon', icon: 'truck', px: 22 -%}
               <span data-pw-delivery-text></span>
             </p>
           {%- endif -%}
@@ -703,9 +712,9 @@
                 {%- if block.type == 'tab' -%}
                   <details {{ block.shopify_attributes }} {% if block.settings.open %}open{% endif %}>
                     <summary>
-                      {%- render 'pw-icon', icon: block.settings.icon, size: 22 -%}
+                      {%- render 'pw-icon', icon: block.settings.icon, px: 22 -%}
                       <span>{{ block.settings.title }}</span>
-                      <span class="pw-accordion__toggle" aria-hidden="true">{% render 'pw-icon', icon: 'plus', size: 16, stroke: 2.2 %}</span>
+                      <span class="pw-accordion__toggle" aria-hidden="true">{% render 'pw-icon', icon: 'plus', px: 16, stroke: 2.2 %}</span>
                     </summary>
                     <div class="pw-accordion__content pw-rte">
                       {%- if block.settings.use_description and pw_product.description != blank -%}

@@ -16,7 +16,7 @@
                 {%- render 'pw-image', image: block.settings.image, fallback: block.settings.image_url, sizes: '(min-width: 990px) 22vw, 60vw', alt: block.settings.caption -%}
               </div>
               {%- if block.settings.caption != blank -%}
-                <figcaption class="pw-dog__cap">{% render 'pw-icon', icon: 'paw-solid', size: 14 %}{% render 'pw-t', t: block.settings.caption %}</figcaption>
+                <figcaption class="pw-dog__cap">{% render 'pw-icon', icon: 'paw-solid', px: 14 %}{% render 'pw-t', t: block.settings.caption %}</figcaption>
               {%- endif -%}
             </figure>
           {%- endfor -%}
@@ -26,7 +26,7 @@
   {%- endif -%}
   {%- if section.settings.button_label != blank -%}
     <div class="pw-container"><div class="pw-actions pw-reveal" style="margin-top:36px">
-      <a class="pw-btn pw-btn--primary" href="{% render 'pw-cta-url', link: section.settings.button_link %}">{{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}</a>
+      <a class="pw-btn pw-btn--primary" href="{% render 'pw-cta-url', link: section.settings.button_link %}">{{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', px: 20, class: 'pw-icon--arrow' %}</a>
     </div></div>
   {%- endif -%}
 </section>

@@ -1,11 +1,12 @@
 {%- render 'pw-section-style' -%}
-{%- capture yes_icon -%}<span class="pw-compare__yes" role="img" aria-label="Yes">{% render 'pw-icon', icon: 'check-circle', size: 26, stroke: 2 %}</span>{%- endcapture -%}
-{%- capture no_icon -%}<span class="pw-compare__no" role="img" aria-label="No">{% render 'pw-icon', icon: 'x-circle', size: 26, stroke: 2 %}</span>{%- endcapture -%}
+{%- capture yes_icon -%}<span class="pw-compare__yes" role="img" aria-label="Yes">{% render 'pw-icon', icon: 'check-circle', px: 26, stroke: 2 %}</span>{%- endcapture -%}
+{%- capture no_icon -%}<span class="pw-compare__no" role="img" aria-label="No">{% render 'pw-icon', icon: 'x-circle', px: 26, stroke: 2 %}</span>{%- endcapture -%}
 <section class="pw pw-on-{{ section.settings.bg }}">
   <div class="pw-container pw-container--narrow">
     {%- render 'pw-head' -%}
     <div class="pw-compare pw-reveal">
-      <table>
+      <table class="pw-compare__table">
+        <colgroup><col class="pw-compare__feature"><col><col>{% if section.settings.col_3 != blank %}<col>{% endif %}</colgroup>
         <thead>
           <tr>
             <th scope="col"><span class="visually-hidden">Feature</span></th>
@@ -91,7 +92,7 @@
       "type": "text",
       "id": "col_3",
       "label": "Columna 3 (vacío = ocultar)",
-      "default": "Sprays & shampoos"
+      "default": "Sprays"
     },
     {
       "type": "text",

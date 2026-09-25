@@ -34,7 +34,7 @@
           {%- for b in bullets -%}
             {%- assign t = b | strip -%}
             {%- if t != blank -%}
-              <li><span class="pw-checklist__icon">{% render 'pw-icon', icon: 'check', size: 15, stroke: 2.6 %}</span><span>{% render 'pw-t', t: t %}</span></li>
+              <li><span class="pw-checklist__icon">{% render 'pw-icon', icon: 'check', px: 15, stroke: 2.6 %}</span><span>{% render 'pw-t', t: t %}</span></li>
             {%- endif -%}
           {%- endfor -%}
         </ul>
@@ -45,7 +45,7 @@
       {%- if section.settings.button_label != blank -%}
         <div class="pw-actions pw-reveal" style="--pw-d:200ms">
           <a class="pw-btn pw-btn--{{ section.settings.button_style }}" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
-            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+            {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', px: 20, class: 'pw-icon--arrow' %}
           </a>
         </div>
       {%- endif -%}

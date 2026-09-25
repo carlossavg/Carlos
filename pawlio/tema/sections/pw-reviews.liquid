@@ -5,7 +5,7 @@
     {%- render 'pw-head' -%}
     {%- if section.settings.summary != blank -%}
       <p class="pw-reviews__summary pw-reveal">
-        <span class="pw-stars" aria-hidden="true">{% for i in (1..5) %}{% render 'pw-icon', icon: 'star', size: 20 %}{% endfor %}</span>
+        <span class="pw-stars" aria-hidden="true">{% for i in (1..5) %}{% render 'pw-icon', icon: 'star', px: 20 %}{% endfor %}</span>
         <span>{{ section.settings.summary }}</span>
       </p>
     {%- endif -%}
@@ -22,7 +22,7 @@
             </div>
           {%- endif -%}
           <span class="pw-stars" role="img" aria-label="{{ block.settings.rating }} out of 5 stars">
-            {%- for i in (1..5) -%}<span{% if i > block.settings.rating %} style="opacity:.25"{% endif %}>{% render 'pw-icon', icon: 'star', size: 20 %}</span>{%- endfor -%}
+            {%- for i in (1..5) -%}<span{% if i > block.settings.rating %} style="opacity:.25"{% endif %}>{% render 'pw-icon', icon: 'star', px: 20 %}</span>{%- endfor -%}
           </span>
           {%- if block.settings.title != blank -%}<p class="pw-review__title">{{ block.settings.title }}</p>{%- endif -%}
           <p class="pw-review__quote">{{ block.settings.quote | newline_to_br }}</p>
@@ -31,7 +31,7 @@
             <span>
               <span class="pw-review__name">{{ block.settings.name }}</span><br>
               <span class="pw-review__meta">
-                {%- if block.settings.verified -%}{% render 'pw-icon', icon: 'check-circle', size: 15 %}{{ section.settings.verified_label }}{%- endif -%}
+                {%- if block.settings.verified -%}{% render 'pw-icon', icon: 'check-circle', px: 15 %}{{ section.settings.verified_label }}{%- endif -%}
                 {%- if block.settings.detail != blank -%}{% if block.settings.verified %} · {% endif %}{{ block.settings.detail }}{%- endif -%}
               </span>
             </span>

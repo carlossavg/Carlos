@@ -19,13 +19,13 @@
         <div class="pw-guarantee__points">
           {%- for p in points -%}
             {%- assign t = p | strip -%}
-            {%- if t != blank -%}<span class="pw-chip">{% render 'pw-icon', icon: 'check-circle', size: 17 %}{% render 'pw-t', t: t %}</span>{%- endif -%}
+            {%- if t != blank -%}<span class="pw-chip">{% render 'pw-icon', icon: 'check-circle', px: 17 %}{% render 'pw-t', t: t %}</span>{%- endif -%}
           {%- endfor -%}
         </div>
       {%- endif -%}
       {%- if section.settings.button_label != blank -%}
         <a class="pw-btn pw-btn--primary" href="{% render 'pw-cta-url', link: section.settings.button_link %}">
-          {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', size: 20, class: 'pw-icon--arrow' %}
+          {{ section.settings.button_label }} {% render 'pw-icon', icon: 'arrow-right', px: 20, class: 'pw-icon--arrow' %}
         </a>
       {%- endif -%}
     </div>

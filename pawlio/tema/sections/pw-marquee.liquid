@@ -12,7 +12,7 @@
           {%- for item in items -%}
             {%- assign t = item | strip -%}
             {%- if t != blank -%}
-              <span class="pw-marquee__item">{% render 'pw-t', t: t %}<span class="pw-marquee__sep">{% render 'pw-icon', icon: section.settings.separator, size: 22 %}</span></span>
+              <span class="pw-marquee__item">{% render 'pw-t', t: t %}<span class="pw-marquee__sep">{% render 'pw-icon', icon: section.settings.separator, px: 22 %}</span></span>
             {%- endif -%}
           {%- endfor -%}
         {%- endfor -%}

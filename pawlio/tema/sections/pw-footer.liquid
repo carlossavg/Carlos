@@ -64,13 +64,15 @@
         <div class="pw-footer__news">
           <p class="pw-footer__title">{{ section.settings.news_title }}</p>
           <p>{% render 'pw-t', t: section.settings.news_text %}</p>
-          {%- form 'customer', id: 'PwFooterNewsletter', class: 'pw-footer__form' -%}
+          {%- form 'customer', id: 'PwFooterNewsletter' -%}
+            <div class="pw-footer__form">
             <input type="hidden" name="contact[tags]" value="newsletter">
             <label class="visually-hidden" for="PwNewsletterEmail">Email</label>
             <input id="PwNewsletterEmail" type="email" name="contact[email]" autocomplete="email" placeholder="{{ section.settings.news_placeholder | escape }}" required>
             <button type="submit" class="pw-btn pw-btn--primary">{{ section.settings.news_button }}</button>
             {%- if form.posted_successfully? -%}<p class="pw-footer__msg" role="status">{{ section.settings.news_success }}</p>{%- endif -%}
             {%- if form.errors -%}<p class="pw-footer__msg" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
+            </div>
           {%- endform -%}
         </div>
       {%- endif -%}

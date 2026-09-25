@@ -1,9 +1,9 @@
 {%- comment -%}
   Pawlio · iconos SVG en línea.
-  Uso: {% render 'pw-icon', icon: 'leaf' %}  ·  opcional: size: 24, class: 'x'
+  Uso: {% render 'pw-icon', icon: 'leaf' %}  ·  opcional: px: 24, class: 'x'
 {%- endcomment -%}
 {%- liquid
-  assign pw_size = size | default: 24
+  assign pw_size = px | default: 24
   assign pw_stroke = stroke | default: 1.8
 -%}
 {%- case icon -%}

@@ -12,17 +12,16 @@
   {%- if pw_remaining > 0 -%}
     {%- liquid
       assign pw_pct = pw_total | times: 100 | divided_by: pw_threshold
-      capture pw_amount
-        echo '<strong>' | append: pw_remaining | money | append: '</strong>'
-      endcapture
+      assign pw_remaining_money = pw_remaining | money
+      assign pw_amount = '<strong>' | append: pw_remaining_money | append: '</strong>'
     -%}
     <div class="pw-ship" style="--pw-progress: {{ pw_pct }}%">
-      <p class="pw-ship__msg">{% render 'pw-icon', icon: 'truck', size: 20 %}<span>{{ settings.pw_ship_progress | replace: '[amount]', pw_amount }}</span></p>
+      <p class="pw-ship__msg">{% render 'pw-icon', icon: 'truck', px: 20 %}<span>{{ settings.pw_ship_progress | replace: '[amount]', pw_amount }}</span></p>
       <div class="pw-ship__bar" aria-hidden="true"><span class="pw-ship__fill"></span></div>
     </div>
   {%- else -%}
     <div class="pw-ship pw-ship--done">
-      <p class="pw-ship__msg">{% render 'pw-icon', icon: 'check-circle', size: 20 %}<span>{{ settings.pw_ship_success }}</span></p>
+      <p class="pw-ship__msg">{% render 'pw-icon', icon: 'check-circle', px: 20 %}<span>{{ settings.pw_ship_success }}</span></p>
       <div class="pw-ship__bar" aria-hidden="true"><span class="pw-ship__fill"></span></div>
     </div>
   {%- endif -%}
