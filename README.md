@@ -3,6 +3,10 @@
 Landings de una sola página hechas para **convertir visitas en citas por WhatsApp**.
 Sin frameworks, sin build, sin dependencias.
 
+## Proyectos aparte
+
+- **[`pawlio/`](pawlio/)**: tienda Shopify de la marca Pawlio (collar antipulgas). Tema, guía de lanzamiento y anuncios.
+
 ## Cómo está montado el repo
 
 ```
