@@ -14,7 +14,7 @@ Marca de productos para perros. Producto 1: collar antipulgas y garrapatas.
 ## Armar el ZIP del tema
 
 ```bash
-cd pawlio/tema && zip -qr ../pawlio-tema.zip assets config layout locales sections snippets templates LICENSE-DAWN.md
+cd pawlio/tema && zip -qr ../pawlio-tema-v2.zip assets config layout locales sections snippets templates LICENSE-DAWN.md
 ```
 
 ## Antes de subir cambios

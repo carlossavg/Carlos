@@ -58,8 +58,14 @@
           assign bundle_index = forloop.index0
         endif
       endfor
-      if bundle_index == -1 and pw_product.options.size == 1
-        assign bundle_index = 0
+      if bundle_index == -1
+        for option in pw_product.options_with_values
+          assign oname = option.name | strip | downcase
+          if oname contains 'pack' or oname contains 'bundle' or oname contains 'quantity' or oname contains 'qty' or oname contains 'cantidad' or oname contains 'paquete'
+            assign bundle_index = forloop.index0
+            break
+          endif
+        endfor
       endif
     endif
 
@@ -869,7 +875,7 @@
       "default": "leaf"
     },
     { "type": "header", "content": "Bundles (tarjetas de paquete)" },
-    { "type": "text", "id": "bundle_option_name", "label": "Nombre de la opción de bundle", "info": "Nombre de la opción de la variante en Shopify (ej. Pack). Si el producto tiene una sola opción, se usa esa.", "default": "Pack" },
+    { "type": "text", "id": "bundle_option_name", "label": "Nombre de la opción de bundle", "info": "Nombre de la opción de la variante en Shopify (ej. Pack). También reconoce Bundle, Quantity, Cantidad o Paquete. Color y talla se muestran como botones normales.", "default": "Pack" },
     { "type": "text", "id": "bundle_heading", "label": "Título sobre los bundles", "default": "Choose your pack" },
     { "type": "text", "id": "bundle_hint", "label": "Nota a la derecha del título", "default": "Most dog parents pick 2" },
     { "type": "text", "id": "per_unit_label", "label": "Precio por unidad", "info": "[price] = precio por unidad", "default": "[price] / collar" },

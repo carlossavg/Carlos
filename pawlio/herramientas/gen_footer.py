@@ -53,10 +53,10 @@ write('pw-footer', r'''
             {%- elsif i == 1 -%}
               <li><a href="{% render 'pw-cta-url' %}">Shop the collar</a></li>
               <li><a href="{{ routes.root_url }}#pw-how">How it works</a></li>
-              <li><a href="/pages/about">Our story</a></li>
+              {%- if pages.about.url != blank -%}<li><a href="{{ pages.about.url }}">Our story</a></li>{%- endif -%}
             {%- else -%}
-              <li><a href="/pages/faq">FAQ</a></li>
-              <li><a href="/pages/contact">Contact us</a></li>
+              {%- if pages.faq.url != blank -%}<li><a href="{{ pages.faq.url }}">FAQ</a></li>{%- endif -%}
+              {%- if pages.contact.url != blank -%}<li><a href="{{ pages.contact.url }}">Contact us</a></li>{%- endif -%}
               <li><a href="{{ routes.account_url }}">Manage subscription</a></li>
               {%- if shop.shipping_policy != blank -%}<li><a href="{{ shop.shipping_policy.url }}">Shipping</a></li>{%- endif -%}
               {%- if shop.refund_policy != blank -%}<li><a href="{{ shop.refund_policy.url }}">Returns &amp; refunds</a></li>{%- endif -%}

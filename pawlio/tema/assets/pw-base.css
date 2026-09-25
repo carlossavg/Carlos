@@ -50,12 +50,12 @@
 .pw *::before,
 .pw *::after { box-sizing: border-box; }
 
-.pw p { margin: 0; }
+:where(.pw) p { margin: 0; }
 .pw [hidden] { display: none !important; }
-.pw ul,
-.pw ol { margin: 0; padding: 0; list-style: none; }
-.pw img { max-width: 100%; display: block; }
-.pw a:not(.pw-btn) { color: inherit; }
+:where(.pw) ul,
+:where(.pw) ol { margin: 0; padding: 0; list-style: none; }
+:where(.pw) img { max-width: 100%; display: block; }
+:where(.pw) a:where(:not(.pw-btn)) { color: inherit; }
 
 .pw-container {
   width: 100%;
