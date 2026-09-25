@@ -15,7 +15,7 @@
     assign pw_img = pw_fp.featured_image
   endif
 -%}
-<section class="pw pw-split-section pw-on-{{ section.settings.bg }}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %}>
+<section class="pw pw-split-section pw-split-section--{{ section.settings.style | default: 'standard' }} pw-on-{{ section.settings.bg }}"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %}>
   <div class="pw-container pw-split pw-split--image-{{ section.settings.layout }}">
     <div class="pw-split__media pw-media pw-reveal">
       {%- render 'pw-image', image: pw_img, fallback: section.settings.image_url, position: section.settings.image_position, sizes: '(min-width: 990px) 50vw, 100vw', alt: section.settings.image_alt -%}
@@ -245,6 +245,23 @@
     {
       "type": "header",
       "content": "Diseño"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Estilo",
+      "info": "Editorial: título fino, texto sobrio y firma en versalitas. Para historia y marca.",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Estándar"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial (premium)"
+        }
+      ],
+      "default": "standard"
     },
     {
       "type": "select",

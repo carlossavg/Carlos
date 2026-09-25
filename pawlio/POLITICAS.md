@@ -43,7 +43,7 @@ as soon as your order ships.
 - FREE shipping on orders of $45 or more (2+ collars).
 - $4.95 flat rate on orders under $45.
 
-**Where we ship:** United States (including Puerto Rico). [Edit if you ship elsewhere.]
+**Where we ship:** United States. [Edit if you ship elsewhere.]
 
 **Lost or delayed packages:** If your tracking hasn't updated in 10 business
 days, or your package hasn't arrived within 20 business days, email us at
@@ -85,7 +85,7 @@ within 14 days of the renewal charge and the product hasn't shipped yet.
 
 Pawlio
 [Your business name / LLC, if you have one]
-[Mailing address in Puerto Rico]
+[Business mailing address]
 Email: [support@pawlio.com]
 Phone: [optional]
 
