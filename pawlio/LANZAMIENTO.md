@@ -144,14 +144,11 @@ enlaza todas solo.
 
 ---
 
-## 8. Fotos (10 min, recomendado)
+## 8. Fotos (opcional)
 
-Las fotos de estilo de vida que generé se cargan desde Higgsfield. Para que la
-página cargue más rápido (más ventas en celular), súbelas a Shopify:
-
-1. Entra a **higgsfield.ai → tus generaciones** y descarga las 10 fotos de perros.
-2. Shopify → **Content → Files → Upload** (súbelas todas).
-3. En **Customize**, en cada sección con foto → **Imagen → Select image** → elige la suya.
+Las fotos de perros ya van **dentro del tema**, optimizadas para celular. No
+tienes que subir nada. Si quieres cambiar una: **Customize** → la sección →
+**Imagen → Select image**. La que elijas tiene prioridad sobre la del tema.
 
 | Sección | Foto |
 |---|---|
@@ -159,7 +156,7 @@ página cargue más rápido (más ventas en celular), súbelas a Shopify:
 | Problema | perro rascándose |
 | Less scratching | mujer abrazando al doodle |
 | Go explore | pastor australiano en el sendero |
-| Our story | sato en la playa de PR |
+| Our story | perro en la playa |
 | Llamado final | beagle sonriendo |
 | Galería de perros | lab, chihuahua, pitbull, doodle en el carro |
 
@@ -176,7 +173,7 @@ con IA) y Meta cierra cuentas de anuncios por eso. La forma rápida y legal:
    (**Customize → Pawlio · Caja de compra → Add block → Apps**). Las estrellas
    del título aparecen solas cuando haya reseñas.
 2. **Primeras 10 reseñas en 7–10 días:** regala collares a 10 amigos, familia
-   o vecinos en PR con perros. Pídeles una foto del perro con el collar y su
+   o vecinos con perros. Pídeles una foto del perro con el collar y su
    opinión honesta. En la reseña pon "Received a free product" (la FTC lo exige).
    Esas fotos sirven también para tus anuncios (UGC real).
 3. Pega las mejores en **Pawlio · Reseñas** (sección apagada que ya está en la
@@ -237,3 +234,33 @@ casa** (producto + envío del proveedor):
   anuncios (CPA), ganas desde la primera compra. Cada renovación de
   suscripción es casi pura ganancia (no pagas anuncio otra vez).
 - Si tu costo real es distinto, dímelo y te recalculo precios.
+
+---
+
+## Productos de prueba (para ver la tienda llena)
+
+Archivo: **`productos-prueba.csv`** (6 productos con fotos: cama, arnés, correa,
+platos plegables, juguetes y cepillo).
+
+1. Shopify → **Products → Import → Add file** → elige `productos-prueba.csv`.
+2. Pulsa **Upload and preview** y luego **Import products**. Las fotos tardan
+   1–2 minutos en aparecer.
+3. Todos llevan la etiqueta `pawlio-test`: cuando no los quieras, filtra por esa
+   etiqueta y bórralos de una vez.
+
+Son de prueba: si vas a venderlos de verdad, cambia fotos, precios y textos por
+los de tu proveedor.
+
+## Cómo sabe la página qué es el collar
+
+Las secciones del collar (problema, cómo funciona, comparación, suscripción,
+historia…) solo salen en productos cuyo **título, tipo o etiqueta tenga la
+palabra `flea`**. Cualquier otro producto (cama, arnés…) sale con la página
+general: sus viñetas, envío, garantía, preguntas generales y un bloque que
+vende también el collar.
+
+- Tu collar debe llamarse, por ejemplo, **Pawlio Flea & Tick Collar**. Si no,
+  ponle la etiqueta `flea`.
+- Cada sección tiene el ajuste **Visibilidad → "Mostrar solo en productos con
+  esta palabra"**: `flea` = solo el collar, `-flea` = todos menos el collar,
+  vacío = todos.

@@ -8,6 +8,20 @@ def schema_of(name):
     if not m: return {}
     return json.loads(m.group(1))
 errs=[]
+def check_lengths(ctx, st):
+    # Shopify descarta la sección ENTERA sin avisar si una etiqueta pasa de 70 caracteres
+    lab=st.get('label','')
+    if isinstance(lab,str) and not lab.startswith('t:') and len(lab)>70:
+        errs.append(f"{ctx}: label de {st.get('id')} tiene {len(lab)} caracteres (máx 70)")
+    for o in st.get('options',[]) or []:
+        ol=o.get('label','')
+        if isinstance(ol,str) and not ol.startswith('t:') and len(ol)>70:
+            errs.append(f"{ctx}: opción {ol[:30]!r} pasa de 70 caracteres")
+    inf=st.get('info','')
+    if isinstance(inf,str) and not inf.startswith('t:') and len(inf)>300:
+        errs.append(f"{ctx}: info de {st.get('id')} tiene {len(inf)} caracteres (revisar)")
+    if st.get('type')=='header' and not str(st.get('content','')).startswith('t:') and len(st.get('content',''))>50:
+        errs.append(f"{ctx}: header largo {st.get('content')[:30]!r}")
 def check_setting(ctx, st, val):
     t=st['type']
     if t=='select':
@@ -29,6 +43,7 @@ for p in glob.glob(T+'/sections/pw-*.liquid'):
         if 'name' in b and len(b['name'])>25: errs.append(f"{name}: block name too long {b['name']}")
     ids=set()
     for where,st in allsets:
+        check_lengths(f"{name}/{where}", st)
         if 'id' not in st: continue
         if st['type']=='range':
             steps=(st['max']-st['min'])/st['step']
@@ -70,10 +85,12 @@ ss=json.load(open(T+'/config/settings_schema.json'))
 smap={s['id']:s for g in ss for s in g.get('settings',[]) if 'id' in s}
 cur=json.load(open(T+'/config/settings_data.json'))['current']
 for k,v in cur.items():
+    if k in ('sections','content_for_index','blocks'): continue  # datos de Dawn, no ajustes
     if k not in smap: errs.append(f"settings_data: unknown {k}"); continue
     if smap[k]['type'] in ('select','range','checkbox'): check_setting('settings_data',smap[k],v)
 for g in ss:
     for st in g.get('settings',[]):
+        check_lengths('settings_schema', st)
         if 'id' in st and 'default' in st: check_setting('settings_schema default', st, st['default'])
         if st.get('type')=='range' and (st['max']-st['min'])/st['step']>101: errs.append(f"settings_schema range {st['id']} too many steps")
 print('\n'.join(errs) or 'ALL GOOD')

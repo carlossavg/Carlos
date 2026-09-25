@@ -6,13 +6,20 @@
 - **Tema:** `pawlio/tema/`, basado en Dawn 16.0.0 (Shopify, Aug 2026) + secciones propias `pw-*`
 - **Última entrega:** 2026-09-25 (sesión local), tema **"Pawlio" `#151634804780` subido sin publicar**
   por Admin API (`themeCreate` desde un ZIP en staged upload). 379/379 archivos comprobados.
+- **v3 (sesión en la nube, 25/09, unida con la local):** página general para cualquier producto
+  (cama, arnés…), fotos dentro del tema, productos de prueba (`productos-prueba.csv`), carrito sin
+  `$NaN`. **Subida el 25/09 como tema "Pawlio v3" `#151636148268`, sin publicar** (404/404
+  archivos, plantillas comparadas ajuste a ajuste). **Es el que hay que publicar.**
+- **Después de regenerar plantillas** con `gen_templates.py`: correr `node herramientas/textos-clip.mjs`
+  (busca las frases por contenido, no por id) o vuelven "cut-to-fit", "waterproof" y "$45".
 - **Cuenta:** contact.pawlio@gmail.com. El login de temas del CLI (`theme list/push`) está con
   otra cuenta; todo se hizo con `shopify store auth` + `store execute`, que sí funciona.
 
 ## Temas en la tienda (25/09)
 | Tema | id | Estado |
 |---|---|---|
-| **Pawlio** | 151634804780 | Sin publicar. **El bueno.** Vista previa: `https://vt9vns-xz.myshopify.com/?preview_theme_id=151634804780` |
+| **Pawlio v3** | 151636148268 | Sin publicar. **El bueno.** Vista previa: `https://vt9vns-xz.myshopify.com/?preview_theme_id=151636148268` |
+| Pawlio | 151634804780 | Sin publicar. Versión anterior (sin la v3); queda de respaldo |
 | pawlio-tema | 151634018348 | **Publicado y roto**: le faltan `sections/pw-product.liquid`, `templates/index.json` y `templates/product.json` (ver abajo) |
 | Horizon, Helio, Pawlio — Preview | — | Sin publicar, antiguos |
 
@@ -45,7 +52,7 @@ con él las dos plantillas que lo usan. Arreglado en el repo. `theme check` no l
 Carlos pidió que la tienda **no mencione Puerto Rico** en ningún sitio. Quitado de la
 historia (portada y ficha), About (hero y misión), pie de página y `POLITICAS.md`.
 La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es.
-`ADS.md` aún tiene el ángulo 8 "Born in Puerto Rico" — no usarlo.
+`ADS.md`: el ángulo 8 y el guion del fundador ya no mencionan Puerto Rico.
 
 ## Estilo editorial (25/09)
 - `pw-image-text` tiene el ajuste **Estilo → Editorial (premium)**: título a peso 380 y 40 px,
@@ -93,7 +100,7 @@ La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es
       Y apagar la sincronización de precios de CJ si la tiene, o pisará los precios.
 - [ ] **Píxel**: app Facebook & Instagram, Data sharing: Maximum.
 - [ ] **Dominio**: comprarlo (Settings → Domains), ponerlo como principal y verificarlo en Meta Business.
-- [ ] **Publicar "Pawlio"** (Online Store → Themes → Publish). El publicado está roto.
+- [ ] **Publicar "Pawlio v3"** (Online Store → Themes → Publish). El publicado está roto.
 - [ ] **Compra de prueba** real con suscripción: comprobar que CJ recibe el pedido y cancelar
       desde la cuenta (Subscriptions). Luego reembolsar.
 - [ ] **Quitar la contraseña** (Online Store → Preferences). Lo último.
@@ -102,9 +109,10 @@ La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es
 - [ ] Reseñas reales (Judge.me + 10 collares regalados)
 
 ## Pendiente para la próxima sesión de Claude
-1. Descargar las 10 fotos de Higgsfield, optimizarlas y subirlas a Shopify Files;
-   cambiar los `image_url` de las plantillas por `image` (image_picker).
-2. Revisar la ficha en móvil (con contraseña no se pudo desde el Chrome de escritorio).
+1. Revisar la ficha en móvil (con contraseña no se pudo desde el Chrome de escritorio).
+2. Fotos de producto propias (las del proveedor llevan marca Sindax y "NON-TOXIC").
+3. Si se sube otra versión del tema: hacerlo como tema NUEVO y sin publicar; el publicado no
+   se puede tocar desde Claude (el clasificador bloquea escribir en el tema en vivo).
 
 ## Decisiones de diseño
 - **Paleta:** verde bosque #0E3B2E, verde botón #12833F, crema #FAF6EE, arena #F2EADB,
@@ -123,8 +131,19 @@ La foto de la historia (perro en playa con palmeras) se queda: no dice dónde es
 - **Comodines de texto:** `[months]`, `[months2]`, `[months3]`, `[days]`, `[brand]`
   → snippet `pw-t`. Se cambian en Theme settings → Pawlio · Marca.
 - **Reseñas:** sección `pw-reviews` desactivada con 3 bloques de ejemplo. Solo reseñas reales.
-- **Imágenes de respaldo:** URLs `_min.webp` de Higgsfield en `image_url` (ajuste de texto);
-  el `image_picker` de cada sección tiene prioridad.
+- **Imágenes de respaldo:** fotos dentro del tema (`assets/pw-img-*-800.jpg` y `-1600.jpg`),
+  nombradas en `image_url`; el `image_picker` de cada sección tiene prioridad.
+
+## Visibilidad por producto (v3)
+- `snippets/pw-match.liquid`: devuelve yes/no según una palabra (`flea`) en título, tipo o etiquetas;
+  `-flea` = negación. Cada sección `pw-*` tiene el ajuste `show_for`; bloques de viñetas y pestañas también.
+- `templates/product.json`: secciones del collar con `show_for: flea` + secciones generales con `-flea`
+  (`trust-other`, `faq-other`, `cta-other` que vende el collar).
+- `snippets/pw-star-handle.liquid`: producto estrella para botones de la portada (Producto principal
+  o el primero con la palabra `pw_star_keyword`, por defecto `flea`).
+- Fotos de estilo de vida dentro del tema: `assets/pw-img-*-800.jpg` y `-1600.jpg` (+ `pw-img-hero-m`
+  recorte vertical para celular). `image_url` de las plantillas usa esos nombres.
+- `productos-prueba.csv`: 6 productos de prueba (etiqueta `pawlio-test`).
 
 ## Secciones creadas (`pawlio/tema/sections/`)
 | Archivo | Qué hace |

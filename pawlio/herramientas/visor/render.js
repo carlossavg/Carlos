@@ -58,7 +58,7 @@ function variant(id, name, price) {
 const variants = [variant(101, '1 Collar', 3295), variant(102, '2 Collars', 4995), variant(103, '3 Collars', 5995)];
 const media = productImgs.map((src, i) => ({ id: 500 + i, media_type: 'image', alt: 'Pawlio collar', src, preview_image: { src, alt: '' } }));
 const product = {
-  id: 1, title: 'Pawlio Flea & Tick Collar', handle: 'pawlio-flea-tick-collar', url: '/products/pawlio-flea-tick-collar',
+  id: 1, title: 'Pawlio Flea & Tick Collar', handle: 'pawlio-flea-tick-collar', url: '/products/pawlio-flea-tick-collar', type: 'Flea Collar', tags: ['flea-collar'],
   description: '<p>A slow-release, plant-powered collar that helps keep fleas and ticks away for months.</p>',
   has_only_default_variant: false, options: ['Pack'],
   options_with_values: [{ name: 'Pack', position: 1, values: variants.map((v) => ({ name: v.title })) }],
@@ -66,6 +66,51 @@ const product = {
   selling_plan_groups: [{ name: 'Subscribe & save', selling_plans: [plan] }], selected_selling_plan: null, requires_selling_plan: false,
   media, featured_media: media[0], featured_image: { src: productImgs[0], alt: '' }, metafields: { reviews: {} },
 };
+
+const bedImg = 'file://' + path.join(__dirname, '..', '..', 'imagenes-originales', 'productos', 'bed.png');
+const bedVariants = [];
+let vid = 201;
+for (const size of ['Small (up to 25 lb)', 'Medium (up to 45 lb)', 'Large (up to 80 lb)']) {
+  for (const color of ['Cream', 'Sage']) {
+    const price = { 'Small (up to 25 lb)': 3995, 'Medium (up to 45 lb)': 4995, 'Large (up to 80 lb)': 6495 }[size];
+    bedVariants.push({ id: vid++, title: size + ' / ' + color, options: [size, color], available: true, price, compare_at_price: null, featured_media: null, selling_plan_allocations: [] });
+  }
+}
+const bedMedia = [{ id: 700, media_type: 'image', alt: 'Pawlio Cloud Donut Bed', src: bedImg, preview_image: { src: bedImg, alt: '' } }];
+const bed = {
+  id: 2, title: 'Pawlio Cloud Donut Bed', handle: 'pawlio-cloud-donut-bed', url: '/products/pawlio-cloud-donut-bed', type: 'Dog Bed', tags: ['bed', 'comfort'],
+  description: '<p><strong>The bed they will never want to leave.</strong> Plush faux fur and a raised donut rim.</p>',
+  has_only_default_variant: false, options: ['Size', 'Color'],
+  options_with_values: [{ name: 'Size', position: 1, values: ['Small (up to 25 lb)', 'Medium (up to 45 lb)', 'Large (up to 80 lb)'].map((n) => ({ name: n })) },
+                        { name: 'Color', position: 2, values: ['Cream', 'Sage'].map((n) => ({ name: n })) }],
+  variants: bedVariants, selected_variant: null, selected_or_first_available_variant: bedVariants[0],
+  selling_plan_groups: [], selected_selling_plan: null, requires_selling_plan: false,
+  media: bedMedia, featured_media: bedMedia[0], featured_image: { src: bedImg, alt: '' }, metafields: { reviews: {} },
+};
+// Producto real de la tienda (25/09): Color × Pack, foto por color. Con plan de suscripción y sin él (hoy no hay).
+function makeReal(withPlan) {
+  const colors = ['Dark Pink', 'Black', 'Green'];
+  const packs = [['1 Collar', 3295], ['2 Collars', 4995], ['3 Collars', 5995]];
+  const rMedia = colors.map((c, i) => ({ id: 800 + i, media_type: 'image', alt: 'Pawlio clip ' + c, src: productImgs[i], preview_image: { src: productImgs[i], alt: '' } }));
+  const rVariants = [];
+  let id = 301;
+  colors.forEach((c, ci) => packs.forEach(([pk, price]) => rVariants.push({
+    id: id++, title: c + ' / ' + pk, options: [c, pk], available: true, price, compare_at_price: null, featured_media: rMedia[ci],
+    selling_plan_allocations: withPlan ? [{ selling_plan: plan, price: Math.round(price * 0.8), compare_at_price: price }] : [],
+  })));
+  return {
+    id: 3, title: 'Pawlio™ Flea & Tick Collar for Dogs', handle: 'pawlio™-flea-tick-collar-for-dogs', url: '/products/pawlio-flea-tick-collar-for-dogs', type: '', tags: [],
+    description: '<p>A silicone clip that attaches to your dog\'s collar.</p>',
+    has_only_default_variant: false, options: ['Color', 'Pack'],
+    options_with_values: [{ name: 'Color', position: 1, values: colors.map((n) => ({ name: n })) },
+                          { name: 'Pack', position: 2, values: packs.map(([n]) => ({ name: n })) }],
+    variants: rVariants, selected_variant: null, selected_or_first_available_variant: rVariants[0],
+    selling_plan_groups: withPlan ? [{ name: 'Subscribe & save', selling_plans: [plan] }] : [], selected_selling_plan: null, requires_selling_plan: false,
+    media: rMedia, featured_media: rMedia[0], featured_image: { src: productImgs[0], alt: '' }, metafields: { reviews: {} },
+  };
+}
+const real = makeReal(true);
+const realNoPlan = makeReal(false);
 
 const shop = {
   name: 'Pawlio', email: 'hello@pawlio.com', money_format: '${{amount}}', enabled_payment_types: ['visa', 'master', 'american_express', 'apple_pay', 'google_pay', 'shopify_pay', 'paypal'],
@@ -137,10 +182,11 @@ function sectionObj(id, type, data, index) {
   return { src: src.replace(/\{%-?\s*schema\s*-?%\}[\s\S]*?\{%-?\s*endschema\s*-?%\}/, ''), section: { id, settings: s, blocks, index } };
 }
 
-async function renderPage(templateFile, templateName, outName) {
+async function renderPage(templateFile, templateName, outName, prod) {
+  prod = prod || product;
   const tpl = JSON.parse(fs.readFileSync(path.join(THEME, 'templates', templateFile), 'utf8'));
-  const globals = { settings, shop, routes, template: { name: templateName }, product: templateName === 'product' ? product : null,
-    collections: { all: { products: [product] } }, cart: { item_count: 0, total_price: 0, items: [] }, request: { page_type: templateName } };
+  const globals = { settings, shop, routes, template: { name: templateName }, product: templateName === 'product' ? prod : null, all_products: { 'pawlio-flea-tick-collar': product, 'pawlio-cloud-donut-bed': bed },
+    collections: { all: { products: [bed, product] } }, cart: { item_count: 0, total_price: 0, items: [] }, request: { page_type: templateName }, pages: {} };
   let body = '';
   let i = 0;
   for (const id of tpl.order) {
@@ -180,8 +226,11 @@ ${head}</head><body>
   console.log('wrote', outName);
 }
 
-module.exports = { engine, settings, shop, routes, product, variants, plan, productImgs, THEME, OUT };
+module.exports = { engine, settings, shop, routes, product, variants, plan, productImgs, THEME, OUT, bed, real, realNoPlan };
 if (require.main === module) (async () => {
   await renderPage('product.json', 'product', 'product.html');
   await renderPage('index.json', 'index', 'index.html');
+  await renderPage('product.json', 'product', 'bed.html', bed);
+  await renderPage('product.json', 'product', 'real.html', real);
+  await renderPage('product.json', 'product', 'real-noplan.html', realNoPlan);
 })();

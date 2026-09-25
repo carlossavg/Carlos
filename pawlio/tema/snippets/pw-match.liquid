@@ -1,0 +1,52 @@
+{%- comment -%}
+  Pawlio · ¿se muestra esto en ESTE producto? Devuelve "yes" o "no".
+  - kw vacío: se muestra en todos.
+  - kw = palabra (ej. flea): solo en productos cuyo título, tipo o etiqueta contenga esa palabra.
+  - kw = -palabra (ej. -flea): solo en productos que NO la contengan.
+  Fuera de las páginas de producto (portada, etc.) devuelve "yes", salvo que se pase p: (un producto).
+{%- endcomment -%}
+{%- liquid
+  assign pw_kw = kw | strip | downcase
+  assign pw_explicit = false
+  if p != blank
+    assign pw_explicit = true
+    assign pw_p = p
+  else
+    assign pw_p = product
+  endif
+  assign pw_on = false
+  if pw_explicit or template.name == 'product'
+    assign pw_on = true
+  endif
+  assign pw_result = 'yes'
+  if pw_kw != blank and pw_p != blank and pw_on
+    assign pw_neg = false
+    assign pw_first = pw_kw | slice: 0
+    if pw_first == '-'
+      assign pw_neg = true
+      assign pw_kw = pw_kw | remove_first: '-' | strip
+    endif
+    assign pw_hit = false
+    assign pw_title = pw_p.title | downcase
+    assign pw_type = pw_p.type | downcase
+    if pw_title contains pw_kw or pw_type contains pw_kw
+      assign pw_hit = true
+    endif
+    for pw_tag in pw_p.tags
+      assign pw_tag_d = pw_tag | downcase
+      if pw_tag_d contains pw_kw
+        assign pw_hit = true
+      endif
+    endfor
+    if pw_neg
+      if pw_hit
+        assign pw_result = 'no'
+      endif
+    else
+      unless pw_hit
+        assign pw_result = 'no'
+      endunless
+    endif
+  endif
+  echo pw_result
+-%}

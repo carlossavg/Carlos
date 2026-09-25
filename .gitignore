@@ -1,2 +1,5 @@
 # Los ZIP se generan con ./hacer-zip.sh, no se guardan aquí
 *.zip
+
+# Originales de Higgsfield (pesan mucho; las versiones optimizadas están en pawlio/tema/assets)
+pawlio/imagenes-originales/

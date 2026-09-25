@@ -13,8 +13,17 @@ anuncio enseña un collar distinto al que llega, te llegan reembolsos y disputas
 - **1080×1920 (9:16):** Stories y Reels. Deja libre el 14% de arriba y el 20% de abajo.
 - **1080×1080 (1:1):** respaldo.
 
-**Destino de TODOS los anuncios:** la página del producto
-(`tutienda.com/products/pawlio-flea-tick-collar`), no la portada.
+**Destino de TODOS los anuncios:** la página del producto, no la portada.
+Hoy su dirección es `/products/pawlio™-flea-tick-collar-for-dogs` (el ™ sale
+como `%E2%84%A2` en el enlace). Antes de anunciar, cámbiala en el producto →
+**Search engine listing → URL handle** a `pawlio-flea-tick-collar`. Shopify
+crea la redirección de la vieja si dejas marcada la casilla *Create a URL
+redirect*. Después vuelve a elegir el collar en **Theme settings →
+Pawlio · Marca → Producto principal**.
+
+> ⚠️ **El producto real es un clip de silicona que se engancha al collar**, no
+> un collar que se recorta. No uses "cut-to-fit", "trim" ni "waterproof" hasta
+> confirmarlo con el proveedor, y en los prompts sube la foto del clip.
 
 ---
 
@@ -105,19 +114,18 @@ anuncio enseña un collar distinto al que llega, te llegan reembolsos y disputas
 - **Prompt:**
   > Bright doorstep scene: a plain kraft mailer box on a welcome mat, a curious golden retriever sniffing it, morning sunlight, fresh green plants by the door, warm and optimistic. Clean composition with space at the top for a headline. No text, no logos. Vertical 4:5.
 
-### 8. "Born in Puerto Rico" (historia de marca)
-*Por qué funciona:* es verdad y te diferencia de las marcas genéricas. Si el
-clima de PR aguanta tu collar, sirve en cualquier sitio.
+### 8. "Set it and forget it" (historia de marca)
+*Por qué funciona:* una marca con cara vende más que un producto genérico, y
+el dolor de acordarse de las gotas cada mes lo conoce cualquier dueño. No dice
+dónde está la marca (la tienda no menciona lugares).
 
-- **Texto en la imagen:** "Made for the place where flea season never ends."
+- **Texto en la imagen:** "Built by dog people who were tired of monthly drops."
 - **Primary text:**
-  > In Puerto Rico, fleas and ticks don't take a day off. 🇵🇷🌴
-  > So we built Pawlio: plant-powered, waterproof protection that lasts for months. Tested by island life.
-- **Headline:** Born in Puerto Rico
+  > We got tired of greasy drops and setting phone reminders every month. 🐾
+  > So we built Pawlio: plant-powered protection that lasts for months. Clip it on and get back to the fun part.
+- **Headline:** Protection you set and forget
 - **Prompt:**
-  > Warm golden-hour photo of a happy sandy-colored Puerto Rican sato dog sitting on a tropical beach with palm trees and turquoise water, wearing the collar from the reference photo. Natural colors, editorial travel photography. Space at the top for text. No text. Vertical 4:5.
-
-> Cambia "Tested by island life" si todavía no lo has probado tú.
+  > Warm, candid golden-hour photo on a front porch: a smiling owner kneels and attaches the product from the reference photo to the collar of a happy mixed-breed dog. Natural colors, authentic lifestyle photography, shallow depth of field. Space at the top for text. No text. Vertical 4:5.
 
 ---
 
@@ -129,7 +137,7 @@ grandes.
 **Guion A · "The 10-second fix"**
 1. (0–2 s) Perro rascándose. Texto: *"POV: it's flea season again"*
 2. (2–5 s) Sacas el collar del sobre. Texto: *"This took 10 seconds"*
-3. (5–10 s) Lo pones, lo ajustas, cortas lo que sobra.
+3. (5–10 s) Lo pones en el collar del perro, en segundos.
 4. (10–15 s) El perro corriendo o durmiendo tranquilo. Texto: *"Up to 4 months. No drops. No pills."*
 5. (15–18 s) Pantalla final: collar + *"Try it risk-free — 60 days"*.
 
@@ -138,9 +146,9 @@ grandes.
 - Derecha: poniendo Pawlio, "done for months."
 
 **Guion C · "Fundador"** (tú hablando a cámara, 20 s)
-> "I live in Puerto Rico. Flea season here never ends. I got tired of
-> remembering monthly drops, so I started Pawlio — a plant-powered collar that
-> lasts for months. If it doesn't work for your dog, I'll refund you. 60 days."
+> "Flea season never really ends. I got tired of remembering monthly drops,
+> so I started Pawlio — plant-powered protection that lasts for months. If it
+> doesn't work for your dog, I'll refund you. 60 days."
 
 ---
 

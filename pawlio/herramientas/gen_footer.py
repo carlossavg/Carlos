@@ -51,7 +51,7 @@ write('pw-footer', r'''
                 <li><a href="{{ link.url }}">{{ link.title }}</a></li>
               {%- endfor -%}
             {%- elsif i == 1 -%}
-              <li><a href="{% render 'pw-cta-url' %}">Shop the collar</a></li>
+              <li><a href="{% render 'pw-cta-url', star: true %}">Shop the collar</a></li>
               <li><a href="{{ routes.root_url }}#pw-how">How it works</a></li>
               {%- if pages.about.url != blank -%}<li><a href="{{ pages.about.url }}">Our story</a></li>{%- endif -%}
             {%- else -%}
@@ -106,7 +106,7 @@ write('pw-footer', r'''
     "settings": [
         {"type": "image_picker", "id": "logo", "label": "Logo (vacío = logo de texto Pawlio)"},
         {"type": "range", "id": "logo_width", "label": "Ancho del logo", "min": 60, "max": 300, "step": 10, "unit": "px", "default": 150},
-        {"type": "textarea", "id": "tagline", "label": "Frase de la marca", "default": "Plant-powered flea & tick protection for dogs who live life outside. Born in Puerto Rico."},
+        {"type": "textarea", "id": "tagline", "label": "Frase de la marca", "default": "Plant-powered flea & tick protection for dogs who live life outside."},
         {"type": "checkbox", "id": "show_social", "label": "Mostrar redes sociales", "info": "Los enlaces se ponen en Configuración del tema → Redes sociales.", "default": True},
         {"type": "header", "content": "Menús"},
         {"type": "text", "id": "menu_1_title", "label": "Título menú 1", "default": "Shop"},

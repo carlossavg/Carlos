@@ -1,3 +1,5 @@
+{%- capture pw_vis -%}{% render 'pw-match', kw: section.settings.show_for %}{%- endcapture -%}
+{%- if pw_vis contains 'yes' -%}
 {%- render 'pw-section-style' -%}
 <section class="pw pw-on-{{ section.settings.bg }}" id="faq">
   <div class="pw-container{% unless section.settings.layout == 'split' %} pw-container--narrow{% endunless %}">
@@ -37,6 +39,7 @@
     </script>
   {%- endif -%}
 </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -191,6 +194,16 @@
       "step": 8,
       "unit": "px",
       "default": 88
+    },
+    {
+      "type": "header",
+      "content": "Visibilidad"
+    },
+    {
+      "type": "text",
+      "id": "show_for",
+      "label": "Mostrar solo en productos con esta palabra",
+      "info": "Solo afecta a páginas de producto. Palabra del título, tipo o etiqueta del producto (ej. flea). Con - delante se oculta en esos productos (ej. -flea). Vacío = en todos."
     }
   ],
   "blocks": [

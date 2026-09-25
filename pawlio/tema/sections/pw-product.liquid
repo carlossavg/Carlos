@@ -11,10 +11,11 @@
   if template.name != 'product' or pw_product == blank
     assign pw_product = section.settings.product
     if pw_product == blank
-      assign pw_product = settings.pw_featured_product
-    endif
-    if pw_product == blank
-      assign pw_product = collections.all.products.first
+      capture pw_star_handle
+        render 'pw-star-handle'
+      endcapture
+      assign pw_star_handle = pw_star_handle | strip
+      assign pw_product = all_products[pw_star_handle]
     endif
   endif
   assign sid = section.id
@@ -204,7 +205,8 @@
                 {%- endfor -%}
               </div>
 
-              {%- if section.settings.media_badge != blank -%}
+              {%- capture pw_badge_ok -%}{% render 'pw-match', kw: section.settings.special_for, p: pw_product %}{%- endcapture -%}
+              {%- if section.settings.media_badge != blank and pw_badge_ok contains 'yes' -%}
                 <span class="pw-gallery__badge">
                   {%- render 'pw-icon', icon: section.settings.media_badge_icon -%}
                   {{ section.settings.media_badge }}
@@ -251,9 +253,18 @@
         </div>
 
         {%- comment -%} Información y compra {%- endcomment -%}
+        {%- capture pw_special -%}{% render 'pw-match', kw: section.settings.special_for, p: pw_product %}{%- endcapture -%}
+        {%- liquid
+          assign pw_eyebrow = section.settings.eyebrow
+          assign pw_tagline = section.settings.tagline
+          unless pw_special contains 'yes'
+            assign pw_eyebrow = section.settings.eyebrow_other | default: pw_product.type
+            assign pw_tagline = section.settings.tagline_other
+          endunless
+        -%}
         <div class="pw-product__info">
-          {%- if section.settings.eyebrow != blank -%}
-            <p class="pw-eyebrow">{% render 'pw-t', t: section.settings.eyebrow %}</p>
+          {%- if pw_eyebrow != blank -%}
+            <p class="pw-eyebrow">{% render 'pw-t', t: pw_eyebrow %}</p>
           {%- endif -%}
 
           {%- if section.settings.show_rating and pw_product.metafields.reviews.rating.value != blank -%}
@@ -286,8 +297,8 @@
             {%- endif -%}
           {%- endfor -%}
 
-          {%- if section.settings.tagline != blank -%}
-            <p class="pw-product__tagline">{% render 'pw-t', t: section.settings.tagline %}</p>
+          {%- if pw_tagline != blank -%}
+            <p class="pw-product__tagline">{% render 'pw-t', t: pw_tagline %}</p>
           {%- endif -%}
 
           {%- if section.settings.show_price_row -%}
@@ -298,21 +309,21 @@
             </div>
           {%- endif -%}
 
-          {%- assign has_benefits = false -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'benefit' -%}{%- assign has_benefits = true -%}{%- endif -%}
-          {%- endfor -%}
-          {%- if has_benefits -%}
-            <ul class="pw-benefits-list">
-              {%- for block in section.blocks -%}
-                {%- if block.type == 'benefit' -%}
+          {%- capture pw_benefits_html -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'benefit' -%}
+                {%- capture pw_bvis -%}{% render 'pw-match', kw: block.settings.show_for, p: pw_product %}{%- endcapture -%}
+                {%- if pw_bvis contains 'yes' -%}
                   <li {{ block.shopify_attributes }}>
                     <span class="pw-benefits-list__icon">{% render 'pw-icon', icon: block.settings.icon %}</span>
                     <span>{% render 'pw-t', t: block.settings.text %}</span>
                   </li>
                 {%- endif -%}
-              {%- endfor -%}
-            </ul>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+          {%- if pw_benefits_html != blank -%}
+            <ul class="pw-benefits-list">{{ pw_benefits_html }}</ul>
           {%- endif -%}
 
           {%- comment -%} Opciones que NO son el bundle (ej. talla) {%- endcomment -%}
@@ -341,13 +352,26 @@
                             {%- if value.swatch.color -%}
                               {%- assign sw = 'rgb(' | append: value.swatch.color.rgb | append: ')' -%}
                             {%- else -%}
-                              {%- assign sw = vname | downcase | remove: ' ' -%}
-                              {%- assign sw_key = vname | strip | downcase -%}
+                              {%- assign sw_key = vname | downcase | remove: ' ' -%}
+                              {%- case sw_key -%}
+                                {%- when 'cream', 'ivory', 'offwhite' -%}{%- assign sw = '#F3EBDD' -%}
+                                {%- when 'sage', 'mint' -%}{%- assign sw = '#9CAF88' -%}
+                                {%- when 'forest', 'forestgreen', 'darkgreen' -%}{%- assign sw = '#1F4D3A' -%}
+                                {%- when 'sand', 'beige', 'khaki', 'tan' -%}{%- assign sw = '#D8C3A5' -%}
+                                {%- when 'brown', 'chocolate', 'coffee' -%}{%- assign sw = '#6B4A34' -%}
+                                {%- when 'grey', 'gray', 'charcoal' -%}{%- assign sw = '#6E7270' -%}
+                                {%- when 'navy', 'navyblue' -%}{%- assign sw = '#1F2D4D' -%}
+                                {%- when 'olive' -%}{%- assign sw = '#6B7040' -%}
+                                {%- when 'rose', 'blush' -%}{%- assign sw = '#E8B8B0' -%}
+                                {%- else -%}{%- assign sw = sw_key -%}
+                              {%- endcase -%}
+                              {%- comment -%} Colores propios del ajuste "Colores de las muestras" (tienen prioridad) {%- endcomment -%}
+                              {%- assign sw_key_full = vname | strip | downcase -%}
                               {%- assign sw_lines = section.settings.swatch_colors | newline_to_br | split: '<br />' -%}
                               {%- for sw_line in sw_lines -%}
                                 {%- assign sw_pair = sw_line | split: ':' -%}
                                 {%- assign sw_name = sw_pair.first | strip | downcase -%}
-                                {%- if sw_pair.size > 1 and sw_name == sw_key -%}
+                                {%- if sw_pair.size > 1 and sw_name == sw_key_full -%}
                                   {%- assign sw = sw_pair.last | strip -%}
                                 {%- endif -%}
                               {%- endfor -%}
@@ -717,14 +741,11 @@
             </div>
           {%- endif -%}
 
-          {%- assign has_tabs = false -%}
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'tab' -%}{%- assign has_tabs = true -%}{%- endif -%}
-          {%- endfor -%}
-          {%- if has_tabs -%}
-            <div class="pw-accordion">
+          {%- capture pw_tabs_html -%}
               {%- for block in section.blocks -%}
                 {%- if block.type == 'tab' -%}
+                  {%- capture pw_tvis -%}{% render 'pw-match', kw: block.settings.show_for, p: pw_product %}{%- endcapture -%}
+                  {%- unless pw_tvis contains 'yes' -%}{%- continue -%}{%- endunless -%}
                   <details {{ block.shopify_attributes }} {% if block.settings.open %}open{% endif %}>
                     <summary>
                       {%- render 'pw-icon', icon: block.settings.icon, px: 22 -%}
@@ -741,7 +762,9 @@
                   </details>
                 {%- endif -%}
               {%- endfor -%}
-            </div>
+          {%- endcapture -%}
+          {%- if pw_tabs_html != blank -%}
+            <div class="pw-accordion">{{ pw_tabs_html }}</div>
           {%- endif -%}
         </div>
       </div>
@@ -864,8 +887,11 @@
     { "type": "paragraph", "content": "En la página del producto se usa ese producto. En la portada u otras páginas, elige cuál mostrar. Comodines en los textos: [months], [months2], [months3], [days] (se cambian en Configuración del tema → Pawlio · Marca)." },
     { "type": "product", "id": "product", "label": "Producto (fuera de la página del producto)" },
     { "type": "header", "content": "Textos principales" },
-    { "type": "text", "id": "eyebrow", "label": "Texto pequeño arriba del título", "default": "Plant-powered flea & tick protection" },
-    { "type": "text", "id": "tagline", "label": "Frase bajo el título", "default": "No monthly drops. No pills. Just clip it on and enjoy months of peace of mind." },
+    { "type": "text", "id": "special_for", "label": "Producto estrella: palabra que lo identifica", "info": "Palabra del título, tipo o etiqueta del producto estrella (ej. flea). Los dos textos de abajo solo salen en ese producto.", "default": "flea" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño arriba del título (producto estrella)", "default": "Plant-powered flea & tick protection" },
+    { "type": "text", "id": "tagline", "label": "Frase bajo el título (producto estrella)", "default": "No monthly drops. No pills. Just clip it on and enjoy months of peace of mind." },
+    { "type": "text", "id": "eyebrow_other", "label": "Texto pequeño arriba del título (otros productos)", "info": "Vacío = el tipo del producto (ej. Dog Bed)." },
+    { "type": "text", "id": "tagline_other", "label": "Frase bajo el título (otros productos)" },
     { "type": "range", "id": "title_size", "label": "Tamaño del título", "min": 28, "max": 64, "step": 2, "unit": "px", "default": 46 },
     { "type": "checkbox", "id": "show_price_row", "label": "Mostrar precio grande bajo el título", "default": true },
     { "type": "checkbox", "id": "show_rating", "label": "Mostrar estrellas", "info": "Solo aparecen si tienes una app de reseñas con reseñas reales.", "default": true },
@@ -874,7 +900,7 @@
     { "type": "select", "id": "media_position", "label": "Posición de las fotos (escritorio)", "options": [ { "value": "left", "label": "Izquierda" }, { "value": "right", "label": "Derecha" } ], "default": "left" },
     { "type": "select", "id": "media_ratio", "label": "Forma de las fotos", "options": [ { "value": "square", "label": "Cuadrada" }, { "value": "portrait", "label": "Vertical (4:5)" }, { "value": "landscape", "label": "Horizontal (4:3)" } ], "default": "square" },
     { "type": "select", "id": "media_fit", "label": "Ajuste de la foto", "options": [ { "value": "cover", "label": "Llenar el cuadro" }, { "value": "contain", "label": "Mostrar la foto completa" } ], "default": "cover" },
-    { "type": "text", "id": "media_badge", "label": "Etiqueta sobre la foto", "default": "Plant-powered" },
+    { "type": "text", "id": "media_badge", "label": "Etiqueta sobre la foto (solo producto estrella)", "default": "Plant-powered" },
     {
       "type": "select", "id": "media_badge_icon", "label": "Icono de la etiqueta",
       "options": [
@@ -888,7 +914,7 @@
     { "type": "text", "id": "bundle_option_name", "label": "Nombre de la opción de bundle", "info": "Nombre de la opción de la variante en Shopify (ej. Pack). También reconoce Bundle, Quantity, Cantidad o Paquete. Color y talla se muestran como botones normales.", "default": "Pack" },
     { "type": "text", "id": "bundle_heading", "label": "Título sobre los bundles", "default": "Choose your pack" },
     { "type": "text", "id": "bundle_hint", "label": "Nota a la derecha del título", "default": "Most dog parents pick 2" },
-    { "type": "text", "id": "per_unit_label", "label": "Precio por unidad", "info": "[price] = precio por unidad", "default": "[price] / collar" },
+    { "type": "text", "id": "per_unit_label", "label": "Precio por unidad", "info": "[price] = precio por unidad", "default": "[price] each" },
     { "type": "text", "id": "save_label", "label": "Etiqueta de ahorro", "info": "[percent] = % de ahorro", "default": "Save [percent]" },
     { "type": "header", "content": "Suscripción" },
     { "type": "paragraph", "content": "Aparece sola cuando el producto tiene un plan en la app gratis Shopify Subscriptions." },
@@ -920,7 +946,7 @@
       ],
       "default": "truck"
     },
-    { "type": "text", "id": "assurance_1", "label": "Texto 1", "default": "Free shipping on 2+ collars" },
+    { "type": "text", "id": "assurance_1", "label": "Texto 1", "default": "Free shipping over $45" },
     {
       "type": "select", "id": "assurance_2_icon", "label": "Icono 2",
       "options": [
@@ -978,11 +1004,14 @@
             { "value": "check", "label": "Check" }, { "value": "shield-check", "label": "Escudo" }, { "value": "leaf", "label": "Hoja" },
             { "value": "drop", "label": "Gota (agua)" }, { "value": "scissors", "label": "Tijeras (ajustable)" }, { "value": "clock", "label": "Reloj" },
             { "value": "calendar", "label": "Calendario" }, { "value": "wind", "label": "Aroma" }, { "value": "heart", "label": "Corazón" },
-            { "value": "paw", "label": "Huella" }, { "value": "sparkle", "label": "Destello" }, { "value": "moon", "label": "Luna" }
+            { "value": "paw", "label": "Huella" }, { "value": "sparkle", "label": "Destello" }, { "value": "moon", "label": "Luna" },
+            { "value": "truck", "label": "Camión" }, { "value": "chat", "label": "Chat" }, { "value": "lock", "label": "Candado" },
+            { "value": "gift", "label": "Regalo" }, { "value": "return", "label": "Devolución" }, { "value": "ruler", "label": "Regla (talla)" }
           ],
           "default": "check"
         },
-        { "type": "text", "id": "text", "label": "Texto", "default": "Repels fleas & ticks for up to [months] months" }
+        { "type": "text", "id": "text", "label": "Texto", "default": "Repels fleas & ticks for up to [months] months" },
+        { "type": "text", "id": "show_for", "label": "Mostrar solo en productos con esta palabra", "info": "Ej. flea = solo en el collar. -flea = en todos menos el collar. Vacío = en todos." }
       ]
     },
     {
@@ -1022,7 +1051,8 @@
         },
         { "type": "checkbox", "id": "use_description", "label": "Usar la descripción del producto", "default": false },
         { "type": "richtext", "id": "content", "label": "Contenido", "default": "<p>Write the content of this tab.</p>" },
-        { "type": "checkbox", "id": "open", "label": "Abierta al cargar", "default": false }
+        { "type": "checkbox", "id": "open", "label": "Abierta al cargar", "default": false },
+        { "type": "text", "id": "show_for", "label": "Mostrar solo en productos con esta palabra", "info": "Ej. flea = solo en el collar. -flea = en todos menos el collar. Vacío = en todos." }
       ]
     }
   ],
