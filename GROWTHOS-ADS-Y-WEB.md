@@ -1,18 +1,18 @@
-# Webify — prompts para los anuncios y la página
+# GrowthOS — prompts para los anuncios y la página
 
-Cuatro bloques para pegar en ChatGPT. Webify vende **una sola cosa**:
+Cuatro bloques para pegar en ChatGPT. GrowthOS vende **una sola cosa**:
 clientes nuevos para negocios de servicio en Puerto Rico. Le escriben al
 dueño por WhatsApp o llenan un formulario que le llega al email. Sin
 automatizaciones, sin GoHighLevel.
 
 | Bloque | Para qué | Dónde |
 |---|---|---|
-| 1. Contexto | Quién es Webify y las reglas | Se pega primero en el chat de los bloques 2 y 3 |
-| 2. Creativos de Webify | Tus anuncios, para conseguir clientes tú | Mismo chat que el 1 |
-| 3. Página de Webify | Tu landing | Chat nuevo: Bloque 1 + Bloque 3 |
+| 1. Contexto | Quién es GrowthOS y las reglas | Se pega primero en el chat de los bloques 2 y 3 |
+| 2. Creativos de GrowthOS | Tus anuncios, para conseguir clientes tú | Mismo chat que el 1 |
+| 3. Página de GrowthOS | Tu landing | Chat nuevo: Bloque 1 + Bloque 3 |
 | 4. Creativos para un cliente | Los anuncios que le haces a cada cliente | Chat nuevo por cada cliente, solo el 4 |
 
-El Bloque 4 va solo, sin el contexto de Webify: esos anuncios le hablan a
+El Bloque 4 va solo, sin el contexto de GrowthOS: esos anuncios le hablan a
 los clientes de tu cliente (dueños de casa), no a dueños de negocio.
 
 Si ya tienes colores de marca, cámbialos en el Bloque 1 antes de pegarlo.
@@ -22,10 +22,10 @@ Si ya tienes colores de marca, cámbialos en el Bloque 1 antes de pegarlo.
 ## Bloque 1 — Contexto maestro
 
 ```
-Vas a trabajar como director creativo y copywriter de respuesta directa para mi agencia, Webify. Lee todo esto, guárdalo como contexto para el resto del chat y responde solo "Listo". No generes nada todavía.
+Vas a trabajar como director creativo y copywriter de respuesta directa para mi agencia, GrowthOS. Lee todo esto, guárdalo como contexto para el resto del chat y responde solo "Listo". No generes nada todavía.
 
 QUIÉN SOY
-Carlos Vargas, Puerto Rico. Mi agencia se llama Webify.
+Carlos Vargas, Puerto Rico. Mi agencia se llama GrowthOS.
 
 LO ÚNICO QUE VENDO: CLIENTES NUEVOS PARA NEGOCIOS DE SERVICIO
 1. Una página web hecha para el negocio, pensada para que la gente pida un estimado.
@@ -88,7 +88,7 @@ ESTILO: ANUNCIOS ESTÉTICOS
 
 ---
 
-## Bloque 2 — Los creativos de Webify
+## Bloque 2 — Los creativos de GrowthOS
 
 ```
 Ahora vamos con mis anuncios. Reglas para todas las imágenes:
@@ -214,10 +214,10 @@ Empieza con el CREATIVO 1.
 
 ---
 
-## Bloque 3 — La página de Webify
+## Bloque 3 — La página de GrowthOS
 
 ```
-Ahora la página web de Webify. Respeta todo el contexto.
+Ahora la página web de GrowthOS. Respeta todo el contexto.
 
 OBJETIVO ÚNICO
 Que el dueño de un negocio de servicio en Puerto Rico deje sus datos para que yo le escriba por WhatsApp. Una página, una oferta, una acción.
@@ -248,7 +248,7 @@ DISEÑO: QUE SE SIENTA DE OTRO NIVEL
 - Las secciones aparecen suavemente al bajar (IntersectionObserver).
 - Botones principales en cian con texto oscuro, con un destello que los cruza cada 4 segundos.
 - En el celular, una barra fija abajo con el botón principal.
-- Sin menú: arriba solo el logo "Webify" y un botón "Quiero más clientes".
+- Sin menú: arriba solo el logo "GrowthOS" y un botón "Quiero más clientes".
 
 EL MOMENTO WOW (lo más importante de la página)
 En el hero, un iPhone hecho 100% con HTML y CSS, sin imágenes, con una app de mensajes de estilo verde (sin el logo de WhatsApp). En bucle, van entrando mensajes nuevos, uno cada 2 segundos, con su notificación arriba y su globito de "no leído":
@@ -317,7 +317,7 @@ ESTRUCTURA Y TEXTOS (usa estos; si los pules, respeta las reglas)
 
 8. QUIÉN ESTÁ DETRÁS
    Una foto real mía (deja el hueco marcado: [FOTO_CARLOS]).
-   "Soy Carlos Vargas, de Puerto Rico. [TU HISTORIA EN 3 LÍNEAS: por qué empezaste Webify.] Trabajo con pocos negocios a la vez para poder contestarte yo mismo."
+   "Soy Carlos Vargas, de Puerto Rico. [TU HISTORIA EN 3 LÍNEAS: por qué empezaste GrowthOS.] Trabajo con pocos negocios a la vez para poder contestarte yo mismo."
 
 9. LA OFERTA
    Una caja grande con borde cian:
@@ -339,9 +339,9 @@ ESTRUCTURA Y TEXTOS (usa estos; si los pules, respeta las reglas)
    Campos: Nombre · WhatsApp · Tipo de negocio (lista: Techos, Placas solares, Plomería, Aire acondicionado, Jardinería, Otro) · Pueblo · "¿Tienes página web?" (Sí / No)
    Botón: "Quiero más clientes"
    Debajo: "Te escribo hoy mismo por WhatsApp. Sin compromiso."
-   Letra pequeña: "Al enviar, aceptas que Webify te contacte por WhatsApp, llamada o mensaje de texto sobre tu solicitud."
+   Letra pequeña: "Al enviar, aceptas que GrowthOS te contacte por WhatsApp, llamada o mensaje de texto sobre tu solicitud."
 
-12. PIE: Webify · Puerto Rico · Política de privacidad · TU_EMAIL
+12. PIE: GrowthOS · Puerto Rico · Política de privacidad · TU_EMAIL
 
 GRACIAS.HTML
 - Título: "Recibido, [nombre]." (sale de sessionStorage; si no hay nombre, "Recibido.")
