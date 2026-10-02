@@ -34,10 +34,18 @@ if (!CHROME) {
 }
 
 function armar(paginas = {}) {
+  // Cada archivo va dentro de su capítulo: así cada página lleva arriba
+  // el nombre del capítulo en el que está (ver @page en estilos.css).
+  const capitulos = { '01': 'indice', '02': 'intro', '03': 'intro', '10': 'dia1', '20': 'dia2',
+    '30': 'dia3', '40': 'despues', '50': 'anexos', '60': 'cierre' };
   const partes = fs.readdirSync(SECCIONES)
     .filter(f => f.endsWith('.html'))
     .sort()
-    .map(f => fs.readFileSync(path.join(SECCIONES, f), 'utf8'));
+    .map(f => {
+      const html = fs.readFileSync(path.join(SECCIONES, f), 'utf8');
+      const cap = capitulos[f.slice(0, 2)];
+      return cap ? `<div class="cap-${cap}">\n${html}</div>` : html;
+    });
 
   let cuerpo = partes.join('\n');
 
@@ -111,9 +119,13 @@ function buscarPaginas() {
   const contenido = paginas.findIndex((p, n) => n > inicioIndice && p.includes('PARA EMPEZAR'));
   const indice = (contenido > 0 ? contenido : inicioIndice + 1) - 1;
   const resultado = {};
+  // Las aperturas de cada día repiten los títulos de sus pasos: para los
+  // pasos numerados ("1.1 …") se saltan esas páginas.
+  const esApertura = p => limpia(p).includes('LOQUEVASAHACER');
   for (const b of busquedas) {
     const t = limpia(b);
-    const i = paginas.findIndex((p, n) => n > indice && limpia(p).includes(t));
+    const numerado = /^\d/.test(b);
+    const i = paginas.findIndex((p, n) => n > indice && !(numerado && esApertura(p)) && limpia(p).includes(t));
     if (i >= 0) resultado[b] = i + 1;
     else console.warn('No encontré en el PDF:', t);
   }
