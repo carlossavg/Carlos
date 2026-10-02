@@ -8,7 +8,7 @@ entiende qué está pasando con tu dinero.
 
 Lo que recibe el comprador:
 
-- La guía en PDF (76 páginas, con las pantallas dibujadas paso a paso y dos ejemplos, Luis y María, que se siguen de principio a fin).
+- La guía en PDF (74 páginas, con las pantallas dibujadas paso a paso y dos ejemplos, Luis y María, que se siguen de principio a fin).
 - La hoja de resultados en Excel: calcula cuánto puede pagar por un cliente
   y le dice qué anuncio apagar.
 - 12 plantillas de texto por tipo de negocio.
@@ -116,7 +116,7 @@ guía, lista para Netlify.
   apagar y qué contestar para que el que te escribe termine comprando.
 
 **Lo que recibes:**
-- La guía de 76 páginas, con las pantallas dibujadas y numeradas.
+- La guía de 74 páginas, con las pantallas dibujadas y numeradas.
 - La hoja de Excel que te dice cada lunes qué anuncio apagar.
 - 12 plantillas de texto por tipo de negocio.
 - 5 prompts para que ChatGPT te haga las fotos y los textos.
