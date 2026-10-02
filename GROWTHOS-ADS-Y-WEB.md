@@ -1,6 +1,6 @@
 # GrowthOS — prompts para los anuncios y la página
 
-Cuatro bloques para pegar en ChatGPT. GrowthOS vende **una sola cosa**:
+Cinco bloques para pegar en ChatGPT. GrowthOS vende **una sola cosa**:
 clientes nuevos para negocios de servicio en Puerto Rico. Le escriben al
 dueño por WhatsApp o llenan un formulario que le llega al email. Sin
 automatizaciones, sin GoHighLevel.
@@ -11,6 +11,7 @@ automatizaciones, sin GoHighLevel.
 | 2. Creativos de GrowthOS | Tus anuncios, con todo el texto escrito | Mismo chat que el 1 |
 | 3. Página de GrowthOS | Tu landing | Chat nuevo: Bloque 1 + Bloque 3 |
 | 4. Creativos para un cliente | Los anuncios que le haces a cada cliente | Chat nuevo por cada cliente, solo el 4 |
+| 5. Biblioteca de pruebas | Muchos anuncios por rondas, para medir cuál funciona | Chat nuevo: Bloque 1 + Bloque 5 |
 
 El Bloque 4 va solo, sin el contexto de GrowthOS: esos anuncios le hablan a
 los clientes de tu cliente (dueños de casa), no a dueños de negocio.
@@ -751,6 +752,214 @@ BOTÓN: "Enviar mensaje de WhatsApp" si es por WhatsApp, "Más información" si 
 
 VERSIONES 9:16: cuando te escriba "9:16 del #N", rehaz el creativo N en 1080x1920 sin texto en el 14% de arriba ni en el 35% de abajo.
 ```
+
+---
+
+## Bloque 5 — Biblioteca de anuncios para probar
+
+Muchos anuncios, ordenados por rondas, para medir cuál trae clientes. Chat
+nuevo: pega el **Bloque 1** y después este.
+
+```
+Ahora vamos a hacer una biblioteca de anuncios para PROBAR cuál funciona. No busco el anuncio perfecto: busco muchos anuncios distintos, ordenados, para medir cuál trae clientes.
+
+LA REGLA DE LAS PRUEBAS
+En cada ronda cambia UNA sola cosa. Todo lo demás se queda igual: los colores, la letra, el logo, el botón, el pie y el texto del anuncio. Así, si uno gana, sé por qué ganó.
+
+CÓMO SE ARMA CADA IMAGEN (vertical 4:5, 1080x1350, margen de 80 px)
+1. Arriba a la izquierda: "GrowthOS" en blanco, Space Grotesk negrita, pequeño.
+2. ETIQUETA: una pastilla con borde cian y el texto en mayúsculas, pequeño.
+3. TITULAR: enorme, blanco, en 2 o 3 líneas. La parte marcada "en cian" va en #00E5FF.
+4. SUBTÍTULO: 1 o 2 líneas, gris claro.
+5. EL PROTAGONISTA: la foto u objeto, cerca del 40% del alto.
+6. BOTÓN: un rectángulo redondeado cian, con el texto en negro y una flecha →.
+7. PIE: una línea pequeña, gris, centrada abajo.
+Todo se tiene que leer en un celular sin hacer zoom.
+Si no puedes 1080x1350 exacto, usa el vertical más cercano.
+
+EL TEXTO DE LA IMAGEN
+- EXACTO, letra por letra, con tildes y con ¿ ¡. Lo que está entre [corchetes] son instrucciones: no se escribe.
+- El código del anuncio NUNCA va dentro de la imagen.
+- Después de cada imagen escribe:
+  CÓDIGO: (el de la lista)
+  NOMBRE PARA META: (el código y un nombre corto, por ejemplo: R1-C3 Meses muertos)
+  VERIFICACIÓN: (todo el texto que quedó en la imagen)
+  Si una palabra salió mal, dímelo y repite la imagen.
+
+EL RITMO
+Una imagen por mensaje, en el orden de la lista. Yo escribo "siguiente" para pasar a la próxima.
+Al terminar cada ronda, dame una tabla con: código, nombre para Meta y qué cambia en esa imagen.
+
+EL TEXTO DEL ANUNCIO ES EL MISMO PARA TODAS
+No lo cambies: así la prueba mide solo la imagen. No me lo repitas en cada imagen, ya lo tengo.
+TEXTO PRINCIPAL:
+Negocios de servicio en Puerto Rico 👇
+Te hacemos la página y los anuncios en Facebook e Instagram. La gente de tu área te escribe directo a tu WhatsApp pidiendo estimado. Tú contestas y cierras el trabajo.
+Este mes el montaje es gratis para los primeros 3 negocios. Sin contrato.
+Toca "Más información" y te escribo hoy.
+TÍTULO: Clientes nuevos directo a tu WhatsApp
+DESCRIPCIÓN: Montaje gratis · Sin contrato
+BOTÓN: Más información
+
+━━━━━━━━━━━━━━━━━━━━
+RONDA 1 — EL CONCEPTO (qué idea vende más)
+Cambia: la idea, con su imagen, su etiqueta, su titular y su subtítulo.
+Igual en las 6: botón "Pide tu montaje gratis →" y pie "Solo 3 negocios este mes · Sin contrato".
+
+R1-C1 · Tu WhatsApp, lleno
+  Protagonista: un iPhone sobre el tablero de una pickup al atardecer. En la pantalla, una lista de chats de estilo verde (sin el logo de WhatsApp) con 4 mensajes nuevos y sus globitos verdes:
+    "María R. — Hola, vi su anuncio. ¿Me dan un estimado?"
+    "José L. — ¿Trabajan en Caguas?"
+    "Ana M. — ¿Cuándo pueden venir?"
+    "Pedro S. — Buenas, ¿cuánto sale?"
+  Etiqueta: PARA NEGOCIOS DE SERVICIO EN PR
+  Titular: Clientes nuevos, directo a tu WhatsApp.   [en cian: "directo a tu WhatsApp."]
+  Subtítulo: Gente de tu área pidiendo estimado.
+
+R1-C2 · Likes no pagan
+  Protagonista: la imagen partida en dos. Izquierda, gris y apagada: un post con "❤ 214 · 12 comentarios" y debajo "Clientes: 0" en rojo. Derecha, con brillo: un celular con 4 mensajes nuevos de gente pidiendo estimado.
+  Etiqueta: DEJA DE BOOSTEAR POSTS
+  Titular: 214 likes. 0 clientes.   [en rojo #FF4D4D: "0 clientes."]
+  Subtítulo: Los likes no pagan la nómina.
+
+R1-C3 · Meses muertos
+  Protagonista: dos hojas de calendario de un mes, una al lado de la otra. La primera, llena de trabajos en cian ("Estimado · Bayamón", "Sellado · Caguas", "Instalación · Carolina"…). La segunda, casi vacía y en gris.
+  Etiqueta: DEJA DE DEPENDER DEL BOCA A BOCA
+  Titular: Un mes con trabajo. El otro, nada.   [en cian: "El otro, nada."]
+  Subtítulo: Que los clientes te lleguen todos los meses, no solo cuando te recomiendan.
+
+R1-C4 · La página
+  Protagonista: una laptop y un iPhone sobre concreto pulido, con la sombra de una palma. Las dos pantallas enseñan una página oscura y elegante de un negocio de techos de ejemplo, "Techos Rivera", con el título "Techos sellados que no se filtran" y un botón verde "Pedir estimado por WhatsApp".
+  Etiqueta: PÁGINAS WEB QUE TRAEN CLIENTES
+  Titular: Una página hecha para que te escriban.   [en cian: "que te escriban."]
+  Subtítulo: Rápida, para el celular y con un botón a tu WhatsApp.
+
+R1-C5 · La oferta
+  Protagonista: solo tipografía, sin foto. Tres círculos grandes con borde cian, con 1, 2 y 3 dentro, y debajo la línea "espacios este mes".
+  Etiqueta: OFERTA DE ESTE MES
+  Titular: Página + anuncios. Montaje gratis.   [en cian: "Montaje gratis."]
+  Subtítulo: Solo 3 negocios de servicio en Puerto Rico.
+
+R1-C6 · Tú trabaja
+  Protagonista: un contratista de espaldas, sin que se le vea la cara, sobre un techo de cemento al atardecer, con el rolo de sellar en la mano. En el bolsillo de atrás, su celular brilla con una notificación verde: "Nuevo mensaje · Hola, vi su anuncio".
+  Etiqueta: PARA CONTRATISTAS EN PR
+  Titular: Tú haz el trabajo. Nosotros te traemos los clientes.   [en cian: "Nosotros te traemos los clientes."]
+  Subtítulo: Página, anuncios y mensajes directo a tu WhatsApp.
+
+━━━━━━━━━━━━━━━━━━━━
+RONDA 2 — EL NICHO (qué oficio contesta más)
+Hazla cuando te escriba "Ronda 2 con [código ganador]".
+Cambia: el oficio. Usa el anuncio ganador y cambia solo la foto, la etiqueta y el titular. Todo lo demás, EXACTO al ganador.
+Antes de generar, enséñame los 5 titulares adaptados al oficio (por ejemplo: "Más estimados de sellado, directo a tu WhatsApp.") y espera mi visto bueno.
+  R2-TECHOS · techo de cemento recién sellado en blanco, brillando al sol · Etiqueta: TECHOS · PUERTO RICO
+  R2-SOLAR · placas solares en un techo plano de cemento, con palmas · Etiqueta: PLACAS SOLARES · PUERTO RICO
+  R2-PLOMERIA · baño o cocina con la tubería nueva y limpia · Etiqueta: PLOMERÍA · PUERTO RICO
+  R2-AC · unidad exterior de aire acondicionado nueva en una casa de cemento · Etiqueta: AIRES ACONDICIONADOS · PUERTO RICO
+  R2-JARDIN · patio recién arreglado, con la grama cortada · Etiqueta: JARDINERÍA · PUERTO RICO
+
+━━━━━━━━━━━━━━━━━━━━
+RONDA 3 — EL ESTILO (cómo se tiene que ver)
+Hazla cuando te escriba "Ronda 3 con [código ganador]".
+Cambia: solo el estilo visual. La etiqueta, el titular, el subtítulo, el botón y el pie quedan EXACTOS al ganador.
+  R3-E1 · Oscuro y tecnológico: el estilo de la marca, negro con cian.
+  R3-E2 · Claro y limpio: fondo blanco hueso, texto casi negro, acento cian oscuro (#0891B2).
+  R3-E3 · Foto completa: una foto real de Puerto Rico de lado a lado, con un degradado oscuro para que el texto se lea.
+  R3-E4 · Solo letras: sin foto, el titular gigante ocupando media imagen, un solo color de fondo.
+  R3-E5 · Pantalla de celular: todo dentro de un celular grande, como si fuera una captura de pantalla.
+
+━━━━━━━━━━━━━━━━━━━━
+RONDA 4 — EL TITULAR (qué frase engancha)
+Hazla cuando te escriba "Ronda 4 con [código ganador]".
+Cambia: solo el titular. La imagen, los colores y todo lo demás quedan EXACTOS al ganador.
+  R4-T1 · Resultado: Clientes nuevos, directo a tu WhatsApp.
+  R4-T2 · Pregunta: ¿Cuántos clientes te escribieron esta semana?
+  R4-T3 · Dolor: Tu cliente le está escribiendo a otro.
+  R4-T4 · Oferta: Montaje gratis. Solo 3 negocios.
+  R4-T5 · Curiosidad: Por qué el boost no te trae clientes.
+Si el titular ganador ya es uno de estos, cámbialo por: Que te escriban a ti, no a la competencia.
+
+━━━━━━━━━━━━━━━━━━━━
+CUANDO QUIERA MÁS
+- "Más de [código]": 3 variaciones nuevas de ese anuncio, cambiando solo el protagonista. Códigos: [código]-V1, [código]-V2, [código]-V3.
+- "9:16 de [código]": la versión vertical 1080x1920 de ese anuncio, sin texto en el 14% de arriba ni en el 35% de abajo.
+
+Empieza con R1-C1.
+```
+
+---
+
+## Cómo medir las pruebas
+
+### Cómo se monta cada ronda en Meta
+
+- **Una campaña** de *Clientes potenciales* con **un conjunto de anuncios**:
+  Puerto Rico, 28 a 60 años, segmentación abierta (Advantage+), **$15–20
+  al día**.
+- **Un anuncio por imagen**, todos con el mismo texto. El nombre del
+  anuncio es el código: `R1-C3 Meses muertos`. Así sabes cuál es cuál.
+- **7 días sin tocar nada.** No edites los anuncios: cada cambio reinicia
+  el aprendizaje de Meta y pierdes lo que llevabas.
+- **Al terminar la ronda:** apaga los perdedores, deja el ganador prendido
+  y mete los de la ronda siguiente en el mismo conjunto. El ganador compite
+  contra los nuevos.
+
+### Las columnas que miras
+
+Administrador de anuncios → pestaña **Anuncios** → Columnas →
+Personalizar columnas: *Importe gastado, Impresiones, CTR (porcentaje de
+clics en el enlace), CPC (costo por clic en el enlace), Resultados, Costo
+por resultado, Frecuencia.* Guárdalo como "Pruebas" para no armarlo cada vez.
+
+| Número | Qué te dice | Malo | Bueno |
+|---|---|---|---|
+| **CTR del enlace** | Si la imagen detiene a la gente y le interesa | menos de 0.7% | más de 1.2% |
+| **CPC del enlace** | Cuánto cuesta cada visita | más de $2 | menos de $1 |
+| **Costo por resultado** | Lo único que paga: cuánto cuesta cada interesado | — | el más barato gana |
+| **Frecuencia** | Si la misma gente ya lo vio demasiado | más de 3: cámbialo | menos de 2 |
+
+Los números de CTR y CPC son una referencia para empezar en Puerto Rico,
+no una ley. Con tus primeras rondas vas a tener los tuyos.
+
+### Las reglas para decidir
+
+1. **No juzgues nada antes de 3 días y 1,000 impresiones** por anuncio.
+2. **Día 3:** apaga los que tengan CTR menor de 0.5% con más de 1,000
+   impresiones. Nadie los está mirando.
+3. **Por falta de resultados:** deja que cada anuncio gaste el doble de lo
+   que quieres pagar por un interesado. Si quieres pagar $15, apágalo a
+   los $30 sin ninguno.
+4. **Día 7:** gana el de menor costo por resultado con 3 resultados o más.
+   Si ninguno llega a 3, gana el de mejor CTR.
+5. **Si Meta le da casi todo el dinero a uno:** es su forma de decirte cuál
+   cree que gana. Los que casi no gastaron no están probados; no los
+   cuentes ni como ganadores ni como perdedores.
+6. **Si el CTR es bueno y no llega nadie:** el problema no es la imagen.
+   Es la página, el formulario o la oferta. Llena tu formulario tú mismo
+   y revisa que te llegue.
+
+### El mes de pruebas
+
+| Semana | Ronda | Imágenes | Qué descubres |
+|---|---|---|---|
+| 1 | Concepto | 6 | Qué idea vende |
+| 2 | Nicho | 5 | **Qué oficio contesta más.** Con esto escoges a quién venderle |
+| 3 | Estilo | 5 | Cómo se tiene que ver |
+| 4 | Titular | 5 | Qué frase engancha |
+
+A $15–20 al día son $105–140 por ronda. Con 5 o 6 anuncios en el mismo
+conjunto, cada uno recibe poco: alcanza para saber cuál detiene a la gente
+(CTR), pero para saber con seguridad cuál trae más clientes hacen falta más
+días o más presupuesto. No tienes que hacer las 4 rondas: si en la primera
+un anuncio ya te trae interesados a buen precio, déjalo correr y sigue
+probando al lado.
+
+### Dónde lo anotas
+
+Una tabla, una fila por anuncio, que llenas cada lunes:
+
+| Código | Ronda | Gasto | Impresiones | CTR | CPC | Resultados | Costo por resultado | Decisión |
+|---|---|---|---|---|---|---|---|---|
+| R1-C1 | 1 | | | | | | | |
 
 ---
 
