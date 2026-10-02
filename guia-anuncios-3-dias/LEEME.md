@@ -8,7 +8,7 @@ principiante monte y publique su primera campaña en Facebook e Instagram en
 
 | Archivo | Qué es |
 |---|---|
-| `Tu-primera-campana-en-3-dias.pdf` | **La guía**, lista para entregar. 60 páginas. |
+| `Tu-primera-campana-en-3-dias.pdf` | **La guía**, lista para entregar. 67 páginas. |
 | `extras/Hoja-de-resultados.xlsx` | La hoja que va con la guía: calcula la línea roja y dice qué anuncio apagar. |
 | `VENDER-GUIA.md` | Precio, entrega, página de venta y cómo lanzarla. |
 | `VIDEOS.md` | Los 8 videos que conviene grabar después, con su guion. |
@@ -46,7 +46,15 @@ La hoja de Excel se rehace con `python3 extras/hacer-hoja.py` (necesita
 
 ## Cómo está escrita
 
-- Español neutro con ejemplos de Puerto Rico, de tú, frases cortas.
+- Como le hablarías a un amigo con negocio: de tú, frases cortas, palabras
+  de todos los días y una comparación de la vida diaria para cada palabra
+  técnica (el taxi para el objetivo, el GPS para Advantage+, la cámara en la
+  puerta para el píxel).
+- Dos ejemplos inventados que se siguen de principio a fin: **Luis**, barbero
+  en Caguas (WhatsApp), y **María**, que sella techos en Bayamón (formulario).
+- En el 4.6 cuento que trabajo contestando mensajes de clientes en una
+  tienda de muebles. Si no quieres que salga, cámbialo en
+  `guia/secciones/40-despues.html`.
 - Cada paso dice dónde tocar, con el nombre del botón tal como sale en
   pantalla.
 - Al día a **octubre de 2026**: el flujo único de creación de campañas con

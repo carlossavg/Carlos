@@ -8,7 +8,7 @@ entiende qué está pasando con tu dinero.
 
 Lo que recibe el comprador:
 
-- La guía en PDF (60 páginas, con las pantallas ilustradas paso a paso).
+- La guía en PDF (67 páginas, con las pantallas dibujadas paso a paso y dos ejemplos, Luis y María, que se siguen de principio a fin).
 - La hoja de resultados en Excel: calcula cuánto puede pagar por un cliente
   y le dice qué anuncio apagar.
 - 12 plantillas de texto por tipo de negocio.
@@ -81,46 +81,73 @@ prospectos.
 
 ## La página de venta
 
-Texto listo. Si quieres, Claude te la construye con el mismo diseño de la
+Texto listo. Está escrito como habla la gente, no como un anuncio de
+televisión. Si quieres, Claude te la construye con el mismo diseño de la
 guía, lista para Netlify.
 
-**Titular:** Tu primera campaña en Facebook e Instagram, en 3 días. Bien
-hecha desde el principio.
+**Titular:**
+> Le diste a "Promocionar", te llegaron likes y ni un cliente. No eres tú.
 
-**Subtítulo:** La guía paso a paso para negocios y principiantes. Sin
-cursos de 10 horas, sin palabras raras: lo que tocas, dónde lo tocas y por
-qué.
+**Debajo del titular:**
+> Nadie te explicó cómo funcionan los anuncios de Facebook e Instagram.
+> Esta guía sí: en 3 días montas tu primera campaña bien hecha, botón por
+> botón, en palabras normales.
 
-**Para ti si:**
-- Le diste a "Promocionar" y solo te llegaron likes.
+**Botón:** Quiero la guía – $27
+
+**Para quién es** (que se reconozca):
+- Tienes un negocio y le has dado a "Promocionar" sin ver clientes.
 - Abriste el Administrador de anuncios y lo cerraste a los 5 minutos.
-- No sabes si tus anuncios funcionan o si estás botando el dinero.
+- Le pagaste a alguien que "te manejaba las redes" y nunca supiste qué
+  hacía con tu dinero.
+- Quieres entender esto tú, aunque después le pagues a alguien para que lo
+  haga.
 
-**Lo que haces cada día:**
-- **Día 1:** preparas tu cuenta para que Meta no te la bloquee.
-- **Día 2:** escoges la oferta, el público, el presupuesto, y haces tus
-  imágenes y textos (con plantillas y con IA).
-- **Día 3:** creas tu campaña botón por botón y la publicas.
-- **Después:** lees tus números en 15 minutos al día y sabes qué apagar y
-  qué subir.
+**Lo que pasa en los 3 días:**
+- **Día 1. Preparas todo.** Tu página, tu cuenta de anuncios, tu tarjeta
+  con un tope para que no se te vaya la mano, y tu cuenta protegida para
+  que no te la roben.
+- **Día 2. Decides qué decir y a quién.** Una oferta que la gente entienda
+  a la primera, cuánto puedes pagar por cada cliente sin perder dinero, y
+  tus fotos y textos (con plantillas y con ChatGPT).
+- **Día 3. Publicas.** Abres el Administrador y montas la campaña conmigo
+  al lado: qué botón tocar, cuál dejar quieto y por qué.
+- **Después.** 15 minutos al día para leer tus números, saber qué anuncio
+  apagar y qué contestar para que el que te escribe termine comprando.
 
-**Lo que recibes:** (la lista de arriba).
+**Lo que recibes:**
+- La guía de 67 páginas, con las pantallas dibujadas y numeradas.
+- La hoja de Excel que te dice cada lunes qué anuncio apagar.
+- 12 plantillas de texto por tipo de negocio.
+- 5 prompts para que ChatGPT te haga las fotos y los textos.
+- Los mensajes de WhatsApp para contestar y cerrar.
+- La política de privacidad que te pide Meta para los formularios.
 
-**Quién está detrás:** Carlos Vargas, de Puerto Rico. Monto anuncios para
-negocios de servicio con GrowthOS. Esta guía es lo que le enseñaría a un
-cliente que quiere hacerlo él mismo.
+**Quién la escribió** (en primera persona, con foto tuya):
+> Soy Carlos Vargas, de Puerto Rico. Me paso el día contestando mensajes
+> de clientes, y con GrowthOS monto anuncios para negocios de aquí. Escribí
+> esta guía porque todo dueño de negocio con el que hablo me hace las mismas
+> preguntas. Aquí están las respuestas, en el orden en que las vas a
+> necesitar.
 
 **Preguntas:**
-- *¿Necesito experiencia?* No. Empieza por crear tu cuenta.
-- *¿Cuánto tengo que gastar en anuncios?* La guía recomienda empezar con
-  $15–20 al día por una semana.
-- *¿Sirve para mi negocio?* Si vendes un servicio o un producto en un área
-  concreta, sí: tiene ejemplos para barberías, restaurantes, contratistas,
-  estéticas, tiendas y más.
-- *¿Está al día?* Sí, a octubre de 2026, con los cambios de Meta de este
-  año.
+- *¿Necesito saber algo de anuncios?* No. La guía empieza por abrir tu
+  cuenta.
+- *¿Cuánto tengo que gastar en los anuncios?* Te recomiendo empezar con
+  $15 a $20 al día por una semana. La guía te enseña a calcular cuánto
+  puedes pagar por cada cliente sin perder.
+- *¿Sirve para mi negocio?* Si vendes algo a gente de un área (un servicio,
+  una tienda, un restaurante), sí. Tiene ejemplos para barberías,
+  contratistas, restaurantes, estéticas, tiendas y más.
+- *¿Me garantizas clientes?* No, y desconfía del que te lo garantice.
+  Te garantizo que vas a montar tu campaña bien y que vas a entender qué
+  está pasando con tu dinero.
+- *¿Está al día?* Sí, a octubre de 2026, con los cambios que hizo Meta
+  este año.
+- *¿Y si me trabo?* Me escribes por WhatsApp y te ayudo hasta que la
+  publiques.
 
-**Botón:** Quiero mi guía – $27
+**Botón final:** Quiero mi guía – $27
 
 ## Anuncios para venderla
 
@@ -130,22 +157,23 @@ al pagar, mande a una página de "Gracias" tuya (con el evento de compra) y
 de ahí a Notion. Sin eso, Meta no puede buscar más compradores. No uses
 Tráfico: es el error del capítulo 3.2 de tu propia guía.
 
-**Texto 1 (dolor):**
-> Le diste a "Promocionar" y te llegaron 200 likes y cero clientes.
-> No es tu negocio. Es que Meta hizo lo que le pediste: likes.
-> En 3 días aprendes a montar tu campaña bien: el objetivo correcto, tu
-> área, tu presupuesto y anuncios que la gente se detiene a mirar.
-> Guía paso a paso, $27.
+**Texto 1 (lo que le pasó):**
+> Le diste a "Promocionar". Te llegaron 200 likes. Clientes: cero.
+> No es tu negocio. Es que le pediste likes a Meta, y Meta te dio likes.
+> En esta guía aprendes a pedirle lo que de verdad quieres: mensajes de
+> gente de tu pueblo que quiere comprar. En 3 días, paso a paso. $27.
 
-**Texto 2 (miedo al Administrador):**
+**Texto 2 (el miedo al Administrador):**
 > ¿Abriste el Administrador de anuncios y lo cerraste a los 5 minutos?
-> Esta guía te dice qué tocar, dónde y por qué. Botón por botón.
-> Día 1 preparas, día 2 decides, día 3 publicas.
+> Normal. Nadie te explicó qué es cada cosa.
+> Esta guía te lleva de la mano: qué tocar, qué dejar quieto y por qué.
+> Día 1 preparas. Día 2 decides. Día 3 publicas.
 
-**Texto 3 (control del dinero):**
-> ¿Tus anuncios funcionan o estás botando el dinero?
-> Con la hoja que viene en la guía, sabes cada lunes qué anuncio apagar y
-> cuál subir. En 10 minutos.
+**Texto 3 (el dinero):**
+> ¿Tus anuncios te traen clientes o estás botando el dinero?
+> Si no lo sabes, no es culpa tuya: nadie te enseñó a leer los números.
+> Con la hoja que viene en la guía, cada lunes sabes qué anuncio apagar y
+> a cuál darle más. En 10 minutos.
 
 **Imágenes:** páginas reales de la guía en un celular (el doctor de la
 campaña, la portada, el índice) y una foto tuya con la guía en la tablet.

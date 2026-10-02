@@ -103,16 +103,17 @@ function buscarPaginas() {
     console.warn('Sin pdftotext: el índice sale sin números de página.');
     return {};
   }
-  const limpia = s => s.replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+  // Se compara sin espacios: pdftotext no siempre separa el número del título.
+  const limpia = s => s.replace(/&amp;/g, '&').replace(/\s+/g, '');
   // El índice puede ocupar más de una página: se busca a partir de la
-  // primera página de contenido ("ANTES DE EMPEZAR", en mayúsculas).
+  // primera página de contenido ("PARA EMPEZAR", en mayúsculas).
   const inicioIndice = paginas.findIndex(p => p.includes('Lo que hay dentro'));
-  const contenido = paginas.findIndex((p, n) => n > inicioIndice && p.includes('ANTES DE EMPEZAR'));
+  const contenido = paginas.findIndex((p, n) => n > inicioIndice && p.includes('PARA EMPEZAR'));
   const indice = (contenido > 0 ? contenido : inicioIndice + 1) - 1;
   const resultado = {};
   for (const b of busquedas) {
     const t = limpia(b);
-    const i = paginas.findIndex((p, n) => n > indice && p.includes(t));
+    const i = paginas.findIndex((p, n) => n > indice && limpia(p).includes(t));
     if (i >= 0) resultado[b] = i + 1;
     else console.warn('No encontré en el PDF:', t);
   }

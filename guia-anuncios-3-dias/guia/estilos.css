@@ -58,8 +58,8 @@ html {
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  font-size: 10.5pt;
-  line-height: 1.55;
+  font-size: 11pt;
+  line-height: 1.6;
   color: var(--tinta);
   background: #fff;
   font-feature-settings: "cv11", "ss01";
@@ -1062,3 +1062,82 @@ p, li { orphans: 3; widows: 3; }
 .leyenda li { display: block; position: relative; padding-left: 20pt; min-height: 15pt; }
 .leyenda li i { position: absolute; left: 0; top: 0; }
 .tarjeta.larga { break-inside: auto; }
+
+
+/* ─── Segunda edición: voz más humana ─── */
+
+/* Luis y María, los dos ejemplos que siguen toda la guía */
+.historia {
+  display: grid;
+  grid-template-columns: 30pt 1fr;
+  gap: 10pt;
+  background: #F6F3FF;
+  border-radius: 10px;
+  padding: 11pt 13pt;
+  margin: 12pt 0 14pt;
+  break-inside: avoid;
+}
+.historia .cara {
+  width: 30pt;
+  height: 30pt;
+  border-radius: 50%;
+  background: #6D28D9;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14pt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.historia.maria .cara { background: #0E7490; }
+.historia.maria { background: #ECFBFE; }
+.historia .quien {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 8.5pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6D28D9;
+  margin-bottom: 2pt;
+}
+.historia.maria .quien { color: var(--cian-texto); }
+.historia p:last-child { margin-bottom: 0; }
+
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; margin: 12pt 0 14pt; }
+.duo .historia { margin: 0; }
+
+/* Frase destacada */
+.frase {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 15pt;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  border-left: 4px solid var(--cian);
+  padding: 2pt 0 2pt 14pt;
+  margin: 16pt 0;
+  break-inside: avoid;
+}
+
+/* Resumen del día */
+.resumen {
+  background: var(--oscuro);
+  color: #E8ECF3;
+  border-radius: 12px;
+  padding: 16pt 18pt;
+  margin: 16pt 0;
+  break-inside: avoid;
+}
+.resumen h4 { color: #fff; margin: 0 0 8pt; font-size: 13pt; }
+.resumen ol { margin: 0; padding-left: 16pt; }
+.resumen li { margin-bottom: 5pt; }
+.resumen li::marker { color: var(--cian); font-weight: 700; }
+
+/* Por qué importa: una línea gris debajo del título de un paso */
+.porque { display: block; color: var(--gris); font-size: 9.5pt; margin: -1pt 0 3pt; }
+
+/* Tablas largas: pueden seguir en la página siguiente, fila por fila */
+table.larga { break-inside: auto; }
+table.larga tr { break-inside: avoid; }
