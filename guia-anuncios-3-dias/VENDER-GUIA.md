@@ -8,7 +8,9 @@ entiende qué está pasando con tu dinero.
 
 Lo que recibe el comprador:
 
-- La guía en PDF (74 páginas, con las pantallas dibujadas paso a paso y dos ejemplos, Luis y María, que se siguen de principio a fin).
+- La guía en PDF (76 páginas, con las pantallas dibujadas paso a paso y dos ejemplos, Luis y María, que se siguen de principio a fin).
+- Una hoja de trabajo para llenar al final del Día 2 y la "receta" del Día 3:
+  cada ajuste de la campaña en una sola página.
 - La hoja de resultados en Excel: calcula cuánto puede pagar por un cliente
   y le dice qué anuncio apagar.
 - 12 plantillas de texto por tipo de negocio.
@@ -49,9 +51,9 @@ El dinero de verdad no está en la guía. Está en lo que viene después.
 | Escalón | Precio | Qué es |
 |---|---|---|
 | La guía, la hoja y las plantillas | $27 → $37 | El producto |
-| Revisión de tu anuncio | $17 | En la página de "Gracias": me mandas tu anuncio por WhatsApp antes de publicarlo y te digo qué cambiar. 10 minutos tuyos. |
+| Revisión de tu anuncio | $17 | En la página de "Gracias": me mandas tu anuncio a contact@growthoss.co antes de publicarlo y te digo qué cambiar. 10 minutos tuyos. |
 | Lo montamos juntos | $147 | Una videollamada de 60 minutos: montamos su campaña en su cuenta, compartiendo pantalla. |
-| GrowthOS | Mensualidad | Lo hacemos por ti: página, anuncios y clientes a su WhatsApp. |
+| GrowthOS | Mensualidad | Lo hacemos por ti: página, anuncios y clientes a su WhatsApp o a su email. |
 
 **La cuenta, con números de ejemplo:** a $37 necesitas 27 ventas al mes
 para hacer $1,000, y si cada venta te cuesta $15–25 en anuncios, te queda
@@ -74,7 +76,7 @@ Stripe** que, al pagar, manda a una página de **Notion** con las descargas.
    - Bienvenida de 3 líneas y cómo empezar ("abre el PDF, empieza por la
      página 3").
    - El PDF y la hoja de Excel para descargar.
-   - Tu WhatsApp para el bono de revisión.
+   - contact@growthoss.co para dudas y para el bono de revisión.
    - Después: los videos.
 2. Stripe: producto a $27, pago único, *After payment → Redirect* al enlace
    de Notion, y que pida el email.
@@ -138,7 +140,8 @@ guía, lista para Netlify.
   apagar y qué contestar para que el que te escribe termine comprando.
 
 **Lo que recibes:**
-- La guía de 74 páginas, con las pantallas dibujadas y numeradas.
+- La guía de 76 páginas, con las pantallas dibujadas y numeradas.
+- Una hoja para llenar y la receta del Día 3: cada botón que tocas, en una página.
 - La hoja de Excel que te dice cada lunes qué anuncio apagar.
 - 12 plantillas de texto por tipo de negocio.
 - 5 prompts para que ChatGPT te haga las fotos y los textos.
@@ -166,8 +169,8 @@ guía, lista para Netlify.
   está pasando con tu dinero.
 - *¿Está al día?* Sí, a octubre de 2026, con los cambios que hizo Meta
   este año.
-- *¿Y si me trabo?* Me escribes por WhatsApp y te ayudo hasta que la
-  publiques.
+- *¿Y si me trabo?* Me escribes a contact@growthoss.co con el paso donde
+  te quedaste y te ayudo hasta que la publiques.
 
 **Botón final:** Quiero mi guía – $27
 
@@ -261,7 +264,8 @@ una tablet, y la frase del ángulo en letras grandes.
 
 ## Antes de lanzar
 
-- [ ] Tu WhatsApp puesto en la guía y el PDF vuelto a armar.
+- [ ] Que contact@growthoss.co llegue a un buzón que revisas todos los días:
+      la guía promete contestar en menos de un día laborable.
 - [ ] 5 dueños de negocio la leen gratis a cambio de una opinión honesta.
       Corriges lo que no entiendan.
 - [ ] Notion y Stripe listos, y una compra de prueba hecha.

@@ -8,7 +8,7 @@ principiante monte y publique su primera campaña en Facebook e Instagram en
 
 | Archivo | Qué es |
 |---|---|
-| `Tu-primera-campana-en-3-dias.pdf` | **La guía**, lista para entregar. 74 páginas. |
+| `Tu-primera-campana-en-3-dias.pdf` | **La guía**, lista para entregar. 76 páginas. |
 | `extras/Hoja-de-resultados.xlsx` | La hoja que va con la guía: calcula la línea roja y dice qué anuncio apagar. |
 | `VENDER-GUIA.md` | Precio, entrega, página de venta y cómo lanzarla. |
 | `VIDEOS.md` | Los 8 videos que conviene grabar después, con su guion. |
@@ -21,8 +21,10 @@ principiante monte y publique su primera campaña en Facebook e Instagram en
 
 ## Antes de venderla
 
-- [ ] Pon tu número de WhatsApp en `guia/secciones/60-cierre.html`, donde dice `[TU NÚMERO]`.
-- [ ] Vuelve a armar el PDF (abajo).
+- [ ] Confirma que `contact@growthoss.co` recibe correo. Sale en la bienvenida
+      (para dudas, “te contestamos en menos de un día laborable”) y en el cierre.
+      Si cambias el email, búscalo en `02-bienvenida.html` y `60-cierre.html` y
+      vuelve a armar el PDF (abajo).
 - [ ] Léela entera una vez en el celular.
 - [ ] Opcional: pon tus capturas reales (`CAPTURAS.md`).
 
@@ -57,6 +59,13 @@ La hoja de Excel se rehace con `python3 extras/hacer-hoja.py` (necesita
   `guia/secciones/40-despues.html`.
 - Cada paso dice dónde tocar, con el nombre del botón tal como sale en
   pantalla.
+- Para que la termine de verdad: una **hoja de trabajo** para llenar al final
+  del Día 2, la **receta** del Día 3 (cada ajuste, para Luis y para María,
+  en una página), qué hacer si solo tienes celular o te vas a mitad, y qué
+  es normal la primera semana.
+- Los arreglos de casa (techos, remodelación, plomería, aire, placas) van
+  con la categoría especial de **vivienda**: María la declara, y por eso no
+  puede subir la edad mínima.
 - Al día a **octubre de 2026**: el flujo único de creación de campañas con
   Advantage+ encendido (febrero de 2026), la segmentación detallada recortada
   y sin exclusiones, la atribución de 7 días después del clic y 1 después de
