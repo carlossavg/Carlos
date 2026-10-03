@@ -28,20 +28,42 @@ pueden ir en la descripción.
 
 ## El precio
 
-| Momento | Precio | Por qué |
-|---|---|---|
-| Primeras 20 ventas | **$27** | Precio de impulso. Las primeras ventas te dan los testimonios. |
-| Después | **$37** | Avísalo un día antes: "sube mañana" vende. |
-| Con los videos (`VIDEOS.md`) | **$47–67** | Ya es un curso corto. |
+**$27 de lanzamiento (las primeras 30 ventas). Después, $37.**
 
-**Bono para los primeros 20:** "Te reviso tu campaña por WhatsApp antes de
-publicarla". Te cuesta 10 minutos por persona, vale mucho para el que
-compra, y es tu mejor fuente de testimonios… y de clientes para la agencia.
+Por qué ese precio, para un dueño de negocio:
+
+- **Lo compara con lo que ya perdió.** Una semana de anuncios mal hechos
+  son $100 o más. Una agencia cobra entre $300 y $1,000 al mes. Al lado de
+  eso, $27 o $37 no se piensa: se compra.
+- **Todavía no tienes testimonios ni nombre.** Un precio bajo baja el
+  riesgo de comprarle a alguien que no conocen. Las primeras 30 ventas son
+  para conseguir testimonios y capturas.
+- **No bajes de $19.** Se ve barato ("si cuesta eso, no debe servir") y lo
+  que te cuesta cada venta en anuncios te come la ganancia.
+- **No subas de $47** hasta tener testimonios y los videos.
+
+### La escalera: la guía es la puerta
+
+El dinero de verdad no está en la guía. Está en lo que viene después.
+
+| Escalón | Precio | Qué es |
+|---|---|---|
+| La guía, la hoja y las plantillas | $27 → $37 | El producto |
+| Revisión de tu anuncio | $17 | En la página de "Gracias": me mandas tu anuncio por WhatsApp antes de publicarlo y te digo qué cambiar. 10 minutos tuyos. |
+| Lo montamos juntos | $147 | Una videollamada de 60 minutos: montamos su campaña en su cuenta, compartiendo pantalla. |
+| GrowthOS | Mensualidad | Lo hacemos por ti: página, anuncios y clientes a su WhatsApp. |
+
+**La cuenta, con números de ejemplo:** a $37 necesitas 27 ventas al mes
+para hacer $1,000, y si cada venta te cuesta $15–25 en anuncios, te queda
+poco. La guía sola no te lleva a $5K. Pero si de cada 30 compradores 3 toman
+el montaje de $147 y 1 se vuelve cliente de la agencia, ahí está el dinero.
+La guía se paga sola y te trae clientes calificados: gente que ya sabe lo
+que es un anuncio y que ya te pagó una vez.
 
 **Garantía:** en vez de devolver el dinero, promete ayuda: *"Si sigues la
 guía y en 3 días no tienes tu campaña publicada, escríbeme y te ayudo hasta
 que la publiques."* Si alguien pide su dinero de vuelta, devuélveselo sin
-discutir: un cliente molesto cuesta más que $27.
+discutir: un cliente molesto cuesta más que $37.
 
 ## La entrega
 
@@ -149,34 +171,93 @@ guía, lista para Netlify.
 
 **Botón final:** Quiero mi guía – $27
 
-## Anuncios para venderla
+## Los ángulos para venderla
 
-Objetivo **Ventas**, Puerto Rico, 25–60 años, público abierto. Para que
-Meta sepa quién compró, pon el píxel en la página de venta y haz que Stripe,
-al pagar, mande a una página de "Gracias" tuya (con el evento de compra) y
-de ahí a Notion. Sin eso, Meta no puede buscar más compradores. No uses
-Tráfico: es el error del capítulo 3.2 de tu propia guía.
+A quién le hablas: **el dueño de negocio que quiere anunciarse él mismo**
+y no sabe por dónde empezar. Una sola guía, pero hay muchas razones por las
+que alguien la compra. Cada razón es un ángulo: un anuncio distinto. Prueba
+varios y deja el que más venda.
 
-**Texto 1 (lo que le pasó):**
-> Le diste a "Promocionar". Te llegaron 200 likes. Clientes: cero.
+**La frase que lo resume todo:**
+> Corre tu primera campaña de anuncios en 3 días. Sin agencia y sin perder
+> dinero aprendiendo.
+
+### Los 10 ángulos
+
+| # | Ángulo | A quién le habla | Primera línea del anuncio |
+|---|---|---|---|
+| 1 | **El botón "Promocionar"** | Al que ya gastó y solo vio likes | Le diste a "Promocionar", te llegaron 200 likes y ni un cliente. |
+| 2 | **En 3 días** | Al que cree que esto toma meses | En 3 días, una o dos horas al día, montas tu primera campaña de verdad. |
+| 3 | **Hazlo tú** | Al que no quiere depender de nadie | No necesitas una agencia para anunciar tu negocio. Necesitas saber qué botón tocar. |
+| 4 | **Antes de pagarle a alguien** | Al que piensa contratar a alguien | Antes de pagarle $500 al mes a alguien, entiende qué tiene que hacer con tu dinero. |
+| 5 | **Controla tu dinero** | Al que gasta y no sabe si funciona | ¿Tus anuncios te traen clientes o estás botando el dinero? Si no lo sabes, esto es para ti. |
+| 6 | **Los días flojos** | Al que tiene semanas buenas y semanas muertas | Los sábados no das abasto y los martes miras el celular. Llena los días flojos con anuncios. |
+| 7 | **Clientes por WhatsApp** | Al que vende conversando | Que la gente de tu pueblo te escriba por WhatsApp preguntando por lo que vendes. |
+| 8 | **El Administrador da miedo** | Al que abrió el Administrador y lo cerró | ¿Abriste el Administrador de anuncios y lo cerraste a los 5 minutos? Normal. |
+| 9 | **Meta cambió en 2026** | Al que aprendió con videos viejos | Lo que aprendiste de anuncios en YouTube ya no sirve: Meta cambió casi todo este año. |
+| 10 | **Cuánto puedes pagar por un cliente** | Al dueño que piensa en números | ¿Sabes cuánto puedes pagar por cada cliente sin perder dinero? Casi nadie lo sabe. |
+
+### Tres anuncios completos para empezar
+
+**Ángulo 1 · El botón "Promocionar"**
+> Le diste a "Promocionar", te llegaron 200 likes y ni un cliente.
 > No es tu negocio. Es que le pediste likes a Meta, y Meta te dio likes.
 > En esta guía aprendes a pedirle lo que de verdad quieres: mensajes de
-> gente de tu pueblo que quiere comprar. En 3 días, paso a paso. $27.
+> gente de tu área que quiere comprar.
+> 3 días, una o dos horas al día, en palabras normales. $27.
 
-**Texto 2 (el miedo al Administrador):**
-> ¿Abriste el Administrador de anuncios y lo cerraste a los 5 minutos?
-> Normal. Nadie te explicó qué es cada cosa.
-> Esta guía te lleva de la mano: qué tocar, qué dejar quieto y por qué.
-> Día 1 preparas. Día 2 decides. Día 3 publicas.
+**Ángulo 4 · Antes de pagarle a alguien**
+> Antes de pagarle $500 al mes a alguien para que te "maneje los anuncios",
+> entiende qué tiene que hacer con tu dinero.
+> En 3 días montas tu primera campaña tú mismo. Y si después decides
+> contratar a alguien, vas a saber qué pedirle y si te está cumpliendo.
+> Guía paso a paso para dueños de negocio. $27.
 
-**Texto 3 (el dinero):**
+**Ángulo 5 · Controla tu dinero**
 > ¿Tus anuncios te traen clientes o estás botando el dinero?
 > Si no lo sabes, no es culpa tuya: nadie te enseñó a leer los números.
-> Con la hoja que viene en la guía, cada lunes sabes qué anuncio apagar y
-> a cuál darle más. En 10 minutos.
+> Con esta guía montas tu campaña en 3 días, y con la hoja que viene con
+> ella sabes cada lunes qué anuncio apagar y a cuál darle más. $27.
 
-**Imágenes:** páginas reales de la guía en un celular (el doctor de la
-campaña, la portada, el índice) y una foto tuya con la guía en la tablet.
+### Versiones por tipo de negocio
+
+Cuando sepas qué ángulo vende más, haz una versión para cada tipo de
+negocio. Solo cambia la primera línea:
+
+- **Barberías y salones:** "Barberos: ¿los martes y miércoles se te pasan
+  mirando el celular?"
+- **Contratistas:** "Si haces techos, plomería o aires, y dependes del boca a
+  boca, esto es para ti."
+- **Restaurantes:** "Si tu restaurante se llena el viernes y el lunes está
+  vacío, esto es para ti."
+- **Estéticas y spas:** "Si tu agenda tiene huecos entre semana, esto es
+  para ti."
+- **Tiendas:** "Si vendes por Instagram y casi todo te llega por
+  recomendación, esto es para ti."
+
+### Cómo probarlos
+
+- Empieza con 4 ángulos: **1, 2, 4 y 5**. Mismo estilo de imagen, mismo
+  botón, cambia solo el texto y la frase de la imagen.
+- Objetivo **Ventas**, con el píxel en la página de venta y la compra
+  contada en la página de "Gracias". $20 al día, 7 días sin tocar.
+- Gana el de menor costo por compra. Después pruebas el ganador contra 2
+  ángulos nuevos, y luego las versiones por tipo de negocio.
+- Las reglas para decidir son las del Bloque 5 (`../GROWTHOS-ADS-Y-WEB.md`)
+  y las del capítulo 4.4 de la propia guía.
+
+### Lo que nunca dices
+
+- "Gana dinero", "garantizado", "triplica tus ventas". Meta lo rechaza y es
+  mentira.
+- "Facebook Ads" como nombre del producto. Sí puedes decir "anuncios en
+  Facebook e Instagram".
+- Que vas a conseguirle clientes. Lo que vendes es que va a saber montar su
+  campaña y entender sus números.
+
+**Imágenes:** páginas reales de la guía en un celular (la portada, el
+doctor de la campaña, una apertura de día), una foto tuya con la guía en
+una tablet, y la frase del ángulo en letras grandes.
 
 ## Antes de lanzar
 
