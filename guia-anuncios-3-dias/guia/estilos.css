@@ -461,11 +461,18 @@ section.salto, .pagina-oscura + section { margin-top: 0; }
   font-size: 9.4pt;
   padding: 2.6pt 0;
   break-inside: avoid;
-  background-image: radial-gradient(circle, #B8AD9C 0.6pt, transparent 0.8pt);
-  background-size: 4pt 4pt;
-  background-position: 0 calc(100% - 5pt);
-  background-repeat: repeat-x;
 }
+/* Los puntos van como borde punteado: un fondo con degradado Chrome lo
+   convierte en imagen, y con 40 filas el PDF pesaba 18 MB más. */
+.indice .fila::after {
+  content: "";
+  order: 1;
+  flex: 1 1 auto;
+  border-bottom: 1.2pt dotted #B8AD9C;
+  margin: 0 1pt;
+}
+.indice .fila .pag { order: 2; }
+.indice .fila.grupo::after { border-bottom: none; }
 .indice .fila .txt { flex: 0 1 auto; background: var(--papel); padding-right: 5pt; }
 .indice .fila .txt b { font-weight: 500; font-family: 'Fraunces', serif; font-style: italic; color: var(--mar) !important; }
 .indice .fila .pag {
@@ -791,7 +798,8 @@ figure.figura figcaption b { color: var(--tinta); font-weight: 600; }
   line-height: 1.35;
   color: #1C2B33;
   position: relative;
-  box-shadow: 0 10px 26px rgba(60, 45, 25, 0.10), 0 1px 0 rgba(60,45,25,0.05);
+  /* Sin desenfoque: Chrome convierte las sombras borrosas en imágenes y el PDF pesa 20 MB más */
+  box-shadow: 0 3pt 0 rgba(60, 45, 25, 0.07);
 }
 .pantalla .barra { background: #E9E4DB; padding: 5pt 9pt; display: flex; align-items: center; gap: 4pt; border-bottom: 0.8pt solid #D5CCBD; }
 .pantalla .barra i { width: 5.5pt; height: 5.5pt; border-radius: 50%; background: #CBC2B3; display: inline-block; }
@@ -833,7 +841,7 @@ figure.figura figcaption b { color: var(--tinta); font-weight: 600; }
 .mk-tabs span { padding: 4pt 9pt; color: #65676B; font-weight: 600; }
 .mk-tabs span.act { color: var(--meta-azul); border-bottom: 2px solid var(--meta-azul); }
 .mk-modal-fondo { background: rgba(28, 43, 51, 0.42); padding: 14pt; }
-.mk-modal { background: #fff; border-radius: 8px; padding: 10pt 12pt; box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.mk-modal { background: #fff; border-radius: 8px; padding: 10pt 12pt; border: 1px solid #D5D9DE; box-shadow: 0 3pt 0 rgba(0,0,0,0.08); }
 .mk-modal h5 { margin: 0 0 8pt; font-size: 9.6pt; font-family: 'Instrument Sans', sans-serif; letter-spacing: 0; }
 .mk-pie-modal { display: flex; justify-content: flex-end; gap: 6pt; margin-top: 8pt; border-top: 1px solid #E1E4E8; padding-top: 7pt; }
 .mk-mapa { height: 0.95in; border-radius: 6px; background: radial-gradient(circle at 48% 52%, rgba(8,102,255,0.28) 0 22%, transparent 22.5%), linear-gradient(135deg, #DCEFD8 0%, #CFE6F5 100%); position: relative; border: 1px solid #E1E4E8; }
@@ -970,3 +978,8 @@ section > :is(.seccion-titulo, table, figure.figura, .duo, .capas, .doctor, .res
 
 /* Las notas al margen van sin fondo: solo su raya arriba */
 .caja.al-margen { background: none !important; padding: 7pt 0 0 !important; }
+
+/* Tamaños ópticos. Fraunces va en versiones fijas (ver fonts/hacer-fuentes.py):
+   el corte de texto por defecto, uno para títulos y uno para lo gigante. */
+h2, .cierre h3, .resumen li::before { font-family: 'Fraunces Titulo', 'Fraunces', serif; }
+.portada h1, .apertura h1, .apertura .grande, .portada::before { font-family: 'Fraunces Display', 'Fraunces', serif; }

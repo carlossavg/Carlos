@@ -18,6 +18,7 @@ principiante monte y publique su primera campaña en Facebook e Instagram en
 | `guia/estilos.css` | El diseño: carta, papel crema, Fraunces para los títulos e Instrument Sans para leer, columna de notas al margen. |
 | `guia/capturas/` | Donde van tus capturas reales. |
 | `hacer-pdf.js` | Arma el PDF. |
+| `guia/fonts/hacer-fuentes.py` | Saca las versiones fijas de las fuentes (`guia/fonts/fijas/`). Solo hace falta si cambias de fuente. |
 | `extras/hacer-hoja.py` | Arma la hoja de Excel. |
 
 ## Antes de venderla
