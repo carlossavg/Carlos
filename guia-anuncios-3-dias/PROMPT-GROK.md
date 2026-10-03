@@ -16,7 +16,7 @@ Te adjunté el PDF de mi primer infoproducto: "Tu primera campaña en 3 días" (
 - Día 3: crear la campaña botón por botón (objetivo, campaña, conjunto, anuncio, destino, publicar), con una "receta" de una página.
 - Después: métricas, cómo encontrar qué falla, cuándo apagar o subir, contestar rápido y problemas comunes.
 - Anexos: plantillas por tipo de negocio, prompts de IA, diccionario, política de privacidad y una hoja de Excel.
-Usa dos ejemplos inventados: Luis (barbero en Caguas, WhatsApp) y María (techos en Bayamón, formulario, categoría especial de vivienda). Dice que está al día a octubre de 2026.
+Usa dos ejemplos inventados: Luis (barbero en Caguas, WhatsApp) y María (techos en Bayamón, formulario). Dice que está al día a octubre de 2026.
 
 Precio planeado: $27 las primeras 30 ventas y luego $37. Después vendo: revisión del anuncio ($17), montarlo juntos por videollamada ($147) y la agencia (mensualidad).
 A quién va: dueños de negocios locales en Puerto Rico (y latinos en EE. UU.) que ya gastaron en "Promocionar" sin resultados, y principiantes que quieren aprender.
@@ -48,7 +48,7 @@ Con lo que encontraste, ¿$27 y luego $37 es el precio correcto para este mercad
 
 5. X
 - ¿Qué tipos de posts sobre anuncios y marketing para negocios funcionan mejor hoy en X en español? Dame ejemplos reales con enlace y las métricas que se vean.
-- Estos son mis 10 ángulos: el botón "Promocionar" que trae likes y no clientes; el error de escoger "Tráfico"; Meta cambió en 2026; la línea roja (cuánto puedes pagar por un cliente); techos y la categoría de vivienda; contestar en 5 minutos; antes de pagarle a una agencia; revisión gratis de anuncios; mi historia construyendo en público (trabajo contestando mensajes en una mueblería); el lanzamiento con 30 cupos a $27. Ordénalos del más al menos prometedor según lo que ves en X y propón 5 ángulos nuevos basados en las frases reales que encontraste.
+- Estos son mis 10 ángulos: el botón "Promocionar" que trae likes y no clientes; el error de escoger "Tráfico"; Meta cambió en 2026; la línea roja (cuánto puedes pagar por un cliente); techos y placas solares no son "vivienda"; contestar en 5 minutos; antes de pagarle a una agencia; revisión gratis de anuncios; mi historia construyendo en público (trabajo contestando mensajes en una mueblería); el lanzamiento con 30 cupos a $27. Ordénalos del más al menos prometedor según lo que ves en X y propón 5 ángulos nuevos basados en las frases reales que encontraste.
 - 15 cuentas en español (ideal de Puerto Rico) de marketing, emprendimiento o negocios locales donde me conviene responder para que me conozcan, con su enlace.
 
 REGLAS

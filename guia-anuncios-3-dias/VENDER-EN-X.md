@@ -100,17 +100,17 @@ Para el dueño que piensa en números. Es el que más se guarda y se comparte.
 >
 > Si Meta le cobra $6, va ganando, aunque le "parezca caro".
 
-### 6. Techos, remodelación y placas solares
-Un nicho muy específico. Demuestra que sabes lo que otros no.
+### 6. Techos y placas solares no son "vivienda"
+Un nicho muy específico y un error que cuesta dinero. Demuestra que sabes
+lo que otros no.
 
-> ¿Tienes compañía de techos, remodelación o placas solares y Meta te
-> rechaza los anuncios?
+> ¿Arreglas techos, plomería o pones placas solares?
 >
-> Para Meta eso es "vivienda". Tienes que declararlo como categoría
-> especial.
+> Para Meta eso NO es "vivienda". Si lo declaras por si acaso, te bloquea
+> la edad y te obliga a un área de 25 km.
 >
-> Pierdes la edad y el sexo, pero el anuncio sale. Si no lo declaras, te lo
-> rechazan y castigan tu cuenta.
+> Vivienda es vender o alquilar casas, hipotecas y seguros de casa. Si te
+> rechazan por vivienda, ahí sí se declara.
 
 ### 7. Contestar rápido
 Para el que dice que los anuncios "no funcionan".
@@ -240,8 +240,8 @@ guía completa.
      Clientes potenciales, en tu pantalla.
   3. *"¿Cuánto puedes pagar por un cliente?"* La línea roja en una
      servilleta o en la hoja de Excel.
-  4. *"Si tienes compañía de techos, Meta te va a rechazar el anuncio si
-     no haces esto."* La categoría de vivienda.
+  4. *"Si arreglas techos, no marques esto en tu campaña."* Por qué
+     arreglar casas no es "vivienda" y cuándo sí se declara.
   5. *"Así se ve una campaña bien montada."* Pasas la receta de la página
      38 en 40 segundos.
 - Los 8 videos de `VIDEOS.md` son otra cosa: los que van dentro del

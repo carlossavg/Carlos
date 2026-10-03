@@ -65,9 +65,10 @@ La hoja de Excel se rehace con `python3 extras/hacer-hoja.py` (necesita
   del Día 2, la **receta** del Día 3 (cada ajuste, para Luis y para María,
   en una página), qué hacer si solo tienes celular o te vas a mitad, y qué
   es normal la primera semana.
-- Los arreglos de casa (techos, remodelación, plomería, aire, placas) van
-  con la categoría especial de **vivienda**: María la declara, y por eso no
-  puede subir la edad mínima.
+- Categorías especiales: vivienda es vender o alquilar casas, hipotecas,
+  tasaciones y seguros de casa. Arreglar casas (techos, plomería, aire,
+  placas) **no** entra: María no la declara. Si Meta rechaza un anuncio
+  por vivienda, ahí se declara (fuente: "About ads for housing" de Meta).
 - Al día a **octubre de 2026**: el flujo único de creación de campañas con
   Advantage+ encendido (febrero de 2026), la segmentación detallada recortada
   y sin exclusiones, la atribución de 7 días después del clic y 1 después de
