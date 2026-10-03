@@ -240,6 +240,10 @@ negocio. Solo cambia la primera línea:
 
 ### Cómo probarlos
 
+**No prendas esto todavía.** Primero 10 ventas sin anuncios, 3 testimonios
+y un video que haya funcionado solo (ver `VENDER-EN-X.md`). Sin eso no
+sabes si falla el anuncio, la página o el precio.
+
 - Empieza con 4 ángulos: **1, 2, 4 y 5**. Mismo estilo de imagen, mismo
   botón, cambia solo el texto y la frase de la imagen.
 - Objetivo **Ventas**, con el píxel en la página de venta y la compra

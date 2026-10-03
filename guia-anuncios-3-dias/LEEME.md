@@ -11,6 +11,7 @@ principiante monte y publique su primera campaña en Facebook e Instagram en
 | `Tu-primera-campana-en-3-dias.pdf` | **La guía**, lista para entregar. 76 páginas. |
 | `extras/Hoja-de-resultados.xlsx` | La hoja que va con la guía: calcula la línea roja y dice qué anuncio apagar. |
 | `VENDER-GUIA.md` | Precio, entrega, página de venta y cómo lanzarla. |
+| `VENDER-EN-X.md` | Cómo venderla en X: 10 ángulos con el post listo, un hilo, el plan de 2 semanas, y cuándo usar videos o anuncios. |
 | `VIDEOS.md` | Los 8 videos que conviene grabar después, con su guion. |
 | `CAPTURAS.md` | Las 11 capturas reales que puedes poner en lugar de las ilustraciones. |
 | `guia/secciones/*.html` | El texto de la guía, una parte por archivo. |
